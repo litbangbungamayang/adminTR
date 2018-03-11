@@ -1,0 +1,148 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package id.buma.simtr.controller;
+
+import id.buma.simtr.dao.KelompokTaniDAO;
+import id.buma.simtr.dao.KelompokTaniDAOSQL;
+import id.buma.simtr.dao.PetaniDAO;
+import id.buma.simtr.dao.PetaniDAOSQL;
+import id.buma.simtr.dao.SistemDAOSQL;
+import id.buma.simtr.model.KelompokTani;
+import id.buma.simtr.model.PetaniTebu;
+import id.buma.simtr.view.KelompokTaniHeaderRenderer;
+import id.buma.simtr.view.KelompokTaniRowRenderer;
+import id.buma.simtr.view.KelompokTaniSelectionModel;
+import id.buma.simtr.view.KelompokTaniTableModel;
+import id.buma.simtr.view.MainWindow;
+import id.buma.simtr.view.PetaniHeaderRenderer;
+import id.buma.simtr.view.PetaniRowRenderer;
+import id.buma.simtr.view.PetaniSelectionModel;
+import id.buma.simtr.view.PetaniTableModel;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
+
+/**
+ *
+ * @author Bayu Anandavi Muhardika
+ * 
+ */
+
+public class CommonController {
+    
+    private final MainWindow mw;
+    
+    private final KelompokTaniHeaderRenderer kelTaniHR = new KelompokTaniHeaderRenderer();
+    
+    private final KelompokTaniRowRenderer kelTaniRR = new KelompokTaniRowRenderer();
+    
+    private final KelompokTaniDAO kelompokTaniDao = new KelompokTaniDAOSQL();
+    
+    private final PetaniDAO petaniDAO = new PetaniDAOSQL();
+    
+    private final KelompokTaniSelectionModel ktsm = new KelompokTaniSelectionModel();
+    
+    private final PetaniHeaderRenderer petaniHR = new PetaniHeaderRenderer();
+    
+    private final PetaniRowRenderer petaniRR = new PetaniRowRenderer();
+    
+    private final PetaniSelectionModel psm = new PetaniSelectionModel();
+    
+    public static List<PetaniTebu> inputPetani = new ArrayList<>();
+    
+    public static SistemDAOSQL sistemDao = new SistemDAOSQL();
+    
+    
+    public CommonController(MainWindow mw){
+        this.mw = mw;
+    }
+    
+    //*************************************************************************//
+    //************************ SETTING TABLE **********************************//
+    
+    public void setTableHeaderKelTani(JTableHeader th){
+        th.setDefaultRenderer(kelTaniHR);
+    }
+    
+    public void setTableRowRendererKelTani(JTable tbl){
+        tbl.setDefaultRenderer(Object.class, kelTaniRR);
+    }
+    
+    public void setTableModelKelTani(JTable tbl){
+        KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(2018));
+        tbl.setModel(kttm);
+    }
+    
+    public void setTableSelectionModel(JTable tbl){
+        tbl.setSelectionModel(ktsm);
+    }
+    
+    public void setTableHeaderPetani(JTableHeader th){
+        th.setDefaultRenderer(petaniHR);
+    }
+    
+    public void setTableRowRendererPetani(JTable tbl){
+        tbl.setDefaultRenderer(Object.class, petaniRR);
+    }
+    
+    public void setTableModelPetani(JTable tbl, PetaniTableModel ptm){
+        tbl.setModel(ptm);
+    }
+        
+    public void insertBufferPetani(PetaniTebu pt){
+        inputPetani.add(pt);
+    }
+    
+    public int getSizeArrayPetani(){
+        return inputPetani.size();
+    }
+    
+    public void hapusElemenArrayPetani(int index){
+        inputPetani.remove(index);
+    }
+    
+    public void refreshBufferTablePetani(JTable tbl){
+        PetaniTableModel ptm = new PetaniTableModel(inputPetani);
+        tbl.setModel(ptm);
+    }
+    
+    //*************************************************************************//
+    
+    public void kelTaniAutoFilter(JTable tbl, String keyword){
+        List<KelompokTani> lkt = kelompokTaniDao.getAllKelompokTaniByMultipleField(keyword, sistemDao.getTahunGiling());
+        KelompokTaniTableModel kttm = new KelompokTaniTableModel(lkt);
+        tbl.setModel(kttm);
+    }
+    
+    public void populateComboBox(JComboBox cbx, List<String> content){
+        List<String> contentList = new ArrayList<>();
+        contentList.add("");
+        content.forEach((contentElement) -> {
+            contentList.add(contentElement);
+        });
+        cbx.setModel(new DefaultComboBoxModel(contentList.toArray()));
+    }
+    
+    public void showErrorMsg(String title,String msg){
+        JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void prepareTableInputPetani(JTable tabel){
+        setTableHeaderPetani(tabel.getTableHeader());
+        setTableRowRendererPetani(tabel);
+        setTableSelectionModel(tabel);
+        refreshBufferTablePetani(tabel);
+    }
+    
+    public List<PetaniTebu> getBufferArrayPetani(){
+        return inputPetani;
+    }
+    
+}
