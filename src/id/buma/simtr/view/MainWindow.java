@@ -117,7 +117,6 @@ public class MainWindow extends javax.swing.JFrame {
         DocumentFilter numOnly = new NumberOnlyTextFilter(16);
         ((AbstractDocument) jtfInputNoKtpKoord.getDocument()).setDocumentFilter(numOnly);
         ((AbstractDocument) jtfFrmValidasiRDKK_SearchKoord.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfInputNoRdkk.getDocument()).setDocumentFilter(df);
     }
     
     private void setTextFieldAutoClear(){
@@ -234,8 +233,7 @@ public class MainWindow extends javax.swing.JFrame {
         pnlFrmInputRDKK_BatalKoord = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblInputNamaKelTani8 = new javax.swing.JLabel();
-        jtfInputNoRdkk = new javax.swing.JTextField();
-        pnlUnderline5 = new javax.swing.JPanel();
+        cbxKategoriTanaman = new javax.swing.JComboBox<>();
         pnlFrmInputRDKK_ContainerInputPetani = new javax.swing.JPanel();
         pnlBlank = new javax.swing.JPanel();
         pnlTblInputPetani = new javax.swing.JPanel();
@@ -1103,24 +1101,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         lblInputNamaKelTani8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInputNamaKelTani8.setForeground(new java.awt.Color(255, 255, 255));
-        lblInputNamaKelTani8.setText("No. RDKK");
+        lblInputNamaKelTani8.setText("Kategori Tanaman");
 
-        jtfInputNoRdkk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtfInputNoRdkk.setForeground(new java.awt.Color(255, 255, 255));
-        jtfInputNoRdkk.setBorder(null);
-        jtfInputNoRdkk.setCaretColor(new java.awt.Color(204, 204, 204));
-        jtfInputNoRdkk.setOpaque(false);
-
-        javax.swing.GroupLayout pnlUnderline5Layout = new javax.swing.GroupLayout(pnlUnderline5);
-        pnlUnderline5.setLayout(pnlUnderline5Layout);
-        pnlUnderline5Layout.setHorizontalGroup(
-            pnlUnderline5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
-        );
-        pnlUnderline5Layout.setVerticalGroup(
-            pnlUnderline5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
+        cbxKategoriTanaman.setBackground(new java.awt.Color(0, 102, 51));
+        cbxKategoriTanaman.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxKategoriTanaman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TRIT I", "TRIT II", "TRIT III", "TRIT IV" }));
+        cbxKategoriTanaman.setBorder(null);
+        cbxKategoriTanaman.setName("cbxKategoriTanaman"); // NOI18N
 
         javax.swing.GroupLayout pnlFrmInputRDKK_ContentLayout = new javax.swing.GroupLayout(pnlFrmInputRDKK_Content);
         pnlFrmInputRDKK_Content.setLayout(pnlFrmInputRDKK_ContentLayout);
@@ -1153,9 +1140,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                 .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfInputNoRdkk)
-                                    .addComponent(pnlUnderline5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbxKategoriTanaman, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                 .addComponent(lblInputNamaKelTani3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -1164,7 +1149,7 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addComponent(pnlFrmInputRDKK_LanjutKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(pnlFrmInputRDKK_BatalKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cbxDesa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(cbxDesa, 0, 296, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlFrmInputRDKK_ContentLayout.setVerticalGroup(
@@ -1187,13 +1172,10 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(pnlUnderline2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblInputNamaKelTani1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
-                        .addComponent(jtfInputNoRdkk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(pnlUnderline5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxKategoriTanaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInputNamaKelTani2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxKecamatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1205,7 +1187,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlFrmInputRDKK_BatalKoord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlFrmInputRDKK_LanjutKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(344, Short.MAX_VALUE))
         );
 
         pnlFrmInputRDKK.add(pnlFrmInputRDKK_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 470, 630));
@@ -1496,7 +1478,6 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane2.setMinimumSize(new java.awt.Dimension(0, 0));
 
         tblValidasiRDKK.setBackground(new java.awt.Color(170, 193, 193));
-        tblValidasiRDKK.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
         tblValidasiRDKK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblValidasiRDKK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1592,7 +1573,6 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane4.setMinimumSize(new java.awt.Dimension(0, 0));
 
         tblValidasiRDKK_Petani.setBackground(new java.awt.Color(170, 193, 193));
-        tblValidasiRDKK_Petani.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(80, 80, 80)));
         tblValidasiRDKK_Petani.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblValidasiRDKK_Petani.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1810,6 +1790,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxDesa;
     private javax.swing.JComboBox<String> cbxInputRDKKMasaTanam;
     private javax.swing.JComboBox<String> cbxInputRDKKVarietas;
+    private javax.swing.JComboBox<String> cbxKategoriTanaman;
     private javax.swing.JComboBox<String> cbxKecamatan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1830,7 +1811,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jtfFrmRDKKCari;
     private javax.swing.JTextField jtfFrmValidasiRDKK_SearchKoord;
     private javax.swing.JTextField jtfInputNoKtpKoord;
-    private javax.swing.JTextField jtfInputNoRdkk;
     private javax.swing.JTextField jtfInputRDKKNamaKoord;
     private javax.swing.JTextField jtfInputRDKKNamaPetani;
     private javax.swing.JLabel judulUtama;
@@ -1929,7 +1909,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUnderline2;
     private javax.swing.JPanel pnlUnderline3;
     private javax.swing.JPanel pnlUnderline4;
-    private javax.swing.JPanel pnlUnderline5;
     private javax.swing.JPanel pnlVerifikasiRdkk;
     private javax.swing.JPanel pnlWsLKP1;
     private javax.swing.JPanel pnlWsRDKK;
@@ -2042,8 +2021,8 @@ public class MainWindow extends javax.swing.JFrame {
         return jScrollPane4;
     }
     
-    public JTextField getJtfInputNoRdkk(){
-        return jtfInputNoRdkk;
+    public JComboBox getCbxKategoriTanaman(){
+        return cbxKategoriTanaman;
     }
     
 }

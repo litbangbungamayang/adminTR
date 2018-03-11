@@ -22,6 +22,11 @@ public class VersionController {
         + Sebagian besar GUI sudah tampil
         + Modul RDKK sudah di-test (UAT ke-1)
         */
+        version = "0.9.2";
+        /*
+        + Nomor kontrak sudah di-generate otomatis
+        + Ditambahkan pilihan untuk input kategori tanaman di modul RDKK
+        */
         return version;
     }
         

@@ -13,6 +13,7 @@ import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.VarietasTebuDAOSQL;
 import id.buma.simtr.model.Desa;
+import id.buma.simtr.model.IdNoKontrak;
 import id.buma.simtr.model.Kecamatan;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.PetaniTebu;
@@ -108,18 +109,18 @@ public class RDKKController {
     public boolean validasiKoordinatorBaru(){
         String noKtp = mw.getJtfNoKtpKoord().getText();
         String namaKoord = mw.getJtfInputRDKKNamaKoord().getText();
-        String noRdkk = mw.getJtfInputNoRdkk().getText();
         int selectedIndexCbxKec = mw.getCbxKec().getSelectedIndex() - 1;
         int selectedIndexCbxDesa = mw.getCbxDesa().getSelectedIndex() - 1;
+        int selectedIndexCbxKatg = mw.getCbxKategoriTanaman().getSelectedIndex();
         if (noKtp.isEmpty() == false && namaKoord.isEmpty() == false && noKtp.isEmpty() == false
-                && selectedIndexCbxDesa >= 0 && selectedIndexCbxKec >= 0){
+                && selectedIndexCbxDesa >= 0 && selectedIndexCbxKec >= 0 && selectedIndexCbxKatg >= 0){
             return true;
         } else {
             if (noKtp.isEmpty() == true) cc.showErrorMsg("Validasi", "Nomor KTP harus diisi!");
             if (namaKoord.isEmpty() == true) cc.showErrorMsg("Validasi", "Nama Koordinator harus diisi!");
             if (selectedIndexCbxKec < 0) cc.showErrorMsg("Validasi", "Kecamatan harus dipilih!");
             if (selectedIndexCbxDesa < 0) cc.showErrorMsg("Validasi", "Desa harus dipilih!");
-            if (noRdkk.isEmpty() == true) cc.showErrorMsg("Validasi", "Nomor RDKK harus diisi!");
+            if (selectedIndexCbxKatg < 0) cc.showErrorMsg("Validasi", "Kategori tanaman harus diisi!");
         }
         return false;
     }
@@ -127,7 +128,7 @@ public class RDKKController {
     public void statusIsianKoord(boolean status){
         mw.getJtfInputRDKKNamaKoord().setEnabled(status);
         mw.getJtfNoKtpKoord().setEnabled(status);
-        mw.getJtfInputNoRdkk().setEnabled(status);
+        mw.getCbxKategoriTanaman().setEnabled(status);
         mw.getCbxKec().setEnabled(status);
         mw.getCbxDesa().setEnabled(status);
     }
@@ -188,7 +189,7 @@ public class RDKKController {
         statusIsianKoord(true);
         mw.getJtfInputRDKKNamaKoord().setText("");
         mw.getJtfNoKtpKoord().setText("");
-        mw.getJtfInputNoRdkk().setText("");
+        mw.getCbxKategoriTanaman().setSelectedIndex(-1);
         mw.getCbxKec().setSelectedIndex(0);
         mw.getCbxDesa().setSelectedItem(null);
     }
@@ -199,16 +200,16 @@ public class RDKKController {
             List<Kecamatan> arrayKecamatan = kecDao.getAllKecamatan();
             String namaKoord = mw.getJtfInputRDKKNamaKoord().getText();
             String noKtp = mw.getJtfNoKtpKoord().getText();
-            String noRdkk = mw.getJtfInputNoRdkk().getText();
             java.sql.Date tglRdkk = new java.sql.Date(new java.util.Date().getTime());
             int selectedKec = mw.getCbxKec().getSelectedIndex() - 1;
             int selectedDesa = mw.getCbxDesa().getSelectedIndex() - 1;
+            int selectedKategori = mw.getCbxKategoriTanaman().getSelectedIndex() + 1;
             String idKecamatan = arrayKecamatan.get(selectedKec).getIdKecamatan();
             List<Desa> arrayDesa = desaDao.getDesaByIdKecamatan(idKecamatan);
             int idDesa = arrayDesa.get(selectedDesa).getIdDesa();
             int tahunGiling = sistDao.getTahunGiling();
             int jmlPetani = arrayPetani.size();
-            int afdeling = 20; // COBA
+            int afdeling = 20; // TODO : to be implemented in user management module
             float jmlLuas = 0.00f;
             for (PetaniTebu petani : arrayPetani){
                 jmlLuas = jmlLuas + petani.getLuas();
@@ -217,9 +218,11 @@ public class RDKKController {
                     String.valueOf(jmlPetani) + " petani \n - Total luas areal seluas " + 
                     String.valueOf(jmlLuas) + " Ha. \nApakah data tersebut benar?", "Konfirmasi Data", 
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                String idKelompok = cntDao.getNewIdKelompok(afdeling);
-                KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, "", 
-                        String.valueOf(afdeling), idDesa, "N", noKtp, noRdkk, tglRdkk);
+                IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(afdeling, selectedKategori);
+                String idKelompok = newIdNoKontrak.getIdKelompok();
+                String noKontrak = newIdNoKontrak.getNoKontrak();
+                KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, 
+                        String.valueOf(afdeling), idDesa, "N", noKtp, "", tglRdkk);
                 keltanDao.insertKelompokTani(kt);
                 for (PetaniTebu pt : arrayPetani){
                     pt.setIdKelompok(idKelompok);

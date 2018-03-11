@@ -24,7 +24,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,0,0,0,5,86"/>
   </AuxValues>
 
   <Layout>
@@ -1587,10 +1586,7 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblInputNamaKelTani8" min="-2" pref="130" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jtfInputNoRdkk" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="pnlUnderline5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="cbxKategoriTanaman" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblInputNamaKelTani3" min="-2" pref="130" max="-2" attributes="0"/>
@@ -1601,7 +1597,7 @@
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Component id="pnlFrmInputRDKK_BatalKoord" min="-2" pref="100" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="cbxDesa" max="32767" attributes="0"/>
+                                                  <Component id="cbxDesa" pref="296" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1637,15 +1633,11 @@
                                   <Component id="lblInputNamaKelTani1" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jtfInputNoRdkk" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      <Component id="pnlUnderline5" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblInputNamaKelTani8" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblInputNamaKelTani8" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Component id="cbxKategoriTanaman" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblInputNamaKelTani2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="cbxKecamatan" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1660,7 +1652,7 @@
                                   <Component id="pnlFrmInputRDKK_BatalKoord" max="32767" attributes="0"/>
                                   <Component id="pnlFrmInputRDKK_LanjutKoord" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="345" max="32767" attributes="0"/>
+                              <EmptySpace pref="344" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1894,41 +1886,34 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="No. RDKK"/>
+                        <Property name="text" type="java.lang.String" value="Kategori Tanaman"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jtfInputNoRdkk">
+                    <Component class="javax.swing.JComboBox" name="cbxKategoriTanaman">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="16" style="0"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="66" red="0" type="rgb"/>
                         </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="TRIT I"/>
+                            <StringItem index="1" value="TRIT II"/>
+                            <StringItem index="2" value="TRIT III"/>
+                            <StringItem index="3" value="TRIT IV"/>
+                          </StringArray>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
-                        <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                        </Property>
-                        <Property name="opaque" type="boolean" value="false"/>
+                        <Property name="name" type="java.lang.String" value="cbxKategoriTanaman" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
                     </Component>
-                    <Container class="javax.swing.JPanel" name="pnlUnderline5">
-
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="296" max="32767" attributes="0"/>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                          </Group>
-                        </DimensionLayout>
-                      </Layout>
-                    </Container>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="pnlFrmInputRDKK_ContainerInputPetani">
@@ -2627,13 +2612,6 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c1" green="c1" red="aa" type="rgb"/>
                         </Property>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder>
-                              <Color PropertyName="color" blue="50" green="50" red="50" type="rgb"/>
-                            </LineBorder>
-                          </Border>
-                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="0"/>
                         </Property>
@@ -2837,13 +2815,6 @@
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c1" green="c1" red="aa" type="rgb"/>
-                        </Property>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder>
-                              <Color PropertyName="color" blue="50" green="50" red="50" type="rgb"/>
-                            </LineBorder>
-                          </Border>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="0"/>

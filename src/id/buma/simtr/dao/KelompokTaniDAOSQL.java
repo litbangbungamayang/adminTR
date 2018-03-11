@@ -36,23 +36,25 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                 /******
                     1 = iD Kelompok
                     2 = Nama Kelompok
-                    3 = ID Afd
-                    4 = Tahun
-                    5 = ID Desa
-                    6 = No KTP
-                    7 = No RDKK
-                    8 = Tanggal RDKK
+                    3 = No Kontrak
+                    4 = ID Afd
+                    5 = Tahun
+                    6 = ID Desa
+                    7 = No KTP
+                    8 = No RDKK
+                    9 = Tanggal RDKK
                 ******/
-                String callSQL = "exec INSERT_KELOMPOKTANIH ?,?,?,?,?,?,?,?";
+                String callSQL = "exec INSERT_KELOMPOKTANIH ?,?,?,?,?,?,?,?,?";
                 CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
                 cst.setString(1, kt.getIdKelompok());
                 cst.setString(2, kt.getNamaKelompok());
-                cst.setString(3, kt.getIdAfd());
-                cst.setInt(4, kt.getTahun());
-                cst.setInt(5, kt.getIdDesa());
-                cst.setString(6, kt.getNoKtp());
-                cst.setString(7, kt.getNoRdkk());
-                cst.setDate(8, kt.getTglRdkk());
+                cst.setString(3, kt.getNoKontrak());
+                cst.setString(4, kt.getIdAfd());
+                cst.setInt(5, kt.getTahun());
+                cst.setInt(6, kt.getIdDesa());
+                cst.setString(7, kt.getNoKtp());
+                cst.setString(8, kt.getNoRdkk());
+                cst.setDate(9, kt.getTglRdkk());
                 cst.execute();
                 if (cst.getUpdateCount() == 1){
                     return true;

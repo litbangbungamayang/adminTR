@@ -6,6 +6,7 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.database.DbConnectionManager;
+import id.buma.simtr.model.IdNoKontrak;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -21,24 +22,28 @@ import javax.swing.JOptionPane;
 public class CounterDAOSQL implements CounterDAO{
 
     @Override
-    public String getNewIdKelompok(int afdeling) {
-        String newIdKelompok = null;
+    public IdNoKontrak getNewIdKelompok(int afdeling, int kategori) {
+        IdNoKontrak newIdNoKontrak = null;
         if (DbConnectionManager.isConnect() == true){
             try {
-                String callSQL = "exec GET_NEW_IDKELOMPOK ?,?";
+                String callSQL = "exec GET_NEW_IDKELOMPOK ?,?,?,?";
                 CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
                         ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 cst.setInt(1, afdeling);
-                cst.registerOutParameter(2, java.sql.Types.VARCHAR);
+                cst.setInt(2, kategori);
+                cst.registerOutParameter(3, java.sql.Types.VARCHAR);
+                cst.registerOutParameter(4, java.sql.Types.VARCHAR);
                 cst.execute();
-                newIdKelompok = cst.getString(2);
+                String newIdKelompok = cst.getString(3);
+                String newNoKontrak = cst.getString(4);
+                newIdNoKontrak = new IdNoKontrak(newIdKelompok,newNoKontrak);
             } catch (Exception ex) {
                 Logger.getLogger(CounterDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error getNewIdKelompok! \nError code : " +  
                         ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        return newIdKelompok;
+        return newIdNoKontrak;
     }
 
     @Override

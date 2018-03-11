@@ -5,6 +5,8 @@
  */
 package id.buma.simtr.dao;
 
+import id.buma.simtr.model.IdNoKontrak;
+
 /**
  *
  * @author Bayu Anandavi Muhardika
@@ -13,7 +15,7 @@ package id.buma.simtr.dao;
 
 public interface CounterDAO {
     
-    public String getNewIdKelompok(int afdeling);
+    public IdNoKontrak getNewIdKelompok(int afdeling, int kategori);
     
     public String getNewIdPetani(String idKelompok);
     
