@@ -18,7 +18,7 @@ public interface KelompokTaniDAO {
     
     public boolean insertKelompokTani(KelompokTani kt);
     
-    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun);
+    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun, String idAfd);
     
     public List<KelompokTani> getAllKelompokTaniByMultipleField(String keyword, int tahun);
     

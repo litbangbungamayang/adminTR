@@ -45,6 +45,12 @@ public class MenuController implements MouseListener{
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
         switch(menuPanelName){
+            case "pnlLoginLogin":
+                if (cc.cekLogin()) pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                break;
+            case "pnlLoginKeluar":
+                System.exit(0);
+                break;
             case "pnlBackground":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
@@ -72,7 +78,6 @@ public class MenuController implements MouseListener{
                         break;
                     case "pnlFrmInputRDKK_BatalKoord":
                         if (JOptionPane.showConfirmDialog(null, "Anda yakin akan membatalkan input Draft RDKK?", "Konfirmasi", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                            rc.statusIsianKoord(true);
                             rc.clearInputKoordinator();
                             pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
                             mw.getJtfInputRDKKNamaKoord().requestFocus();
@@ -125,6 +130,9 @@ public class MenuController implements MouseListener{
             case "pnlMenuAdmin":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
+            case "pnlMenuKeluar":
+                System.exit(0);
+                break;
         }
     }
 
@@ -162,6 +170,12 @@ public class MenuController implements MouseListener{
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
         switch(menuPanelName){
+            case "pnlLoginKeluar":
+                standarButtonHover(menuPanel);
+                break;
+            case "pnlLoginLogin":
+                standarButtonHover(menuPanel);
+                break;
             case "pnlMenuRDKK":
                 menuPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 menuPanel.setBackground(new Color(34,59,14,150));
@@ -228,6 +242,9 @@ public class MenuController implements MouseListener{
             case "pnlMenuAdmin":
                 standarMainMenuHover(menuPanel);
                 break;
+            case "pnlMenuKeluar":
+                standarMainMenuHover(menuPanel);
+                break;
         }
     }
 
@@ -237,6 +254,12 @@ public class MenuController implements MouseListener{
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
         switch(menuPanelName){
+            case "pnlLoginLogin":
+                standarMainMenuDisplayed(menuPanel);
+                break;
+            case "pnlLoginKeluar":
+                standarMainMenuDisplayed(menuPanel);
+                break;
             case "pnlMenuRDKK":
                 standarMainMenuDisplayed(menuPanel);
                 break;
@@ -298,6 +321,9 @@ public class MenuController implements MouseListener{
                 standarMainMenuDisplayed(menuPanel);
                 break;
             case "pnlMenuAdmin":
+                standarMainMenuDisplayed(menuPanel);
+                break;
+            case "pnlMenuKeluar":
                 standarMainMenuDisplayed(menuPanel);
                 break;
         }

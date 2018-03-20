@@ -69,14 +69,15 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     }
 
     @Override
-    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun) {
+    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun, String idAfd) {
         List<KelompokTani> lkt = new ArrayList<>();
         if (DbConnectionManager.isConnect() == true){
             try {
-                String callSQL = "exec GET_KELOMPOKTANIH_BY_TAHUN ?";
+                String callSQL = "exec GET_KELOMPOKTANIH_BY_TAHUN ?,?";
                 CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
                         ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 cst.setInt(1, tahun);
+                cst.setString(2, idAfd);
                 lkt = commonGetDataKelompokTani(cst);
             } catch (Exception ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);

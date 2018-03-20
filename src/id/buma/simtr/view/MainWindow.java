@@ -13,14 +13,14 @@ import id.buma.simtr.controller.NumberOnlyTextFilter;
 import id.buma.simtr.controller.RDKKController;
 import id.buma.simtr.controller.TableSelectionController;
 import id.buma.simtr.controller.UppercaseTextField;
+import id.buma.simtr.controller.UserController;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -59,12 +59,15 @@ public class MainWindow extends javax.swing.JFrame {
         setTextFieldAutoClear();
         setTextAutoFilter();
         pnlSubMenuHolder.setVisible(false);
+        mc.pageSwitcher(pnlContent, "crdLogin");
         setTableListener();
         //*******************************************************//
+        /*
         cc.setTableHeaderKelTani(tblKelompokTani.getTableHeader());
         cc.setTableRowRendererKelTani(tblKelompokTani);
         cc.setTableModelKelTani(tblKelompokTani);
         cc.setTableSelectionModel(tblKelompokTani);
+        */
         //******************************************************//
         /*
         cc.setTableHeaderPetani(tblInputPetani.getTableHeader());
@@ -108,6 +111,9 @@ public class MainWindow extends javax.swing.JFrame {
         pnlFrmValidasiRDKK_BatalDraft.addMouseListener(mc);
         pnlFrmValidasiRDKK_CetakDraft.addMouseListener(mc);
         pnlFrmValidasiRDKK_ValidasiDraft.addMouseListener(mc);
+        pnlLoginLogin.addMouseListener(mc);
+        pnlLoginKeluar.addMouseListener(mc);
+        pnlMenuKeluar.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -183,6 +189,9 @@ public class MainWindow extends javax.swing.JFrame {
         pnlSeparator6 = new javax.swing.JPanel();
         pnlMenuAdmin = new javax.swing.JPanel();
         lblMenuPBH1 = new javax.swing.JLabel();
+        pnlSeparator7 = new javax.swing.JPanel();
+        pnlMenuKeluar = new javax.swing.JPanel();
+        lblMenuKeluar = new javax.swing.JLabel();
         pnlSubMenuHolder = new javax.swing.JPanel();
         pnlSubMenuLKP = new javax.swing.JPanel();
         pnlWsRDKK = new javax.swing.JPanel();
@@ -285,6 +294,21 @@ public class MainWindow extends javax.swing.JFrame {
         pnlFrmValidasiRDKK_ValidasiDraft = new javax.swing.JPanel();
         lblFrmInputRDKK_Back5 = new javax.swing.JLabel();
         pnlLogin = new javax.swing.JPanel();
+        lypMenuLogin = new javax.swing.JLayeredPane();
+        pnlBackgroundLogin = new javax.swing.JPanel();
+        lblBackground1 = new javax.swing.JLabel();
+        pnlHolderLogin = new javax.swing.JPanel();
+        pnlLogoLogin = new javax.swing.JPanel();
+        lblMenuRDKK1 = new javax.swing.JLabel();
+        pnlUserLogin = new javax.swing.JPanel();
+        lblLoginUsername = new javax.swing.JLabel();
+        lblLoginPassword = new javax.swing.JLabel();
+        jtfLoginUsername = new javax.swing.JTextField();
+        jtpLoginPassword = new javax.swing.JPasswordField();
+        pnlLoginLogin = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        pnlLoginKeluar = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -338,12 +362,10 @@ public class MainWindow extends javax.swing.JFrame {
         lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUsername.setText("Bayu Anandavi Muhardika");
 
         lblLoginDesc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblLoginDesc.setForeground(new java.awt.Color(255, 255, 255));
         lblLoginDesc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblLoginDesc.setText("Anda login sebagai");
 
         lblMenuNav.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMenuNav.setForeground(new java.awt.Color(255, 255, 255));
@@ -354,7 +376,7 @@ public class MainWindow extends javax.swing.JFrame {
             pnlNavigasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNavigasiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblMenuNav, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
+                .addComponent(lblMenuNav, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
                 .addGap(260, 260, 260)
                 .addComponent(lblLoginDesc)
                 .addGap(18, 18, 18)
@@ -630,6 +652,48 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         pnlMenuHolder.add(pnlMenuAdmin, new java.awt.GridBagConstraints());
+
+        pnlSeparator7.setBackground(new Color(255,255,255,0));
+        pnlSeparator7.setPreferredSize(new java.awt.Dimension(10, 150));
+
+        javax.swing.GroupLayout pnlSeparator7Layout = new javax.swing.GroupLayout(pnlSeparator7);
+        pnlSeparator7.setLayout(pnlSeparator7Layout);
+        pnlSeparator7Layout.setHorizontalGroup(
+            pnlSeparator7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        pnlSeparator7Layout.setVerticalGroup(
+            pnlSeparator7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        pnlMenuHolder.add(pnlSeparator7, new java.awt.GridBagConstraints());
+
+        pnlMenuKeluar.setBackground(new Color(34,59,14,50));
+        pnlMenuKeluar.setName("pnlMenuKeluar"); // NOI18N
+        pnlMenuKeluar.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        lblMenuKeluar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        lblMenuKeluar.setForeground(new java.awt.Color(255, 255, 255));
+        lblMenuKeluar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMenuKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Login_104px.png"))); // NOI18N
+        lblMenuKeluar.setText("Keluar");
+        lblMenuKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblMenuKeluar.setIconTextGap(10);
+        lblMenuKeluar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        javax.swing.GroupLayout pnlMenuKeluarLayout = new javax.swing.GroupLayout(pnlMenuKeluar);
+        pnlMenuKeluar.setLayout(pnlMenuKeluarLayout);
+        pnlMenuKeluarLayout.setHorizontalGroup(
+            pnlMenuKeluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblMenuKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlMenuKeluarLayout.setVerticalGroup(
+            pnlMenuKeluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblMenuKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pnlMenuHolder.add(pnlMenuKeluar, new java.awt.GridBagConstraints());
 
         pnlSubMenuHolder.setBackground(new Color(255,255,255,100));
         pnlSubMenuHolder.setLayout(new java.awt.CardLayout());
@@ -1714,19 +1778,184 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlLogin.setBackground(new java.awt.Color(0, 23, 23));
         pnlLogin.setName("pnlLogin"); // NOI18N
+        pnlLogin.setOpaque(false);
+
+        lypMenuLogin.setDoubleBuffered(true);
+
+        pnlBackgroundLogin.setBackground(new java.awt.Color(102, 102, 102));
+        pnlBackgroundLogin.setName("pnlBackground"); // NOI18N
+
+        lblBackground1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/sugarcane_4.jpg"))); // NOI18N
+        lblBackground1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout pnlBackgroundLoginLayout = new javax.swing.GroupLayout(pnlBackgroundLogin);
+        pnlBackgroundLogin.setLayout(pnlBackgroundLoginLayout);
+        pnlBackgroundLoginLayout.setHorizontalGroup(
+            pnlBackgroundLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblBackground1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlBackgroundLoginLayout.setVerticalGroup(
+            pnlBackgroundLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblBackground1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pnlHolderLogin.setBackground(new Color(255,255,255,100));
+        pnlHolderLogin.setPreferredSize(new java.awt.Dimension(1366, 200));
+        pnlHolderLogin.setLayout(new java.awt.GridBagLayout());
+
+        pnlLogoLogin.setBackground(new Color(34,59,14,50));
+        pnlLogoLogin.setName("pnlMenuRDKK"); // NOI18N
+        pnlLogoLogin.setPreferredSize(new java.awt.Dimension(150, 150));
+
+        lblMenuRDKK1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblMenuRDKK1.setForeground(new java.awt.Color(255, 255, 255));
+        lblMenuRDKK1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMenuRDKK1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Name_104px.png"))); // NOI18N
+        lblMenuRDKK1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblMenuRDKK1.setIconTextGap(10);
+        lblMenuRDKK1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        javax.swing.GroupLayout pnlLogoLoginLayout = new javax.swing.GroupLayout(pnlLogoLogin);
+        pnlLogoLogin.setLayout(pnlLogoLoginLayout);
+        pnlLogoLoginLayout.setHorizontalGroup(
+            pnlLogoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblMenuRDKK1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlLogoLoginLayout.setVerticalGroup(
+            pnlLogoLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblMenuRDKK1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pnlHolderLogin.add(pnlLogoLogin, new java.awt.GridBagConstraints());
+
+        pnlUserLogin.setBackground(new Color(34,59,14,50));
+        pnlUserLogin.setName("pnlMenuPupuk"); // NOI18N
+        pnlUserLogin.setPreferredSize(new java.awt.Dimension(350, 150));
+
+        lblLoginUsername.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblLoginUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoginUsername.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblLoginUsername.setText("Username");
+        lblLoginUsername.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblLoginUsername.setIconTextGap(10);
+        lblLoginUsername.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        lblLoginPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblLoginPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoginPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblLoginPassword.setText("Password");
+        lblLoginPassword.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        lblLoginPassword.setIconTextGap(10);
+        lblLoginPassword.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jtfLoginUsername.setBackground(new java.awt.Color(70, 70, 0));
+        jtfLoginUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtfLoginUsername.setForeground(new java.awt.Color(255, 255, 255));
+        jtfLoginUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jtfLoginUsername.setCaretColor(new java.awt.Color(255, 255, 255));
+        jtfLoginUsername.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+
+        jtpLoginPassword.setBackground(new java.awt.Color(70, 70, 0));
+        jtpLoginPassword.setForeground(new java.awt.Color(255, 255, 255));
+        jtpLoginPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jtpLoginPassword.setCaretColor(new java.awt.Color(255, 255, 255));
+        jtpLoginPassword.setNextFocusableComponent(jLabel8);
+
+        pnlLoginLogin.setBackground(new Color(255,255,255,0));
+        pnlLoginLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlLoginLogin.setName("pnlLoginLogin"); // NOI18N
+        pnlLoginLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Login");
+        pnlLoginLogin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlLoginKeluar.setBackground(new Color(255,255,255,0));
+        pnlLoginKeluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlLoginKeluar.setName("pnlLoginKeluar"); // NOI18N
+        pnlLoginKeluar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Keluar");
+        pnlLoginKeluar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        javax.swing.GroupLayout pnlUserLoginLayout = new javax.swing.GroupLayout(pnlUserLogin);
+        pnlUserLogin.setLayout(pnlUserLoginLayout);
+        pnlUserLoginLayout.setHorizontalGroup(
+            pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUserLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlUserLoginLayout.createSequentialGroup()
+                        .addComponent(lblLoginUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfLoginUsername))
+                    .addGroup(pnlUserLoginLayout.createSequentialGroup()
+                        .addComponent(lblLoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlUserLoginLayout.createSequentialGroup()
+                                .addComponent(pnlLoginLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlLoginKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtpLoginPassword))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlUserLoginLayout.setVerticalGroup(
+            pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUserLoginLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLoginUsername)
+                    .addComponent(jtfLoginUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLoginPassword)
+                    .addComponent(jtpLoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(pnlUserLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlLoginLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlLoginKeluar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
+        );
+
+        pnlHolderLogin.add(pnlUserLogin, new java.awt.GridBagConstraints());
+
+        lypMenuLogin.setLayer(pnlBackgroundLogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        lypMenuLogin.setLayer(pnlHolderLogin, javax.swing.JLayeredPane.PALETTE_LAYER);
+
+        javax.swing.GroupLayout lypMenuLoginLayout = new javax.swing.GroupLayout(lypMenuLogin);
+        lypMenuLogin.setLayout(lypMenuLoginLayout);
+        lypMenuLoginLayout.setHorizontalGroup(
+            lypMenuLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBackgroundLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlHolderLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 1399, Short.MAX_VALUE)
+        );
+        lypMenuLoginLayout.setVerticalGroup(
+            lypMenuLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBackgroundLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(lypMenuLoginLayout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(pnlHolderLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 354, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
         pnlLoginLayout.setHorizontalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1399, Short.MAX_VALUE)
+            .addComponent(lypMenuLogin)
         );
         pnlLoginLayout.setVerticalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addComponent(lypMenuLogin)
         );
 
-        pnlContent.add(pnlLogin, "crdDorman");
+        pnlContent.add(pnlLogin, "crdLogin");
 
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
@@ -1816,6 +2045,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1830,8 +2061,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jtfInputNoKtpKoord;
     private javax.swing.JTextField jtfInputRDKKNamaKoord;
     private javax.swing.JTextField jtfInputRDKKNamaPetani;
+    private javax.swing.JTextField jtfLoginUsername;
+    private javax.swing.JPasswordField jtpLoginPassword;
     private javax.swing.JLabel judulUtama;
     private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblBackground1;
     private javax.swing.JLabel lblDataKelTani;
     private javax.swing.JLabel lblFrmInputRDKK_Back;
     private javax.swing.JLabel lblFrmInputRDKK_Back1;
@@ -1856,12 +2090,16 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblInputNamaKelTani8;
     private javax.swing.JLabel lblInputNamaKelTani9;
     private javax.swing.JLabel lblLoginDesc;
+    private javax.swing.JLabel lblLoginPassword;
+    private javax.swing.JLabel lblLoginUsername;
+    private javax.swing.JLabel lblMenuKeluar;
     private javax.swing.JLabel lblMenuNav;
     private javax.swing.JLabel lblMenuPBH;
     private javax.swing.JLabel lblMenuPBH1;
     private javax.swing.JLabel lblMenuPerawatan;
     private javax.swing.JLabel lblMenuPupuk;
     private javax.swing.JLabel lblMenuRDKK;
+    private javax.swing.JLabel lblMenuRDKK1;
     private javax.swing.JLabel lblMenuTMA;
     private javax.swing.JLabel lblSearchIcon;
     private javax.swing.JLabel lblSearchIcon1;
@@ -1870,9 +2108,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblWsLKP1;
     private javax.swing.JLabel lblWsRDKK;
     private javax.swing.JLabel lblWsRDKK1;
+    private javax.swing.JLayeredPane lypMenuLogin;
     private javax.swing.JLayeredPane lypMenuUtama;
     private javax.swing.JPanel pnlAtas;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlBackgroundLogin;
     private javax.swing.JPanel pnlBawah;
     private javax.swing.JPanel pnlBlank;
     private javax.swing.JPanel pnlContent;
@@ -1903,9 +2143,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmValidasiRDKK_ClearKoord;
     private javax.swing.JPanel pnlFrmValidasiRDKK_EditData;
     private javax.swing.JPanel pnlFrmValidasiRDKK_ValidasiDraft;
+    private javax.swing.JPanel pnlHolderLogin;
     private javax.swing.JPanel pnlLogin;
+    private javax.swing.JPanel pnlLoginKeluar;
+    private javax.swing.JPanel pnlLoginLogin;
+    private javax.swing.JPanel pnlLogoLogin;
     private javax.swing.JPanel pnlMenuAdmin;
     private javax.swing.JPanel pnlMenuHolder;
+    private javax.swing.JPanel pnlMenuKeluar;
     private javax.swing.JPanel pnlMenuPBH;
     private javax.swing.JPanel pnlMenuPerawatan;
     private javax.swing.JPanel pnlMenuPupuk;
@@ -1918,6 +2163,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSeparator3;
     private javax.swing.JPanel pnlSeparator4;
     private javax.swing.JPanel pnlSeparator6;
+    private javax.swing.JPanel pnlSeparator7;
     private javax.swing.JPanel pnlSubMenuHolder;
     private javax.swing.JPanel pnlSubMenuLKP;
     private javax.swing.JPanel pnlSubMenuPerawatan;
@@ -1927,6 +2173,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUnderline2;
     private javax.swing.JPanel pnlUnderline3;
     private javax.swing.JPanel pnlUnderline4;
+    private javax.swing.JPanel pnlUserLogin;
     private javax.swing.JPanel pnlVerifikasiRdkk;
     private javax.swing.JPanel pnlWsLKP1;
     private javax.swing.JPanel pnlWsRDKK;
@@ -2041,6 +2288,22 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JComboBox getCbxKategoriTanaman(){
         return cbxKategoriTanaman;
+    }
+    
+    public JTextField getJtfLoginUsername(){
+        return jtfLoginUsername;
+    }
+    
+    public JPasswordField getJtpLoginPassword(){
+        return jtpLoginPassword;
+    }
+    
+    public JLabel getLblUsername(){
+        return lblUsername;
+    }
+    
+    public JLabel getLblLoginDesc(){
+        return lblLoginDesc;
     }
     
 }

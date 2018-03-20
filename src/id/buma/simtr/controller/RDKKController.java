@@ -22,12 +22,14 @@ import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniTableModel;
 import java.awt.Color;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.text.BadLocationException;
 
 /**
  *
@@ -187,7 +189,11 @@ public class RDKKController {
     
     public void clearInputKoordinator(){
         mw.getJtfInputRDKKNamaKoord().setText("");
-        mw.getJtfNoKtpKoord().setText("");
+        try {
+            mw.getJtfNoKtpKoord().getDocument().remove(0, mw.getJtfNoKtpKoord().getDocument().getLength());
+        } catch (BadLocationException ex) {
+            Logger.getLogger(RDKKController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mw.getCbxKategoriTanaman().setSelectedIndex(-1);
         mw.getCbxKec().setSelectedIndex(0);
         mw.getCbxDesa().setSelectedItem(null);
@@ -224,7 +230,7 @@ public class RDKKController {
             int idDesa = arrayDesa.get(selectedDesa).getIdDesa();
             int tahunGiling = sistDao.getTahunGiling();
             int jmlPetani = arrayPetani.size();
-            int afdeling = 20; // TODO : to be implemented in user management module
+            String afd = cc.user.getIdAfd();
             float jmlLuas = 0.00f;
             for (PetaniTebu petani : arrayPetani){
                 jmlLuas = jmlLuas + petani.getLuas();
@@ -234,11 +240,11 @@ public class RDKKController {
                         String.valueOf(jmlPetani) + " petani \n - Total luas areal seluas " + 
                         String.valueOf(jmlLuas) + " Ha. \nApakah data tersebut benar?", "Konfirmasi Data", 
                         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                    IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(afdeling, selectedKategori);
+                    IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(Integer.valueOf(afd), selectedKategori);
                     String idKelompok = newIdNoKontrak.getIdKelompok();
                     String noKontrak = newIdNoKontrak.getNoKontrak();
                     KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, kategori, 
-                            String.valueOf(afdeling), idDesa, "N", noKtp, "", tglRdkk);
+                            afd, idDesa, "N", noKtp, "", tglRdkk);
                     keltanDao.insertKelompokTani(kt);
                     for (PetaniTebu pt : arrayPetani){
                         pt.setIdKelompok(idKelompok);
@@ -261,6 +267,7 @@ public class RDKKController {
     }
     
     public void refreshTableValidasiRDKK(){
+        if (cc.user == null) cc.showErrorMsg("OK", "OK");
         cc.setTableHeaderKelTani(mw.getTblValidasiRDKK().getTableHeader());
         cc.setTableRowRendererKelTani(mw.getTblValidasiRDKK());
         cc.setTableSelectionModel(mw.getTblValidasiRDKK());

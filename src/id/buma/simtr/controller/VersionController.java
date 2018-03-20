@@ -31,6 +31,11 @@ public class VersionController {
         /*
         + Pembatasan jumlah minimal luas lahan 5 Ha setiap kelompok
         */
+        version = "0.9.4";
+        /*
+        + Membuat modul login
+        + Menampilkan tabel kelompok sesuai dengan afdeling user
+        */
         return version;
     }
         

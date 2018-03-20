@@ -7,11 +7,12 @@ package id.buma.simtr.controller;
 
 import id.buma.simtr.dao.KelompokTaniDAO;
 import id.buma.simtr.dao.KelompokTaniDAOSQL;
-import id.buma.simtr.dao.PetaniDAO;
-import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
+import id.buma.simtr.dao.UserDAO;
+import id.buma.simtr.dao.UserDAOSQL;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.PetaniTebu;
+import id.buma.simtr.model.User;
 import id.buma.simtr.view.KelompokTaniHeaderRenderer;
 import id.buma.simtr.view.KelompokTaniRowRenderer;
 import id.buma.simtr.view.KelompokTaniSelectionModel;
@@ -19,7 +20,6 @@ import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniHeaderRenderer;
 import id.buma.simtr.view.PetaniRowRenderer;
-import id.buma.simtr.view.PetaniSelectionModel;
 import id.buma.simtr.view.PetaniTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ import javax.swing.table.JTableHeader;
 
 public class CommonController {
     
-    private final MainWindow mw;
+    private MainWindow mw;
     
     private final KelompokTaniHeaderRenderer kelTaniHR = new KelompokTaniHeaderRenderer();
     
@@ -45,7 +45,7 @@ public class CommonController {
     
     private final KelompokTaniDAO kelompokTaniDao = new KelompokTaniDAOSQL();
     
-    private final PetaniDAO petaniDAO = new PetaniDAOSQL();
+    private final UserDAO userDao = new UserDAOSQL();
     
     private final KelompokTaniSelectionModel ktsm = new KelompokTaniSelectionModel();
     
@@ -53,11 +53,14 @@ public class CommonController {
     
     private final PetaniRowRenderer petaniRR = new PetaniRowRenderer();
     
-    private final PetaniSelectionModel psm = new PetaniSelectionModel();
-    
     public static List<PetaniTebu> inputPetani = new ArrayList<>();
     
     public static SistemDAOSQL sistemDao = new SistemDAOSQL();
+    
+    private final LoginEncryption le = new LoginEncryption();
+    
+    public static User user = null;
+    
     
     
     public CommonController(MainWindow mw){
@@ -76,7 +79,7 @@ public class CommonController {
     }
     
     public void setTableModelKelTani(JTable tbl){
-        KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(2018));
+        KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(2018,user.getIdAfd()));
         tbl.setModel(kttm);
     }
     
@@ -143,6 +146,28 @@ public class CommonController {
     
     public List<PetaniTebu> getBufferArrayPetani(){
         return inputPetani;
+    }
+    
+    public boolean cekLogin(){
+        if (!mw.getJtfLoginUsername().getText().isEmpty() && mw.getJtpLoginPassword().getPassword().length > 0){
+            String hashedUsername = le.hashingText(mw.getJtfLoginUsername().getText());
+            String passStr = new String(mw.getJtpLoginPassword().getPassword());
+            String hashedPassword = le.hashingText(passStr);
+            user = userDao.getUserData(hashedUsername, hashedPassword);
+            if (user != null){
+                mw.getLblLoginDesc().setText("Selamat datang, ");
+                mw.getLblUsername().setText(user.getNamaLengkap());
+                return true;
+            }
+        } else {
+            if (mw.getJtfLoginUsername().getText().isEmpty()) showErrorMsg("Error", "Username belum terisi!");
+            if (mw.getJtpLoginPassword().getPassword().length == 0) showErrorMsg("Error", "Password belum terisi!");
+        }
+        mw.getJtfLoginUsername().setText(null);
+        mw.getJtpLoginPassword().setText(null);
+        mw.getJtfLoginUsername().requestFocus();
+        showErrorMsg("Error", "Username atau password yang Anda masukkan salah!");
+        return false;
     }
     
 }
