@@ -186,12 +186,12 @@ public class RDKKController {
     }
     
     public void clearInputKoordinator(){
-        statusIsianKoord(true);
         mw.getJtfInputRDKKNamaKoord().setText("");
         mw.getJtfNoKtpKoord().setText("");
         mw.getCbxKategoriTanaman().setSelectedIndex(-1);
         mw.getCbxKec().setSelectedIndex(0);
         mw.getCbxDesa().setSelectedItem(null);
+        statusIsianKoord(true);
     }
     
     public void konfirmasiSimpanData(){
@@ -204,6 +204,21 @@ public class RDKKController {
             int selectedKec = mw.getCbxKec().getSelectedIndex() - 1;
             int selectedDesa = mw.getCbxDesa().getSelectedIndex() - 1;
             int selectedKategori = mw.getCbxKategoriTanaman().getSelectedIndex() + 1;
+            String kategori = "";
+            switch (selectedKategori){
+                case 0 :
+                    kategori = "PC";
+                    break;
+                case 1 :
+                    kategori = "R1";
+                    break;
+                case 2 :
+                    kategori = "R2";
+                    break;
+                case 3 :
+                    kategori = "R3";
+                    break;
+            }
             String idKecamatan = arrayKecamatan.get(selectedKec).getIdKecamatan();
             List<Desa> arrayDesa = desaDao.getDesaByIdKecamatan(idKecamatan);
             int idDesa = arrayDesa.get(selectedDesa).getIdDesa();
@@ -214,27 +229,31 @@ public class RDKKController {
             for (PetaniTebu petani : arrayPetani){
                 jmlLuas = jmlLuas + petani.getLuas();
             }
-            if (JOptionPane.showConfirmDialog(null, "Anda akan mendaftarkan RDKK Kelompok " + namaKoord + " \n - Jumlah petani sebanyak " + 
-                    String.valueOf(jmlPetani) + " petani \n - Total luas areal seluas " + 
-                    String.valueOf(jmlLuas) + " Ha. \nApakah data tersebut benar?", "Konfirmasi Data", 
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(afdeling, selectedKategori);
-                String idKelompok = newIdNoKontrak.getIdKelompok();
-                String noKontrak = newIdNoKontrak.getNoKontrak();
-                KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, 
-                        String.valueOf(afdeling), idDesa, "N", noKtp, "", tglRdkk);
-                keltanDao.insertKelompokTani(kt);
-                for (PetaniTebu pt : arrayPetani){
-                    pt.setIdKelompok(idKelompok);
-                    pt.setIdPetani(cntDao.getNewIdPetani(idKelompok));
-                    pt.setIdKelompok(idKelompok);
-                    petaniDao.insertPetaniTebu(pt);
+            if (jmlLuas >= 5.00){
+                if (JOptionPane.showConfirmDialog(null, "Anda akan mendaftarkan RDKK Kelompok " + namaKoord + " \n - Jumlah petani sebanyak " + 
+                        String.valueOf(jmlPetani) + " petani \n - Total luas areal seluas " + 
+                        String.valueOf(jmlLuas) + " Ha. \nApakah data tersebut benar?", "Konfirmasi Data", 
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                    IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(afdeling, selectedKategori);
+                    String idKelompok = newIdNoKontrak.getIdKelompok();
+                    String noKontrak = newIdNoKontrak.getNoKontrak();
+                    KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, kategori, 
+                            String.valueOf(afdeling), idDesa, "N", noKtp, "", tglRdkk);
+                    keltanDao.insertKelompokTani(kt);
+                    for (PetaniTebu pt : arrayPetani){
+                        pt.setIdKelompok(idKelompok);
+                        pt.setIdPetani(cntDao.getNewIdPetani(idKelompok));
+                        pt.setIdKelompok(idKelompok);
+                        petaniDao.insertPetaniTebu(pt);
+                    }
+                    cc.getBufferArrayPetani().clear();
+                    clearInputPetani();
+                    clearInputKoordinator();
+                    mc.pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
+                    mw.getJtfInputRDKKNamaKoord().requestFocus();
                 }
-                cc.getBufferArrayPetani().clear();
-                clearInputPetani();
-                clearInputKoordinator();
-                mc.pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
-                mw.getJtfInputRDKKNamaKoord().requestFocus();
+            } else {
+                cc.showErrorMsg("Error", "Luas areal kelompok minimal 5.00 Ha! \nLuas areal yang Anda daftarkan hanya " + String.valueOf(jmlLuas) + " Ha.");
             }
         } else {
             cc.showErrorMsg("Error", "Anda belum menambahkan petani! \nSetiap kelompok minimal memiliki 1 petani!");
@@ -257,14 +276,16 @@ public class RDKKController {
     }
     
     public void cetakDraftRdkk(JTable tbl){
-        if (tbl.getRowCount() > 1 && tbl.getSelectedRow() > -1){
+        if (tbl.getRowCount() >= 1 && tbl.getSelectedRow() > -1){
             KelompokTaniTableModel kttm = (KelompokTaniTableModel) tbl.getModel();
             List<KelompokTani> lst = kttm.getContentList();
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lst.get(selectedRow).getIdKelompok();
             keltanDao.cetakRdkk(idKelompok);
         } else {
-            cc.showErrorMsg("Cetak Draft", "Anda belum memilih kelompok");
+            if (tbl.getSelectedRow() == -1){
+                cc.showErrorMsg("Cetak Draft", "Anda belum memilih kelompok");
+            }
         }
     }
     

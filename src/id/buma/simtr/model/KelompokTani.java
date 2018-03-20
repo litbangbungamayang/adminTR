@@ -16,6 +16,7 @@ public class KelompokTani {
     private int tahun;
     private String namaKelompok;
     private String noKontrak;
+    private String kategori;
     private String idAfd;
     private int idDesa;
     private String verifikasi;
@@ -25,12 +26,13 @@ public class KelompokTani {
     
     
     public KelompokTani(String idKelompok, int tahun, String namaKelompok, 
-            String noKontrak, String idAfd, int idDesa, String verifikasi, 
-            String noKtp, String noRdkk, java.sql.Date tglRdkk){
+            String noKontrak, String kategori, String idAfd, int idDesa, 
+            String verifikasi, String noKtp, String noRdkk, java.sql.Date tglRdkk){
         this.idAfd = idAfd;
         this.idKelompok = idKelompok;
         this.namaKelompok = namaKelompok;
         this.noKontrak = noKontrak;
+        this.kategori = kategori;
         this.tahun = tahun;
         this.idDesa = idDesa;
         this.verifikasi = verifikasi;
@@ -117,6 +119,14 @@ public class KelompokTani {
 
     public void setTglRdkk(java.sql.Date tglRdkk) {
         this.tglRdkk = tglRdkk;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
     
     

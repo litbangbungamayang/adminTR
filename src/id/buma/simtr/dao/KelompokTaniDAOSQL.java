@@ -37,24 +37,26 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                     1 = iD Kelompok
                     2 = Nama Kelompok
                     3 = No Kontrak
-                    4 = ID Afd
-                    5 = Tahun
-                    6 = ID Desa
-                    7 = No KTP
-                    8 = No RDKK
-                    9 = Tanggal RDKK
+                    4 = Kategori
+                    5 = ID Afd
+                    6 = Tahun
+                    7 = ID Desa
+                    8 = No KTP
+                    9 = No RDKK
+                    10 = Tanggal RDKK
                 ******/
-                String callSQL = "exec INSERT_KELOMPOKTANIH ?,?,?,?,?,?,?,?,?";
+                String callSQL = "exec INSERT_KELOMPOKTANIH ?,?,?,?,?,?,?,?,?,?";
                 CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
                 cst.setString(1, kt.getIdKelompok());
                 cst.setString(2, kt.getNamaKelompok());
                 cst.setString(3, kt.getNoKontrak());
-                cst.setString(4, kt.getIdAfd());
-                cst.setInt(5, kt.getTahun());
-                cst.setInt(6, kt.getIdDesa());
-                cst.setString(7, kt.getNoKtp());
-                cst.setString(8, kt.getNoRdkk());
-                cst.setDate(9, kt.getTglRdkk());
+                cst.setString(4, kt.getKategori());
+                cst.setString(5, kt.getIdAfd());
+                cst.setInt(6, kt.getTahun());
+                cst.setInt(7, kt.getIdDesa());
+                cst.setString(8, kt.getNoKtp());
+                cst.setString(9, kt.getNoRdkk());
+                cst.setDate(10, kt.getTglRdkk());
                 cst.execute();
                 if (cst.getUpdateCount() == 1){
                     return true;
@@ -120,6 +122,7 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                         rs.getInt("TAHUN"),
                         rs.getString("NAMAKELOMPOK"), 
                         rs.getString("NOKONTRAK"),
+                        rs.getString("KATEGORI"),
                         rs.getString("IDAFD"),
                         rs.getInt("ID_DESA"),
                         rs.getString("VERIFIKASI"),
@@ -131,7 +134,7 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
             }
             if (lkt.isEmpty()){
                 KelompokTani ktKsg = new KelompokTani("", 0, "Data tidak tersedia",
-                        "", "", 0, "", "","",null);
+                        "", "", "", 0, "", "","",null);
                 lkt.add(ktKsg);
             }
         } catch (SQLException ex) {

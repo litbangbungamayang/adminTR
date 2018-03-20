@@ -284,6 +284,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back4 = new javax.swing.JLabel();
         pnlFrmValidasiRDKK_ValidasiDraft = new javax.swing.JPanel();
         lblFrmInputRDKK_Back5 = new javax.swing.JLabel();
+        pnlLogin = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -869,7 +870,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(pnlFrmRDKKJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pnlFrmRDKKContent.setBackground(new java.awt.Color(0, 70, 70));
+        pnlFrmRDKKContent.setBackground(new java.awt.Color(0, 23, 23));
 
         jScrollPane1.setBackground(new java.awt.Color(170, 193, 193));
         jScrollPane1.setBorder(null);
@@ -1023,7 +1024,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani.setText("Nama Ketua Kel.");
 
-        jtfInputRDKKNamaKoord.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfInputRDKKNamaKoord.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jtfInputRDKKNamaKoord.setForeground(new java.awt.Color(255, 255, 255));
         jtfInputRDKKNamaKoord.setBorder(null);
         jtfInputRDKKNamaKoord.setCaretColor(new java.awt.Color(204, 204, 204));
@@ -1044,7 +1045,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani1.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani1.setText("No. KTP Ketua Kel.");
 
-        jtfInputNoKtpKoord.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfInputNoKtpKoord.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jtfInputNoKtpKoord.setForeground(new java.awt.Color(255, 255, 255));
         jtfInputNoKtpKoord.setBorder(null);
         jtfInputNoKtpKoord.setCaretColor(new java.awt.Color(204, 204, 204));
@@ -1711,6 +1712,22 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlContent.add(pnlFrmValidasiRDKK, "crdFrmValidasiRDKK");
 
+        pnlLogin.setBackground(new java.awt.Color(0, 23, 23));
+        pnlLogin.setName("pnlLogin"); // NOI18N
+
+        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
+        pnlLogin.setLayout(pnlLoginLayout);
+        pnlLoginLayout.setHorizontalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1399, Short.MAX_VALUE)
+        );
+        pnlLoginLayout.setVerticalGroup(
+            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+
+        pnlContent.add(pnlLogin, "crdDorman");
+
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
         pnlTengahLayout.setHorizontalGroup(
@@ -1886,6 +1903,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmValidasiRDKK_ClearKoord;
     private javax.swing.JPanel pnlFrmValidasiRDKK_EditData;
     private javax.swing.JPanel pnlFrmValidasiRDKK_ValidasiDraft;
+    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlMenuAdmin;
     private javax.swing.JPanel pnlMenuHolder;
     private javax.swing.JPanel pnlMenuPBH;

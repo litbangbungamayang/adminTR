@@ -27,6 +27,10 @@ public class VersionController {
         + Nomor kontrak sudah di-generate otomatis
         + Ditambahkan pilihan untuk input kategori tanaman di modul RDKK
         */
+        version = "0.9.3";
+        /*
+        + Pembatasan jumlah minimal luas lahan 5 Ha setiap kelompok
+        */
         return version;
     }
         
