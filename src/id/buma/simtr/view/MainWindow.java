@@ -11,9 +11,7 @@ import id.buma.simtr.controller.KelTaniAutoFilter;
 import id.buma.simtr.controller.MenuController;
 import id.buma.simtr.controller.NumberOnlyTextFilter;
 import id.buma.simtr.controller.RDKKController;
-import id.buma.simtr.controller.TableSelectionController;
 import id.buma.simtr.controller.UppercaseTextField;
-import id.buma.simtr.controller.UserController;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -44,8 +42,6 @@ public class MainWindow extends javax.swing.JFrame {
     private final RDKKController rc = new RDKKController(this);
     
     private final ComboBoxListener cbl = new ComboBoxListener(this);
-    
-    private final TableSelectionController tsl = new TableSelectionController(this);
         
     
     /**
@@ -84,7 +80,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setTableListener(){
-       tblValidasiRDKK.addMouseListener(tsl);
     }
     
     private void setMenuAction(){
@@ -108,9 +103,8 @@ public class MainWindow extends javax.swing.JFrame {
         pnlFrmValidasiRDKK_Back.addMouseListener(mc);
         pnlFrmValidasiRDKK_ClearKoord.addMouseListener(mc);
         pnlFrmValidasiRDKK_EditData.addMouseListener(mc);
-        pnlFrmValidasiRDKK_BatalDraft.addMouseListener(mc);
         pnlFrmValidasiRDKK_CetakDraft.addMouseListener(mc);
-        pnlFrmValidasiRDKK_ValidasiDraft.addMouseListener(mc);
+        pnlFrmValidasiRDKK_CetakSKK.addMouseListener(mc);
         pnlLoginLogin.addMouseListener(mc);
         pnlLoginKeluar.addMouseListener(mc);
         pnlMenuKeluar.addMouseListener(mc);
@@ -133,6 +127,7 @@ public class MainWindow extends javax.swing.JFrame {
         KelTaniAutoFilter autoFilter = new KelTaniAutoFilter(tblKelompokTani);
         jtfFrmRDKKCari.addKeyListener(autoFilter);
         KelTaniAutoFilter validasiKoord = new KelTaniAutoFilter(tblValidasiRDKK);
+        validasiKoord.setAffectedTable(tblValidasiRDKK_Petani);
         jtfFrmValidasiRDKK_SearchKoord.addKeyListener(validasiKoord);
     }
     
@@ -266,6 +261,12 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani9 = new javax.swing.JLabel();
         pnlFrmInputRDKK_SimpanData = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        lblInputNamaKelTani10 = new javax.swing.JLabel();
+        jftInputRDKKEasting = new javax.swing.JFormattedTextField();
+        pnlUnderline5 = new javax.swing.JPanel();
+        lblInputNamaKelTani11 = new javax.swing.JLabel();
+        jftInputRDKKNorthing = new javax.swing.JFormattedTextField();
+        pnlUnderline6 = new javax.swing.JPanel();
         pnlFrmValidasiRDKK = new javax.swing.JPanel();
         pnlFrmInputRDKK_MenuHolder1 = new javax.swing.JPanel();
         pnlFrmValidasiRDKK_Back = new javax.swing.JPanel();
@@ -287,11 +288,9 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         pnlFrmValidasiRDKK_EditData = new javax.swing.JPanel();
         lblFrmInputRDKK_Back2 = new javax.swing.JLabel();
-        pnlFrmValidasiRDKK_BatalDraft = new javax.swing.JPanel();
-        lblFrmInputRDKK_Back3 = new javax.swing.JLabel();
         pnlFrmValidasiRDKK_CetakDraft = new javax.swing.JPanel();
         lblFrmInputRDKK_Back4 = new javax.swing.JLabel();
-        pnlFrmValidasiRDKK_ValidasiDraft = new javax.swing.JPanel();
+        pnlFrmValidasiRDKK_CetakSKK = new javax.swing.JPanel();
         lblFrmInputRDKK_Back5 = new javax.swing.JLabel();
         pnlLogin = new javax.swing.JPanel();
         lypMenuLogin = new javax.swing.JLayeredPane();
@@ -425,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblMenuRDKK.setForeground(new java.awt.Color(255, 255, 255));
         lblMenuRDKK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenuRDKK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Increase_104px_1.png"))); // NOI18N
-        lblMenuRDKK.setText("RDKK");
+        lblMenuRDKK.setText("Kelompok Tani");
         lblMenuRDKK.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblMenuRDKK.setIconTextGap(10);
         lblMenuRDKK.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -708,7 +707,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblWsRDKK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblWsRDKK.setForeground(new java.awt.Color(255, 255, 255));
         lblWsRDKK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsRDKK.setText("Daftar RDKK Baru");
+        lblWsRDKK.setText("Pendaftaran Kelompok Tani Baru");
 
         javax.swing.GroupLayout pnlWsRDKKLayout = new javax.swing.GroupLayout(pnlWsRDKK);
         pnlWsRDKK.setLayout(pnlWsRDKKLayout);
@@ -746,7 +745,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblVerifikasiRdkk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblVerifikasiRdkk.setForeground(new java.awt.Color(255, 255, 255));
         lblVerifikasiRdkk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblVerifikasiRdkk.setText("Verifikasi RDKK");
+        lblVerifikasiRdkk.setText("Lihat Daftar Kelompok Tani");
 
         javax.swing.GroupLayout pnlVerifikasiRdkkLayout = new javax.swing.GroupLayout(pnlVerifikasiRdkk);
         pnlVerifikasiRdkk.setLayout(pnlVerifikasiRdkkLayout);
@@ -1072,8 +1071,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         lblFrmRDKK_Title.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblFrmRDKK_Title.setForeground(new java.awt.Color(255, 255, 255));
-        lblFrmRDKK_Title.setText("Pendaftaran Draft RDKK");
-        lblFrmRDKK_Title.setPreferredSize(new java.awt.Dimension(200, 40));
+        lblFrmRDKK_Title.setText("Pendaftaran Kelompok Tani Baru");
+        lblFrmRDKK_Title.setPreferredSize(new java.awt.Dimension(300, 40));
         pnlFrmRDKK_Title.add(lblFrmRDKK_Title);
 
         pnlFrmInputRDKK_MenuHolder.add(pnlFrmRDKK_Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1190, -1));
@@ -1272,7 +1271,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         pnlFrmInputRDKK_ContainerInputPetani.add(pnlBlank, "crdInputPetani_Blank");
@@ -1420,26 +1419,62 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel5.setText("Simpan Data");
         pnlFrmInputRDKK_SimpanData.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
+        lblInputNamaKelTani10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani10.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani10.setText("Easting");
+
+        jftInputRDKKEasting.setBorder(null);
+        jftInputRDKKEasting.setForeground(new java.awt.Color(255, 255, 255));
+        jftInputRDKKEasting.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##0.0#"))));
+        jftInputRDKKEasting.setCaretColor(new java.awt.Color(204, 204, 204));
+        jftInputRDKKEasting.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jftInputRDKKEasting.setOpaque(false);
+
+        javax.swing.GroupLayout pnlUnderline5Layout = new javax.swing.GroupLayout(pnlUnderline5);
+        pnlUnderline5.setLayout(pnlUnderline5Layout);
+        pnlUnderline5Layout.setHorizontalGroup(
+            pnlUnderline5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlUnderline5Layout.setVerticalGroup(
+            pnlUnderline5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        lblInputNamaKelTani11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani11.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani11.setText("Northing");
+
+        jftInputRDKKNorthing.setBorder(null);
+        jftInputRDKKNorthing.setForeground(new java.awt.Color(255, 255, 255));
+        jftInputRDKKNorthing.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##0.0#"))));
+        jftInputRDKKNorthing.setCaretColor(new java.awt.Color(204, 204, 204));
+        jftInputRDKKNorthing.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jftInputRDKKNorthing.setOpaque(false);
+
+        javax.swing.GroupLayout pnlUnderline6Layout = new javax.swing.GroupLayout(pnlUnderline6);
+        pnlUnderline6.setLayout(pnlUnderline6Layout);
+        pnlUnderline6Layout.setHorizontalGroup(
+            pnlUnderline6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlUnderline6Layout.setVerticalGroup(
+            pnlUnderline6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlTblInputPetaniLayout = new javax.swing.GroupLayout(pnlTblInputPetani);
         pnlTblInputPetani.setLayout(pnlTblInputPetaniLayout);
         pnlTblInputPetaniLayout.setHorizontalGroup(
             pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTblInputPetaniLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)))
             .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
-                        .addComponent(lblInputNamaKelTani7)
-                        .addGap(33, 33, 33)
-                        .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jftInputRDKKLuas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pnlUnderline4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
-                                .addComponent(pnlFrmInputRDKK_TambahPetani, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pnlFrmInputRDKK_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pnlFrmInputRDKK_SimpanData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTblInputPetaniLayout.createSequentialGroup()
                             .addComponent(lblInputNamaKelTani5)
@@ -1454,18 +1489,38 @@ public class MainWindow extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jtfInputRDKKNamaPetani)
-                                .addComponent(pnlUnderline3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                                .addComponent(pnlUnderline3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
+                        .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblInputNamaKelTani7)
+                            .addComponent(lblInputNamaKelTani10)
+                            .addComponent(lblInputNamaKelTani11))
+                        .addGap(33, 33, 33)
+                        .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(pnlUnderline6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jftInputRDKKNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jftInputRDKKLuas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pnlUnderline4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
+                                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(pnlUnderline5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jftInputRDKKEasting, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTblInputPetaniLayout.createSequentialGroup()
+                                        .addComponent(pnlFrmInputRDKK_TambahPetani, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pnlFrmInputRDKK_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlFrmInputRDKK_SimpanData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTblInputPetaniLayout.setVerticalGroup(
             pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1487,17 +1542,31 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(pnlUnderline4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblInputNamaKelTani7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
+                        .addComponent(jftInputRDKKEasting, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(pnlUnderline5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblInputNamaKelTani10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblInputNamaKelTani11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
+                        .addComponent(jftInputRDKKNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(pnlUnderline6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlFrmInputRDKK_TambahPetani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlFrmInputRDKK_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlFrmInputRDKK_SimpanData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnlFrmInputRDKK_ContainerInputPetani.add(pnlTblInputPetani, "crdInputPetani_Table");
 
-        pnlFrmInputRDKK.add(pnlFrmInputRDKK_ContainerInputPetani, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 446, 380));
+        pnlFrmInputRDKK.add(pnlFrmInputRDKK_ContainerInputPetani, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 446, 470));
 
         pnlContent.add(pnlFrmInputRDKK, "crdFrmInputRDKK");
 
@@ -1566,17 +1635,17 @@ public class MainWindow extends javax.swing.JFrame {
         tblValidasiRDKK.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblValidasiRDKK);
 
-        pnlFrmValidasiRDKK.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 690, 268));
+        pnlFrmValidasiRDKK.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 629, 268));
 
         jPanel2.setBackground(new java.awt.Color(85, 131, 131));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Daftar Draft RDKK");
+        jLabel6.setText("Daftar Kelompok Tani");
 
         jtfFrmValidasiRDKK_SearchKoord.setBackground(new java.awt.Color(85, 131, 131));
-        jtfFrmValidasiRDKK_SearchKoord.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jtfFrmValidasiRDKK_SearchKoord.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtfFrmValidasiRDKK_SearchKoord.setForeground(new java.awt.Color(255, 255, 255));
         jtfFrmValidasiRDKK_SearchKoord.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jtfFrmValidasiRDKK_SearchKoord.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -1616,7 +1685,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jtfFrmValidasiRDKK_SearchKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlFrmValidasiRDKK_ClearKoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1630,7 +1699,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pnlFrmValidasiRDKK.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 690, 30));
+        pnlFrmValidasiRDKK.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 629, 30));
 
         jScrollPane4.setBackground(new java.awt.Color(170, 193, 193));
         jScrollPane4.setBorder(null);
@@ -1661,7 +1730,7 @@ public class MainWindow extends javax.swing.JFrame {
         tblValidasiRDKK_Petani.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblValidasiRDKK_Petani);
 
-        pnlFrmValidasiRDKK.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 443, 196));
+        pnlFrmValidasiRDKK.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 443, 196));
 
         jPanel3.setBackground(new java.awt.Color(85, 131, 131));
 
@@ -1684,7 +1753,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        pnlFrmValidasiRDKK.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 443, 30));
+        pnlFrmValidasiRDKK.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 443, 30));
 
         jPanel4.setOpaque(false);
 
@@ -1702,20 +1771,6 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlFrmValidasiRDKK_EditData.add(lblFrmInputRDKK_Back2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmValidasiRDKK_BatalDraft.setBackground(new Color(255,255,255,0));
-        pnlFrmValidasiRDKK_BatalDraft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        pnlFrmValidasiRDKK_BatalDraft.setName("pnlFrmValidasiRDKK_BatalDraft"); // NOI18N
-        pnlFrmValidasiRDKK_BatalDraft.setPreferredSize(new java.awt.Dimension(140, 40));
-        pnlFrmValidasiRDKK_BatalDraft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblFrmInputRDKK_Back3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblFrmInputRDKK_Back3.setForeground(new java.awt.Color(255, 255, 255));
-        lblFrmInputRDKK_Back3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFrmInputRDKK_Back3.setText("Batalkan Draft");
-        lblFrmInputRDKK_Back3.setIconTextGap(10);
-        lblFrmInputRDKK_Back3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        pnlFrmValidasiRDKK_BatalDraft.add(lblFrmInputRDKK_Back3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
-
         pnlFrmValidasiRDKK_CetakDraft.setBackground(new Color(255,255,255,0));
         pnlFrmValidasiRDKK_CetakDraft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         pnlFrmValidasiRDKK_CetakDraft.setName("pnlFrmValidasiRDKK_CetakDraft"); // NOI18N
@@ -1725,54 +1780,49 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFrmInputRDKK_Back4.setForeground(new java.awt.Color(255, 255, 255));
         lblFrmInputRDKK_Back4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFrmInputRDKK_Back4.setText("Cetak Draft RDKK");
+        lblFrmInputRDKK_Back4.setText("Cetak Kontrak");
         lblFrmInputRDKK_Back4.setIconTextGap(10);
         lblFrmInputRDKK_Back4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        pnlFrmValidasiRDKK_CetakDraft.add(lblFrmInputRDKK_Back4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 30));
+        pnlFrmValidasiRDKK_CetakDraft.add(lblFrmInputRDKK_Back4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmValidasiRDKK_ValidasiDraft.setBackground(new Color(255,255,255,0));
-        pnlFrmValidasiRDKK_ValidasiDraft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        pnlFrmValidasiRDKK_ValidasiDraft.setName("pnlFrmValidasiRDKK_ValidasiDraft"); // NOI18N
-        pnlFrmValidasiRDKK_ValidasiDraft.setPreferredSize(new java.awt.Dimension(140, 40));
-        pnlFrmValidasiRDKK_ValidasiDraft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlFrmValidasiRDKK_CetakSKK.setBackground(new Color(255,255,255,0));
+        pnlFrmValidasiRDKK_CetakSKK.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlFrmValidasiRDKK_CetakSKK.setName("pnlFrmValidasiRDKK_CetakSKK"); // NOI18N
+        pnlFrmValidasiRDKK_CetakSKK.setPreferredSize(new java.awt.Dimension(100, 40));
+        pnlFrmValidasiRDKK_CetakSKK.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFrmInputRDKK_Back5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFrmInputRDKK_Back5.setForeground(new java.awt.Color(255, 255, 255));
         lblFrmInputRDKK_Back5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFrmInputRDKK_Back5.setText("Validasi & Cetak BA SKK");
+        lblFrmInputRDKK_Back5.setText("Cetak BA SKK");
         lblFrmInputRDKK_Back5.setIconTextGap(10);
         lblFrmInputRDKK_Back5.setPreferredSize(new java.awt.Dimension(206, 20));
         lblFrmInputRDKK_Back5.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        pnlFrmValidasiRDKK_ValidasiDraft.add(lblFrmInputRDKK_Back5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 206, 30));
+        pnlFrmValidasiRDKK_CetakSKK.add(lblFrmInputRDKK_Back5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(pnlFrmValidasiRDKK_EditData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlFrmValidasiRDKK_BatalDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlFrmValidasiRDKK_ValidasiDraft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlFrmValidasiRDKK_EditData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlFrmValidasiRDKK_CetakDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 108, Short.MAX_VALUE))
+                .addComponent(pnlFrmValidasiRDKK_CetakDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlFrmValidasiRDKK_CetakSKK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 128, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlFrmValidasiRDKK_EditData, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlFrmValidasiRDKK_BatalDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlFrmValidasiRDKK_CetakDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addComponent(pnlFrmValidasiRDKK_ValidasiDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pnlFrmValidasiRDKK_CetakDraft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlFrmValidasiRDKK_CetakSKK, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
 
-        pnlFrmValidasiRDKK.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 440, 65));
+        pnlFrmValidasiRDKK.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, 440, 65));
 
         pnlContent.add(pnlFrmValidasiRDKK, "crdFrmValidasiRDKK");
 
@@ -2055,7 +2105,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JFormattedTextField jftInputRDKKEasting;
     private javax.swing.JFormattedTextField jftInputRDKKLuas;
+    private javax.swing.JFormattedTextField jftInputRDKKNorthing;
     private javax.swing.JTextField jtfFrmRDKKCari;
     private javax.swing.JTextField jtfFrmValidasiRDKK_SearchKoord;
     private javax.swing.JTextField jtfInputNoKtpKoord;
@@ -2070,7 +2122,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back;
     private javax.swing.JLabel lblFrmInputRDKK_Back1;
     private javax.swing.JLabel lblFrmInputRDKK_Back2;
-    private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
     private javax.swing.JLabel lblFrmInputRDKK_Back5;
     private javax.swing.JLabel lblFrmRDKKBack;
@@ -2081,6 +2132,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmRDKK_Title1;
     private javax.swing.JLabel lblInputNamaKelTani;
     private javax.swing.JLabel lblInputNamaKelTani1;
+    private javax.swing.JLabel lblInputNamaKelTani10;
+    private javax.swing.JLabel lblInputNamaKelTani11;
     private javax.swing.JLabel lblInputNamaKelTani2;
     private javax.swing.JLabel lblInputNamaKelTani3;
     private javax.swing.JLabel lblInputNamaKelTani4;
@@ -2138,11 +2191,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmRDKK_Title1;
     private javax.swing.JPanel pnlFrmValidasiRDKK;
     private javax.swing.JPanel pnlFrmValidasiRDKK_Back;
-    private javax.swing.JPanel pnlFrmValidasiRDKK_BatalDraft;
     private javax.swing.JPanel pnlFrmValidasiRDKK_CetakDraft;
+    private javax.swing.JPanel pnlFrmValidasiRDKK_CetakSKK;
     private javax.swing.JPanel pnlFrmValidasiRDKK_ClearKoord;
     private javax.swing.JPanel pnlFrmValidasiRDKK_EditData;
-    private javax.swing.JPanel pnlFrmValidasiRDKK_ValidasiDraft;
     private javax.swing.JPanel pnlHolderLogin;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlLoginKeluar;
@@ -2173,6 +2225,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUnderline2;
     private javax.swing.JPanel pnlUnderline3;
     private javax.swing.JPanel pnlUnderline4;
+    private javax.swing.JPanel pnlUnderline5;
+    private javax.swing.JPanel pnlUnderline6;
     private javax.swing.JPanel pnlUserLogin;
     private javax.swing.JPanel pnlVerifikasiRdkk;
     private javax.swing.JPanel pnlWsLKP1;
@@ -2304,6 +2358,14 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JLabel getLblLoginDesc(){
         return lblLoginDesc;
+    }
+    
+    public JFormattedTextField getJftEasting(){
+        return jftInputRDKKEasting;
+    }
+    
+    public JFormattedTextField getJftNorthing(){
+        return jftInputRDKKNorthing;
     }
     
 }

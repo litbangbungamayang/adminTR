@@ -36,6 +36,16 @@ public class VersionController {
         + Membuat modul login
         + Menampilkan tabel kelompok sesuai dengan afdeling user
         */
+        version = "0.9.5";
+        /*
+        + Menampilkan cetak Berita Acara SKK
+        + Menampilkan cetak Kontrak TR
+        + Mengganti alur, tidak pakai draft RDKK
+        + Mengganti listener table Kelompok Tani di halaman verifikasi RDKK, 
+            semula Mouse Listener, menjadi List Listener
+        + Improvisasi master-child tabel Kelompok Tani dan Tabel Petani
+        + Improvisasi auto Filter di tabel kelompok tani halaman validasi RDKK
+        */
         return version;
     }
         

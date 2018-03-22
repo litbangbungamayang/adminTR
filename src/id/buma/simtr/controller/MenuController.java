@@ -86,6 +86,8 @@ public class MenuController implements MouseListener{
                     case "pnlFrmInputRDKK_TambahPetani":
                         if (rc.validasiInputPetani() == true){
                             rc.insertBufferPetani();
+                            rc.insertBufferKoordinat();
+                            rc.clearInputPetani();
                             mw.getJtfInputRDKKNamaPetani().requestFocus();
                         }
                         break;
@@ -109,11 +111,14 @@ public class MenuController implements MouseListener{
                         break;
                     case "pnlFrmValidasiRDKK_ClearKoord":
                         mw.getJtfFrmValidasiRDKK_SearchKoord().setText("");
+                        rc.refreshTableValidasiRDKK();
+                        rc.resetTablePetani(mw.getTblValidasiRDKK_Petani());
                         break;
                     case "pnlFrmValidasiRDKK_CetakDraft":
-                        rc.cetakDraftRdkk(mw.getTblValidasiRDKK());
+                        rc.cetakKontrak(mw.getTblValidasiRDKK());
                         break;
-                    case "pnlFrmValidasiRDKK_ValidasiDraft":
+                    case "pnlFrmValidasiRDKK_CetakSKK":
+                        rc.cetakBaSKK(mw.getTblValidasiRDKK());
                         break;
             case "pnlMenuPerawatan":
                 mw.getPnlSubMenuHolder().setVisible(false);
@@ -218,13 +223,10 @@ public class MenuController implements MouseListener{
                     case "pnlFrmValidasiRDKK_EditData":
                         standarButtonHover(menuPanel);
                         break;
-                    case "pnlFrmValidasiRDKK_BatalDraft":
-                        standarButtonHover(menuPanel);
-                        break;
                     case "pnlFrmValidasiRDKK_CetakDraft":
                         standarButtonHover(menuPanel);
                         break;
-                    case "pnlFrmValidasiRDKK_ValidasiDraft":
+                    case "pnlFrmValidasiRDKK_CetakSKK":
                         standarButtonHover(menuPanel);
                         break;
             case "pnlMenuPerawatan":
@@ -275,13 +277,10 @@ public class MenuController implements MouseListener{
                     case "pnlFrmValidasiRDKK_EditData":
                         standarButtonDisplayed(menuPanel);
                         break;
-                    case "pnlFrmValidasiRDKK_BatalDraft":
-                        standarButtonDisplayed(menuPanel);
-                        break;
                     case "pnlFrmValidasiRDKK_CetakDraft":
                         standarButtonDisplayed(menuPanel);
                         break;
-                    case "pnlFrmValidasiRDKK_ValidasiDraft":
+                    case "pnlFrmValidasiRDKK_CetakSKK":
                         standarButtonDisplayed(menuPanel);
                         break;
                 case "pnlWsRDKK":

@@ -11,6 +11,7 @@ import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.UserDAO;
 import id.buma.simtr.dao.UserDAOSQL;
 import id.buma.simtr.model.KelompokTani;
+import id.buma.simtr.model.Koordinat;
 import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.User;
 import id.buma.simtr.view.KelompokTaniHeaderRenderer;
@@ -54,6 +55,8 @@ public class CommonController {
     private final PetaniRowRenderer petaniRR = new PetaniRowRenderer();
     
     public static List<PetaniTebu> inputPetani = new ArrayList<>();
+    
+    public static List<Koordinat> inputKoordinat = new ArrayList<>();
     
     public static SistemDAOSQL sistemDao = new SistemDAOSQL();
     
@@ -103,12 +106,24 @@ public class CommonController {
         inputPetani.add(pt);
     }
     
+    public void insertBufferKoordinat(Koordinat kd){
+        inputKoordinat.add(kd);
+    }
+    
     public int getSizeArrayPetani(){
         return inputPetani.size();
     }
     
+    public int getSizeArrayKoordinat(){
+        return inputKoordinat.size();
+    }
+    
     public void hapusElemenArrayPetani(int index){
         inputPetani.remove(index);
+    }
+    
+    public void hapusElementArrayKoordinat(int index){
+        inputKoordinat.remove(index);
     }
     
     public void refreshBufferTablePetani(JTable tbl){
@@ -119,7 +134,8 @@ public class CommonController {
     //*************************************************************************//
     
     public void kelTaniAutoFilter(JTable tbl, String keyword){
-        List<KelompokTani> lkt = kelompokTaniDao.getAllKelompokTaniByMultipleField(keyword, sistemDao.getTahunGiling());
+        List<KelompokTani> lkt = kelompokTaniDao.getAllKelompokTaniByMultipleField(keyword, 
+                sistemDao.getTahunGiling(), user.getIdAfd());
         KelompokTaniTableModel kttm = new KelompokTaniTableModel(lkt);
         tbl.setModel(kttm);
     }
@@ -146,6 +162,10 @@ public class CommonController {
     
     public List<PetaniTebu> getBufferArrayPetani(){
         return inputPetani;
+    }
+    
+    public List<Koordinat> getBufferKoordinat(){
+        return inputKoordinat;
     }
     
     public boolean cekLogin(){

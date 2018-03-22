@@ -37,8 +37,7 @@ public class KelompokTaniTableModel extends AbstractTableModel{
         "Afd.",
         "Tahun",
         "Nama Kelompok",
-        "No. Kontrak",
-        "Verifikasi"
+        "No. Kontrak"
     };
 
     @Override
@@ -69,8 +68,6 @@ public class KelompokTaniTableModel extends AbstractTableModel{
                 return kt.getNamaKelompok();
             case 5 :
                 return kt.getNoKontrak();
-            case 6 :
-                return kt.getVerifikasi();
         }
         return null;
     }

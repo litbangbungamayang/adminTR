@@ -20,8 +20,12 @@ public interface KelompokTaniDAO {
     
     public List<KelompokTani> getAllKelompokTaniByTahun(int tahun, String idAfd);
     
-    public List<KelompokTani> getAllKelompokTaniByMultipleField(String keyword, int tahun);
+    public List<KelompokTani> getAllKelompokTaniByMultipleField(String keyword, int tahun, String idAfd);
     
     public void cetakRdkk(String idKelompok);
+    
+    public void cetakSKK(String idKelompok);
+    
+    public void cetakKontrak(String idKelompok);
     
 }

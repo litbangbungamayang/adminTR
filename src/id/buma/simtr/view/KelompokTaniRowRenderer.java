@@ -7,6 +7,7 @@ package id.buma.simtr.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JTable;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -64,25 +65,22 @@ public class KelompokTaniRowRenderer extends DefaultTableCellRenderer implements
                 tc.setCellRenderer(this);
                 tc.setPreferredWidth(110);
                 break;
-            case 6 :
-                // Verifikasi
-                this.setHorizontalAlignment(CENTER);
-                tc.setCellRenderer(this);
-                tc.setPreferredWidth(61);
-                break;
         }
         
         if (row % 2 == 0){
             c.setBackground(new Color(205,219,219));
             c.setForeground(Color.DARK_GRAY);
+            c.setFont(new Font("Consolas", Font.PLAIN, 14));
         } else {
             c.setBackground(new Color(85,131,131));
             c.setForeground(Color.WHITE);
+            c.setFont(new Font("Consolas", Font.PLAIN, 14));
         }
         
         if (isSelected){
             setBackground(new Color(70,70,0));
             setForeground(Color.WHITE);
+            c.setFont(new Font("Consolas", Font.PLAIN, 14));
         }
         
         return c;

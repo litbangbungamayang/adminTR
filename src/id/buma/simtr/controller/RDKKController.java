@@ -9,6 +9,7 @@ import id.buma.simtr.dao.CounterDAOSQL;
 import id.buma.simtr.dao.DesaDAOSQL;
 import id.buma.simtr.dao.KecamatanDAOSQL;
 import id.buma.simtr.dao.KelompokTaniDAOSQL;
+import id.buma.simtr.dao.KoordinatDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.VarietasTebuDAOSQL;
@@ -16,6 +17,7 @@ import id.buma.simtr.model.Desa;
 import id.buma.simtr.model.IdNoKontrak;
 import id.buma.simtr.model.Kecamatan;
 import id.buma.simtr.model.KelompokTani;
+import id.buma.simtr.model.Koordinat;
 import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.VarietasTebu;
 import id.buma.simtr.view.KelompokTaniTableModel;
@@ -54,6 +56,8 @@ public class RDKKController {
     private final KelompokTaniDAOSQL keltanDao = new KelompokTaniDAOSQL();
     
     private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();
+    
+    private final KoordinatDAOSQL koordinatDao = new KoordinatDAOSQL();
     
     private final MenuController mc = new MenuController(mw);
     
@@ -138,16 +142,21 @@ public class RDKKController {
     public boolean validasiInputPetani(){
         String namaPetani = mw.getJtfInputRDKKNamaPetani().getText();
         String luas = mw.getJftInputRDKKLuas().getText();
+        String easting = mw.getJftEasting().getText();
+        String northing = mw.getJftNorthing().getText();
         int selectedIndexMasaTanam = mw.getCbxInputRDKKMasaTanam().getSelectedIndex();
         int selecTedIndexVarietas = mw.getCbxInputRDKKVarietas().getSelectedIndex() - 1;
-        if (namaPetani.isEmpty() == false && luas.isEmpty() == false && 
-                selectedIndexMasaTanam >= 0 && selecTedIndexVarietas >=0){
+        if (!namaPetani.isEmpty() && !luas.isEmpty() && 
+                selectedIndexMasaTanam >= 0 && selecTedIndexVarietas >=0 && 
+                !easting.isEmpty() && !northing.isEmpty()){
             return true;
         } else {
             if (namaPetani.isEmpty()) cc.showErrorMsg("Validasi", "Nama petani harus diisi!");
             if (luas.isEmpty()) cc.showErrorMsg("Validasi", "Luas areal harus diisi!");
             if (selectedIndexMasaTanam < 0) cc.showErrorMsg("Validasi", "Masa tanam harus dipilih!");
             if (selecTedIndexVarietas < 0) cc.showErrorMsg("Validasi", "Varietas harus dipilih!");
+            if (easting.isEmpty()) cc.showErrorMsg("Validasi", "Anda belum memasukkan koordinat!");
+            if (northing.isEmpty()) cc.showErrorMsg("Validasi", "Anda belum memasukkan koordinat!");
         }
         return false;
     }
@@ -163,7 +172,16 @@ public class RDKKController {
         PetaniTebu pt = new PetaniTebu("", sistDao.getTahunGiling(), "", namaPetani, masaTanam, luasFloat, idVar);
         cc.insertBufferPetani(pt);
         cc.refreshBufferTablePetani(mw.getTblInputPetani());
-        clearInputPetani();
+    }
+    
+    public void insertBufferKoordinat(){
+        String eastingStr = mw.getJftEasting().getText();
+        float eastingF = Float.parseFloat(eastingStr);
+        String northingStr = mw.getJftNorthing().getText();
+        float northingF = Float.parseFloat(northingStr);
+        String gridZone = "48M";
+        Koordinat koord = new Koordinat("", eastingF, northingF, gridZone);
+        cc.insertBufferKoordinat(koord);
     }
     
     public void testRow(){
@@ -185,6 +203,8 @@ public class RDKKController {
         mw.getCbxInputRDKKMasaTanam().setSelectedIndex(-1);
         mw.getCbxInputRDKKVarietas().setSelectedIndex(-1);
         mw.getJftInputRDKKLuas().setValue(null);
+        mw.getJftEasting().setValue(null);
+        mw.getJftNorthing().setValue(null);
     }
     
     public void clearInputKoordinator(){
@@ -204,6 +224,7 @@ public class RDKKController {
         if (cc.getBufferArrayPetani().size() > 0){
             List<PetaniTebu> arrayPetani = cc.getBufferArrayPetani();
             List<Kecamatan> arrayKecamatan = kecDao.getAllKecamatan();
+            List<Koordinat> arrayKoordinat = cc.getBufferKoordinat();
             String namaKoord = mw.getJtfInputRDKKNamaKoord().getText();
             String noKtp = mw.getJtfNoKtpKoord().getText();
             java.sql.Date tglRdkk = new java.sql.Date(new java.util.Date().getTime());
@@ -246,13 +267,18 @@ public class RDKKController {
                     KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, kategori, 
                             afd, idDesa, "N", noKtp, "", tglRdkk);
                     keltanDao.insertKelompokTani(kt);
+                    int index = 0;
                     for (PetaniTebu pt : arrayPetani){
                         pt.setIdKelompok(idKelompok);
                         pt.setIdPetani(cntDao.getNewIdPetani(idKelompok));
                         pt.setIdKelompok(idKelompok);
+                        arrayKoordinat.get(index).setIdPetani(pt.getIdPetani());
+                        koordinatDao.insertNewKoordinat(arrayKoordinat.get(index));
                         petaniDao.insertPetaniTebu(pt);
+                        index++;
                     }
                     cc.getBufferArrayPetani().clear();
+                    cc.getBufferKoordinat().clear();
                     clearInputPetani();
                     clearInputKoordinator();
                     mc.pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
@@ -272,14 +298,21 @@ public class RDKKController {
         cc.setTableRowRendererKelTani(mw.getTblValidasiRDKK());
         cc.setTableSelectionModel(mw.getTblValidasiRDKK());
         cc.setTableModelKelTani(mw.getTblValidasiRDKK());
+        HandlerSeleksiTabel hst = new HandlerSeleksiTabel(mw,"KelompokTani-Petani",mw.getTblValidasiRDKK());
+        mw.getTblValidasiRDKK().getSelectionModel().addListSelectionListener(hst);
         mw.getScrollPaneTblValidasi().getViewport().setBackground(new Color(170,193,193));
+    }
+    
+    public void resetTablePetani(JTable tbl){
+        List<PetaniTebu> lst = new ArrayList<>();
+        PetaniTableModel ptm = new PetaniTableModel(lst);
+        tbl.setModel(ptm);
     }
     
     public void populateTablePetaniByIdKelompok(JTable tbl,String idKelompok){
         PetaniTableModel ptm = new PetaniTableModel(petaniDao.getAllPetaniTebuByIdKelompok(idKelompok));
         cc.prepareTableInputPetani(tbl);
         cc.setTableModelPetani(tbl, ptm);
-        mw.getJScrollPaneTblValidasiRDKK_Petani().getViewport().setBackground(new Color(170,193,193));
     }
     
     public void cetakDraftRdkk(JTable tbl){
@@ -293,6 +326,30 @@ public class RDKKController {
             if (tbl.getSelectedRow() == -1){
                 cc.showErrorMsg("Cetak Draft", "Anda belum memilih kelompok");
             }
+        }
+    }
+    
+    public void cetakBaSKK(JTable tbl){
+        if (tbl.getRowCount() >= 1 && tbl.getSelectedRow() > -1){
+            KelompokTaniTableModel kttm = (KelompokTaniTableModel) tbl.getModel();
+            List<KelompokTani> lstKelTani = kttm.getContentList();
+            int selectedRow = tbl.getSelectedRow();
+            String idKelompok = lstKelTani.get(selectedRow).getIdKelompok();
+            keltanDao.cetakSKK(idKelompok);
+        } else {
+            if (tbl.getSelectedRow() == -1) cc.showErrorMsg("Cetak BA SKK", "Anda belum memilih kelompok!");
+        }
+    }
+    
+    public void cetakKontrak(JTable tbl){
+        if (tbl.getRowCount() >= 1 && tbl.getSelectedRow() > -1){
+            KelompokTaniTableModel kttm = (KelompokTaniTableModel) tbl.getModel();
+            List<KelompokTani> lstKel = kttm.getContentList();
+            int selectedRow = tbl.getSelectedRow();
+            String idKelompok = lstKel.get(selectedRow).getIdKelompok();
+            keltanDao.cetakKontrak(idKelompok);
+        } else {
+            if (tbl.getSelectedRow() == -1) cc.showErrorMsg("Cetak Kontrak TR", "Anda belum memilih kelompok!");
         }
     }
     

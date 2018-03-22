@@ -7,6 +7,7 @@ package id.buma.simtr.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JTable;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.SwingConstants.LEFT;
@@ -64,14 +65,17 @@ public class PetaniRowRenderer extends DefaultTableCellRenderer implements Table
         if (row % 2 == 0){
             c.setBackground(new Color(205,219,219));
             c.setForeground(Color.DARK_GRAY);
+            c.setFont(new Font("Consolas", Font.PLAIN, 14));
         } else {
             c.setBackground(new Color(85,131,131));
             c.setForeground(Color.WHITE);
+            c.setFont(new Font("Consolas", Font.PLAIN, 14));
         }
         
         if (isSelected){
             setBackground(new Color(70,70,0));
             setForeground(Color.WHITE);
+            c.setFont(new Font("Consolas", Font.PLAIN, 14));
         }
         
         return c;
