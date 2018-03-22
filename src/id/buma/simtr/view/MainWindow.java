@@ -80,6 +80,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setTableListener(){
+        jScrollPane4.getViewport().setBackground(new Color(170,193,193));
     }
     
     private void setMenuAction(){
@@ -108,6 +109,7 @@ public class MainWindow extends javax.swing.JFrame {
         pnlLoginLogin.addMouseListener(mc);
         pnlLoginKeluar.addMouseListener(mc);
         pnlMenuKeluar.addMouseListener(mc);
+        pnlCetak_Kembali.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -308,6 +310,11 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         pnlLoginKeluar = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        pnlCetak = new javax.swing.JPanel();
+        pnlFrmInputRDKK_MenuHolder2 = new javax.swing.JPanel();
+        pnlCetak_Kembali = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back3 = new javax.swing.JLabel();
+        pnlCetak_Content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -1693,10 +1700,11 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblSearchIcon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlFrmValidasiRDKK_ClearKoord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jtfFrmValidasiRDKK_SearchKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(jtfFrmValidasiRDKK_SearchKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(3, 3, 3))
         );
 
         pnlFrmValidasiRDKK.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 629, 30));
@@ -2007,6 +2015,44 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlContent.add(pnlLogin, "crdLogin");
 
+        pnlCetak.setBackground(new java.awt.Color(0, 23, 23));
+        pnlCetak.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmInputRDKK_MenuHolder2.setBackground(new java.awt.Color(0, 70, 70));
+        pnlFrmInputRDKK_MenuHolder2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlCetak_Kembali.setBackground(new Color(255,255,255,0));
+        pnlCetak_Kembali.setName("pnlCetak_Kembali"); // NOI18N
+        pnlCetak_Kembali.setPreferredSize(new java.awt.Dimension(140, 40));
+        pnlCetak_Kembali.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmInputRDKK_Back3.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Back_To_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back3.setText("Kembali");
+        lblFrmInputRDKK_Back3.setIconTextGap(10);
+        lblFrmInputRDKK_Back3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlCetak_Kembali.add(lblFrmInputRDKK_Back3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 40));
+
+        pnlFrmInputRDKK_MenuHolder2.add(pnlCetak_Kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
+
+        pnlCetak.add(pnlFrmInputRDKK_MenuHolder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, -1));
+
+        javax.swing.GroupLayout pnlCetak_ContentLayout = new javax.swing.GroupLayout(pnlCetak_Content);
+        pnlCetak_Content.setLayout(pnlCetak_ContentLayout);
+        pnlCetak_ContentLayout.setHorizontalGroup(
+            pnlCetak_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1366, Short.MAX_VALUE)
+        );
+        pnlCetak_ContentLayout.setVerticalGroup(
+            pnlCetak_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+
+        pnlCetak.add(pnlCetak_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1366, 600));
+
+        pnlContent.add(pnlCetak, "crdPnlCetak");
+
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
         pnlTengahLayout.setHorizontalGroup(
@@ -2122,6 +2168,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back;
     private javax.swing.JLabel lblFrmInputRDKK_Back1;
     private javax.swing.JLabel lblFrmInputRDKK_Back2;
+    private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
     private javax.swing.JLabel lblFrmInputRDKK_Back5;
     private javax.swing.JLabel lblFrmRDKKBack;
@@ -2168,6 +2215,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBackgroundLogin;
     private javax.swing.JPanel pnlBawah;
     private javax.swing.JPanel pnlBlank;
+    private javax.swing.JPanel pnlCetak;
+    private javax.swing.JPanel pnlCetak_Content;
+    private javax.swing.JPanel pnlCetak_Kembali;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlFrmInputRDKK;
     private javax.swing.JPanel pnlFrmInputRDKK_Back;
@@ -2178,6 +2228,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmInputRDKK_LanjutKoord;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder1;
+    private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder2;
     private javax.swing.JPanel pnlFrmInputRDKK_SimpanData;
     private javax.swing.JPanel pnlFrmInputRDKK_TambahPetani;
     private javax.swing.JPanel pnlFrmRDKK;
@@ -2366,6 +2417,14 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JFormattedTextField getJftNorthing(){
         return jftInputRDKKNorthing;
+    }
+    
+    public JPanel getPnlCetak(){
+        return pnlCetak;
+    }
+    
+    public JPanel getPnlCetak_Content(){
+        return pnlCetak_Content;
     }
     
 }

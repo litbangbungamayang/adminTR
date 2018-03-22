@@ -60,6 +60,8 @@ public class CommonController {
     
     public static SistemDAOSQL sistemDao = new SistemDAOSQL();
     
+    public static String lastPage = null;
+    
     private final LoginEncryption le = new LoginEncryption();
     
     public static User user = null;
@@ -188,6 +190,14 @@ public class CommonController {
         mw.getJtfLoginUsername().requestFocus();
         showErrorMsg("Error", "Username atau password yang Anda masukkan salah!");
         return false;
+    }
+    
+    public String getLastPage(){
+        return lastPage;
+    }
+    
+    public void setLastPage(String lastPage){
+        CommonController.lastPage = lastPage;
     }
     
 }

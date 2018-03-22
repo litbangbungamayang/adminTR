@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -163,7 +164,8 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     }
 
     @Override
-    public void cetakSKK(String idKelompok) {
+    public JRViewer cetakSKK(String idKelompok) {
+        JRViewer jrv = null;
         if (DbConnectionManager.isConnect()){
             try {
                 Connection con = DbConnectionManager.getConnection();
@@ -171,33 +173,48 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                 Map map = new HashMap();
                 map.put("IDKELOMPOK", idKelompok);
                 JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setAlwaysOnTop(true);
-                jv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                jv.setVisible(true);
+                jrv = new JRViewer(jp);
             } catch (Exception ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return jrv;
     }
 
     @Override
-    public void cetakKontrak(String idKelompok) {
-                if (DbConnectionManager.isConnect()){
+    public JRViewer cetakKontrak(String idKelompok) {
+        JRViewer jrv = null;
+        if (DbConnectionManager.isConnect()){
             try {
                 Connection con = DbConnectionManager.getConnection();
                 String fileName = "./reports/KontrakTR.jasper";
                 Map map = new HashMap();
                 map.put("IDKELOMPOK", idKelompok);
                 JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setAlwaysOnTop(true);
-                jv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                jv.setVisible(true);
+                jrv = new JRViewer(jp);
             } catch (Exception ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return jrv;
+    }
+
+    @Override
+    public JRViewer testCetakSKK(String idKelompok) {
+        JRViewer jrv = null;
+        if (DbConnectionManager.isConnect()){
+            try {
+                Connection con = DbConnectionManager.getConnection();
+                String fileName = "./reports/BA_SKK.jasper";
+                Map map = new HashMap();
+                map.put("IDKELOMPOK", idKelompok);
+                JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
+                jrv = new JRViewer(jp);
+            } catch (Exception ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return jrv;
     }
     
 }

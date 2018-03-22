@@ -7,6 +7,7 @@ package id.buma.simtr.dao;
 
 import id.buma.simtr.model.KelompokTani;
 import java.util.List;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -24,8 +25,10 @@ public interface KelompokTaniDAO {
     
     public void cetakRdkk(String idKelompok);
     
-    public void cetakSKK(String idKelompok);
+    public JRViewer cetakSKK(String idKelompok);
     
-    public void cetakKontrak(String idKelompok);
+    public JRViewer cetakKontrak(String idKelompok);
+    
+    public JRViewer testCetakSKK(String idKelompok);
     
 }

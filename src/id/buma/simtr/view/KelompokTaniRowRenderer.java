@@ -28,6 +28,7 @@ public class KelompokTaniRowRenderer extends DefaultTableCellRenderer implements
         Component c = super.getTableCellRendererComponent(table, value, isSelected,
                 hasFocus, row, column);
         TableColumn tc = table.getColumnModel().getColumn(column);
+        setBorder(noFocusBorder);
         switch (column){
             case 0 :
                 // Nomor

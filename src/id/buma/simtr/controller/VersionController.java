@@ -46,6 +46,10 @@ public class VersionController {
         + Improvisasi master-child tabel Kelompok Tani dan Tabel Petani
         + Improvisasi auto Filter di tabel kelompok tani halaman validasi RDKK
         */
+        version = "0.9.6";
+        /*
+        + Mengubah format cetak laporan, dibuat berada dalam JPanel
+        */
         return version;
     }
         

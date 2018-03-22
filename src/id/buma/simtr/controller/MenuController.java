@@ -138,6 +138,14 @@ public class MenuController implements MouseListener{
             case "pnlMenuKeluar":
                 System.exit(0);
                 break;
+            case "pnlCetak_Kembali":
+                switch(cc.getLastPage()){
+                    case "validasi_rdkk":
+                        pageSwitcher(mw.getPnlContent(), "crdFrmValidasiRDKK");
+                        cc.setLastPage(null);
+                        break;
+                }
+                break;
         }
     }
 
@@ -247,6 +255,9 @@ public class MenuController implements MouseListener{
             case "pnlMenuKeluar":
                 standarMainMenuHover(menuPanel);
                 break;
+            case "pnlCetak_Kembali":
+                standarButtonHover(menuPanel);
+                break;
         }
     }
 
@@ -324,6 +335,9 @@ public class MenuController implements MouseListener{
                 break;
             case "pnlMenuKeluar":
                 standarMainMenuDisplayed(menuPanel);
+                break;
+            case "pnlCetak_Kembali":
+                standarButtonDisplayed(menuPanel);
                 break;
         }
     }

@@ -23,6 +23,7 @@ import id.buma.simtr.model.VarietasTebu;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniTableModel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +31,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.text.BadLocationException;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -335,7 +338,8 @@ public class RDKKController {
             List<KelompokTani> lstKelTani = kttm.getContentList();
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lstKelTani.get(selectedRow).getIdKelompok();
-            keltanDao.cetakSKK(idKelompok);
+            cc.setLastPage("validasi_rdkk");
+            formCetak(keltanDao.cetakSKK(idKelompok));
         } else {
             if (tbl.getSelectedRow() == -1) cc.showErrorMsg("Cetak BA SKK", "Anda belum memilih kelompok!");
         }
@@ -347,10 +351,21 @@ public class RDKKController {
             List<KelompokTani> lstKel = kttm.getContentList();
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lstKel.get(selectedRow).getIdKelompok();
-            keltanDao.cetakKontrak(idKelompok);
+            cc.setLastPage("validasi_rdkk");
+            formCetak(keltanDao.cetakKontrak(idKelompok));
         } else {
             if (tbl.getSelectedRow() == -1) cc.showErrorMsg("Cetak Kontrak TR", "Anda belum memilih kelompok!");
         }
+    }
+    
+    public void formCetak(JRViewer jrv){
+        mc.pageSwitcher(mw.getPnlContent(), "crdPnlCetak");
+        JPanel pnlCetak = mw.getPnlCetak_Content();
+        pnlCetak.setLayout(new BorderLayout());
+        pnlCetak.repaint();
+        pnlCetak.removeAll();
+        pnlCetak.add(jrv);
+        pnlCetak.revalidate();
     }
     
 }
