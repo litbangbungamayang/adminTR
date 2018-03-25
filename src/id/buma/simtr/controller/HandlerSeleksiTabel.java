@@ -9,9 +9,7 @@ import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -28,6 +26,8 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
     private MainWindow mw;
     
     private RDKKController rc = new RDKKController(mw);
+    
+    private PupukController pc = new PupukController(mw);
     
     public HandlerSeleksiTabel(MainWindow mw, String seleksiMode, JTable tbl){
         this.seleksiMode = seleksiMode;
@@ -47,6 +47,18 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         String idKelompok = lst.get(tbl.getSelectedRow()).getIdKelompok();
                         rc.populateTablePetaniByIdKelompok(mw.getTblValidasiRDKK_Petani(), idKelompok);
                         mw.getTblValidasiRDKK_Petani().setRowSelectionAllowed(false);
+                    }
+                    break;
+                case "PupukKelTani-Petani":
+                    if (tbl.getSelectedRow() > -1){
+                        KelompokTaniTableModel kttm = (KelompokTaniTableModel) tbl.getModel();
+                        List<KelompokTani> lst = kttm.getContentList();
+                        String idKelompok = lst.get(tbl.getSelectedRow()).getIdKelompok();
+                        pc.populateTblPupukPetaniByIdKelompok(mw.getTblPupukPetani(), idKelompok);
+                        mw.getTblPupukPetani().setRowSelectionAllowed(true);
+                        if (mw.getJcbFrmPupuk_PilihSemuaPetani().isSelected()) 
+                            pc.selectAllRows(mw.getTblPupukPetani());
+                        //if (mw.getTblPupukPetani().getRowCount() > 0) pc.clearTable();
                     }
                     break;
             }

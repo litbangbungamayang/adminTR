@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.swing.JRViewer;
@@ -192,6 +191,15 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                 map.put("IDKELOMPOK", idKelompok);
                 JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
                 jrv = new JRViewer(jp);
+                /*
+                JRPrintServiceExporter jex = new JRPrintServiceExporter();
+                jex.setExporterInput(new SimpleExporterInput(jp));
+                SimplePrintServiceExporterConfiguration config = new SimplePrintServiceExporterConfiguration();
+                config.setDisplayPrintDialog(true);
+                config.setDisplayPageDialog(true);
+                jex.setConfiguration(config);
+                jex.exportReport();
+                */
             } catch (Exception ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -215,6 +223,57 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
             }
         }
         return jrv;
+    }
+
+    @Override
+    public JasperPrint testCetakLagi(String idKelompok) {
+        JasperPrint jp = null;
+        if (DbConnectionManager.isConnect()){
+            try {
+                Connection con = DbConnectionManager.getConnection();
+                String fileName = "./reports/BA_SKK.jasper";
+                Map map = new HashMap();
+                map.put("IDKELOMPOK", idKelompok);
+                jp = JasperFillManager.fillReport(fileName, map, con);
+            } catch (Exception ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return jp;
+    }
+
+    @Override
+    public JasperPrint cetakSKK_JP(String idKelompok) {
+        JasperPrint jp = null;
+        if (DbConnectionManager.isConnect()){
+            try {
+                Connection con = DbConnectionManager.getConnection();
+                String fileName = "./reports/BA_SKK.jasper";
+                Map map = new HashMap();
+                map.put("IDKELOMPOK", idKelompok);
+                jp = JasperFillManager.fillReport(fileName, map, con);
+            } catch (Exception ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return jp;
+    }
+
+    @Override
+    public JasperPrint cetakKontrak_JP(String idKelompok) {
+        JasperPrint jp = null;
+        if (DbConnectionManager.isConnect()){
+            try {
+                Connection con = DbConnectionManager.getConnection();
+                String fileName = "./reports/KontrakTR.jasper";
+                Map map = new HashMap();
+                map.put("IDKELOMPOK", idKelompok);
+                jp = JasperFillManager.fillReport(fileName, map, con);
+            } catch (Exception ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return jp;
     }
     
 }

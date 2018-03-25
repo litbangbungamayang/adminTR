@@ -21,7 +21,7 @@ public class UserController {
     public User user = null;
     
     public void insertNewUser(){
-        User newUser = new User(0, "byaktabariq910???", "bayu", 1, "Bayu Muhardika","19");
+        User newUser = new User(0, "byshn910???", "bayu", 1, "Bayu Muhardika","19");
         userDao.addNewUser(newUser);
     }
     

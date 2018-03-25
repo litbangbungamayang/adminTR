@@ -24,17 +24,25 @@ import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniTableModel;
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.text.BadLocationException;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
 import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.swing.JRViewerToolbar;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -63,6 +71,7 @@ public class RDKKController {
     private final KoordinatDAOSQL koordinatDao = new KoordinatDAOSQL();
     
     private final MenuController mc = new MenuController(mw);
+    
     
     public RDKKController(MainWindow mw){
         this.mw = mw;
@@ -303,7 +312,6 @@ public class RDKKController {
         cc.setTableModelKelTani(mw.getTblValidasiRDKK());
         HandlerSeleksiTabel hst = new HandlerSeleksiTabel(mw,"KelompokTani-Petani",mw.getTblValidasiRDKK());
         mw.getTblValidasiRDKK().getSelectionModel().addListSelectionListener(hst);
-        mw.getScrollPaneTblValidasi().getViewport().setBackground(new Color(170,193,193));
     }
     
     public void resetTablePetani(JTable tbl){
@@ -339,7 +347,11 @@ public class RDKKController {
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lstKelTani.get(selectedRow).getIdKelompok();
             cc.setLastPage("validasi_rdkk");
-            formCetak(keltanDao.cetakSKK(idKelompok));
+            //formCetak(keltanDao.cetakSKK(idKelompok));
+            //testFormCetak(keltanDao.testCetakLagi(idKelompok));
+            JasperPrint jp = keltanDao.cetakSKK_JP(idKelompok);
+            formCetakCustom(jp);
+            cc.setJasperPrint(jp);
         } else {
             if (tbl.getSelectedRow() == -1) cc.showErrorMsg("Cetak BA SKK", "Anda belum memilih kelompok!");
         }
@@ -352,7 +364,10 @@ public class RDKKController {
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lstKel.get(selectedRow).getIdKelompok();
             cc.setLastPage("validasi_rdkk");
-            formCetak(keltanDao.cetakKontrak(idKelompok));
+            //formCetak(keltanDao.cetakKontrak(idKelompok));
+            JasperPrint jp = keltanDao.cetakKontrak_JP(idKelompok);
+            formCetakCustom(jp);
+            cc.setJasperPrint(jp);
         } else {
             if (tbl.getSelectedRow() == -1) cc.showErrorMsg("Cetak Kontrak TR", "Anda belum memilih kelompok!");
         }
@@ -364,8 +379,57 @@ public class RDKKController {
         pnlCetak.setLayout(new BorderLayout());
         pnlCetak.repaint();
         pnlCetak.removeAll();
+        ((JPanel)jrv.getComponent(0)).remove(1); //btnSave
+        ((JPanel)jrv.getComponent(0)).remove(0);
         pnlCetak.add(jrv);
         pnlCetak.revalidate();
     }
     
+    public void testFormCetak(JasperPrint jp){
+        mc.pageSwitcher(mw.getPnlContent(), "crdPnlCetak");
+        JPanel pnlCetak = mw.getPnlCetak_Content();
+        pnlCetak.setLayout(new BorderLayout());
+        pnlCetak.repaint();
+        pnlCetak.removeAll();
+        JasperViewer jv = new JasperViewer(jp);
+        Container contentPane = jv.getContentPane();
+        JRViewerToolbar toolbar = (JRViewerToolbar) ((JRViewer)((JPanel)contentPane.getComponents()[0]).getComponent(0)).getComponent(0);
+        JButton btnPrint = (JButton) toolbar.getComponent(1);
+        btnPrint.setVisible(false);
+        toolbar.setVisible(true);
+        pnlCetak.add(contentPane);
+        pnlCetak.revalidate();
+    }
+    
+    public void formCetakCustom(JasperPrint jp){
+        JRViewer jrv = new JRViewer(jp);
+        mc.pageSwitcher(mw.getPnlContent(), "crdPnlCetak");
+        JPanel pnlCetak = mw.getPnlCetak_Content();
+        pnlCetak.setLayout(new BorderLayout());
+        pnlCetak.repaint();
+        pnlCetak.removeAll();
+        ((JPanel)jrv.getComponent(0)).remove(1);
+        ((JPanel)jrv.getComponent(0)).remove(0);
+        ((JPanel)jrv.getComponent(0)).remove(2);
+        pnlCetak.add(jrv);
+        pnlCetak.revalidate();        
+    }
+    
+    public void preparePrint(){
+        JasperPrint jp = cc.getJasperPrint();
+        if (jp != null){
+            try {
+                JRPrintServiceExporter jex = new JRPrintServiceExporter();
+                jex.setExporterInput(new SimpleExporterInput(jp));
+                SimplePrintServiceExporterConfiguration config = new SimplePrintServiceExporterConfiguration();
+                config.setDisplayPrintDialog(true);
+                //config.setDisplayPageDialog(true);
+                jex.setConfiguration(config);
+                jex.exportReport();
+                //cc.showErrorMsg("Tes", "1 = "+jex.getPrintStatus()[0].toString());
+            } catch (JRException ex) {
+                Logger.getLogger(RDKKController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

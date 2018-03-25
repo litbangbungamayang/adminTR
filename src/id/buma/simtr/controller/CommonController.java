@@ -14,6 +14,8 @@ import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.Koordinat;
 import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.User;
+import id.buma.simtr.view.BahanProduksi_PupukRowRenderer;
+import id.buma.simtr.view.BahanProduksi_PupukTableModel;
 import id.buma.simtr.view.KelompokTaniHeaderRenderer;
 import id.buma.simtr.view.KelompokTaniRowRenderer;
 import id.buma.simtr.view.KelompokTaniSelectionModel;
@@ -29,6 +31,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
+import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
@@ -54,6 +57,8 @@ public class CommonController {
     
     private final PetaniRowRenderer petaniRR = new PetaniRowRenderer();
     
+    private final BahanProduksi_PupukRowRenderer pupukRR = new BahanProduksi_PupukRowRenderer();
+    
     public static List<PetaniTebu> inputPetani = new ArrayList<>();
     
     public static List<Koordinat> inputKoordinat = new ArrayList<>();
@@ -65,6 +70,8 @@ public class CommonController {
     private final LoginEncryption le = new LoginEncryption();
     
     public static User user = null;
+    
+    public static JasperPrint jasperPrint = null;
     
     
     
@@ -100,8 +107,16 @@ public class CommonController {
         tbl.setDefaultRenderer(Object.class, petaniRR);
     }
     
+    public void setTableRowRendererJenisPupuk(JTable tbl){
+        tbl.setDefaultRenderer(Object.class, pupukRR);
+    }
+    
     public void setTableModelPetani(JTable tbl, PetaniTableModel ptm){
         tbl.setModel(ptm);
+    }
+    
+    public void setTableModelPupuk(JTable tbl, BahanProduksi_PupukTableModel bpptm){
+        tbl.setModel(bpptm);
     }
         
     public void insertBufferPetani(PetaniTebu pt){
@@ -200,4 +215,11 @@ public class CommonController {
         CommonController.lastPage = lastPage;
     }
     
+    public JasperPrint getJasperPrint(){
+        return jasperPrint;
+    }
+    
+    public void setJasperPrint(JasperPrint jp){
+        CommonController.jasperPrint = jp;
+    }
 }

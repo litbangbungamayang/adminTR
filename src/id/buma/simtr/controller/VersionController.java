@@ -50,6 +50,11 @@ public class VersionController {
         /*
         + Mengubah format cetak laporan, dibuat berada dalam JPanel
         */
+        version = "0.9.7";
+        /*
+        + Menampilkan modul permintaan pupuk
+        + Menambahkan handler untuk master-detail tabel
+        */
         return version;
     }
         

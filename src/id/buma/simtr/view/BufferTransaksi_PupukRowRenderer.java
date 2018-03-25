@@ -21,63 +21,51 @@ import javax.swing.table.TableColumn;
  * 
  */
 
-public class PetaniRowRenderer extends DefaultTableCellRenderer implements TableCellRenderer{
-    
+public class BufferTransaksi_PupukRowRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, 
-            boolean isSelected, boolean hasFocus, int row, int column){
+            boolean isSelected, boolean hasFocus, int row, int column) {
         Component c = super.getTableCellRendererComponent(table, value, isSelected,
                 hasFocus, row, column);
         TableColumn tc = table.getColumnModel().getColumn(column);
-        table.getParent().setBackground(new Color(170,193,193));
         setBorder(noFocusBorder);
-        switch (column){
-            case 0 :
-                // Nomor
-                this.setHorizontalAlignment(CENTER);
-                tc.setCellRenderer(this);
-                tc.setPreferredWidth(30);
-                break;
-            case 1 :
-                // Nama Petani
+        table.setRowSelectionAllowed(false);
+        table.getParent().setBackground(new Color(170,193,193));
+        int tableWidth = table.getParent().getWidth();
+        int propColCount = table.getColumnCount() - 2;
+        int propWidth = tableWidth - 160;
+        int propColWidth = Math.round(propWidth/propColCount);
+        if (column == 0){
+            this.setHorizontalAlignment(CENTER);
+            tc.setCellRenderer(this);
+            tc.setPreferredWidth(40);
+        } else {
+            if (column == 1){
                 this.setHorizontalAlignment(LEFT);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(240);
-                break;
-            case 2 :
-                // Luas
+                tc.setPreferredWidth(120);
+            } else {
                 this.setHorizontalAlignment(RIGHT);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(50);
-                break;
-            case 3 :
-                // MT
-                this.setHorizontalAlignment(CENTER);
-                tc.setCellRenderer(this);
-                tc.setPreferredWidth(40);
-                break;
-            case 4 :
-                // Varietas
-                this.setHorizontalAlignment(CENTER);
-                tc.setCellRenderer(this);
-                tc.setPreferredWidth(64);
-                break;
+                tc.setPreferredWidth(propColWidth);
+            }
         }
         
         if (row % 2 == 0){
             c.setBackground(new Color(205,219,219));
             c.setForeground(Color.DARK_GRAY);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         } else {
             c.setBackground(new Color(85,131,131));
             c.setForeground(Color.WHITE);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         }
         
         if (isSelected){
             setBackground(new Color(70,70,0));
             setForeground(Color.WHITE);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         }
         
         return c;

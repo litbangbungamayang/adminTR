@@ -29,6 +29,7 @@ public class KelompokTaniRowRenderer extends DefaultTableCellRenderer implements
                 hasFocus, row, column);
         TableColumn tc = table.getColumnModel().getColumn(column);
         setBorder(noFocusBorder);
+        table.getParent().setBackground(new Color(170,193,193));
         switch (column){
             case 0 :
                 // Nomor

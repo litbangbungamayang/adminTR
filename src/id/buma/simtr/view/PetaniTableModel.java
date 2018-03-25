@@ -29,6 +29,10 @@ public class PetaniTableModel extends AbstractTableModel {
     public PetaniTableModel(List<PetaniTebu> lsPetani){
         this.lsPetani = lsPetani;
     }
+    
+    public List<PetaniTebu> getContentList(){
+        return lsPetani;
+    }
 
     private final String[] columnNames = new String[]{
         "No.",

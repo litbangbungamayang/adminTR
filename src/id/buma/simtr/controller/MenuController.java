@@ -41,6 +41,7 @@ public class MenuController implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         CommonController cc = new CommonController(mw);
         RDKKController rc = new RDKKController(mw);
+        PupukController pc = new PupukController(mw);
         mw.repaint();
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
@@ -56,6 +57,7 @@ public class MenuController implements MouseListener{
                 break;
             case "pnlMenuRDKK":
                 mw.getPnlSubMenuHolder().setVisible(true);
+                pageSwitcher(mw.getPnlSubMenuHolder(), "crdSubMenuRDKK");
                 break;
                 case "pnlWsRDKK":
                     mw.getPnlSubMenuHolder().setVisible(true);
@@ -123,9 +125,31 @@ public class MenuController implements MouseListener{
             case "pnlMenuPerawatan":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
+            //******************** MENU PUPUK
             case "pnlMenuPupuk":
-                mw.getPnlSubMenuHolder().setVisible(false);
+                mw.getPnlSubMenuHolder().setVisible(true);
+                pageSwitcher(mw.getPnlSubMenuHolder(), "crdSubMenuPupuk");
                 break;
+                case "pnlSubMenuPupuk_Permintaan":
+                    pageSwitcher(mw.getPnlContent(), "crdFrmPupuk_Permintaan");
+                    pc.prepareTablePupukKelTani();
+                    pc.prepareTablePupukPetani();
+                    pc.prepareTablePupukJenisPupuk();
+                    pc.prepareDatePicker();
+                    break;
+                    case "pnlFrmPupuk_Permintaan_Kembali":
+                        mw.getPnlSubMenuHolder().setVisible(false);
+                        pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                        break;
+                    case "pnlFrmPupuk_Permintaan_Clear":
+                        mw.getJtfFrmPupuk_Permintaan_Cari().setText("");
+                        pc.prepareTablePupukKelTani();
+                        break;
+                    case "pnlFrmPupuk_Permintaan_TambahPupuk":
+                        pc.addDaftarPetaniPupuk();
+                        break;
+            //*********************************
+            //********************
             case "pnlMenuTMA":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
@@ -145,6 +169,9 @@ public class MenuController implements MouseListener{
                         cc.setLastPage(null);
                         break;
                 }
+                break;
+            case "pnlCetak_Cetak":
+                rc.preparePrint();
                 break;
         }
     }
@@ -243,6 +270,18 @@ public class MenuController implements MouseListener{
             case "pnlMenuPupuk":
                 standarMainMenuHover(menuPanel);
                 break;
+                case  "pnlSubMenuPupuk_Permintaan":
+                    standarMainMenuHover(menuPanel);
+                    break;
+                    case "pnlFrmPupuk_Permintaan_Kembali":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_Clear":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_TambahPupuk":
+                        standarButtonHover(menuPanel);
+                        break;
             case "pnlMenuTMA":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -258,6 +297,9 @@ public class MenuController implements MouseListener{
             case "pnlCetak_Kembali":
                 standarButtonHover(menuPanel);
                 break;
+                case "pnlCetak_Cetak":
+                    standarButtonHover(menuPanel);
+                    break;
         }
     }
 
@@ -324,6 +366,18 @@ public class MenuController implements MouseListener{
             case "pnlMenuPupuk":
                 standarMainMenuDisplayed(menuPanel);
                 break;
+                case "pnlSubMenuPupuk_Permintaan":
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
+                    case "pnlFrmPupuk_Permintaan_Kembali":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_Clear":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_TambahPupuk":
+                        standarButtonDisplayed(menuPanel);
+                        break;
             case "pnlMenuTMA":
                 standarMainMenuDisplayed(menuPanel);
                 break;
@@ -339,6 +393,9 @@ public class MenuController implements MouseListener{
             case "pnlCetak_Kembali":
                 standarButtonDisplayed(menuPanel);
                 break;
+                case "pnlCetak_Cetak":
+                    standarButtonDisplayed(menuPanel);
+                    break;
         }
     }
     
