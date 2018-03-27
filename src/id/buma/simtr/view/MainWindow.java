@@ -267,6 +267,8 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblInputNamaKelTani8 = new javax.swing.JLabel();
         cbxKategoriTanaman = new javax.swing.JComboBox<>();
+        lblInputNamaKelTani5 = new javax.swing.JLabel();
+        cbxInputRDKKMasaTanam = new javax.swing.JComboBox<>();
         pnlFrmInputRDKK_ContainerInputPetani = new javax.swing.JPanel();
         pnlBlank = new javax.swing.JPanel();
         pnlTblInputPetani = new javax.swing.JPanel();
@@ -275,8 +277,6 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani4 = new javax.swing.JLabel();
         jtfInputRDKKNamaPetani = new javax.swing.JTextField();
         pnlUnderline3 = new javax.swing.JPanel();
-        lblInputNamaKelTani5 = new javax.swing.JLabel();
-        cbxInputRDKKMasaTanam = new javax.swing.JComboBox<>();
         lblInputNamaKelTani6 = new javax.swing.JLabel();
         cbxInputRDKKVarietas = new javax.swing.JComboBox<>();
         lblInputNamaKelTani7 = new javax.swing.JLabel();
@@ -296,6 +296,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani11 = new javax.swing.JLabel();
         jftInputRDKKNorthing = new javax.swing.JFormattedTextField();
         pnlUnderline6 = new javax.swing.JPanel();
+        lblInputNamaKelTani12 = new javax.swing.JLabel();
         pnlFrmValidasiRDKK = new javax.swing.JPanel();
         pnlFrmInputRDKK_MenuHolder1 = new javax.swing.JPanel();
         pnlFrmValidasiRDKK_Back = new javax.swing.JPanel();
@@ -1299,6 +1300,16 @@ public class MainWindow extends javax.swing.JFrame {
         cbxKategoriTanaman.setBorder(null);
         cbxKategoriTanaman.setName("cbxKategoriTanaman"); // NOI18N
 
+        lblInputNamaKelTani5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani5.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani5.setText("Masa Tanam");
+
+        cbxInputRDKKMasaTanam.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxInputRDKKMasaTanam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6A", "6B", "7A", "7B", "8A", "8B", "9A", "9B", "10A", "10B", "11A", "11B", "12A", "12B" }));
+        cbxInputRDKKMasaTanam.setSelectedIndex(-1);
+        cbxInputRDKKMasaTanam.setToolTipText("");
+        cbxInputRDKKMasaTanam.setBorder(null);
+
         javax.swing.GroupLayout pnlFrmInputRDKK_ContentLayout = new javax.swing.GroupLayout(pnlFrmInputRDKK_Content);
         pnlFrmInputRDKK_Content.setLayout(pnlFrmInputRDKK_ContentLayout);
         pnlFrmInputRDKK_ContentLayout.setHorizontalGroup(
@@ -1328,10 +1339,6 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbxKecamatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
-                                .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxKategoriTanaman, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                 .addComponent(lblInputNamaKelTani3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1339,7 +1346,17 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addComponent(pnlFrmInputRDKK_LanjutKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(pnlFrmInputRDKK_BatalKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cbxDesa, 0, 296, Short.MAX_VALUE))))
+                                    .addComponent(cbxDesa, 0, 296, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
+                                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblInputNamaKelTani5))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxKategoriTanaman, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
+                                        .addComponent(cbxInputRDKKMasaTanam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlFrmInputRDKK_ContentLayout.setVerticalGroup(
@@ -1365,7 +1382,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxKategoriTanaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
+                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInputNamaKelTani5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxInputRDKKMasaTanam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInputNamaKelTani2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxKecamatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1377,7 +1398,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlFrmInputRDKK_BatalKoord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlFrmInputRDKK_LanjutKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
 
         pnlFrmInputRDKK.add(pnlFrmInputRDKK_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 470, 630));
@@ -1449,16 +1470,6 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
-        lblInputNamaKelTani5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblInputNamaKelTani5.setForeground(new java.awt.Color(255, 255, 255));
-        lblInputNamaKelTani5.setText("Masa Tanam");
-
-        cbxInputRDKKMasaTanam.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbxInputRDKKMasaTanam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "5A", "5B", "6A", "6B", "7A", "7B", "8A", "8B", "9A", "9B", "10A", "10B", "11A", "11B", "12A", "12B" }));
-        cbxInputRDKKMasaTanam.setSelectedIndex(-1);
-        cbxInputRDKKMasaTanam.setToolTipText("");
-        cbxInputRDKKMasaTanam.setBorder(null);
-
         lblInputNamaKelTani6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInputNamaKelTani6.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani6.setText("Varietas");
@@ -1477,7 +1488,7 @@ public class MainWindow extends javax.swing.JFrame {
         pnlUnderline4.setLayout(pnlUnderline4Layout);
         pnlUnderline4Layout.setHorizontalGroup(
             pnlUnderline4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 75, Short.MAX_VALUE)
         );
         pnlUnderline4Layout.setVerticalGroup(
             pnlUnderline4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1589,6 +1600,10 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
+        lblInputNamaKelTani12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani12.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani12.setText("Koordinat Lokasi");
+
         javax.swing.GroupLayout pnlTblInputPetaniLayout = new javax.swing.GroupLayout(pnlTblInputPetani);
         pnlTblInputPetani.setLayout(pnlTblInputPetaniLayout);
         pnlTblInputPetaniLayout.setHorizontalGroup(
@@ -1603,9 +1618,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlTblInputPetaniLayout.createSequentialGroup()
-                            .addComponent(lblInputNamaKelTani5)
-                            .addGap(18, 18, 18)
-                            .addComponent(cbxInputRDKKMasaTanam, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblInputNamaKelTani7)
+                            .addGap(33, 33, 33)
+                            .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jftInputRDKKLuas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pnlUnderline4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addComponent(lblInputNamaKelTani6)
                             .addGap(18, 18, 18)
@@ -1618,17 +1635,13 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addComponent(pnlUnderline3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
                         .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblInputNamaKelTani7)
                             .addComponent(lblInputNamaKelTani10)
                             .addComponent(lblInputNamaKelTani11))
-                        .addGap(33, 33, 33)
+                        .addGap(41, 41, 41)
                         .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(pnlUnderline6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jftInputRDKKNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jftInputRDKKLuas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pnlUnderline4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
                                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(pnlUnderline5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1638,7 +1651,8 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(pnlFrmInputRDKK_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pnlFrmInputRDKK_SimpanData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(pnlFrmInputRDKK_SimpanData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lblInputNamaKelTani12))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTblInputPetaniLayout.setVerticalGroup(
@@ -1656,19 +1670,19 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(pnlUnderline3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblInputNamaKelTani4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblInputNamaKelTani5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxInputRDKKMasaTanam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInputNamaKelTani6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxInputRDKKVarietas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTblInputPetaniLayout.createSequentialGroup()
-                        .addComponent(jftInputRDKKLuas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(pnlUnderline4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblInputNamaKelTani7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblInputNamaKelTani6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxInputRDKKVarietas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTblInputPetaniLayout.createSequentialGroup()
+                            .addComponent(jftInputRDKKLuas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(1, 1, 1)
+                            .addComponent(pnlUnderline4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblInputNamaKelTani7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
+                .addComponent(lblInputNamaKelTani12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlTblInputPetaniLayout.createSequentialGroup()
                         .addComponent(jftInputRDKKEasting, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1682,7 +1696,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jftInputRDKKNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlUnderline6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(pnlTblInputPetaniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlFrmInputRDKK_TambahPetani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlFrmInputRDKK_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2689,6 +2703,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblInputNamaKelTani1;
     private javax.swing.JLabel lblInputNamaKelTani10;
     private javax.swing.JLabel lblInputNamaKelTani11;
+    private javax.swing.JLabel lblInputNamaKelTani12;
     private javax.swing.JLabel lblInputNamaKelTani2;
     private javax.swing.JLabel lblInputNamaKelTani3;
     private javax.swing.JLabel lblInputNamaKelTani4;

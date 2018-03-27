@@ -149,6 +149,7 @@ public class RDKKController {
         mw.getCbxKategoriTanaman().setEnabled(status);
         mw.getCbxKec().setEnabled(status);
         mw.getCbxDesa().setEnabled(status);
+        mw.getCbxInputRDKKMasaTanam().setEnabled(status);
     }
     
     public boolean validasiInputPetani(){
@@ -212,7 +213,6 @@ public class RDKKController {
     
     public void clearInputPetani(){
         mw.getJtfInputRDKKNamaPetani().setText("");
-        mw.getCbxInputRDKKMasaTanam().setSelectedIndex(-1);
         mw.getCbxInputRDKKVarietas().setSelectedIndex(-1);
         mw.getJftInputRDKKLuas().setValue(null);
         mw.getJftEasting().setValue(null);
@@ -226,6 +226,7 @@ public class RDKKController {
         } catch (BadLocationException ex) {
             Logger.getLogger(RDKKController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        mw.getCbxInputRDKKMasaTanam().setSelectedIndex(-1);
         mw.getCbxKategoriTanaman().setSelectedIndex(-1);
         mw.getCbxKec().setSelectedIndex(0);
         mw.getCbxDesa().setSelectedItem(null);

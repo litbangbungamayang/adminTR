@@ -1777,17 +1777,12 @@
                                       </Group>
                                       <EmptySpace pref="14" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="lblInputNamaKelTani2" min="-2" pref="130" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="cbxKecamatan" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblInputNamaKelTani8" min="-2" pref="130" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="cbxKategoriTanaman" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblInputNamaKelTani3" min="-2" pref="130" max="-2" attributes="0"/>
@@ -1799,6 +1794,20 @@
                                                       <Component id="pnlFrmInputRDKK_BatalKoord" min="-2" pref="100" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Component id="cbxDesa" pref="296" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblInputNamaKelTani8" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                                  <Component id="lblInputNamaKelTani5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="cbxKategoriTanaman" max="32767" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="cbxInputRDKKMasaTanam" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1838,7 +1847,12 @@
                                   <Component id="lblInputNamaKelTani8" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="cbxKategoriTanaman" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblInputNamaKelTani5" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="cbxInputRDKKMasaTanam" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblInputNamaKelTani2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="cbxKecamatan" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1853,7 +1867,7 @@
                                   <Component id="pnlFrmInputRDKK_BatalKoord" max="32767" attributes="0"/>
                                   <Component id="pnlFrmInputRDKK_LanjutKoord" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="344" max="32767" attributes="0"/>
+                              <EmptySpace pref="303" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2115,6 +2129,60 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="lblInputNamaKelTani5">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Masa Tanam"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbxInputRDKKMasaTanam">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="24">
+                            <StringItem index="0" value="1A"/>
+                            <StringItem index="1" value="1B"/>
+                            <StringItem index="2" value="2A"/>
+                            <StringItem index="3" value="2B"/>
+                            <StringItem index="4" value="3A"/>
+                            <StringItem index="5" value="3B"/>
+                            <StringItem index="6" value="4A"/>
+                            <StringItem index="7" value="4B"/>
+                            <StringItem index="8" value="5A"/>
+                            <StringItem index="9" value="5B"/>
+                            <StringItem index="10" value="6A"/>
+                            <StringItem index="11" value="6B"/>
+                            <StringItem index="12" value="7A"/>
+                            <StringItem index="13" value="7B"/>
+                            <StringItem index="14" value="8A"/>
+                            <StringItem index="15" value="8B"/>
+                            <StringItem index="16" value="9A"/>
+                            <StringItem index="17" value="9B"/>
+                            <StringItem index="18" value="10A"/>
+                            <StringItem index="19" value="10B"/>
+                            <StringItem index="20" value="11A"/>
+                            <StringItem index="21" value="11B"/>
+                            <StringItem index="22" value="12A"/>
+                            <StringItem index="23" value="12B"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="selectedIndex" type="int" value="-1"/>
+                        <Property name="toolTipText" type="java.lang.String" value=""/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="pnlFrmInputRDKK_ContainerInputPetani">
@@ -2188,10 +2256,13 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblInputNamaKelTani5" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="cbxInputRDKKMasaTanam" min="-2" pref="75" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="lblInputNamaKelTani7" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jftInputRDKKLuas" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  <Component id="pnlUnderline4" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                               <Component id="lblInputNamaKelTani6" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="cbxInputRDKKVarietas" max="32767" attributes="0"/>
@@ -2207,19 +2278,14 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblInputNamaKelTani7" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblInputNamaKelTani10" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblInputNamaKelTani11" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="pnlUnderline6" max="32767" attributes="0"/>
                                                   <Component id="jftInputRDKKNorthing" min="-2" pref="206" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jftInputRDKKLuas" min="-2" pref="75" max="-2" attributes="0"/>
-                                                  <Component id="pnlUnderline4" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -2236,6 +2302,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
+                                      <Component id="lblInputNamaKelTani12" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -2258,22 +2325,23 @@
                                       <Component id="lblInputNamaKelTani4" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblInputNamaKelTani5" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="cbxInputRDKKMasaTanam" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblInputNamaKelTani6" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="cbxInputRDKKVarietas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jftInputRDKKLuas" min="-2" pref="22" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Component id="pnlUnderline4" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblInputNamaKelTani6" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="cbxInputRDKKVarietas" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="lblInputNamaKelTani7" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jftInputRDKKLuas" min="-2" pref="22" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                              <Component id="pnlUnderline4" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblInputNamaKelTani7" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="lblInputNamaKelTani12" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jftInputRDKKEasting" min="-2" pref="22" max="-2" attributes="0"/>
@@ -2291,7 +2359,7 @@
                                           <Component id="pnlUnderline6" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                                  <EmptySpace pref="59" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="pnlFrmInputRDKK_TambahPetani" min="-2" max="-2" attributes="0"/>
                                       <Component id="pnlFrmInputRDKK_Hapus" min="-2" max="-2" attributes="0"/>
@@ -2390,60 +2458,6 @@
                             </DimensionLayout>
                           </Layout>
                         </Container>
-                        <Component class="javax.swing.JLabel" name="lblInputNamaKelTani5">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Masa Tanam"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="cbxInputRDKKMasaTanam">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="0"/>
-                            </Property>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="24">
-                                <StringItem index="0" value="1A"/>
-                                <StringItem index="1" value="1B"/>
-                                <StringItem index="2" value="2A"/>
-                                <StringItem index="3" value="2B"/>
-                                <StringItem index="4" value="3A"/>
-                                <StringItem index="5" value="3B"/>
-                                <StringItem index="6" value="4A"/>
-                                <StringItem index="7" value="4B"/>
-                                <StringItem index="8" value="5A"/>
-                                <StringItem index="9" value="5B"/>
-                                <StringItem index="10" value="6A"/>
-                                <StringItem index="11" value="6B"/>
-                                <StringItem index="12" value="7A"/>
-                                <StringItem index="13" value="7B"/>
-                                <StringItem index="14" value="8A"/>
-                                <StringItem index="15" value="8B"/>
-                                <StringItem index="16" value="9A"/>
-                                <StringItem index="17" value="9B"/>
-                                <StringItem index="18" value="10A"/>
-                                <StringItem index="19" value="10B"/>
-                                <StringItem index="20" value="11A"/>
-                                <StringItem index="21" value="11B"/>
-                                <StringItem index="22" value="12A"/>
-                                <StringItem index="23" value="12B"/>
-                              </StringArray>
-                            </Property>
-                            <Property name="selectedIndex" type="int" value="-1"/>
-                            <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="null"/>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblInputNamaKelTani6">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2514,7 +2528,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="75" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -2790,6 +2804,17 @@
                             </DimensionLayout>
                           </Layout>
                         </Container>
+                        <Component class="javax.swing.JLabel" name="lblInputNamaKelTani12">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI" size="14" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Koordinat Lokasi"/>
+                          </Properties>
+                        </Component>
                       </SubComponents>
                     </Container>
                   </SubComponents>

@@ -60,6 +60,10 @@ public class VersionController {
         + Perbaikan modul permintaan pupuk :
             ++ Perubahan algoritma untuk tampilan tabel permintaan pupuk
         */
+        version = "0.9.9";
+        /*
+        + Perubahan format BA SKK
+        */
         
         return version;
     }
