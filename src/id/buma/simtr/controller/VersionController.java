@@ -55,6 +55,12 @@ public class VersionController {
         + Menampilkan modul permintaan pupuk
         + Menambahkan handler untuk master-detail tabel
         */
+        version = "0.9.8";
+        /*
+        + Perbaikan modul permintaan pupuk :
+            ++ Perubahan algoritma untuk tampilan tabel permintaan pupuk
+        */
+        
         return version;
     }
         

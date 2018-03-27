@@ -146,7 +146,11 @@ public class MenuController implements MouseListener{
                         pc.prepareTablePupukKelTani();
                         break;
                     case "pnlFrmPupuk_Permintaan_TambahPupuk":
-                        pc.addDaftarPetaniPupuk();
+                        //pc.addDaftarPetaniPupuk();
+                        pc.getDaftarPetaniDanPupuk(mw.getTblPupukPetani(), mw.getTblJenisPupuk_Pupuk_Permintaan());
+                        break;
+                    case "pnlFrmPupuk_Permintaan_SimpanData":
+                        pc.insertNewTransaksiPupuk();
                         break;
             //*********************************
             //********************
@@ -282,6 +286,9 @@ public class MenuController implements MouseListener{
                     case "pnlFrmPupuk_Permintaan_TambahPupuk":
                         standarButtonHover(menuPanel);
                         break;
+                    case "pnlFrmPupuk_Permintaan_SimpanData":
+                        standarButtonHover(menuPanel);
+                        break;
             case "pnlMenuTMA":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -376,6 +383,9 @@ public class MenuController implements MouseListener{
                         standarButtonDisplayed(menuPanel);
                         break;
                     case "pnlFrmPupuk_Permintaan_TambahPupuk":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_SimpanData":
                         standarButtonDisplayed(menuPanel);
                         break;
             case "pnlMenuTMA":

@@ -6,16 +6,17 @@
 package id.buma.simtr.controller;
 
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
-import id.buma.simtr.dao.KelompokTaniDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
+import id.buma.simtr.dao.TransaksiPupukDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.BufferTable_TransaksiPupuk;
 import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.TransaksiPupuk;
 import id.buma.simtr.view.BahanProduksi_PupukTableModel;
 import id.buma.simtr.view.BufferTransaksi_PupukRowRenderer;
+import id.buma.simtr.view.BufferTransaksi_PupukTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniTableModel;
-import id.buma.simtr.view.TransaksiPupuk_BufferTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -35,89 +36,122 @@ public class PupukController implements ActionListener{
     
     private final CommonController cc = new CommonController(mw);
     
-    private final KelompokTaniDAOSQL keltanDao = new KelompokTaniDAOSQL();
+    private final TransaksiPupukDAOSQL transPupukDao = new TransaksiPupukDAOSQL();
     
     private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();
     
     private final BahanProduksiDAOSQL pupukDao = new BahanProduksiDAOSQL();
     
     public static List<TransaksiPupuk> transPupuk = new ArrayList<>();
-    
+        
     private final BufferTransaksi_PupukRowRenderer bufferRR = new BufferTransaksi_PupukRowRenderer();
     
     public PupukController(MainWindow mw){
         this.mw = mw;
     }
     
-    public void setBufferTransaksiPupuk(List<PetaniTebu> listPetani, List<BahanProduksi> listBahan, java.sql.Date tglTransaksi){
-        java.sql.Timestamp postingTimestamp = new java.sql.Timestamp(new java.util.Date().getTime());
-        //cc.showErrorMsg("Test", String.valueOf(listBahan.size()));
-        transPupuk.clear();
-        for (int i = 0; i < listPetani.size(); i++){
-            for (int j = 0; j < listBahan.size(); j++){
-                float kuanta = listPetani.get(i).getLuas() * listBahan.get(j).getDosisPerHa();
-                TransaksiPupuk tp = new TransaksiPupuk(
-                        0, 
-                        listPetani.get(i).getIdPetani(),
-                        listBahan.get(j).getIdBahan(), 
-                        tglTransaksi, 
-                        kuanta, 
-                        CommonController.user.getUserId(),
-                        postingTimestamp
-                );
-                //cc.showErrorMsg("Tes", "listPetani size = " + listPetani.size() + "; listBahan size = " + listBahan.size());
-                transPupuk.add(tp);
+    public void getDaftarPetaniDanPupuk(JTable tblPetani, JTable tblPupuk){
+        if (tblPetani.getSelectedRowCount() > 0 && tblPupuk.getSelectedRowCount() > 0){
+            
+            /* Tabel model PETANI */
+            PetaniTableModel ptm = (PetaniTableModel) tblPetani.getModel();
+            List<PetaniTebu> listTablePetani = ptm.getContentList();
+            List<PetaniTebu> selectedListPetani = new ArrayList<>();
+            int[] selectedIndexPetani = tblPetani.getSelectedRows();
+            for (int i = 0; i < selectedIndexPetani.length; i++){
+                selectedListPetani.add(listTablePetani.get(selectedIndexPetani[i]));
             }
-        }
-        //cc.showErrorMsg("Tes", "listBuffer size = " + transPupuk.size());
-    }
-    
-    public void addDaftarPetaniPupuk(){
-        if (mw.getTblPupukPetani().getSelectedRowCount() > 0 && 
-                mw.getTblJenisPupuk_Pupuk_Permintaan().getSelectedRowCount() > 0){
-            PetaniTableModel ptm = (PetaniTableModel) mw.getTblPupukPetani().getModel();
-            List<PetaniTebu> listPetani = ptm.getContentList();
-            List<PetaniTebu> listPetaniSelected = new ArrayList<>();
-            int[] selectionPetani = mw.getTblPupukPetani().getSelectedRows();
-            for (int i = 0; i < selectionPetani.length; i++){
-                listPetaniSelected.add(listPetani.get(selectionPetani[i]));
+
+            /*  Tabel model PUPUK */
+            BahanProduksi_PupukTableModel bpptm = (BahanProduksi_PupukTableModel) tblPupuk.getModel();
+            List<BahanProduksi> listTablePupuk = bpptm.getContentList();
+            List<BahanProduksi> selectedListPupuk = new ArrayList<>();
+            int[] selectedIndexPupuk = tblPupuk.getSelectedRows();
+            for (int i = 0; i < selectedIndexPupuk.length; i++){
+                selectedListPupuk.add(listTablePupuk.get(selectedIndexPupuk[i]));
             }
-            BahanProduksi_PupukTableModel bpptm = (BahanProduksi_PupukTableModel) mw.getTblJenisPupuk_Pupuk_Permintaan().getModel();
-            List<BahanProduksi> listBahan = bpptm.getContentList();
-            List<BahanProduksi> listBahanSelected = new ArrayList<>();
-            int[] selectionBahan = mw.getTblJenisPupuk_Pupuk_Permintaan().getSelectedRows();
-            for (int i = 0; i < selectionBahan.length; i++){
-                listBahanSelected.add(listBahan.get(selectionBahan[i]));
-            }
-            //cc.showErrorMsg("Test", String.valueOf(listPetaniSelected.size()));
-            java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());
-            setBufferTransaksiPupuk(listPetaniSelected, listBahanSelected, tglTransaksi);
-            if (transPupuk.size() > 0){
-                TransaksiPupuk_BufferTableModel tpbtm = new TransaksiPupuk_BufferTableModel(transPupuk);
-                tpbtm.setArrayPetani(listPetaniSelected);
-                tpbtm.setArrayBahanProduksi(listBahanSelected);
-                mw.getTblBuffer_Pupuk_Permintaan().setModel(tpbtm);
+
+            List<BahanProduksi> listSemuaPupuk = pupukDao.getAllBahanProduksiByJenis("PUPUK");
+
+            List<BufferTable_TransaksiPupuk> lbt = new ArrayList<>();
+            if (mw.getDtpTglTransaksiPupuk().getDate() != null){
+                transPupuk.clear();
+                for (int i = 0; i < selectedListPetani.size(); i++){
+                    float[] kuantaArray = new float[listSemuaPupuk.size()];
+                    for (int j = 0; j < selectedListPupuk.size(); j++){
+                        /* VALIDASI BUFFER UTK DISIMPAN KE DATABASE */
+                        java.sql.Timestamp postingTimestamp = new java.sql.Timestamp(new java.util.Date().getTime());
+                        java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());
+                        String idPetani_Selected = selectedListPetani.get(i).getIdPetani();
+                        int idBahan_Selected = selectedListPupuk.get(j).getIdBahan();
+                        boolean cekStatus = transPupukDao.cekDuplicateTransaksiPupuk(idPetani_Selected, idBahan_Selected);
+                        if (cekStatus){
+                            float kuantaDb = selectedListPetani.get(i).getLuas()*selectedListPupuk.get(j).getDosisPerHa();
+                            TransaksiPupuk tp = new TransaksiPupuk(
+                                    0, 
+                                    idPetani_Selected, 
+                                    idBahan_Selected, 
+                                    tglTransaksi, 
+                                    kuantaDb, 
+                                    CommonController.user.getUserId(), 
+                                    postingTimestamp
+                            );
+                            transPupuk.add(tp);
+                        } else {
+                            cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk berikut : " + '\n' + "Nama petani : " + 
+                                selectedListPetani.get(i).getNamaPetani() + '\n' + "Bahan pupuk : " + selectedListPupuk.get(j).getNamaBahan());
+                        }
+                        /*******************/
+                        /* BUFFER UNTUK DITAMPILKAN DI TABEL */
+                        float kuanta;
+                        for (int k = 0; k < listSemuaPupuk.size(); k++){                       
+                            String idPetani = selectedListPetani.get(i).getIdPetani();
+                            int idBahan_selected = selectedListPupuk.get(j).getIdBahan();
+                            float dosisBahanSelected = selectedListPupuk.get(j).getDosisPerHa();
+                            float luasPetaniSelected = selectedListPetani.get(i).getLuas();
+                            int idBahan_existing = listSemuaPupuk.get(k).getIdBahan();
+                            if (idBahan_existing == idBahan_selected && cekStatus){
+                                kuanta = dosisBahanSelected*luasPetaniSelected;
+                                kuantaArray[k] = kuanta;
+                            }
+                        }
+                        /*************************************/
+                    }
+                    BufferTable_TransaksiPupuk bt = new BufferTable_TransaksiPupuk(selectedListPetani.get(i).getNamaPetani(),kuantaArray);
+                    lbt.add(bt);
+                }
+                BufferTransaksi_PupukTableModel btptm = new BufferTransaksi_PupukTableModel(lbt);
+                mw.getTblBuffer_Pupuk_Permintaan().setModel(btptm);
                 cc.setTableHeaderKelTani(mw.getTblBuffer_Pupuk_Permintaan().getTableHeader());
                 mw.getTblBuffer_Pupuk_Permintaan().setDefaultRenderer(Object.class, bufferRR);
             }
         } else {
-            if (mw.getTblPupukPetani().getSelectedRowCount() == 0) 
-                cc.showErrorMsg("Permintaan Pupuk", "Pilih minimal 1 petani!");
-            if (mw.getTblJenisPupuk_Pupuk_Permintaan().getSelectedRowCount() == 0) 
-                cc.showErrorMsg("Permintaan Pupuk", "Pilih minimal 1 jenis pupuk!");
+            if (tblPetani.getSelectedRowCount() == 0) cc.showErrorMsg("Error Transaksi Pupuk", "Pilihlah minimal 1 (satu) nama petani.");
+            if (tblPupuk.getSelectedRowCount() == 0) cc.showErrorMsg("Error Transaksi Pupuk", "Pilihlah minimal 1 (satu) jenis pupuk.");
+        }
+    }
+    
+    public void insertNewTransaksiPupuk(){
+        if (transPupuk.size() > 0){
+            for(TransaksiPupuk tp : transPupuk){
+                transPupukDao.insertNewTransaksiPupuk(tp);
+            }
+            cc.showInfoMsg("Transaksi Pupuk", "Data transaksi telah tersimpan!");
+            clearTable();
+        } else {
+            clearTable();
         }
     }
     
     public void clearTable(){
         prepareDatePicker();
-        java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());
-        List<PetaniTebu> listPetaniKosong = new ArrayList<>();
-        List<BahanProduksi> listBahanKosong = new ArrayList<>();
-        setBufferTransaksiPupuk(listPetaniKosong, listBahanKosong, tglTransaksi);
-        TransaksiPupuk_BufferTableModel tpbtm = new TransaksiPupuk_BufferTableModel(transPupuk);
-        tpbtm.setArrayPetani(listPetaniKosong);
-        tpbtm.setArrayBahanProduksi(listBahanKosong);
-        mw.getTblBuffer_Pupuk_Permintaan().setModel(tpbtm);
+        transPupuk.clear();
+        mw.getTblPupukPetani().clearSelection();
+        mw.getTblJenisPupuk_Pupuk_Permintaan().clearSelection();
+        mw.getTblPupukKelTani().clearSelection();
+        List<BufferTable_TransaksiPupuk> lbt = new ArrayList<>();
+        BufferTransaksi_PupukTableModel btptm = new BufferTransaksi_PupukTableModel(lbt);
+        mw.getTblBuffer_Pupuk_Permintaan().setModel(btptm);
         cc.setTableHeaderKelTani(mw.getTblBuffer_Pupuk_Permintaan().getTableHeader());
         mw.getTblBuffer_Pupuk_Permintaan().setDefaultRenderer(Object.class, bufferRR);
     }

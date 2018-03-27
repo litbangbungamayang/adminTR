@@ -170,6 +170,10 @@ public class CommonController {
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
     }
     
+    public void showInfoMsg(String title, String msg){
+        JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     public void prepareTableInputPetani(JTable tabel){
         setTableHeaderPetani(tabel.getTableHeader());
         setTableRowRendererPetani(tabel);
