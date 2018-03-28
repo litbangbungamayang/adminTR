@@ -146,7 +146,6 @@ public class MenuController implements MouseListener{
                         pc.prepareTablePupukKelTani();
                         break;
                     case "pnlFrmPupuk_Permintaan_TambahPupuk":
-                        //pc.addDaftarPetaniPupuk();
                         pc.getDaftarPetaniDanPupuk(mw.getTblPupukPetani(), mw.getTblJenisPupuk_Pupuk_Permintaan());
                         break;
                     case "pnlFrmPupuk_Permintaan_SimpanData":
@@ -160,9 +159,24 @@ public class MenuController implements MouseListener{
             case "pnlMenuPBH":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
+            /*** MENU ADMIN ***/
             case "pnlMenuAdmin":
-                mw.getPnlSubMenuHolder().setVisible(false);
+                if (CommonController.user.getPrivLevel() == 1){
+                    mw.getPnlSubMenuHolder().setVisible(true);
+                    pageSwitcher(mw.getPnlSubMenuHolder(), "crdSubMenuAdmin");
+                } else {
+                    cc.showErrorMsg("Main Menu", "Anda tidak memiliki hak akses untuk menu ini!");
+                    mw.getPnlSubMenuHolder().setVisible(false);
+                }
                 break;
+                case "pnlSubMenuAdmin_UserData":
+                    pageSwitcher(mw.getPnlContent(), "crdPnlAdminSistem_UserData");
+                    mw.getPnlSubMenuHolder().setVisible(false);
+                    break;
+                case "pnlAdminSistem_Kembali":
+                    pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                    break;
+            /******************/
             case "pnlMenuKeluar":
                 System.exit(0);
                 break;
@@ -298,6 +312,21 @@ public class MenuController implements MouseListener{
             case "pnlMenuAdmin":
                 standarMainMenuHover(menuPanel);
                 break;
+                case "pnlSubMenuAdmin_UserData":
+                    standarMainMenuHover(menuPanel);
+                    break;
+                case "pnlAdminSistem_Kembali":
+                    standarButtonHover(menuPanel);
+                    break;
+                case "pnlAdminSistem_AddUser":
+                    standarButtonHover(menuPanel);
+                    break;
+                case "pnlAdminSistem_EditUser":
+                    standarButtonHover(menuPanel);
+                    break;
+                case "pnlAdminSistem_DeleteUser":
+                    standarButtonHover(menuPanel);
+                    break;
             case "pnlMenuKeluar":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -394,9 +423,26 @@ public class MenuController implements MouseListener{
             case "pnlMenuPBH":
                 standarMainMenuDisplayed(menuPanel);
                 break;
+            /* ADMIN MENU */    
             case "pnlMenuAdmin":
                 standarMainMenuDisplayed(menuPanel);
                 break;
+                case "pnlSubMenuAdmin_UserData":
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
+                case "pnlAdminSistem_Kembali":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlAdminSistem_AddUser":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlAdminSistem_EditUser":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlAdminSistem_DeleteUser":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+            /*************/
             case "pnlMenuKeluar":
                 standarMainMenuDisplayed(menuPanel);
                 break;

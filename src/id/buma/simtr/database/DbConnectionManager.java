@@ -41,6 +41,15 @@ public class DbConnectionManager {
         return conn;
     }
     
+    public static Connection getConnection_mysql(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return conn;
+    }
+    
     public static boolean isConnect(){
         try {
             if (getConnection() == null){

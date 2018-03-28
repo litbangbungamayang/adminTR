@@ -64,6 +64,10 @@ public class VersionController {
         /*
         + Perubahan format BA SKK
         */
+        version = "0.9.10";
+        /*
+        + Penambahan modul admin pengguna
+        */
         
         return version;
     }

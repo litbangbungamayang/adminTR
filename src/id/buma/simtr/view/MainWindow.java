@@ -127,6 +127,11 @@ public class MainWindow extends javax.swing.JFrame {
         pnlFrmPupuk_Permintaan_Clear.addMouseListener(mc);
         pnlFrmPupuk_Permintaan_TambahPupuk.addMouseListener(mc);
         pnlFrmPupuk_Permintaan_SimpanData.addMouseListener(mc);
+        pnlAdminSistem_Kembali.addMouseListener(mc);
+        pnlSubMenuAdmin_UserData.addMouseListener(mc);
+        pnlAdminSistem_AddUser.addMouseListener(mc);
+        pnlAdminSistem_DeleteUser.addMouseListener(mc);
+        pnlAdminSistem_EditUser.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -229,6 +234,12 @@ public class MainWindow extends javax.swing.JFrame {
         pnlWsSeparator3 = new javax.swing.JPanel();
         pnlWsLKP2 = new javax.swing.JPanel();
         lblWsLKP2 = new javax.swing.JLabel();
+        pnlSubMenuAdmin = new javax.swing.JPanel();
+        pnlSubMenuAdmin_UserData = new javax.swing.JPanel();
+        lblWsRDKK3 = new javax.swing.JLabel();
+        pnlWsSeparator4 = new javax.swing.JPanel();
+        pnlWsLKP3 = new javax.swing.JPanel();
+        lblWsLKP3 = new javax.swing.JLabel();
         pnlFrmRDKK = new javax.swing.JPanel();
         pnlFrmRDKKMenuHolder = new javax.swing.JPanel();
         pnlFrmRDKKBack = new javax.swing.JPanel();
@@ -379,6 +390,33 @@ public class MainWindow extends javax.swing.JFrame {
         dtpTglTransaksiPupuk = new org.jdesktop.swingx.JXDatePicker();
         pnlFrmPupuk_Permintaan_SimpanData = new javax.swing.JPanel();
         lblFrmInputRDKK_Back9 = new javax.swing.JLabel();
+        pnlAdminSistem_UserData = new javax.swing.JPanel();
+        pnlFrmInputRDKK_MenuHolder4 = new javax.swing.JPanel();
+        pnlAdminSistem_Kembali = new javax.swing.JPanel();
+        lblFrmAdminSistem_Kembali = new javax.swing.JLabel();
+        pnlFrmRDKK_Title3 = new javax.swing.JPanel();
+        lblFrmRDKK_Title3 = new javax.swing.JLabel();
+        pnlAdminSistem_Content = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tblValidasiRDKK_Petani1 = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        pnlAdminSistem_DeleteUser = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back10 = new javax.swing.JLabel();
+        pnlAdminSistem_AddUser = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back11 = new javax.swing.JLabel();
+        pnlAdminSistem_EditUser = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back12 = new javax.swing.JLabel();
+        pnlFrmUserData = new javax.swing.JPanel();
+        lblInputNamaKelTani13 = new javax.swing.JLabel();
+        jtfInputRDKKNamaKoord1 = new javax.swing.JTextField();
+        pnlUnderUserData1 = new javax.swing.JPanel();
+        lblInputNamaKelTani14 = new javax.swing.JLabel();
+        jtfInputRDKKNamaKoord2 = new javax.swing.JTextField();
+        pnlUnderUserData2 = new javax.swing.JPanel();
+        lblInputNamaKelTani15 = new javax.swing.JLabel();
+        jtfInputRDKKNamaKoord3 = new javax.swing.JTextField();
+        pnlUnderUserData3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -953,6 +991,72 @@ public class MainWindow extends javax.swing.JFrame {
         pnlSubMenuPupuk.add(pnlWsLKP2, new java.awt.GridBagConstraints());
 
         pnlSubMenuHolder.add(pnlSubMenuPupuk, "crdSubMenuPupuk");
+
+        pnlSubMenuAdmin.setBackground(new Color(255,255,255,150));
+        pnlSubMenuAdmin.setName("pnlSubMenuAdmin"); // NOI18N
+        pnlSubMenuAdmin.setLayout(new java.awt.GridBagLayout());
+
+        pnlSubMenuAdmin_UserData.setBackground(new Color(34,59,14,50));
+        pnlSubMenuAdmin_UserData.setName("pnlSubMenuAdmin_UserData"); // NOI18N
+        pnlSubMenuAdmin_UserData.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        lblWsRDKK3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblWsRDKK3.setForeground(new java.awt.Color(255, 255, 255));
+        lblWsRDKK3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWsRDKK3.setText("Manajemen Pengguna");
+
+        javax.swing.GroupLayout pnlSubMenuAdmin_UserDataLayout = new javax.swing.GroupLayout(pnlSubMenuAdmin_UserData);
+        pnlSubMenuAdmin_UserData.setLayout(pnlSubMenuAdmin_UserDataLayout);
+        pnlSubMenuAdmin_UserDataLayout.setHorizontalGroup(
+            pnlSubMenuAdmin_UserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsRDKK3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        );
+        pnlSubMenuAdmin_UserDataLayout.setVerticalGroup(
+            pnlSubMenuAdmin_UserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsRDKK3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        pnlSubMenuAdmin.add(pnlSubMenuAdmin_UserData, new java.awt.GridBagConstraints());
+
+        pnlWsSeparator4.setBackground(new Color(255,255,255,0));
+        pnlWsSeparator4.setPreferredSize(new java.awt.Dimension(10, 50));
+
+        javax.swing.GroupLayout pnlWsSeparator4Layout = new javax.swing.GroupLayout(pnlWsSeparator4);
+        pnlWsSeparator4.setLayout(pnlWsSeparator4Layout);
+        pnlWsSeparator4Layout.setHorizontalGroup(
+            pnlWsSeparator4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        pnlWsSeparator4Layout.setVerticalGroup(
+            pnlWsSeparator4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        pnlSubMenuAdmin.add(pnlWsSeparator4, new java.awt.GridBagConstraints());
+
+        pnlWsLKP3.setBackground(new Color(34,59,14,50));
+        pnlWsLKP3.setName("pnlWsLKP"); // NOI18N
+        pnlWsLKP3.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        lblWsLKP3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblWsLKP3.setForeground(new java.awt.Color(255, 255, 255));
+        lblWsLKP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWsLKP3.setText("LKP per Periode");
+
+        javax.swing.GroupLayout pnlWsLKP3Layout = new javax.swing.GroupLayout(pnlWsLKP3);
+        pnlWsLKP3.setLayout(pnlWsLKP3Layout);
+        pnlWsLKP3Layout.setHorizontalGroup(
+            pnlWsLKP3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsLKP3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        );
+        pnlWsLKP3Layout.setVerticalGroup(
+            pnlWsLKP3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsLKP3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        pnlSubMenuAdmin.add(pnlWsLKP3, new java.awt.GridBagConstraints());
+
+        pnlSubMenuHolder.add(pnlSubMenuAdmin, "crdSubMenuAdmin");
 
         lypMenuUtama.setLayer(pnlBackground, javax.swing.JLayeredPane.DEFAULT_LAYER);
         lypMenuUtama.setLayer(pnlMenuHolder, javax.swing.JLayeredPane.PALETTE_LAYER);
@@ -2236,7 +2340,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlFrmInputRDKK_MenuHolder3.add(pnlFrmRDKK_Title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1190, -1));
 
-        pnlFrmPupuk_Permintaan.add(pnlFrmInputRDKK_MenuHolder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1399, -1));
+        pnlFrmPupuk_Permintaan.add(pnlFrmInputRDKK_MenuHolder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, -1));
 
         jScrollPane5.setBackground(new java.awt.Color(170, 193, 193));
         jScrollPane5.setBorder(null);
@@ -2553,6 +2657,296 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlContent.add(pnlFrmPupuk_Permintaan, "crdFrmPupuk_Permintaan");
 
+        pnlAdminSistem_UserData.setBackground(new java.awt.Color(0, 23, 23));
+        pnlAdminSistem_UserData.setName("pnlAdminSistem_UserData"); // NOI18N
+        pnlAdminSistem_UserData.setOpaque(false);
+        pnlAdminSistem_UserData.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmInputRDKK_MenuHolder4.setBackground(new java.awt.Color(0, 70, 70));
+        pnlFrmInputRDKK_MenuHolder4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlAdminSistem_Kembali.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_Kembali.setName("pnlAdminSistem_Kembali"); // NOI18N
+        pnlAdminSistem_Kembali.setPreferredSize(new java.awt.Dimension(140, 40));
+        pnlAdminSistem_Kembali.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmAdminSistem_Kembali.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmAdminSistem_Kembali.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmAdminSistem_Kembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Back_To_26px.png"))); // NOI18N
+        lblFrmAdminSistem_Kembali.setText("Kembali");
+        lblFrmAdminSistem_Kembali.setIconTextGap(10);
+        lblFrmAdminSistem_Kembali.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_Kembali.add(lblFrmAdminSistem_Kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 40));
+
+        pnlFrmInputRDKK_MenuHolder4.add(pnlAdminSistem_Kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
+
+        pnlFrmRDKK_Title3.setBackground(new java.awt.Color(85, 131, 131));
+        pnlFrmRDKK_Title3.setName("pnlFrmRDKKBack"); // NOI18N
+        pnlFrmRDKK_Title3.setPreferredSize(new java.awt.Dimension(200, 40));
+        pnlFrmRDKK_Title3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 0));
+
+        lblFrmRDKK_Title3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmRDKK_Title3.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title3.setText("Manajemen Pengguna");
+        lblFrmRDKK_Title3.setPreferredSize(new java.awt.Dimension(400, 40));
+        pnlFrmRDKK_Title3.add(lblFrmRDKK_Title3);
+
+        pnlFrmInputRDKK_MenuHolder4.add(pnlFrmRDKK_Title3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1190, -1));
+
+        pnlAdminSistem_UserData.add(pnlFrmInputRDKK_MenuHolder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, -1));
+
+        pnlAdminSistem_Content.setBackground(new java.awt.Color(0, 23, 23));
+        pnlAdminSistem_Content.setName(""); // NOI18N
+
+        jScrollPane9.setBackground(new java.awt.Color(170, 193, 193));
+        jScrollPane9.setBorder(null);
+        jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane9.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        tblValidasiRDKK_Petani1.setBackground(new java.awt.Color(170, 193, 193));
+        tblValidasiRDKK_Petani1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblValidasiRDKK_Petani1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblValidasiRDKK_Petani1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblValidasiRDKK_Petani1.setAutoscrolls(false);
+        tblValidasiRDKK_Petani1.setFillsViewportHeight(true);
+        tblValidasiRDKK_Petani1.setGridColor(new java.awt.Color(255, 255, 255));
+        tblValidasiRDKK_Petani1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblValidasiRDKK_Petani1.setName("tblKelompokTani"); // NOI18N
+        tblValidasiRDKK_Petani1.setOpaque(false);
+        tblValidasiRDKK_Petani1.setRowHeight(24);
+        tblValidasiRDKK_Petani1.setShowHorizontalLines(false);
+        tblValidasiRDKK_Petani1.setShowVerticalLines(false);
+        tblValidasiRDKK_Petani1.getTableHeader().setResizingAllowed(false);
+        tblValidasiRDKK_Petani1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane9.setViewportView(tblValidasiRDKK_Petani1);
+
+        jPanel9.setBackground(new java.awt.Color(85, 131, 131));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel15.setText("Data Pengguna");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        pnlAdminSistem_DeleteUser.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_DeleteUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_DeleteUser.setName("pnlAdminSistem_DeleteUser"); // NOI18N
+        pnlAdminSistem_DeleteUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back10.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Denied_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back10.setIconTextGap(10);
+        lblFrmInputRDKK_Back10.setPreferredSize(new java.awt.Dimension(26, 26));
+        lblFrmInputRDKK_Back10.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_DeleteUser.add(lblFrmInputRDKK_Back10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlAdminSistem_AddUser.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_AddUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_AddUser.setName("pnlAdminSistem_AddUser"); // NOI18N
+        pnlAdminSistem_AddUser.setPreferredSize(new java.awt.Dimension(100, 30));
+        pnlAdminSistem_AddUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back11.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Add_User_Male_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back11.setIconTextGap(10);
+        lblFrmInputRDKK_Back11.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_AddUser.add(lblFrmInputRDKK_Back11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlAdminSistem_EditUser.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_EditUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_EditUser.setName("pnlAdminSistem_EditUser"); // NOI18N
+        pnlAdminSistem_EditUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back12.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Registration_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back12.setIconTextGap(10);
+        lblFrmInputRDKK_Back12.setPreferredSize(new java.awt.Dimension(26, 26));
+        lblFrmInputRDKK_Back12.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_EditUser.add(lblFrmInputRDKK_Back12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlFrmUserData.setOpaque(false);
+
+        lblInputNamaKelTani13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani13.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani13.setText("Nama Lengkap");
+
+        jtfInputRDKKNamaKoord1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jtfInputRDKKNamaKoord1.setForeground(new java.awt.Color(255, 255, 255));
+        jtfInputRDKKNamaKoord1.setBorder(null);
+        jtfInputRDKKNamaKoord1.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfInputRDKKNamaKoord1.setOpaque(false);
+
+        javax.swing.GroupLayout pnlUnderUserData1Layout = new javax.swing.GroupLayout(pnlUnderUserData1);
+        pnlUnderUserData1.setLayout(pnlUnderUserData1Layout);
+        pnlUnderUserData1Layout.setHorizontalGroup(
+            pnlUnderUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlUnderUserData1Layout.setVerticalGroup(
+            pnlUnderUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        lblInputNamaKelTani14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani14.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani14.setText("Username");
+
+        jtfInputRDKKNamaKoord2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jtfInputRDKKNamaKoord2.setForeground(new java.awt.Color(255, 255, 255));
+        jtfInputRDKKNamaKoord2.setBorder(null);
+        jtfInputRDKKNamaKoord2.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfInputRDKKNamaKoord2.setOpaque(false);
+
+        javax.swing.GroupLayout pnlUnderUserData2Layout = new javax.swing.GroupLayout(pnlUnderUserData2);
+        pnlUnderUserData2.setLayout(pnlUnderUserData2Layout);
+        pnlUnderUserData2Layout.setHorizontalGroup(
+            pnlUnderUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+        pnlUnderUserData2Layout.setVerticalGroup(
+            pnlUnderUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        lblInputNamaKelTani15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani15.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani15.setText("Password");
+
+        jtfInputRDKKNamaKoord3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jtfInputRDKKNamaKoord3.setForeground(new java.awt.Color(255, 255, 255));
+        jtfInputRDKKNamaKoord3.setBorder(null);
+        jtfInputRDKKNamaKoord3.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfInputRDKKNamaKoord3.setOpaque(false);
+
+        javax.swing.GroupLayout pnlUnderUserData3Layout = new javax.swing.GroupLayout(pnlUnderUserData3);
+        pnlUnderUserData3.setLayout(pnlUnderUserData3Layout);
+        pnlUnderUserData3Layout.setHorizontalGroup(
+            pnlUnderUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+        pnlUnderUserData3Layout.setVerticalGroup(
+            pnlUnderUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlFrmUserDataLayout = new javax.swing.GroupLayout(pnlFrmUserData);
+        pnlFrmUserData.setLayout(pnlFrmUserDataLayout);
+        pnlFrmUserDataLayout.setHorizontalGroup(
+            pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                        .addComponent(lblInputNamaKelTani13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pnlUnderUserData1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfInputRDKKNamaKoord1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserDataLayout.createSequentialGroup()
+                        .addComponent(lblInputNamaKelTani14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfInputRDKKNamaKoord2)
+                            .addComponent(pnlUnderUserData2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                        .addComponent(lblInputNamaKelTani15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfInputRDKKNamaKoord3)
+                            .addComponent(pnlUnderUserData3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        pnlFrmUserDataLayout.setVerticalGroup(
+            pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInputNamaKelTani13)
+                    .addComponent(jtfInputRDKKNamaKoord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(pnlUnderUserData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblInputNamaKelTani14)
+                        .addComponent(jtfInputRDKKNamaKoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(pnlUnderUserData2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblInputNamaKelTani15)
+                        .addComponent(jtfInputRDKKNamaKoord3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(pnlUnderUserData3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(239, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlAdminSistem_ContentLayout = new javax.swing.GroupLayout(pnlAdminSistem_Content);
+        pnlAdminSistem_Content.setLayout(pnlAdminSistem_ContentLayout);
+        pnlAdminSistem_ContentLayout.setHorizontalGroup(
+            pnlAdminSistem_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminSistem_ContentLayout.createSequentialGroup()
+                .addGroup(pnlAdminSistem_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlAdminSistem_ContentLayout.createSequentialGroup()
+                        .addComponent(pnlAdminSistem_AddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlAdminSistem_EditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlAdminSistem_DeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlFrmUserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 951, Short.MAX_VALUE))
+        );
+        pnlAdminSistem_ContentLayout.setVerticalGroup(
+            pnlAdminSistem_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminSistem_ContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAdminSistem_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlAdminSistem_DeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdminSistem_AddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdminSistem_EditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlFrmUserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlAdminSistem_UserData.add(pnlAdminSistem_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1366, 630));
+
+        pnlContent.add(pnlAdminSistem_UserData, "crdPnlAdminSistem_UserData");
+
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
         pnlTengahLayout.setHorizontalGroup(
@@ -2641,6 +3035,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2657,6 +3052,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2665,6 +3061,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JCheckBox jcbFrmPupuk_PilihSemuaPetani;
     private javax.swing.JCheckBox jcbFrmPupuk_PilihSemuaPupuk;
     private javax.swing.JFormattedTextField jftInputRDKKEasting;
@@ -2675,14 +3072,21 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jtfFrmValidasiRDKK_SearchKoord;
     private javax.swing.JTextField jtfInputNoKtpKoord;
     private javax.swing.JTextField jtfInputRDKKNamaKoord;
+    private javax.swing.JTextField jtfInputRDKKNamaKoord1;
+    private javax.swing.JTextField jtfInputRDKKNamaKoord2;
+    private javax.swing.JTextField jtfInputRDKKNamaKoord3;
     private javax.swing.JTextField jtfInputRDKKNamaPetani;
     private javax.swing.JTextField jtfLoginUsername;
     private javax.swing.JPasswordField jtpLoginPassword;
     private javax.swing.JLabel judulUtama;
     private javax.swing.JLabel lblBackground1;
     private javax.swing.JLabel lblDataKelTani;
+    private javax.swing.JLabel lblFrmAdminSistem_Kembali;
     private javax.swing.JLabel lblFrmInputRDKK_Back;
     private javax.swing.JLabel lblFrmInputRDKK_Back1;
+    private javax.swing.JLabel lblFrmInputRDKK_Back10;
+    private javax.swing.JLabel lblFrmInputRDKK_Back11;
+    private javax.swing.JLabel lblFrmInputRDKK_Back12;
     private javax.swing.JLabel lblFrmInputRDKK_Back2;
     private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
@@ -2699,11 +3103,15 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmRDKK_Title;
     private javax.swing.JLabel lblFrmRDKK_Title1;
     private javax.swing.JLabel lblFrmRDKK_Title2;
+    private javax.swing.JLabel lblFrmRDKK_Title3;
     private javax.swing.JLabel lblInputNamaKelTani;
     private javax.swing.JLabel lblInputNamaKelTani1;
     private javax.swing.JLabel lblInputNamaKelTani10;
     private javax.swing.JLabel lblInputNamaKelTani11;
     private javax.swing.JLabel lblInputNamaKelTani12;
+    private javax.swing.JLabel lblInputNamaKelTani13;
+    private javax.swing.JLabel lblInputNamaKelTani14;
+    private javax.swing.JLabel lblInputNamaKelTani15;
     private javax.swing.JLabel lblInputNamaKelTani2;
     private javax.swing.JLabel lblInputNamaKelTani3;
     private javax.swing.JLabel lblInputNamaKelTani4;
@@ -2731,11 +3139,19 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblVerifikasiRdkk;
     private javax.swing.JLabel lblWsLKP1;
     private javax.swing.JLabel lblWsLKP2;
+    private javax.swing.JLabel lblWsLKP3;
     private javax.swing.JLabel lblWsRDKK;
     private javax.swing.JLabel lblWsRDKK1;
     private javax.swing.JLabel lblWsRDKK2;
+    private javax.swing.JLabel lblWsRDKK3;
     private javax.swing.JLayeredPane lypMenuLogin;
     private javax.swing.JLayeredPane lypMenuUtama;
+    private javax.swing.JPanel pnlAdminSistem_AddUser;
+    private javax.swing.JPanel pnlAdminSistem_Content;
+    private javax.swing.JPanel pnlAdminSistem_DeleteUser;
+    private javax.swing.JPanel pnlAdminSistem_EditUser;
+    private javax.swing.JPanel pnlAdminSistem_Kembali;
+    private javax.swing.JPanel pnlAdminSistem_UserData;
     private javax.swing.JPanel pnlAtas;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlBackgroundLogin;
@@ -2757,6 +3173,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder1;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder2;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder3;
+    private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder4;
     private javax.swing.JPanel pnlFrmInputRDKK_SimpanData;
     private javax.swing.JPanel pnlFrmInputRDKK_TambahPetani;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan;
@@ -2775,6 +3192,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmRDKK_Title;
     private javax.swing.JPanel pnlFrmRDKK_Title1;
     private javax.swing.JPanel pnlFrmRDKK_Title2;
+    private javax.swing.JPanel pnlFrmRDKK_Title3;
+    private javax.swing.JPanel pnlFrmUserData;
     private javax.swing.JPanel pnlFrmValidasiRDKK;
     private javax.swing.JPanel pnlFrmValidasiRDKK_Back;
     private javax.swing.JPanel pnlFrmValidasiRDKK_CetakDraft;
@@ -2802,6 +3221,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSeparator4;
     private javax.swing.JPanel pnlSeparator6;
     private javax.swing.JPanel pnlSeparator7;
+    private javax.swing.JPanel pnlSubMenuAdmin;
+    private javax.swing.JPanel pnlSubMenuAdmin_UserData;
     private javax.swing.JPanel pnlSubMenuHolder;
     private javax.swing.JPanel pnlSubMenuPerawatan;
     private javax.swing.JPanel pnlSubMenuPupuk;
@@ -2809,6 +3230,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSubMenuRDKK;
     private javax.swing.JPanel pnlTblInputPetani;
     private javax.swing.JPanel pnlTengah;
+    private javax.swing.JPanel pnlUnderUserData1;
+    private javax.swing.JPanel pnlUnderUserData2;
+    private javax.swing.JPanel pnlUnderUserData3;
     private javax.swing.JPanel pnlUnderline1;
     private javax.swing.JPanel pnlUnderline2;
     private javax.swing.JPanel pnlUnderline3;
@@ -2819,11 +3243,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlVerifikasiRdkk;
     private javax.swing.JPanel pnlWsLKP1;
     private javax.swing.JPanel pnlWsLKP2;
+    private javax.swing.JPanel pnlWsLKP3;
     private javax.swing.JPanel pnlWsRDKK;
     private javax.swing.JPanel pnlWsRDKK1;
     private javax.swing.JPanel pnlWsSeparator1;
     private javax.swing.JPanel pnlWsSeparator2;
     private javax.swing.JPanel pnlWsSeparator3;
+    private javax.swing.JPanel pnlWsSeparator4;
     private javax.swing.JTable tblBuffer_Pupuk_Permintaan;
     private javax.swing.JTable tblInputPetani;
     private javax.swing.JTable tblJenisPupuk_Pupuk_Permintaan;
@@ -2832,6 +3258,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTable tblPetani_Pupuk_Permintaan;
     private javax.swing.JTable tblValidasiRDKK;
     private javax.swing.JTable tblValidasiRDKK_Petani;
+    private javax.swing.JTable tblValidasiRDKK_Petani1;
     // End of variables declaration//GEN-END:variables
     
     public JPanel getPnlMenuHolder(){
