@@ -5,10 +5,12 @@
  */
 package id.buma.simtr.dao;
 
-import id.buma.simtr.database.DbConnectionManager;
+import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.Kecamatan;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,14 +24,14 @@ import javax.swing.JOptionPane;
  */
 
 public class KecamatanDAOSQL implements KecamatanDAO{
-
+    
     @Override
     public List<Kecamatan> getKecamatanByIdKecamatan(int IdKecamatan) {
+        Connection conn = new DBConnection().getConn();
         List<Kecamatan> lstKec = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
-            try {
-                String callSQL  = "exec GET_KECAMATAN_BY_IDKECAMATAN ?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
+        try {
+            String callSQL = "CALL GET_KECAMATAN_BY_IDKECAMATAN(?)";
+            try (CallableStatement cst = conn.prepareCall(callSQL)) {
                 cst.setInt(1, IdKecamatan);
                 boolean result = cst.execute();
                 int rowsAffected = 0;
@@ -45,27 +47,29 @@ public class KecamatanDAOSQL implements KecamatanDAO{
                 }
                 while (rs.next()){
                     Kecamatan kec = new Kecamatan(
-                            rs.getString("ID_KECAMATAN"), 
+                            rs.getString("ID_KECAMATAN"),
                             rs.getString("NAMA_KECAMATAN")
                     );
                     lstKec.add(kec);
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error getKecamatanByIdKecamatan \nError code : " + 
-                        ex.toString(), "", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(KecamatanDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                conn.close();
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error getKecamatanByIdKecamatan \nError code : " + 
+                    ex.toString(), "", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(KecamatanDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lstKec;
     }
 
     @Override
     public List<Kecamatan> getAllKecamatan() {
+        Connection conn = new DBConnection().getConn();
         List<Kecamatan> lstKec = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
-            try {
-                String callSQL  = "exec GET_ALL_KECAMATAN";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
+        try {
+            String callSQL = "CALL GET_ALL_KECAMATAN";
+            try (CallableStatement cst = conn.prepareCall(callSQL)) {
                 boolean result = cst.execute();
                 int rowsAffected = 0;
                 ResultSet rs = null;
@@ -80,16 +84,18 @@ public class KecamatanDAOSQL implements KecamatanDAO{
                 }
                 while (rs.next()){
                     Kecamatan kec = new Kecamatan(
-                            rs.getString("ID_KECAMATAN"), 
+                            rs.getString("ID_KECAMATAN"),
                             rs.getString("NAMA_KECAMATAN")
                     );
                     lstKec.add(kec);
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error getKecamatanByIdKecamatan \nError code : " + 
-                        ex.toString(), "", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(KecamatanDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                conn.close();
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error getKecamatanByIdKecamatan \nError code : " + 
+                    ex.toString(), "", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(KecamatanDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lstKec;
     }

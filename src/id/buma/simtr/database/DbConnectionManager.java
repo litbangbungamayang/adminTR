@@ -19,9 +19,13 @@ import javax.swing.JOptionPane;
 
 public class DbConnectionManager {
     
-    private static Connection conn = null;
+    public static Connection conn = null;
     
-    public static Connection getConnection() throws Exception {
+    public DbConnectionManager(){
+        getConnection();
+    }
+    
+    public static Connection getConnection_mssql() throws Exception {
         if (conn == null){
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");//NOT NEEDED as in the JDBC API 4.0, the DriverManager.getConnection method is enhanced to load JDBC drivers automatically. (https://docs.microsoft.com/en-us/sql/connect/jdbc/using-the-jdbc-driver)
@@ -41,23 +45,29 @@ public class DbConnectionManager {
         return conn;
     }
     
-    public static Connection getConnection_mysql(){
+    public static Connection getConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
+            String sLokal = "jdbc:mysql://localhost:3306/sim_tr?user=root&password=";
+            conn = DriverManager.getConnection(sLokal);
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DbConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return conn;
     }
     
     public static boolean isConnect(){
-        try {
-            if (getConnection() == null){
-                return false;
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(DbConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+        if (getConnection() == null){
+            return false;
         }
         return true;
+    }
+    
+    public static void closeConnection(){
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

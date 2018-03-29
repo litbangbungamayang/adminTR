@@ -5,9 +5,11 @@
  */
 package id.buma.simtr.dao;
 
+import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.database.DbConnectionManager;
 import id.buma.simtr.model.PetaniTebu;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,15 +28,20 @@ public class PetaniDAOSQL implements PetaniDAO{
 
     @Override
     public List<PetaniTebu> getAllPetaniTebuByIdKelompok(String idKelompok) {
+        Connection conn = new DBConnection().getConn();
         List <PetaniTebu> lpt = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
+        try {
+            String callSQL = "CALL GET_KELOMPOKTANID_BY_IDKELOMPOK(?)";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cst.setString(1, idKelompok);
+            lpt = commonGetDataPetaniTebu(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                String callSQL = "exec GET_KELOMPOKTANID_BY_IDKELOMPOK ?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                cst.setString(1, idKelompok);
-                lpt = commonGetDataPetaniTebu(cst);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -45,13 +52,18 @@ public class PetaniDAOSQL implements PetaniDAO{
     @Override
     public List<PetaniTebu> getAllPetaniTebu() {
         List <PetaniTebu> lpt = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
+        Connection conn = new DBConnection().getConn();
+        try {
+            String callSQL = "CALL GET_ALL_KELOMPOKTANID";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            lpt = commonGetDataPetaniTebu(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                String callSQL = "exec GET_ALL_KELOMPOKTANID";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                lpt = commonGetDataPetaniTebu(cst);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -60,15 +72,20 @@ public class PetaniDAOSQL implements PetaniDAO{
 
     @Override
     public List<PetaniTebu> getAllPetaniTebuByTahun(int tahun) {
+        Connection conn = new DBConnection().getConn();
         List <PetaniTebu> lpt = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
+        try {
+            String callSQL = "CALL GET_KELOMPOKTANID_BY_TAHUN(?)";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cst.setInt(1, tahun);
+            lpt = commonGetDataPetaniTebu(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                String callSQL = "exec GET_KELOMPOKTANID_BY_TAHUN ?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                cst.setInt(1, tahun);
-                lpt = commonGetDataPetaniTebu(cst);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -100,10 +117,6 @@ public class PetaniDAOSQL implements PetaniDAO{
                 );
                 lpt.add(pt);
             }
-            if (lpt.isEmpty()){
-                PetaniTebu pt = new PetaniTebu("", 0, "", "DATA TIDAK TERSEDIA", "", 0.0f, "");
-                lpt.add(pt);
-            }
         } catch (SQLException ex) {
             Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,11 +125,11 @@ public class PetaniDAOSQL implements PetaniDAO{
 
     @Override
     public boolean insertPetaniTebu(PetaniTebu pt) {
-        if (DbConnectionManager.isConnect() == true){
-            try {
-                String callSQL = "exec INSERT_KELOMPOKTANID ?,?,?,?,?,?,?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        Connection conn = new DBConnection().getConn();
+        try {
+            String callSQL = "CALL INSERT_KELOMPOKTANID(?,?,?,?,?,?,?)";
+            try (CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
                 cst.setString(1, pt.getIdPetani());
                 cst.setInt(2, pt.getTahun());
                 cst.setString(3, pt.getIdKelompok());
@@ -128,11 +141,13 @@ public class PetaniDAOSQL implements PetaniDAO{
                 if (cst.getUpdateCount() == 1){
                     return true;
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Error insertPetaniTebu! \nError code : " + 
-                        ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                conn.close();
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(PetaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error insertPetaniTebu! \nError code : " + 
+                    ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }

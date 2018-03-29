@@ -79,6 +79,7 @@ public class PupukController implements ActionListener{
                 for (int i = 0; i < selectedListPetani.size(); i++){
                     float[] kuantaArray = new float[listSemuaPupuk.size()];
                     for (int j = 0; j < selectedListPupuk.size(); j++){
+                        
                         /* VALIDASI BUFFER UTK DISIMPAN KE DATABASE */
                         java.sql.Timestamp postingTimestamp = new java.sql.Timestamp(new java.util.Date().getTime());
                         java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());

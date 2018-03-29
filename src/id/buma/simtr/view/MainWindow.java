@@ -13,6 +13,7 @@ import id.buma.simtr.controller.NumberOnlyTextFilter;
 import id.buma.simtr.controller.PupukController;
 import id.buma.simtr.controller.RDKKController;
 import id.buma.simtr.controller.UppercaseTextField;
+import id.buma.simtr.database.DbConnectionManager;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -47,7 +48,6 @@ public class MainWindow extends javax.swing.JFrame {
     private final ComboBoxListener cbl = new ComboBoxListener(this);
     
     private final PupukController pc = new PupukController(this);
-        
     
     /**
      * Creates new form MainWindow

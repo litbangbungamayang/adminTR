@@ -5,7 +5,7 @@
  */
 package id.buma.simtr.dao;
 
-import id.buma.simtr.database.DbConnectionManager;
+import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.KelompokTani;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
-
 /**
  *
  * @author Bayu Anandavi Muhardika
@@ -32,22 +32,22 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
 
     @Override
     public boolean insertKelompokTani(KelompokTani kt) {
-        if (DbConnectionManager.isConnect() == true){
-            try {
-                /******
-                    1 = iD Kelompok
-                    2 = Nama Kelompok
-                    3 = No Kontrak
-                    4 = Kategori
-                    5 = ID Afd
-                    6 = Tahun
-                    7 = ID Desa
-                    8 = No KTP
-                    9 = No RDKK
-                    10 = Tanggal RDKK
-                ******/
-                String callSQL = "exec INSERT_KELOMPOKTANIH ?,?,?,?,?,?,?,?,?,?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
+        Connection conn = new DBConnection().getConn();
+        try {
+            /******
+                1 = iD Kelompok
+                2 = Nama Kelompok
+                3 = No Kontrak
+                4 = Kategori
+                5 = ID Afd
+                6 = Tahun
+                7 = ID Desa
+                8 = No KTP
+                9 = No RDKK
+                10 = Tanggal RDKK
+            ******/
+            String callSQL = "CALL INSERT_KELOMPOK_TANIH(?,?,?,?,?,?,?,?,?,?)";
+            try (CallableStatement cst = conn.prepareCall(callSQL)) {
                 cst.setString(1, kt.getIdKelompok());
                 cst.setString(2, kt.getNamaKelompok());
                 cst.setString(3, kt.getNoKontrak());
@@ -62,25 +62,32 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                 if (cst.getUpdateCount() == 1){
                     return true;
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-            }      
+            } finally {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     @Override
     public List<KelompokTani> getAllKelompokTaniByTahun(int tahun, String idAfd) {
+        Connection conn = new DBConnection().getConn();
         List<KelompokTani> lkt = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
+        try {
+            String callSQL = "CALL GET_KELOMPOKTANIH_BY_TAHUN(?,?)";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cst.setInt(1, tahun);
+            cst.setString(2, idAfd);
+            lkt = commonGetDataKelompokTani(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                String callSQL = "exec GET_KELOMPOKTANIH_BY_TAHUN ?,?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                cst.setInt(1, tahun);
-                cst.setString(2, idAfd);
-                lkt = commonGetDataKelompokTani(cst);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -89,25 +96,29 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     
     @Override
     public List<KelompokTani> getAllKelompokTaniByMultipleField(String keyword, int tahun, String idAfd) {
+        Connection conn = new DBConnection().getConn();
         List<KelompokTani> lkt = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
+        try {
+            String callSQL = "CALL GET_KELOMPOKTANIH_BY_MULTIFIELD_1(?,?,?)";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cst.setString(1, keyword);
+            cst.setInt(2, tahun);
+            cst.setString(3, idAfd);
+            lkt = commonGetDataKelompokTani(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                String callSQL = "exec GET_KELOMPOKTANIH_BY_MULTIFIELD_1 ?,?,?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                cst.setString(1, keyword);
-                cst.setInt(2, tahun);
-                cst.setString(3, idAfd);
-                lkt = commonGetDataKelompokTani(cst);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return lkt;
     }
     
-    public List<KelompokTani> commonGetDataKelompokTani(CallableStatement callSQL){
-        CallableStatement cst = callSQL;
+    public List<KelompokTani> commonGetDataKelompokTani(CallableStatement cst) throws SQLException{
         List<KelompokTani> lkt = new ArrayList<>();
         try {
             boolean result = cst.execute();
@@ -135,11 +146,6 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                 );
                 lkt.add(kt);
             }
-            if (lkt.isEmpty()){
-                KelompokTani ktKsg = new KelompokTani("", 0, "Data tidak tersedia",
-                        "", "", "", 0, "", "","",null);
-                lkt.add(ktKsg);
-            }
         } catch (SQLException ex) {
             Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -148,32 +154,40 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
 
     @Override
     public void cetakRdkk(String idKelompok) {
-        if (DbConnectionManager.isConnect()){
+        Connection conn = new DBConnection().getConn();
             try {
-                Connection con = DbConnectionManager.getConnection();
                 String fileName = "./reports/draft_rdkk.jasper";
                 Map map = new HashMap();
                 map.put("IDKELOMPOK", idKelompok);
-                JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
+                JasperPrint jp = JasperFillManager.fillReport(fileName, map, conn);
                 JasperViewer.viewReport(jp,false);
-            } catch (Exception ex) {
+            } catch (JRException ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+            }
     }
 
     @Override
     public JRViewer cetakSKK(String idKelompok) {
         JRViewer jrv = null;
-        if (DbConnectionManager.isConnect()){
+        Connection con = new DBConnection().getConn();
+        try {
+            String fileName = "./reports/BA_SKK.jasper";
+            Map map = new HashMap();
+            map.put("IDKELOMPOK", idKelompok);
+            JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
+            jrv = new JRViewer(jp);
+        } catch (JRException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                Connection con = DbConnectionManager.getConnection();
-                String fileName = "./reports/BA_SKK.jasper";
-                Map map = new HashMap();
-                map.put("IDKELOMPOK", idKelompok);
-                JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
-                jrv = new JRViewer(jp);
-            } catch (Exception ex) {
+                con.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -183,24 +197,28 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     @Override
     public JRViewer cetakKontrak(String idKelompok) {
         JRViewer jrv = null;
-        if (DbConnectionManager.isConnect()){
+        Connection conn = new DBConnection().getConn();
+        try {
+            String fileName = "./reports/KontrakTR.jasper";
+            Map map = new HashMap();
+            map.put("IDKELOMPOK", idKelompok);
+            JasperPrint jp = JasperFillManager.fillReport(fileName, map, conn);
+            jrv = new JRViewer(jp);
+            /*
+            JRPrintServiceExporter jex = new JRPrintServiceExporter();
+            jex.setExporterInput(new SimpleExporterInput(jp));
+            SimplePrintServiceExporterConfiguration config = new SimplePrintServiceExporterConfiguration();
+            config.setDisplayPrintDialog(true);
+            config.setDisplayPageDialog(true);
+            jex.setConfiguration(config);
+            jex.exportReport();
+            */
+        } catch (JRException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                Connection con = DbConnectionManager.getConnection();
-                String fileName = "./reports/KontrakTR.jasper";
-                Map map = new HashMap();
-                map.put("IDKELOMPOK", idKelompok);
-                JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
-                jrv = new JRViewer(jp);
-                /*
-                JRPrintServiceExporter jex = new JRPrintServiceExporter();
-                jex.setExporterInput(new SimpleExporterInput(jp));
-                SimplePrintServiceExporterConfiguration config = new SimplePrintServiceExporterConfiguration();
-                config.setDisplayPrintDialog(true);
-                config.setDisplayPageDialog(true);
-                jex.setConfiguration(config);
-                jex.exportReport();
-                */
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -210,15 +228,19 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     @Override
     public JRViewer testCetakSKK(String idKelompok) {
         JRViewer jrv = null;
-        if (DbConnectionManager.isConnect()){
+        Connection conn = new DBConnection().getConn();
+        try {
+            String fileName = "./reports/BA_SKK.jasper";
+            Map map = new HashMap();
+            map.put("IDKELOMPOK", idKelompok);
+            JasperPrint jp = JasperFillManager.fillReport(fileName, map, conn);
+            jrv = new JRViewer(jp);
+        } catch (JRException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
-                Connection con = DbConnectionManager.getConnection();
-                String fileName = "./reports/BA_SKK.jasper";
-                Map map = new HashMap();
-                map.put("IDKELOMPOK", idKelompok);
-                JasperPrint jp = JasperFillManager.fillReport(fileName, map, con);
-                jrv = new JRViewer(jp);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -228,50 +250,44 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     @Override
     public JasperPrint testCetakLagi(String idKelompok) {
         JasperPrint jp = null;
-        if (DbConnectionManager.isConnect()){
-            try {
-                Connection con = DbConnectionManager.getConnection();
-                String fileName = "./reports/BA_SKK.jasper";
-                Map map = new HashMap();
-                map.put("IDKELOMPOK", idKelompok);
-                jp = JasperFillManager.fillReport(fileName, map, con);
-            } catch (Exception ex) {
-                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        Connection conn = new DBConnection().getConn();
+        try {
+            String fileName = "./reports/BA_SKK.jasper";
+            Map map = new HashMap();
+            map.put("IDKELOMPOK", idKelompok);
+            jp = JasperFillManager.fillReport(fileName, map, conn);
+        } catch (JRException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return jp;
     }
 
     @Override
     public JasperPrint cetakSKK_JP(String idKelompok) {
+        Connection conn = new DBConnection().getConn();
         JasperPrint jp = null;
-        if (DbConnectionManager.isConnect()){
-            try {
-                Connection con = DbConnectionManager.getConnection();
-                String fileName = "./reports/BA_SKK.jasper";
-                Map map = new HashMap();
-                map.put("IDKELOMPOK", idKelompok);
-                jp = JasperFillManager.fillReport(fileName, map, con);
-            } catch (Exception ex) {
-                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            String fileName = "./reports/BA_SKK.jasper";
+            Map map = new HashMap();
+            map.put("IDKELOMPOK", idKelompok);
+            jp = JasperFillManager.fillReport(fileName, map, conn);
+        } catch (JRException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return jp;
     }
 
     @Override
     public JasperPrint cetakKontrak_JP(String idKelompok) {
+        Connection conn = new DBConnection().getConn();
         JasperPrint jp = null;
-        if (DbConnectionManager.isConnect()){
-            try {
-                Connection con = DbConnectionManager.getConnection();
-                String fileName = "./reports/KontrakTR.jasper";
-                Map map = new HashMap();
-                map.put("IDKELOMPOK", idKelompok);
-                jp = JasperFillManager.fillReport(fileName, map, con);
-            } catch (Exception ex) {
-                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            String fileName = "./reports/KontrakTR.jasper";
+            Map map = new HashMap();
+            map.put("IDKELOMPOK", idKelompok);
+            jp = JasperFillManager.fillReport(fileName, map, conn);
+        } catch (JRException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return jp;
     }

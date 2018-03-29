@@ -5,9 +5,11 @@
  */
 package id.buma.simtr.dao;
 
+import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.database.DbConnectionManager;
 import id.buma.simtr.model.VarietasTebu;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,17 +28,22 @@ public class VarietasTebuDAOSQL implements VarietasTebuDAO{
 
     @Override
     public List<VarietasTebu> getAllVarietasTebu() {
+        Connection conn = new DBConnection().getConn();
         List<VarietasTebu> lstVar = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
+        try {
+            String callSQL = "CALL GET_ALL_VARIETAS";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            lstVar = commonGetDataVarietas(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(VarietasTebuDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error getAllVarietas! \nError code : " + 
+                    ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
             try {
-                String callSQL = "exec GET_ALL_VARIETAS";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                lstVar = commonGetDataVarietas(cst);
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(VarietasTebuDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Error getAllVarietas! \nError code : " + 
-                        ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         return lstVar;
@@ -44,26 +51,31 @@ public class VarietasTebuDAOSQL implements VarietasTebuDAO{
 
     @Override
     public VarietasTebu getVarietasById(String idVarietas) {
+        Connection conn = new DBConnection().getConn();
         List<VarietasTebu> lstVar = new ArrayList<>();
         VarietasTebu vt = null;
         int idVarStr = 0;
-        if (DbConnectionManager.isConnect() == true){
+        try {
+            String callSQL = "CALL GET_VARIETAS_BY_IDVARIETAS(?)";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            if (idVarietas.isEmpty() == false){
+                idVarStr = Integer.parseInt(idVarietas);
+            }
+            cst.setInt(1, idVarStr);
+            lstVar = commonGetDataVarietas(cst);
+            if (lstVar.size() == 1){
+                vt = lstVar.get(0);
+            }
+        } catch (NumberFormatException | SQLException ex) {
+            Logger.getLogger(VarietasTebuDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error getVarietasByID! \nError code : " + 
+                    ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
             try {
-                String callSQL = "exec GET_VARIETAS_BY_IDVARIETAS ?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL,
-                        ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                if (idVarietas.isEmpty() == false){
-                    idVarStr = Integer.parseInt(idVarietas);
-                }
-                cst.setInt(1, idVarStr);
-                lstVar = commonGetDataVarietas(cst);
-                if (lstVar.size() == 1){
-                    vt = lstVar.get(0);
-                }
-            } catch (Exception ex) {
+                conn.close();
+            } catch (SQLException ex) {
                 Logger.getLogger(VarietasTebuDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Error getVarietasByID! \nError code : " + 
-                        ex.toString(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         return vt;

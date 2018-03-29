@@ -68,6 +68,11 @@ public class VersionController {
         /*
         + Penambahan modul admin pengguna
         */
+        version = "0.9.11";
+        /*
+        + Migrasi database dari MS SQL ke MySQl
+        + Penyesuaian di kelas koneksi database untuk menghindari resources leak
+        */
         
         return version;
     }

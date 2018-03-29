@@ -5,10 +5,12 @@
  */
 package id.buma.simtr.dao;
 
-import id.buma.simtr.database.DbConnectionManager;
+import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.Afdeling;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,10 +27,10 @@ public class AfdelingDAOSQL implements AfdelingDAO{
 
     @Override
     public boolean insertAfdeling(Afdeling afd) {
-        if (DbConnectionManager.isConnect() == true){
-            try {
-                String callSQL = "exec GET_AFDELING_BY_IDAFD ?,?,?,?,?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
+        Connection conn = new DBConnection().getConn();
+        try {
+            String callSQL = "CALL GET_AFDELING_BY_IDAFD(?,?,?,?,?)";
+            try (CallableStatement cst = conn.prepareCall(callSQL)) {
                 cst.setString(1, afd.getIdAfd());
                 cst.setString(2, afd.getIdRayon());
                 cst.setString(3, afd.getAfdeling());
@@ -38,12 +40,13 @@ public class AfdelingDAOSQL implements AfdelingDAO{
                 if (cst.getUpdateCount() == 1){
                     return true;
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error on insertAfdeling! \nError code : " + 
-                        ex.toString(), "", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(AfdelingDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                conn.close();
             }
-            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error on insertAfdeling! \nError code : " + 
+                    ex.toString(), "", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(AfdelingDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -51,10 +54,10 @@ public class AfdelingDAOSQL implements AfdelingDAO{
     @Override
     public List<Afdeling> getAfdelingByIdAfd(String idAfd) {
         List<Afdeling> listAfd = new ArrayList<>();
-        if (DbConnectionManager.isConnect() == true){
-            try {
-                String callSQL = "exec GET_AFDELING_BY_IDAFD ?";
-                CallableStatement cst = DbConnectionManager.getConnection().prepareCall(callSQL);
+        Connection conn = new DBConnection().getConn();
+        try {
+            String callSQL = "CALL GET_AFDELING_BY_IDAFD(?)";
+            try (CallableStatement cst = conn.prepareCall(callSQL)) {
                 cst.setString(1, idAfd);
                 boolean result = cst.execute();
                 int rowsAffected = 0;
@@ -78,15 +81,14 @@ public class AfdelingDAOSQL implements AfdelingDAO{
                     );
                     listAfd.add(afd);
                 }
-                if (listAfd.isEmpty()){
-                    Afdeling afdKsg = new Afdeling("", "", 0, "", "");
-                    listAfd.add(afdKsg);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error getAfdByIdAfd! \nError code : " + 
-                        ex.toString(), "", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(AfdelingDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+                cst.close();
+            } finally {
+                conn.close();
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error getAfdByIdAfd! \nError code : " + 
+                    ex.toString(), "", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(AfdelingDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listAfd;
     }
