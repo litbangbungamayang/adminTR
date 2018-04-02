@@ -20,4 +20,6 @@ public interface AfdelingDAO {
     
     public List<Afdeling> getAfdelingByIdAfd(String idAfd);
     
+    public List<Afdeling> getAllAfdeling();
+    
 }

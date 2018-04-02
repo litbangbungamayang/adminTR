@@ -6,8 +6,10 @@
 package id.buma.simtr.controller;
 
 import id.buma.simtr.model.KelompokTani;
+import id.buma.simtr.model.User;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
+import id.buma.simtr.view.UserDataTableModel;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -37,6 +39,8 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
     
     @Override
     public void valueChanged(ListSelectionEvent e) {
+        UserController uc = new UserController(mw);
+        CommonController cc = new CommonController(mw);
         if (!e.getValueIsAdjusting()){
             switch (seleksiMode){
                 case "KelompokTani-Petani":
@@ -58,7 +62,15 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         mw.getTblPupukPetani().setRowSelectionAllowed(true);
                         if (mw.getJcbFrmPupuk_PilihSemuaPetani().isSelected()) 
                             pc.selectAllRows(mw.getTblPupukPetani());
-                        //if (mw.getTblPupukPetani().getRowCount() > 0) pc.clearTable();
+                    }
+                    break;
+                case "UserData-FormUserData":
+                    if (tbl.getSelectedRow() > -1){
+                        UserDataTableModel udtm = (UserDataTableModel) tbl.getModel();
+                        List<User> lstUser = udtm.getContentList();
+                        uc.getUserDetail(lstUser.get(tbl.getSelectedRow()));
+                        String afdeling = lstUser.get(tbl.getSelectedRow()).getIdAfd();
+                        mw.getCbxFrmUserData_Afdeling().setSelectedItem(afdeling);
                     }
                     break;
             }

@@ -92,5 +92,46 @@ public class AfdelingDAOSQL implements AfdelingDAO{
         }
         return listAfd;
     }
+
+    @Override
+    public List<Afdeling> getAllAfdeling() {
+        List<Afdeling> listAfd = new ArrayList<>();
+        Connection conn = new DBConnection().getConn();
+        try {
+            String callSQL = "CALL GET_ALL_AFDELING";
+            try (CallableStatement cst = conn.prepareCall(callSQL)) {
+                boolean result = cst.execute();
+                int rowsAffected = 0;
+                ResultSet rs = null;
+                while (result || rowsAffected != -1){
+                    if (result){
+                        rs = cst.getResultSet();
+                        break;
+                    } else {
+                        rowsAffected = cst.getUpdateCount();
+                    }
+                    result = cst.getMoreResults();
+                }
+                while (rs.next()){
+                    Afdeling afd = new Afdeling(
+                            rs.getString("IDAFD"),
+                            rs.getString("AFDELING"),
+                            rs.getInt("BATASRIT"),
+                            rs.getString("NAMAASISTEN"),
+                            rs.getString("IDRAYON")
+                    );
+                    listAfd.add(afd);
+                }
+                cst.close();
+            } finally {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error getAfdByIdAfd! \nError code : " + 
+                    ex.toString(), "", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(AfdelingDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listAfd;
+    }
     
 }

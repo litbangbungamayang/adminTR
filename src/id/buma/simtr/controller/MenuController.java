@@ -42,6 +42,7 @@ public class MenuController implements MouseListener{
         CommonController cc = new CommonController(mw);
         RDKKController rc = new RDKKController(mw);
         PupukController pc = new PupukController(mw);
+        UserController uc = new UserController(mw);
         mw.repaint();
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
@@ -172,9 +173,31 @@ public class MenuController implements MouseListener{
                 case "pnlSubMenuAdmin_UserData":
                     pageSwitcher(mw.getPnlContent(), "crdPnlAdminSistem_UserData");
                     mw.getPnlSubMenuHolder().setVisible(false);
+                    uc.setStatusForm(false);
+                    uc.prepareTableUser(mw.getTblUserData());
+                    cc.populateComboBox(mw.getCbxFrmUserData_Afdeling(), uc.namaAfdelingList());
                     break;
                 case "pnlAdminSistem_Kembali":
                     pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                    break;
+                case "pnlAdminSistem_EditUser":
+                    if (mw.getTblUserData().getSelectedRowCount() == 1){
+                        uc.setMenuButton("edit");
+                    }
+                    break;
+                case "pnlAdminSistem_DeleteUser":
+                    if (mw.getTblUserData().getSelectedRowCount() == 1){
+                        uc.setMenuButton("delete");
+                    }
+                    break;
+                case "pnlAdminSistem_AddUser":
+                    uc.setMenuButton("add");
+                    break;
+                case "pnlAdminSistem_Cancel":
+                    uc.setMenuButton("cancel");
+                    break;
+                case "pnlAdminSistem_Save":
+                    uc.saveUpdateData();
                     break;
             /******************/
             case "pnlMenuKeluar":
@@ -327,6 +350,12 @@ public class MenuController implements MouseListener{
                 case "pnlAdminSistem_DeleteUser":
                     standarButtonHover(menuPanel);
                     break;
+                case "pnlAdminSistem_Save":
+                    standarButtonHover(menuPanel);
+                    break;
+                case "pnlAdminSistem_Cancel":
+                    standarButtonHover(menuPanel);
+                    break;
             case "pnlMenuKeluar":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -440,6 +469,12 @@ public class MenuController implements MouseListener{
                     standarButtonDisplayed(menuPanel);
                     break;
                 case "pnlAdminSistem_DeleteUser":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlAdminSistem_Save":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlAdminSistem_Cancel":
                     standarButtonDisplayed(menuPanel);
                     break;
             /*************/

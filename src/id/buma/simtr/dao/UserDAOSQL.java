@@ -74,7 +74,7 @@ public class UserDAOSQL implements UserDAO{
     }
 
     @Override
-    public void addNewUser(User user) {
+    public boolean addNewUser(User user) {
         Connection conn = new DBConnection().getConn();
         try {
             /*
@@ -84,19 +84,22 @@ public class UserDAOSQL implements UserDAO{
             4. privlevel (integer)
             5. idafd (varchar)
             */
-            String callSql = "CALL INSERT_NEW_USER(?,?,?,?)";
+            String callSql = "CALL INSERT_NEW_USER(?,?,?,?,?)";
             try (CallableStatement cst = conn.prepareCall(callSql)) {
                 cst.setString(1, user.getNamaLengkap());
                 cst.setString(2, le.hashingText(user.getUsername()));
                 cst.setString(3, le.hashingText(user.getPassword()));
                 cst.setInt(4, user.getPrivLevel());
+                cst.setString(5, user.getIdAfd());
                 cst.execute();
+                if (cst.getUpdateCount() == 1) return true;
             } finally {
                 conn.close();
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
     
     private List<User> commonGetDataUser(CallableStatement cst) throws SQLException{
@@ -126,6 +129,61 @@ public class UserDAOSQL implements UserDAO{
             Logger.getLogger(UserDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lstUser;
+    }
+
+    @Override
+    public boolean updateUserData(User user) {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL UPDATE_USER(?,?,?,?,?,?)";
+        try {
+            /*
+            1 - userid - int
+            2 - namaLengkap - varchar 50
+            3 - username - varchar 255
+            4 - password - varchar 255
+            5 - privLevel - int
+            6 - idAfd - varchar 2
+            */
+            CallableStatement cst = conn.prepareCall(callSQL);
+            cst.setInt(1, user.getUserId());
+            cst.setString(2, user.getNamaLengkap());
+            cst.setString(3, le.hashingText(user.getUsername()));
+            cst.setString(4, le.hashingText(user.getPassword()));
+            cst.setInt(5, user.getPrivLevel());
+            cst.setString(6, user.getIdAfd());
+            cst.execute();
+            if (cst.getUpdateCount() == 1 ) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteUserData(User user) {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL DELETE_USER(?)";
+        try {
+            CallableStatement cst = conn.prepareCall(callSQL);
+            cst.setInt(1, user.getUserId());
+            cst.execute();
+            if (cst.getUpdateCount() == 1) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
     }
     
     

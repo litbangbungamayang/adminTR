@@ -13,7 +13,7 @@ import id.buma.simtr.controller.NumberOnlyTextFilter;
 import id.buma.simtr.controller.PupukController;
 import id.buma.simtr.controller.RDKKController;
 import id.buma.simtr.controller.UppercaseTextField;
-import id.buma.simtr.database.DbConnectionManager;
+import id.buma.simtr.controller.UserController;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -48,6 +48,8 @@ public class MainWindow extends javax.swing.JFrame {
     private final ComboBoxListener cbl = new ComboBoxListener(this);
     
     private final PupukController pc = new PupukController(this);
+    
+    private final UserController uc = new UserController(this);
     
     /**
      * Creates new form MainWindow
@@ -132,6 +134,8 @@ public class MainWindow extends javax.swing.JFrame {
         pnlAdminSistem_AddUser.addMouseListener(mc);
         pnlAdminSistem_DeleteUser.addMouseListener(mc);
         pnlAdminSistem_EditUser.addMouseListener(mc);
+        pnlAdminSistem_Save.addMouseListener(mc);
+        pnlAdminSistem_Cancel.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -398,7 +402,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmRDKK_Title3 = new javax.swing.JLabel();
         pnlAdminSistem_Content = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        tblValidasiRDKK_Petani1 = new javax.swing.JTable();
+        tblUserData = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         pnlAdminSistem_DeleteUser = new javax.swing.JPanel();
@@ -409,14 +413,22 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back12 = new javax.swing.JLabel();
         pnlFrmUserData = new javax.swing.JPanel();
         lblInputNamaKelTani13 = new javax.swing.JLabel();
-        jtfInputRDKKNamaKoord1 = new javax.swing.JTextField();
+        jtfFrmUserData_NamaLengkap = new javax.swing.JTextField();
         pnlUnderUserData1 = new javax.swing.JPanel();
         lblInputNamaKelTani14 = new javax.swing.JLabel();
-        jtfInputRDKKNamaKoord2 = new javax.swing.JTextField();
+        jtfFrmUserData_Username = new javax.swing.JTextField();
         pnlUnderUserData2 = new javax.swing.JPanel();
         lblInputNamaKelTani15 = new javax.swing.JLabel();
-        jtfInputRDKKNamaKoord3 = new javax.swing.JTextField();
+        jtfFrmUserData_Password = new javax.swing.JTextField();
         pnlUnderUserData3 = new javax.swing.JPanel();
+        cbxFrmUserData_Level = new javax.swing.JComboBox<>();
+        lblInputNamaKelTani16 = new javax.swing.JLabel();
+        lblInputNamaKelTani17 = new javax.swing.JLabel();
+        cbxFrmUserData_Afdeling = new javax.swing.JComboBox<>();
+        pnlAdminSistem_Save = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back13 = new javax.swing.JLabel();
+        pnlAdminSistem_Cancel = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -2703,9 +2715,9 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane9.setMinimumSize(new java.awt.Dimension(0, 0));
 
-        tblValidasiRDKK_Petani1.setBackground(new java.awt.Color(170, 193, 193));
-        tblValidasiRDKK_Petani1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tblValidasiRDKK_Petani1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUserData.setBackground(new java.awt.Color(170, 193, 193));
+        tblUserData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblUserData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -2713,19 +2725,19 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         ));
-        tblValidasiRDKK_Petani1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblValidasiRDKK_Petani1.setAutoscrolls(false);
-        tblValidasiRDKK_Petani1.setFillsViewportHeight(true);
-        tblValidasiRDKK_Petani1.setGridColor(new java.awt.Color(255, 255, 255));
-        tblValidasiRDKK_Petani1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        tblValidasiRDKK_Petani1.setName("tblKelompokTani"); // NOI18N
-        tblValidasiRDKK_Petani1.setOpaque(false);
-        tblValidasiRDKK_Petani1.setRowHeight(24);
-        tblValidasiRDKK_Petani1.setShowHorizontalLines(false);
-        tblValidasiRDKK_Petani1.setShowVerticalLines(false);
-        tblValidasiRDKK_Petani1.getTableHeader().setResizingAllowed(false);
-        tblValidasiRDKK_Petani1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane9.setViewportView(tblValidasiRDKK_Petani1);
+        tblUserData.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblUserData.setAutoscrolls(false);
+        tblUserData.setFillsViewportHeight(true);
+        tblUserData.setGridColor(new java.awt.Color(255, 255, 255));
+        tblUserData.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblUserData.setName("tblKelompokTani"); // NOI18N
+        tblUserData.setOpaque(false);
+        tblUserData.setRowHeight(24);
+        tblUserData.setShowHorizontalLines(false);
+        tblUserData.setShowVerticalLines(false);
+        tblUserData.getTableHeader().setResizingAllowed(false);
+        tblUserData.getTableHeader().setReorderingAllowed(false);
+        jScrollPane9.setViewportView(tblUserData);
 
         jPanel9.setBackground(new java.awt.Color(85, 131, 131));
 
@@ -2738,10 +2750,10 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(311, 311, 311)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2758,7 +2770,6 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFrmInputRDKK_Back10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Denied_26px.png"))); // NOI18N
         lblFrmInputRDKK_Back10.setIconTextGap(10);
-        lblFrmInputRDKK_Back10.setPreferredSize(new java.awt.Dimension(26, 26));
         lblFrmInputRDKK_Back10.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlAdminSistem_DeleteUser.add(lblFrmInputRDKK_Back10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
@@ -2786,21 +2797,22 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFrmInputRDKK_Back12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Registration_26px.png"))); // NOI18N
         lblFrmInputRDKK_Back12.setIconTextGap(10);
-        lblFrmInputRDKK_Back12.setPreferredSize(new java.awt.Dimension(26, 26));
         lblFrmInputRDKK_Back12.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlAdminSistem_EditUser.add(lblFrmInputRDKK_Back12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
+        pnlFrmUserData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         pnlFrmUserData.setOpaque(false);
+        pnlFrmUserData.setPreferredSize(new java.awt.Dimension(500, 340));
 
         lblInputNamaKelTani13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInputNamaKelTani13.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani13.setText("Nama Lengkap");
 
-        jtfInputRDKKNamaKoord1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jtfInputRDKKNamaKoord1.setForeground(new java.awt.Color(255, 255, 255));
-        jtfInputRDKKNamaKoord1.setBorder(null);
-        jtfInputRDKKNamaKoord1.setCaretColor(new java.awt.Color(204, 204, 204));
-        jtfInputRDKKNamaKoord1.setOpaque(false);
+        jtfFrmUserData_NamaLengkap.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfFrmUserData_NamaLengkap.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmUserData_NamaLengkap.setBorder(null);
+        jtfFrmUserData_NamaLengkap.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfFrmUserData_NamaLengkap.setOpaque(false);
 
         javax.swing.GroupLayout pnlUnderUserData1Layout = new javax.swing.GroupLayout(pnlUnderUserData1);
         pnlUnderUserData1.setLayout(pnlUnderUserData1Layout);
@@ -2817,17 +2829,17 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani14.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani14.setText("Username");
 
-        jtfInputRDKKNamaKoord2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jtfInputRDKKNamaKoord2.setForeground(new java.awt.Color(255, 255, 255));
-        jtfInputRDKKNamaKoord2.setBorder(null);
-        jtfInputRDKKNamaKoord2.setCaretColor(new java.awt.Color(204, 204, 204));
-        jtfInputRDKKNamaKoord2.setOpaque(false);
+        jtfFrmUserData_Username.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfFrmUserData_Username.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmUserData_Username.setBorder(null);
+        jtfFrmUserData_Username.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfFrmUserData_Username.setOpaque(false);
 
         javax.swing.GroupLayout pnlUnderUserData2Layout = new javax.swing.GroupLayout(pnlUnderUserData2);
         pnlUnderUserData2.setLayout(pnlUnderUserData2Layout);
         pnlUnderUserData2Layout.setHorizontalGroup(
             pnlUnderUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
         pnlUnderUserData2Layout.setVerticalGroup(
             pnlUnderUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2838,22 +2850,62 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani15.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani15.setText("Password");
 
-        jtfInputRDKKNamaKoord3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jtfInputRDKKNamaKoord3.setForeground(new java.awt.Color(255, 255, 255));
-        jtfInputRDKKNamaKoord3.setBorder(null);
-        jtfInputRDKKNamaKoord3.setCaretColor(new java.awt.Color(204, 204, 204));
-        jtfInputRDKKNamaKoord3.setOpaque(false);
+        jtfFrmUserData_Password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfFrmUserData_Password.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmUserData_Password.setBorder(null);
+        jtfFrmUserData_Password.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfFrmUserData_Password.setOpaque(false);
 
         javax.swing.GroupLayout pnlUnderUserData3Layout = new javax.swing.GroupLayout(pnlUnderUserData3);
         pnlUnderUserData3.setLayout(pnlUnderUserData3Layout);
         pnlUnderUserData3Layout.setHorizontalGroup(
             pnlUnderUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
         pnlUnderUserData3Layout.setVerticalGroup(
             pnlUnderUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
+
+        cbxFrmUserData_Level.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxFrmUserData_Level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Level 1 - System Administrator", "Level 2 - Penanggungjawab", "Level 3 - Operator" }));
+
+        lblInputNamaKelTani16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani16.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani16.setText("Level Pengguna");
+
+        lblInputNamaKelTani17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani17.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani17.setText("Afdeling");
+
+        cbxFrmUserData_Afdeling.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxFrmUserData_Afdeling.setName("cbxUserData_Afdeling"); // NOI18N
+
+        pnlAdminSistem_Save.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_Save.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_Save.setName("pnlAdminSistem_Save"); // NOI18N
+        pnlAdminSistem_Save.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back13.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Save_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back13.setIconTextGap(10);
+        lblFrmInputRDKK_Back13.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_Save.add(lblFrmInputRDKK_Back13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlAdminSistem_Cancel.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_Cancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_Cancel.setName("pnlAdminSistem_Cancel"); // NOI18N
+        pnlAdminSistem_Cancel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back14.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Cancel_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back14.setIconTextGap(10);
+        lblFrmInputRDKK_Back14.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_Cancel.add(lblFrmInputRDKK_Back14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
         javax.swing.GroupLayout pnlFrmUserDataLayout = new javax.swing.GroupLayout(pnlFrmUserData);
         pnlFrmUserData.setLayout(pnlFrmUserDataLayout);
@@ -2863,51 +2915,78 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
-                        .addComponent(lblInputNamaKelTani13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnlUnderUserData1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfInputRDKKNamaKoord1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)))
+                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                                .addComponent(lblInputNamaKelTani13)
+                                .addGap(90, 90, 90)
+                                .addComponent(jtfFrmUserData_NamaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
+                                .addComponent(lblInputNamaKelTani15)
+                                .addGap(124, 124, 124)
+                                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfFrmUserData_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pnlUnderUserData3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserDataLayout.createSequentialGroup()
-                        .addComponent(lblInputNamaKelTani14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfInputRDKKNamaKoord2)
-                            .addComponent(pnlUnderUserData2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserDataLayout.createSequentialGroup()
+                                .addComponent(lblInputNamaKelTani14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(pnlUnderUserData1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtfFrmUserData_Username, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserDataLayout.createSequentialGroup()
+                                .addComponent(lblInputNamaKelTani16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pnlUnderUserData2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxFrmUserData_Level, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxFrmUserData_Afdeling, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserDataLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(pnlAdminSistem_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlAdminSistem_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16))
                     .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
-                        .addComponent(lblInputNamaKelTani15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfInputRDKKNamaKoord3)
-                            .addComponent(pnlUnderUserData3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                        .addComponent(lblInputNamaKelTani17)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlFrmUserDataLayout.setVerticalGroup(
             pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInputNamaKelTani13)
-                    .addComponent(jtfInputRDKKNamaKoord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
+                    .addComponent(jtfFrmUserData_NamaLengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
                 .addComponent(pnlUnderUserData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblInputNamaKelTani14)
-                        .addComponent(jtfInputRDKKNamaKoord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(pnlUnderUserData2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInputNamaKelTani14)
+                    .addComponent(jtfFrmUserData_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(pnlUnderUserData2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblInputNamaKelTani15)
-                        .addComponent(jtfInputRDKKNamaKoord3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblInputNamaKelTani15)
                     .addGroup(pnlFrmUserDataLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addComponent(jtfFrmUserData_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
                         .addComponent(pnlUnderUserData3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxFrmUserData_Level, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInputNamaKelTani16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxFrmUserData_Afdeling, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInputNamaKelTani17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(pnlFrmUserDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlAdminSistem_Save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdminSistem_Cancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlAdminSistem_ContentLayout = new javax.swing.GroupLayout(pnlAdminSistem_Content);
@@ -2922,10 +3001,10 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(pnlAdminSistem_EditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlAdminSistem_DeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pnlFrmUserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 951, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlFrmUserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 866, Short.MAX_VALUE))
         );
         pnlAdminSistem_ContentLayout.setVerticalGroup(
             pnlAdminSistem_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2940,7 +3019,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(pnlAdminSistem_AddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlAdminSistem_EditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlFrmUserData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlFrmUserData, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pnlAdminSistem_UserData.add(pnlAdminSistem_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1366, 630));
@@ -3024,6 +3104,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxDesa;
+    private javax.swing.JComboBox<String> cbxFrmUserData_Afdeling;
+    private javax.swing.JComboBox<String> cbxFrmUserData_Level;
     private javax.swing.JComboBox<String> cbxInputRDKKMasaTanam;
     private javax.swing.JComboBox<String> cbxInputRDKKVarietas;
     private javax.swing.JComboBox<String> cbxKategoriTanaman;
@@ -3069,12 +3151,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jftInputRDKKNorthing;
     private javax.swing.JTextField jtfFrmPupuk_Permintaan_Cari;
     private javax.swing.JTextField jtfFrmRDKKCari;
+    private javax.swing.JTextField jtfFrmUserData_NamaLengkap;
+    private javax.swing.JTextField jtfFrmUserData_Password;
+    private javax.swing.JTextField jtfFrmUserData_Username;
     private javax.swing.JTextField jtfFrmValidasiRDKK_SearchKoord;
     private javax.swing.JTextField jtfInputNoKtpKoord;
     private javax.swing.JTextField jtfInputRDKKNamaKoord;
-    private javax.swing.JTextField jtfInputRDKKNamaKoord1;
-    private javax.swing.JTextField jtfInputRDKKNamaKoord2;
-    private javax.swing.JTextField jtfInputRDKKNamaKoord3;
     private javax.swing.JTextField jtfInputRDKKNamaPetani;
     private javax.swing.JTextField jtfLoginUsername;
     private javax.swing.JPasswordField jtpLoginPassword;
@@ -3087,6 +3169,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back10;
     private javax.swing.JLabel lblFrmInputRDKK_Back11;
     private javax.swing.JLabel lblFrmInputRDKK_Back12;
+    private javax.swing.JLabel lblFrmInputRDKK_Back13;
+    private javax.swing.JLabel lblFrmInputRDKK_Back14;
     private javax.swing.JLabel lblFrmInputRDKK_Back2;
     private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
@@ -3112,6 +3196,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblInputNamaKelTani13;
     private javax.swing.JLabel lblInputNamaKelTani14;
     private javax.swing.JLabel lblInputNamaKelTani15;
+    private javax.swing.JLabel lblInputNamaKelTani16;
+    private javax.swing.JLabel lblInputNamaKelTani17;
     private javax.swing.JLabel lblInputNamaKelTani2;
     private javax.swing.JLabel lblInputNamaKelTani3;
     private javax.swing.JLabel lblInputNamaKelTani4;
@@ -3147,10 +3233,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLayeredPane lypMenuLogin;
     private javax.swing.JLayeredPane lypMenuUtama;
     private javax.swing.JPanel pnlAdminSistem_AddUser;
+    private javax.swing.JPanel pnlAdminSistem_Cancel;
     private javax.swing.JPanel pnlAdminSistem_Content;
     private javax.swing.JPanel pnlAdminSistem_DeleteUser;
     private javax.swing.JPanel pnlAdminSistem_EditUser;
     private javax.swing.JPanel pnlAdminSistem_Kembali;
+    private javax.swing.JPanel pnlAdminSistem_Save;
     private javax.swing.JPanel pnlAdminSistem_UserData;
     private javax.swing.JPanel pnlAtas;
     private javax.swing.JPanel pnlBackground;
@@ -3256,9 +3344,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTable tblKelTani_Pupuk_Permintaan;
     private javax.swing.JTable tblKelompokTani;
     private javax.swing.JTable tblPetani_Pupuk_Permintaan;
+    private javax.swing.JTable tblUserData;
     private javax.swing.JTable tblValidasiRDKK;
     private javax.swing.JTable tblValidasiRDKK_Petani;
-    private javax.swing.JTable tblValidasiRDKK_Petani1;
     // End of variables declaration//GEN-END:variables
     
     public JPanel getPnlMenuHolder(){
@@ -3429,4 +3517,47 @@ public class MainWindow extends javax.swing.JFrame {
         return pnlFrmPupuk_Permintaan_SimpanData;
     }
     
+    public JTextField getJtfFrmUserData_NamaLengkap(){
+        return jtfFrmUserData_NamaLengkap;
+    }
+    
+    public JTextField getJtfFrmUserData_Username(){
+        return jtfFrmUserData_Username;
+    }
+    
+    public JTextField getJtfFrmUserData_Password(){
+        return jtfFrmUserData_Password;
+    }
+    
+    public JTable getTblUserData(){
+        return tblUserData;
+    }
+    
+    public JComboBox getCbxFrmUserData_Level(){
+        return cbxFrmUserData_Level;
+    }
+    
+    public JComboBox getCbxFrmUserData_Afdeling(){
+        return cbxFrmUserData_Afdeling;
+    }
+    
+    public JPanel getPnlAdminSistem_AddUser(){
+        return pnlAdminSistem_AddUser;
+    }
+    
+    public JPanel getPnlAdminSistem_EditUser(){
+        return pnlAdminSistem_EditUser;
+    }
+    
+    public JPanel getPnlAdminSistem_DeleteUser(){
+        return pnlAdminSistem_DeleteUser;
+    }
+    
+    public JPanel getPnlAdminSistem_Save(){
+        return pnlAdminSistem_Save;
+    }
+    
+    public JPanel getPnlAdminSistem_Cancel(){
+        return pnlAdminSistem_Cancel;
+    }
 }

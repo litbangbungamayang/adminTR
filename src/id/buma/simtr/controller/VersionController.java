@@ -73,6 +73,10 @@ public class VersionController {
         + Migrasi database dari MS SQL ke MySQl
         + Penyesuaian di kelas koneksi database untuk menghindari resources leak
         */
+        version = "0.9.12";
+        /*
+        + Penambahan modul manajemen pengguna
+        */
         
         return version;
     }

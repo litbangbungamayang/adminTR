@@ -20,6 +20,10 @@ public interface UserDAO {
     
     public User getUserData(String username, String password);
     
-    public void addNewUser(User user);
+    public boolean addNewUser(User user);
+    
+    public boolean updateUserData(User user);
+    
+    public boolean deleteUserData(User user);
     
 }
