@@ -91,8 +91,15 @@ public class CommonController {
     }
     
     public void setTableModelKelTani(JTable tbl){
-        KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(2018,user.getIdAfd()));
-        tbl.setModel(kttm);
+        if (user.getPrivLevel() == 3){
+            KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getKelompokTaniByTahun(sistemDao.getTahunGiling(),user.getIdAfd()));
+            tbl.setModel(kttm);
+        } else {
+            if (user.getPrivLevel() == 1 || user.getPrivLevel() == 2){
+                KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(sistemDao.getTahunGiling()));
+                tbl.setModel(kttm);
+            }
+        }
     }
     
     public void setTableSelectionModel(JTable tbl){

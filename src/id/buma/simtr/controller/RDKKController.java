@@ -306,7 +306,6 @@ public class RDKKController {
     }
     
     public void refreshTableValidasiRDKK(){
-        if (cc.user == null) cc.showErrorMsg("OK", "OK");
         cc.setTableHeaderKelTani(mw.getTblValidasiRDKK().getTableHeader());
         cc.setTableRowRendererKelTani(mw.getTblValidasiRDKK());
         cc.setTableSelectionModel(mw.getTblValidasiRDKK());

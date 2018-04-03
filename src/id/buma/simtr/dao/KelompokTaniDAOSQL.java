@@ -72,7 +72,7 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     }
 
     @Override
-    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun, String idAfd) {
+    public List<KelompokTani> getKelompokTaniByTahun(int tahun, String idAfd) {
         Connection conn = new DBConnection().getConn();
         List<KelompokTani> lkt = new ArrayList<>();
         try {
@@ -290,6 +290,28 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
             Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return jp;
+    }
+
+    @Override
+    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun) {
+        Connection conn = new DBConnection().getConn();
+        List<KelompokTani> lkt = new ArrayList<>();
+        try {
+            String callSQL = "CALL GET_ALL_KELOMPOKTANIH_BY_TAHUN(?)";
+            CallableStatement cst = conn.prepareCall(callSQL,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cst.setInt(1, tahun);
+            lkt = commonGetDataKelompokTani(cst);
+        } catch (SQLException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lkt;
     }
     
 }

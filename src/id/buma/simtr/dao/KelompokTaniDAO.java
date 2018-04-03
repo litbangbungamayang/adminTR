@@ -20,7 +20,7 @@ public interface KelompokTaniDAO {
     
     public boolean insertKelompokTani(KelompokTani kt);
     
-    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun, String idAfd);
+    public List<KelompokTani> getKelompokTaniByTahun(int tahun, String idAfd);
     
     public List<KelompokTani> getAllKelompokTaniByMultipleField(String keyword, int tahun, String idAfd);
     
@@ -37,5 +37,7 @@ public interface KelompokTaniDAO {
     public JasperPrint cetakSKK_JP(String idKelompok);
     
     public JasperPrint cetakKontrak_JP(String idKelompok);
+    
+    public List<KelompokTani> getAllKelompokTaniByTahun(int tahun);
     
 }

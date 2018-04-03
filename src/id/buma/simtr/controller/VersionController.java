@@ -82,6 +82,10 @@ public class VersionController {
         + Penambahan listener untuk form login on keypress enter
         + Penambahan modul manajemen bahan produksi
         */
+        version = "0.9.14";
+        /*
+        + Perubahan mode tampilan database pada form kelompok tani, apabila system admin dan penanggungjawab maka tidak dibatasi afdeling
+        */
         
         return version;
     }

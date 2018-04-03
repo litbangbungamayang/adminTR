@@ -153,6 +153,7 @@ public class MainWindow extends javax.swing.JFrame {
         ((AbstractDocument) jtfInputNoKtpKoord.getDocument()).setDocumentFilter(numOnly);
         ((AbstractDocument) jtfFrmValidasiRDKK_SearchKoord.getDocument()).setDocumentFilter(df);
         ((AbstractDocument) jtfFrmPupuk_Permintaan_Cari.getDocument()).setDocumentFilter(df);
+        ((AbstractDocument) jtfFrmBahanProduksi_NamaBahan.getDocument()).setDocumentFilter(df);
     }
     
     private void setTextFieldAutoClear(){
