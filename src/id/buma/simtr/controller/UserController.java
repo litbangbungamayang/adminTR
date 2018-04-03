@@ -192,12 +192,12 @@ public class UserController {
     public void prepareTableUser(JTable tbl){
         UserDataRowRenderer udrr = new UserDataRowRenderer();
         cc.setTableHeaderKelTani(tbl.getTableHeader());
-        mw.getTblUserData().setDefaultRenderer(Object.class, udrr);
+        tbl.setDefaultRenderer(Object.class, udrr);
         cc.setTableSelectionModel(tbl);
         UserDataTableModel udtm = new UserDataTableModel(userDao.getAllUser());
-        mw.getTblUserData().setModel(udtm);
+        tbl.setModel(udtm);
         HandlerSeleksiTabel hst = new HandlerSeleksiTabel(mw, "UserData-FormUserData", tbl);
-        mw.getTblUserData().getSelectionModel().addListSelectionListener(hst);
+        tbl.getSelectionModel().addListSelectionListener(hst);
     }
     
     public void getUserDetail(User userData){

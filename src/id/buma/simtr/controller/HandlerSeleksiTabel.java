@@ -5,8 +5,10 @@
  */
 package id.buma.simtr.controller;
 
+import id.buma.simtr.model.BahanProduksi;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.User;
+import id.buma.simtr.view.BahanProduksiTableModel;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.UserDataTableModel;
@@ -41,6 +43,7 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
     public void valueChanged(ListSelectionEvent e) {
         UserController uc = new UserController(mw);
         CommonController cc = new CommonController(mw);
+        BahanProduksiController bpc = new BahanProduksiController(mw);
         if (!e.getValueIsAdjusting()){
             switch (seleksiMode){
                 case "KelompokTani-Petani":
@@ -71,6 +74,14 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         uc.getUserDetail(lstUser.get(tbl.getSelectedRow()));
                         String afdeling = lstUser.get(tbl.getSelectedRow()).getIdAfd();
                         mw.getCbxFrmUserData_Afdeling().setSelectedItem(afdeling);
+                    }
+                    break;
+                case "BahanProduksi-FormBahanProduksi":
+                    if (tbl.getSelectedRow() > -1){
+                        BahanProduksiTableModel bptm = (BahanProduksiTableModel) tbl.getModel();
+                        List<BahanProduksi> lstBp = bptm.getContentList();
+                        bpc.setBahanProduksi(lstBp.get(tbl.getSelectedRow()));
+                        bpc.loadDetailData();
                     }
                     break;
             }

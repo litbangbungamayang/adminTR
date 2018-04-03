@@ -77,6 +77,11 @@ public class VersionController {
         /*
         + Penambahan modul manajemen pengguna
         */
+        version = "0.9.13";
+        /*
+        + Penambahan listener untuk form login on keypress enter
+        + Penambahan modul manajemen bahan produksi
+        */
         
         return version;
     }

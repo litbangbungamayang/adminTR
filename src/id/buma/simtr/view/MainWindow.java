@@ -13,7 +13,7 @@ import id.buma.simtr.controller.NumberOnlyTextFilter;
 import id.buma.simtr.controller.PupukController;
 import id.buma.simtr.controller.RDKKController;
 import id.buma.simtr.controller.UppercaseTextField;
-import id.buma.simtr.controller.UserController;
+import id.buma.simtr.controller.TextBoxListener;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -49,8 +49,8 @@ public class MainWindow extends javax.swing.JFrame {
     
     private final PupukController pc = new PupukController(this);
     
-    private final UserController uc = new UserController(this);
-    
+    private final TextBoxListener tbl = new TextBoxListener(this);
+   
     /**
      * Creates new form MainWindow
      */
@@ -136,6 +136,13 @@ public class MainWindow extends javax.swing.JFrame {
         pnlAdminSistem_EditUser.addMouseListener(mc);
         pnlAdminSistem_Save.addMouseListener(mc);
         pnlAdminSistem_Cancel.addMouseListener(mc);
+        pnlSubMenuAdmin_BahanProduksi.addMouseListener(mc);
+        pnlAdminSistem_BahanProduksi_Kembali.addMouseListener(mc);
+        pnlAdminSistem_BahanProduksi_Add.addMouseListener(mc);
+        pnlAdminSistem_BahanProduksi_Delete.addMouseListener(mc);
+        pnlAdminSistem_BahanProduksi_Edit.addMouseListener(mc);
+        pnlAdminSistem_BahanProduksi_Cancel.addMouseListener(mc);
+        pnlAdminSistem_BahanProduksi_Save.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -174,6 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
         cbxKecamatan.addActionListener(cbl);
         cbl.ComboBoxListener(rc.namaVarietasList());
         cbxInputRDKKVarietas.addActionListener(cbl);
+        jtpLoginPassword.addActionListener(tbl);
     }
 
     /**
@@ -242,7 +250,7 @@ public class MainWindow extends javax.swing.JFrame {
         pnlSubMenuAdmin_UserData = new javax.swing.JPanel();
         lblWsRDKK3 = new javax.swing.JLabel();
         pnlWsSeparator4 = new javax.swing.JPanel();
-        pnlWsLKP3 = new javax.swing.JPanel();
+        pnlSubMenuAdmin_BahanProduksi = new javax.swing.JPanel();
         lblWsLKP3 = new javax.swing.JLabel();
         pnlFrmRDKK = new javax.swing.JPanel();
         pnlFrmRDKKMenuHolder = new javax.swing.JPanel();
@@ -429,6 +437,38 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back13 = new javax.swing.JLabel();
         pnlAdminSistem_Cancel = new javax.swing.JPanel();
         lblFrmInputRDKK_Back14 = new javax.swing.JLabel();
+        pnlAdminSistem_BahanProduksi = new javax.swing.JPanel();
+        pnlFrmInputRDKK_MenuHolder5 = new javax.swing.JPanel();
+        pnlAdminSistem_BahanProduksi_Kembali = new javax.swing.JPanel();
+        lblFrmAdminSistem_Kembali1 = new javax.swing.JLabel();
+        pnlFrmRDKK_Title4 = new javax.swing.JPanel();
+        lblFrmRDKK_Title4 = new javax.swing.JLabel();
+        pnlAdminSistem_Content1 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tblBahanProduksi = new javax.swing.JTable();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        pnlAdminSistem_BahanProduksi_Delete = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back15 = new javax.swing.JLabel();
+        pnlAdminSistem_BahanProduksi_Add = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back16 = new javax.swing.JLabel();
+        pnlAdminSistem_BahanProduksi_Edit = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back17 = new javax.swing.JLabel();
+        pnlFrmUserData1 = new javax.swing.JPanel();
+        lblInputNamaKelTani18 = new javax.swing.JLabel();
+        jtfFrmBahanProduksi_NamaBahan = new javax.swing.JTextField();
+        pnlUnderUserData4 = new javax.swing.JPanel();
+        lblInputNamaKelTani20 = new javax.swing.JLabel();
+        cbxFrmBahanProduksi_JenisBahan = new javax.swing.JComboBox<>();
+        lblInputNamaKelTani21 = new javax.swing.JLabel();
+        lblInputNamaKelTani22 = new javax.swing.JLabel();
+        cbxFrmBahanProduksi_Satuan = new javax.swing.JComboBox<>();
+        pnlAdminSistem_BahanProduksi_Save = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back18 = new javax.swing.JLabel();
+        pnlAdminSistem_BahanProduksi_Cancel = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back19 = new javax.swing.JLabel();
+        jtfFrmBahanProduksi_Dosis = new javax.swing.JFormattedTextField();
+        pnlUnderUserData5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -1015,7 +1055,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblWsRDKK3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblWsRDKK3.setForeground(new java.awt.Color(255, 255, 255));
         lblWsRDKK3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsRDKK3.setText("Manajemen Pengguna");
+        lblWsRDKK3.setText("Pengguna Sistem");
 
         javax.swing.GroupLayout pnlSubMenuAdmin_UserDataLayout = new javax.swing.GroupLayout(pnlSubMenuAdmin_UserData);
         pnlSubMenuAdmin_UserData.setLayout(pnlSubMenuAdmin_UserDataLayout);
@@ -1046,27 +1086,27 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlSubMenuAdmin.add(pnlWsSeparator4, new java.awt.GridBagConstraints());
 
-        pnlWsLKP3.setBackground(new Color(34,59,14,50));
-        pnlWsLKP3.setName("pnlWsLKP"); // NOI18N
-        pnlWsLKP3.setPreferredSize(new java.awt.Dimension(250, 50));
+        pnlSubMenuAdmin_BahanProduksi.setBackground(new Color(34,59,14,50));
+        pnlSubMenuAdmin_BahanProduksi.setName("pnlSubMenuAdmin_BahanProduksi"); // NOI18N
+        pnlSubMenuAdmin_BahanProduksi.setPreferredSize(new java.awt.Dimension(200, 50));
 
         lblWsLKP3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblWsLKP3.setForeground(new java.awt.Color(255, 255, 255));
         lblWsLKP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsLKP3.setText("LKP per Periode");
+        lblWsLKP3.setText("Bahan Produksi");
 
-        javax.swing.GroupLayout pnlWsLKP3Layout = new javax.swing.GroupLayout(pnlWsLKP3);
-        pnlWsLKP3.setLayout(pnlWsLKP3Layout);
-        pnlWsLKP3Layout.setHorizontalGroup(
-            pnlWsLKP3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblWsLKP3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlSubMenuAdmin_BahanProduksiLayout = new javax.swing.GroupLayout(pnlSubMenuAdmin_BahanProduksi);
+        pnlSubMenuAdmin_BahanProduksi.setLayout(pnlSubMenuAdmin_BahanProduksiLayout);
+        pnlSubMenuAdmin_BahanProduksiLayout.setHorizontalGroup(
+            pnlSubMenuAdmin_BahanProduksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsLKP3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
-        pnlWsLKP3Layout.setVerticalGroup(
-            pnlWsLKP3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlSubMenuAdmin_BahanProduksiLayout.setVerticalGroup(
+            pnlSubMenuAdmin_BahanProduksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblWsLKP3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        pnlSubMenuAdmin.add(pnlWsLKP3, new java.awt.GridBagConstraints());
+        pnlSubMenuAdmin.add(pnlSubMenuAdmin_BahanProduksi, new java.awt.GridBagConstraints());
 
         pnlSubMenuHolder.add(pnlSubMenuAdmin, "crdSubMenuAdmin");
 
@@ -2166,6 +2206,7 @@ public class MainWindow extends javax.swing.JFrame {
         jtpLoginPassword.setForeground(new java.awt.Color(255, 255, 255));
         jtpLoginPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jtpLoginPassword.setCaretColor(new java.awt.Color(255, 255, 255));
+        jtpLoginPassword.setName("jtfLoginPassword"); // NOI18N
         jtpLoginPassword.setNextFocusableComponent(jLabel8);
 
         pnlLoginLogin.setBackground(new Color(255,255,255,0));
@@ -3027,6 +3068,332 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlContent.add(pnlAdminSistem_UserData, "crdPnlAdminSistem_UserData");
 
+        pnlAdminSistem_BahanProduksi.setBackground(new java.awt.Color(0, 23, 23));
+        pnlAdminSistem_BahanProduksi.setName("pnlAdminSistem_UserData"); // NOI18N
+        pnlAdminSistem_BahanProduksi.setOpaque(false);
+        pnlAdminSistem_BahanProduksi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmInputRDKK_MenuHolder5.setBackground(new java.awt.Color(0, 70, 70));
+        pnlFrmInputRDKK_MenuHolder5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlAdminSistem_BahanProduksi_Kembali.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_BahanProduksi_Kembali.setName("pnlAdminSistem_BahanProduksi_Kembali"); // NOI18N
+        pnlAdminSistem_BahanProduksi_Kembali.setPreferredSize(new java.awt.Dimension(140, 40));
+        pnlAdminSistem_BahanProduksi_Kembali.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmAdminSistem_Kembali1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmAdminSistem_Kembali1.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmAdminSistem_Kembali1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Back_To_26px.png"))); // NOI18N
+        lblFrmAdminSistem_Kembali1.setText("Kembali");
+        lblFrmAdminSistem_Kembali1.setIconTextGap(10);
+        lblFrmAdminSistem_Kembali1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_BahanProduksi_Kembali.add(lblFrmAdminSistem_Kembali1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 40));
+
+        pnlFrmInputRDKK_MenuHolder5.add(pnlAdminSistem_BahanProduksi_Kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
+
+        pnlFrmRDKK_Title4.setBackground(new java.awt.Color(85, 131, 131));
+        pnlFrmRDKK_Title4.setName("pnlFrmRDKKBack"); // NOI18N
+        pnlFrmRDKK_Title4.setPreferredSize(new java.awt.Dimension(200, 40));
+        pnlFrmRDKK_Title4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 0));
+
+        lblFrmRDKK_Title4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmRDKK_Title4.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title4.setText("Manajemen Bahan Produksi");
+        lblFrmRDKK_Title4.setPreferredSize(new java.awt.Dimension(400, 40));
+        pnlFrmRDKK_Title4.add(lblFrmRDKK_Title4);
+
+        pnlFrmInputRDKK_MenuHolder5.add(pnlFrmRDKK_Title4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1190, -1));
+
+        pnlAdminSistem_BahanProduksi.add(pnlFrmInputRDKK_MenuHolder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, -1));
+
+        pnlAdminSistem_Content1.setBackground(new java.awt.Color(0, 23, 23));
+        pnlAdminSistem_Content1.setName(""); // NOI18N
+
+        jScrollPane10.setBackground(new java.awt.Color(170, 193, 193));
+        jScrollPane10.setBorder(null);
+        jScrollPane10.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane10.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        tblBahanProduksi.setBackground(new java.awt.Color(170, 193, 193));
+        tblBahanProduksi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblBahanProduksi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblBahanProduksi.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblBahanProduksi.setAutoscrolls(false);
+        tblBahanProduksi.setFillsViewportHeight(true);
+        tblBahanProduksi.setGridColor(new java.awt.Color(255, 255, 255));
+        tblBahanProduksi.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblBahanProduksi.setName("tblKelompokTani"); // NOI18N
+        tblBahanProduksi.setOpaque(false);
+        tblBahanProduksi.setRowHeight(24);
+        tblBahanProduksi.setShowHorizontalLines(false);
+        tblBahanProduksi.setShowVerticalLines(false);
+        tblBahanProduksi.getTableHeader().setResizingAllowed(false);
+        tblBahanProduksi.getTableHeader().setReorderingAllowed(false);
+        jScrollPane10.setViewportView(tblBahanProduksi);
+
+        jPanel10.setBackground(new java.awt.Color(85, 131, 131));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel16.setText("Data Bahan Produksi");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(311, 311, 311)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        pnlAdminSistem_BahanProduksi_Delete.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_BahanProduksi_Delete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_BahanProduksi_Delete.setName("pnlAdminSistem_BahanProduksi_Delete"); // NOI18N
+        pnlAdminSistem_BahanProduksi_Delete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back15.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Trash_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back15.setIconTextGap(10);
+        lblFrmInputRDKK_Back15.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_BahanProduksi_Delete.add(lblFrmInputRDKK_Back15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlAdminSistem_BahanProduksi_Add.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_BahanProduksi_Add.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_BahanProduksi_Add.setName("pnlAdminSistem_BahanProduksi_Add"); // NOI18N
+        pnlAdminSistem_BahanProduksi_Add.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back16.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Plus_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back16.setIconTextGap(10);
+        lblFrmInputRDKK_Back16.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_BahanProduksi_Add.add(lblFrmInputRDKK_Back16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlAdminSistem_BahanProduksi_Edit.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_BahanProduksi_Edit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_BahanProduksi_Edit.setName("pnlAdminSistem_BahanProduksi_Edit"); // NOI18N
+        pnlAdminSistem_BahanProduksi_Edit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back17.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Pencil_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back17.setIconTextGap(10);
+        lblFrmInputRDKK_Back17.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_BahanProduksi_Edit.add(lblFrmInputRDKK_Back17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlFrmUserData1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlFrmUserData1.setOpaque(false);
+        pnlFrmUserData1.setPreferredSize(new java.awt.Dimension(500, 340));
+
+        lblInputNamaKelTani18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani18.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani18.setText("Nama Bahan");
+
+        jtfFrmBahanProduksi_NamaBahan.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfFrmBahanProduksi_NamaBahan.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmBahanProduksi_NamaBahan.setBorder(null);
+        jtfFrmBahanProduksi_NamaBahan.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfFrmBahanProduksi_NamaBahan.setEnabled(false);
+        jtfFrmBahanProduksi_NamaBahan.setOpaque(false);
+
+        pnlUnderUserData4.setPreferredSize(new java.awt.Dimension(290, 1));
+
+        javax.swing.GroupLayout pnlUnderUserData4Layout = new javax.swing.GroupLayout(pnlUnderUserData4);
+        pnlUnderUserData4.setLayout(pnlUnderUserData4Layout);
+        pnlUnderUserData4Layout.setHorizontalGroup(
+            pnlUnderUserData4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+        pnlUnderUserData4Layout.setVerticalGroup(
+            pnlUnderUserData4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        lblInputNamaKelTani20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani20.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani20.setText("Dosis per hektar");
+
+        cbxFrmBahanProduksi_JenisBahan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxFrmBahanProduksi_JenisBahan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PUPUK", "HERBISIDA", "ZAT PEMACU KEMASAKAN", "NUTRISI TANAH" }));
+        cbxFrmBahanProduksi_JenisBahan.setSelectedIndex(-1);
+        cbxFrmBahanProduksi_JenisBahan.setEnabled(false);
+
+        lblInputNamaKelTani21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani21.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani21.setText("Jenis Bahan");
+
+        lblInputNamaKelTani22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani22.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani22.setText("Satuan");
+
+        cbxFrmBahanProduksi_Satuan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxFrmBahanProduksi_Satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KG", "LITER", "BUAH" }));
+        cbxFrmBahanProduksi_Satuan.setSelectedIndex(-1);
+        cbxFrmBahanProduksi_Satuan.setEnabled(false);
+        cbxFrmBahanProduksi_Satuan.setName("cbxUserData_Afdeling"); // NOI18N
+
+        pnlAdminSistem_BahanProduksi_Save.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_BahanProduksi_Save.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_BahanProduksi_Save.setName("pnlAdminSistem_BahanProduksi_Save"); // NOI18N
+        pnlAdminSistem_BahanProduksi_Save.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back18.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Save_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back18.setIconTextGap(10);
+        lblFrmInputRDKK_Back18.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_BahanProduksi_Save.add(lblFrmInputRDKK_Back18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        pnlAdminSistem_BahanProduksi_Cancel.setBackground(new Color(255,255,255,0));
+        pnlAdminSistem_BahanProduksi_Cancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlAdminSistem_BahanProduksi_Cancel.setName("pnlAdminSistem_BahanProduksi_Cancel"); // NOI18N
+        pnlAdminSistem_BahanProduksi_Cancel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back19.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Cancel_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back19.setIconTextGap(10);
+        lblFrmInputRDKK_Back19.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlAdminSistem_BahanProduksi_Cancel.add(lblFrmInputRDKK_Back19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+
+        jtfFrmBahanProduksi_Dosis.setBorder(null);
+        jtfFrmBahanProduksi_Dosis.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmBahanProduksi_Dosis.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
+        jtfFrmBahanProduksi_Dosis.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfFrmBahanProduksi_Dosis.setEnabled(false);
+        jtfFrmBahanProduksi_Dosis.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfFrmBahanProduksi_Dosis.setOpaque(false);
+
+        pnlUnderUserData5.setPreferredSize(new java.awt.Dimension(290, 1));
+
+        javax.swing.GroupLayout pnlUnderUserData5Layout = new javax.swing.GroupLayout(pnlUnderUserData5);
+        pnlUnderUserData5.setLayout(pnlUnderUserData5Layout);
+        pnlUnderUserData5Layout.setHorizontalGroup(
+            pnlUnderUserData5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+        pnlUnderUserData5Layout.setVerticalGroup(
+            pnlUnderUserData5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlFrmUserData1Layout = new javax.swing.GroupLayout(pnlFrmUserData1);
+        pnlFrmUserData1.setLayout(pnlFrmUserData1Layout);
+        pnlFrmUserData1Layout.setHorizontalGroup(
+            pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFrmUserData1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserData1Layout.createSequentialGroup()
+                        .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblInputNamaKelTani21)
+                            .addComponent(lblInputNamaKelTani18)
+                            .addComponent(lblInputNamaKelTani20)
+                            .addComponent(lblInputNamaKelTani22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxFrmBahanProduksi_JenisBahan, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxFrmBahanProduksi_Satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfFrmBahanProduksi_NamaBahan, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlUnderUserData4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfFrmBahanProduksi_Dosis, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlUnderUserData5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserData1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pnlAdminSistem_BahanProduksi_Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlAdminSistem_BahanProduksi_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
+        );
+        pnlFrmUserData1Layout.setVerticalGroup(
+            pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFrmUserData1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxFrmBahanProduksi_JenisBahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInputNamaKelTani21))
+                .addGap(18, 18, 18)
+                .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFrmUserData1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(lblInputNamaKelTani18))
+                    .addComponent(jtfFrmBahanProduksi_NamaBahan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(pnlUnderUserData4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfFrmBahanProduksi_Dosis, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInputNamaKelTani20))
+                .addGap(1, 1, 1)
+                .addComponent(pnlUnderUserData5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxFrmBahanProduksi_Satuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInputNamaKelTani22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGroup(pnlFrmUserData1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlAdminSistem_BahanProduksi_Save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdminSistem_BahanProduksi_Cancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlAdminSistem_Content1Layout = new javax.swing.GroupLayout(pnlAdminSistem_Content1);
+        pnlAdminSistem_Content1.setLayout(pnlAdminSistem_Content1Layout);
+        pnlAdminSistem_Content1Layout.setHorizontalGroup(
+            pnlAdminSistem_Content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminSistem_Content1Layout.createSequentialGroup()
+                .addGroup(pnlAdminSistem_Content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlAdminSistem_Content1Layout.createSequentialGroup()
+                        .addComponent(pnlAdminSistem_BahanProduksi_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlAdminSistem_BahanProduksi_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlAdminSistem_BahanProduksi_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlFrmUserData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 866, Short.MAX_VALUE))
+        );
+        pnlAdminSistem_Content1Layout.setVerticalGroup(
+            pnlAdminSistem_Content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAdminSistem_Content1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAdminSistem_Content1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlAdminSistem_BahanProduksi_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdminSistem_BahanProduksi_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAdminSistem_BahanProduksi_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlFrmUserData1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlAdminSistem_BahanProduksi.add(pnlAdminSistem_Content1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1366, 630));
+
+        pnlContent.add(pnlAdminSistem_BahanProduksi, "crdPnlAdminSistem_BahanProduksi");
+
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
         pnlTengahLayout.setHorizontalGroup(
@@ -3104,6 +3471,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxDesa;
+    private javax.swing.JComboBox<String> cbxFrmBahanProduksi_JenisBahan;
+    private javax.swing.JComboBox<String> cbxFrmBahanProduksi_Satuan;
     private javax.swing.JComboBox<String> cbxFrmUserData_Afdeling;
     private javax.swing.JComboBox<String> cbxFrmUserData_Level;
     private javax.swing.JComboBox<String> cbxInputRDKKMasaTanam;
@@ -3118,6 +3487,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3127,6 +3497,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3136,6 +3507,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3149,6 +3521,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jftInputRDKKEasting;
     private javax.swing.JFormattedTextField jftInputRDKKLuas;
     private javax.swing.JFormattedTextField jftInputRDKKNorthing;
+    private javax.swing.JFormattedTextField jtfFrmBahanProduksi_Dosis;
+    private javax.swing.JTextField jtfFrmBahanProduksi_NamaBahan;
     private javax.swing.JTextField jtfFrmPupuk_Permintaan_Cari;
     private javax.swing.JTextField jtfFrmRDKKCari;
     private javax.swing.JTextField jtfFrmUserData_NamaLengkap;
@@ -3164,6 +3538,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblBackground1;
     private javax.swing.JLabel lblDataKelTani;
     private javax.swing.JLabel lblFrmAdminSistem_Kembali;
+    private javax.swing.JLabel lblFrmAdminSistem_Kembali1;
     private javax.swing.JLabel lblFrmInputRDKK_Back;
     private javax.swing.JLabel lblFrmInputRDKK_Back1;
     private javax.swing.JLabel lblFrmInputRDKK_Back10;
@@ -3171,6 +3546,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back12;
     private javax.swing.JLabel lblFrmInputRDKK_Back13;
     private javax.swing.JLabel lblFrmInputRDKK_Back14;
+    private javax.swing.JLabel lblFrmInputRDKK_Back15;
+    private javax.swing.JLabel lblFrmInputRDKK_Back16;
+    private javax.swing.JLabel lblFrmInputRDKK_Back17;
+    private javax.swing.JLabel lblFrmInputRDKK_Back18;
+    private javax.swing.JLabel lblFrmInputRDKK_Back19;
     private javax.swing.JLabel lblFrmInputRDKK_Back2;
     private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
@@ -3188,6 +3568,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmRDKK_Title1;
     private javax.swing.JLabel lblFrmRDKK_Title2;
     private javax.swing.JLabel lblFrmRDKK_Title3;
+    private javax.swing.JLabel lblFrmRDKK_Title4;
     private javax.swing.JLabel lblInputNamaKelTani;
     private javax.swing.JLabel lblInputNamaKelTani1;
     private javax.swing.JLabel lblInputNamaKelTani10;
@@ -3198,7 +3579,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblInputNamaKelTani15;
     private javax.swing.JLabel lblInputNamaKelTani16;
     private javax.swing.JLabel lblInputNamaKelTani17;
+    private javax.swing.JLabel lblInputNamaKelTani18;
     private javax.swing.JLabel lblInputNamaKelTani2;
+    private javax.swing.JLabel lblInputNamaKelTani20;
+    private javax.swing.JLabel lblInputNamaKelTani21;
+    private javax.swing.JLabel lblInputNamaKelTani22;
     private javax.swing.JLabel lblInputNamaKelTani3;
     private javax.swing.JLabel lblInputNamaKelTani4;
     private javax.swing.JLabel lblInputNamaKelTani5;
@@ -3233,8 +3618,16 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLayeredPane lypMenuLogin;
     private javax.swing.JLayeredPane lypMenuUtama;
     private javax.swing.JPanel pnlAdminSistem_AddUser;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi_Add;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi_Cancel;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi_Delete;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi_Edit;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi_Kembali;
+    private javax.swing.JPanel pnlAdminSistem_BahanProduksi_Save;
     private javax.swing.JPanel pnlAdminSistem_Cancel;
     private javax.swing.JPanel pnlAdminSistem_Content;
+    private javax.swing.JPanel pnlAdminSistem_Content1;
     private javax.swing.JPanel pnlAdminSistem_DeleteUser;
     private javax.swing.JPanel pnlAdminSistem_EditUser;
     private javax.swing.JPanel pnlAdminSistem_Kembali;
@@ -3262,6 +3655,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder2;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder3;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder4;
+    private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder5;
     private javax.swing.JPanel pnlFrmInputRDKK_SimpanData;
     private javax.swing.JPanel pnlFrmInputRDKK_TambahPetani;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan;
@@ -3281,7 +3675,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmRDKK_Title1;
     private javax.swing.JPanel pnlFrmRDKK_Title2;
     private javax.swing.JPanel pnlFrmRDKK_Title3;
+    private javax.swing.JPanel pnlFrmRDKK_Title4;
     private javax.swing.JPanel pnlFrmUserData;
+    private javax.swing.JPanel pnlFrmUserData1;
     private javax.swing.JPanel pnlFrmValidasiRDKK;
     private javax.swing.JPanel pnlFrmValidasiRDKK_Back;
     private javax.swing.JPanel pnlFrmValidasiRDKK_CetakDraft;
@@ -3310,6 +3706,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSeparator6;
     private javax.swing.JPanel pnlSeparator7;
     private javax.swing.JPanel pnlSubMenuAdmin;
+    private javax.swing.JPanel pnlSubMenuAdmin_BahanProduksi;
     private javax.swing.JPanel pnlSubMenuAdmin_UserData;
     private javax.swing.JPanel pnlSubMenuHolder;
     private javax.swing.JPanel pnlSubMenuPerawatan;
@@ -3321,6 +3718,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUnderUserData1;
     private javax.swing.JPanel pnlUnderUserData2;
     private javax.swing.JPanel pnlUnderUserData3;
+    private javax.swing.JPanel pnlUnderUserData4;
+    private javax.swing.JPanel pnlUnderUserData5;
     private javax.swing.JPanel pnlUnderline1;
     private javax.swing.JPanel pnlUnderline2;
     private javax.swing.JPanel pnlUnderline3;
@@ -3331,13 +3730,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlVerifikasiRdkk;
     private javax.swing.JPanel pnlWsLKP1;
     private javax.swing.JPanel pnlWsLKP2;
-    private javax.swing.JPanel pnlWsLKP3;
     private javax.swing.JPanel pnlWsRDKK;
     private javax.swing.JPanel pnlWsRDKK1;
     private javax.swing.JPanel pnlWsSeparator1;
     private javax.swing.JPanel pnlWsSeparator2;
     private javax.swing.JPanel pnlWsSeparator3;
     private javax.swing.JPanel pnlWsSeparator4;
+    private javax.swing.JTable tblBahanProduksi;
     private javax.swing.JTable tblBuffer_Pupuk_Permintaan;
     private javax.swing.JTable tblInputPetani;
     private javax.swing.JTable tblJenisPupuk_Pupuk_Permintaan;
@@ -3559,5 +3958,45 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JPanel getPnlAdminSistem_Cancel(){
         return pnlAdminSistem_Cancel;
+    }
+    
+    public JTable getTblBahanProduksi(){
+        return tblBahanProduksi;
+    }
+    
+    public JTextField getJtfFrmBahanProduksi_NamaBahan(){
+        return jtfFrmBahanProduksi_NamaBahan;
+    }
+    
+    public JComboBox getCbxFrmBahanProduksi_JenisBahan(){
+        return cbxFrmBahanProduksi_JenisBahan;
+    }
+    
+    public JTextField getJtfFrmBahanProduksi_Dosis(){
+        return jtfFrmBahanProduksi_Dosis;
+    }
+    
+    public JComboBox getCbxFrmBahanProduksi_Satuan(){
+        return cbxFrmBahanProduksi_Satuan;
+    }
+    
+    public JPanel getPnlAdminSistem_BahanProduksi_Save(){
+        return pnlAdminSistem_BahanProduksi_Save;
+    }
+    
+    public JPanel getPnlAdminSistem_BahanProduksi_Cancel(){
+        return pnlAdminSistem_BahanProduksi_Cancel;
+    }
+    
+    public JPanel getPnlAdminSistem_BahanProduksi_Add(){
+        return pnlAdminSistem_BahanProduksi_Add;
+    }
+    
+    public JPanel getPnlAdminSistem_BahanProduksi_Edit(){
+        return pnlAdminSistem_BahanProduksi_Edit;
+    }
+    
+    public JPanel getPnlAdminSistem_BahanProduksi_Delete(){
+        return pnlAdminSistem_BahanProduksi_Delete;
     }
 }

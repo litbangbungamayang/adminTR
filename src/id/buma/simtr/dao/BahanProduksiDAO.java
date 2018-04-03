@@ -20,4 +20,14 @@ public interface BahanProduksiDAO {
 
     public BahanProduksi getBahanProduksiByIdBahan(int idBahan);
     
+    public List<BahanProduksi> getAllBahanProduksi();
+    
+    public boolean insertNewBahan(BahanProduksi bp);
+    
+    public boolean updateBahan(BahanProduksi bp);
+    
+    public boolean deleteBahan(int idBahan);
+    
+    public boolean cekBahanProduksiDigunakan(int idBahan);
+    
 }

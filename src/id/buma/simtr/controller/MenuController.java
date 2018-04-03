@@ -43,6 +43,7 @@ public class MenuController implements MouseListener{
         RDKKController rc = new RDKKController(mw);
         PupukController pc = new PupukController(mw);
         UserController uc = new UserController(mw);
+        BahanProduksiController bpc = new BahanProduksiController(mw);
         mw.repaint();
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
@@ -177,28 +178,55 @@ public class MenuController implements MouseListener{
                     uc.prepareTableUser(mw.getTblUserData());
                     cc.populateComboBox(mw.getCbxFrmUserData_Afdeling(), uc.namaAfdelingList());
                     break;
-                case "pnlAdminSistem_Kembali":
-                    pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                    case "pnlAdminSistem_Kembali":
+                        pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                        break;
+                    case "pnlAdminSistem_EditUser":
+                        if (mw.getTblUserData().getSelectedRowCount() == 1){
+                            uc.setMenuButton("edit");
+                        }
+                        break;
+                    case "pnlAdminSistem_DeleteUser":
+                        if (mw.getTblUserData().getSelectedRowCount() == 1){
+                            uc.setMenuButton("delete");
+                        }
+                        break;
+                    case "pnlAdminSistem_AddUser":
+                        uc.setMenuButton("add");
+                        break;
+                    case "pnlAdminSistem_Cancel":
+                        uc.setMenuButton("cancel");
+                        break;
+                    case "pnlAdminSistem_Save":
+                        uc.saveUpdateData();
+                        break;
+                case "pnlSubMenuAdmin_BahanProduksi":
+                    pageSwitcher(mw.getPnlContent(),"crdPnlAdminSistem_BahanProduksi");
+                    mw.getPnlSubMenuHolder().setVisible(false);
+                    bpc.prepareTblBahanProduksi(mw.getTblBahanProduksi());
+                    bpc.setFormStatus(false);
                     break;
-                case "pnlAdminSistem_EditUser":
-                    if (mw.getTblUserData().getSelectedRowCount() == 1){
-                        uc.setMenuButton("edit");
-                    }
-                    break;
-                case "pnlAdminSistem_DeleteUser":
-                    if (mw.getTblUserData().getSelectedRowCount() == 1){
-                        uc.setMenuButton("delete");
-                    }
-                    break;
-                case "pnlAdminSistem_AddUser":
-                    uc.setMenuButton("add");
-                    break;
-                case "pnlAdminSistem_Cancel":
-                    uc.setMenuButton("cancel");
-                    break;
-                case "pnlAdminSistem_Save":
-                    uc.saveUpdateData();
-                    break;
+                    case "pnlAdminSistem_BahanProduksi_Kembali":
+                        pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                        bpc.setMode("cancel");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Edit":
+                        if (mw.getTblBahanProduksi().getSelectedRowCount() > 0)
+                            bpc.setMode("edit");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Add":
+                        bpc.setMode("add");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Delete":
+                        if (mw.getTblBahanProduksi().getSelectedRowCount() > 0)
+                            bpc.setMode("delete");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Cancel":
+                        bpc.setMode("cancel");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Save":
+                        bpc.setMode("save");
+                        break;
             /******************/
             case "pnlMenuKeluar":
                 System.exit(0);
@@ -338,24 +366,45 @@ public class MenuController implements MouseListener{
                 case "pnlSubMenuAdmin_UserData":
                     standarMainMenuHover(menuPanel);
                     break;
-                case "pnlAdminSistem_Kembali":
-                    standarButtonHover(menuPanel);
+                    case "pnlAdminSistem_Kembali":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_AddUser":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_EditUser":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_DeleteUser":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Save":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Cancel":
+                        standarButtonHover(menuPanel);
+                        break;
+                case "pnlSubMenuAdmin_BahanProduksi":
+                    standarMainMenuHover(menuPanel);
                     break;
-                case "pnlAdminSistem_AddUser":
-                    standarButtonHover(menuPanel);
-                    break;
-                case "pnlAdminSistem_EditUser":
-                    standarButtonHover(menuPanel);
-                    break;
-                case "pnlAdminSistem_DeleteUser":
-                    standarButtonHover(menuPanel);
-                    break;
-                case "pnlAdminSistem_Save":
-                    standarButtonHover(menuPanel);
-                    break;
-                case "pnlAdminSistem_Cancel":
-                    standarButtonHover(menuPanel);
-                    break;
+                    case "pnlAdminSistem_BahanProduksi_Kembali":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Add":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Edit":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Delete":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Save":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Cancel":
+                        standarButtonHover(menuPanel);
+                        break;
             case "pnlMenuKeluar":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -459,24 +508,45 @@ public class MenuController implements MouseListener{
                 case "pnlSubMenuAdmin_UserData":
                     standarMainMenuDisplayed(menuPanel);
                     break;
-                case "pnlAdminSistem_Kembali":
-                    standarButtonDisplayed(menuPanel);
+                    case "pnlAdminSistem_Kembali":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_AddUser":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_EditUser":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_DeleteUser":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Save":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Cancel":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                case "pnlSubMenuAdmin_BahanProduksi":
+                    standarMainMenuDisplayed(menuPanel);
                     break;
-                case "pnlAdminSistem_AddUser":
-                    standarButtonDisplayed(menuPanel);
-                    break;
-                case "pnlAdminSistem_EditUser":
-                    standarButtonDisplayed(menuPanel);
-                    break;
-                case "pnlAdminSistem_DeleteUser":
-                    standarButtonDisplayed(menuPanel);
-                    break;
-                case "pnlAdminSistem_Save":
-                    standarButtonDisplayed(menuPanel);
-                    break;
-                case "pnlAdminSistem_Cancel":
-                    standarButtonDisplayed(menuPanel);
-                    break;
+                    case "pnlAdminSistem_BahanProduksi_Kembali":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Add":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Edit":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Delete":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Save":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_Cancel":
+                        standarButtonDisplayed(menuPanel);
+                        break;
             /*************/
             case "pnlMenuKeluar":
                 standarMainMenuDisplayed(menuPanel);
