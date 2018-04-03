@@ -6,7 +6,6 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.database.DBConnection;
-import id.buma.simtr.database.DbConnectionManager;
 import id.buma.simtr.model.TransaksiPupuk;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -27,7 +26,7 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
     public boolean insertNewTransaksiPupuk(TransaksiPupuk tp) {
         Connection conn = new DBConnection().getConn();
         try {
-            String strSql = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?)";
+            String strSql = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?,?,?)";
             try ( /*
             1 - idpetani (varchar)
             2 - idbahan (int)
@@ -42,6 +41,8 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
                 cst.setFloat(4, tp.getKuantaTransaksi());
                 cst.setInt(5, tp.getIdUser());
                 cst.setTimestamp(6, tp.getTglPosting());
+                cst.setString(7, "D");
+                cst.setInt(8, tp.getTahunGiling());
                 cst.execute();
                 if (cst.getUpdateCount() == 1) return true;
             } finally {
@@ -81,6 +82,21 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
             } finally {
                 conn.close();
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean cekBarangMasuk(int idBahan) {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL CEK_BARANG_MASUK(?,?)";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setInt(1, idBahan);
+            cst.registerOutParameter(2, java.sql.Types.INTEGER);
+            cst.execute();
+            if (cst.getInt(2) == 1) return true;
         } catch (SQLException ex) {
             Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }

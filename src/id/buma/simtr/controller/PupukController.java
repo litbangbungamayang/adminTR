@@ -7,6 +7,7 @@ package id.buma.simtr.controller;
 
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
+import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.TransaksiPupukDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
 import id.buma.simtr.model.BufferTable_TransaksiPupuk;
@@ -19,6 +20,7 @@ import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
@@ -85,8 +87,11 @@ public class PupukController implements ActionListener{
                         java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());
                         String idPetani_Selected = selectedListPetani.get(i).getIdPetani();
                         int idBahan_Selected = selectedListPupuk.get(j).getIdBahan();
+                        SistemDAOSQL sisDao = new SistemDAOSQL();
+                        int tahunGiling = sisDao.getTahunGiling();
+                        boolean cekBarangMasuk = transPupukDao.cekBarangMasuk(idBahan_Selected);
                         boolean cekStatus = transPupukDao.cekDuplicateTransaksiPupuk(idPetani_Selected, idBahan_Selected);
-                        if (cekStatus){
+                        if (cekStatus && cekBarangMasuk){
                             float kuantaDb = selectedListPetani.get(i).getLuas()*selectedListPupuk.get(j).getDosisPerHa();
                             TransaksiPupuk tp = new TransaksiPupuk(
                                     0, 
@@ -95,23 +100,29 @@ public class PupukController implements ActionListener{
                                     tglTransaksi, 
                                     kuantaDb, 
                                     CommonController.user.getUserId(), 
-                                    postingTimestamp
+                                    postingTimestamp,
+                                    tahunGiling,
+                                    BigInteger.valueOf(0)
                             );
                             transPupuk.add(tp);
                         } else {
-                            cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk berikut : " + '\n' + "Nama petani : " + 
-                                selectedListPetani.get(i).getNamaPetani() + '\n' + "Bahan pupuk : " + selectedListPupuk.get(j).getNamaBahan());
+                            if (!cekStatus){
+                                cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk berikut : " + '\n' + "Nama petani : " + 
+                                    selectedListPetani.get(i).getNamaPetani() + '\n' + "Bahan pupuk : " + selectedListPupuk.get(j).getNamaBahan());
+                            }
+                            if (!cekBarangMasuk){
+                                cc.showErrorMsg("Error Transaksi Pupuk", "Belum ada transaksi barang masuk untuk : " + selectedListPupuk.get(j).getNamaBahan());
+                            }
                         }
-                        /*******************/
+                        /*******************/    
                         /* BUFFER UNTUK DITAMPILKAN DI TABEL */
                         float kuanta;
                         for (int k = 0; k < listSemuaPupuk.size(); k++){                       
-                            String idPetani = selectedListPetani.get(i).getIdPetani();
                             int idBahan_selected = selectedListPupuk.get(j).getIdBahan();
                             float dosisBahanSelected = selectedListPupuk.get(j).getDosisPerHa();
                             float luasPetaniSelected = selectedListPetani.get(i).getLuas();
                             int idBahan_existing = listSemuaPupuk.get(k).getIdBahan();
-                            if (idBahan_existing == idBahan_selected && cekStatus){
+                            if (idBahan_existing == idBahan_selected && cekStatus && cekBarangMasuk){
                                 kuanta = dosisBahanSelected*luasPetaniSelected;
                                 kuantaArray[k] = kuanta;
                             }

@@ -91,6 +91,13 @@ public class VersionController {
         + Penambahan modul manajemen bahan produksi (pupuk dan bahan kimia lain pendukung produksi)
         + Perubahan stored_procedure untuk system admin dan penanggungjawab
         */
+        version = "0.9.16";
+        /*
+        + Perubahan stored procedure dan struktur tabel transaksi pupuk. Ditambahkan kode transaksi dan nilai transaksi untuk mengakomodir
+            pupuk masuk ke gudang
+        + Perubahan stored procedure untuk CRUD kelompok tani
+        + Overhaul DAOSQL transaksi pupuk
+        */
         
         return version;
     }

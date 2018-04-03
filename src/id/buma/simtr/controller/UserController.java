@@ -24,6 +24,10 @@ import javax.swing.JTable;
  * @author Bayu Anandavi Muhardika
  * 
  */
+/*
+TODO :
+    - ketika menambahkan user baru, jika kewenangan sbg system admin atau penanggungjawab maka nggak perlu milih afdeling
+*/
 
 public class UserController {
     

@@ -5,6 +5,9 @@
  */
 package id.buma.simtr.model;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  *
  * @author Bayu Anandavi Muhardika
@@ -20,10 +23,12 @@ public class TransaksiPupuk {
     private float kuantaTransaksi;
     private int idUser;
     private java.sql.Timestamp tglPosting;
+    private int tahunGiling;
+    private BigInteger nilaiTransaksi;
     
     public TransaksiPupuk(int idTransaksi, String idPetani, int idBahan, 
             java.sql.Date tglTransaksi, float kuantaTransaksi, 
-            int idUser, java.sql.Timestamp tglPosting){
+            int idUser, java.sql.Timestamp tglPosting, int tahunGiling, BigInteger nilaiTransaksi){
         this.idTransaksi = idTransaksi;
         this.idPetani = idPetani;
         this.idBahan = idBahan;
@@ -31,6 +36,8 @@ public class TransaksiPupuk {
         this.kuantaTransaksi = kuantaTransaksi;
         this.idUser = idUser;
         this.tglPosting = tglPosting;
+        this.tahunGiling = tahunGiling;
+        this.nilaiTransaksi = nilaiTransaksi;
     }
 
     public int getIdTransaksi() {
@@ -87,6 +94,18 @@ public class TransaksiPupuk {
 
     public void setIdBahan(int idBahan) {
         this.idBahan = idBahan;
+    }
+
+    public int getTahunGiling() {
+        return tahunGiling;
+    }
+
+    public void setTahunGiling(int tahunGiling) {
+        this.tahunGiling = tahunGiling;
+    }
+
+    public void setNilaiTransaksi(BigInteger nilaiTransaksi) {
+        this.nilaiTransaksi = nilaiTransaksi;
     }
     
 }

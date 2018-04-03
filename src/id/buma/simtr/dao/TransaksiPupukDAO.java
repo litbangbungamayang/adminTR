@@ -19,4 +19,6 @@ public interface TransaksiPupukDAO {
     
     public boolean cekDuplicateTransaksiPupuk(String idPetani, int idBahan);
     
+    public boolean cekBarangMasuk(int idBahan);
+    
 }
