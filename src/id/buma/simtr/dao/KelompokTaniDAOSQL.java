@@ -46,7 +46,7 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
                 9 = No RDKK
                 10 = Tanggal RDKK
             ******/
-            String callSQL = "CALL INSERT_KELOMPOK_TANIH(?,?,?,?,?,?,?,?,?,?)";
+            String callSQL = "CALL INSERT_KELOMPOKTANIH(?,?,?,?,?,?,?,?,?,?)";
             try (CallableStatement cst = conn.prepareCall(callSQL)) {
                 cst.setString(1, kt.getIdKelompok());
                 cst.setString(2, kt.getNamaKelompok());

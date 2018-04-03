@@ -66,6 +66,7 @@ public class MenuController implements MouseListener{
                     pageSwitcher(mw.getPnlContent(), "crdFrmInputRDKK");
                     pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
                     changeMenuNav("Pendaftaran RDKK Baru");
+                    cc.populateComboBox(mw.getCbxFrmInputRDKK_Afdeling(), uc.namaAfdelingList());
                     rc.clearInputKoordinator();
                     break;
                     case "pnlFrmInputRDKK_Back":

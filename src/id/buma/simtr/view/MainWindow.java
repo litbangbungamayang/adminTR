@@ -293,6 +293,8 @@ public class MainWindow extends javax.swing.JFrame {
         cbxKategoriTanaman = new javax.swing.JComboBox<>();
         lblInputNamaKelTani5 = new javax.swing.JLabel();
         cbxInputRDKKMasaTanam = new javax.swing.JComboBox<>();
+        lblInputNamaKelTani19 = new javax.swing.JLabel();
+        cbxFrmInputRDKK_Afdeling = new javax.swing.JComboBox<>();
         pnlFrmInputRDKK_ContainerInputPetani = new javax.swing.JPanel();
         pnlBlank = new javax.swing.JPanel();
         pnlTblInputPetani = new javax.swing.JPanel();
@@ -1467,6 +1469,14 @@ public class MainWindow extends javax.swing.JFrame {
         cbxInputRDKKMasaTanam.setToolTipText("");
         cbxInputRDKKMasaTanam.setBorder(null);
 
+        lblInputNamaKelTani19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani19.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani19.setText("Afdeling");
+
+        cbxFrmInputRDKK_Afdeling.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxFrmInputRDKK_Afdeling.setBorder(null);
+        cbxFrmInputRDKK_Afdeling.setEnabled(false);
+
         javax.swing.GroupLayout pnlFrmInputRDKK_ContentLayout = new javax.swing.GroupLayout(pnlFrmInputRDKK_Content);
         pnlFrmInputRDKK_Content.setLayout(pnlFrmInputRDKK_ContentLayout);
         pnlFrmInputRDKK_ContentLayout.setHorizontalGroup(
@@ -1490,12 +1500,12 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(pnlUnderline2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
-                        .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
+                        .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                 .addComponent(lblInputNamaKelTani2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(cbxKecamatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
+                            .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                 .addComponent(lblInputNamaKelTani3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1504,7 +1514,7 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(pnlFrmInputRDKK_BatalKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cbxDesa, 0, 296, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
+                            .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblInputNamaKelTani8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblInputNamaKelTani5))
@@ -1513,7 +1523,11 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(cbxKategoriTanaman, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
                                         .addComponent(cbxInputRDKKMasaTanam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(pnlFrmInputRDKK_ContentLayout.createSequentialGroup()
+                                .addComponent(lblInputNamaKelTani19, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxFrmInputRDKK_Afdeling, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlFrmInputRDKK_ContentLayout.setVerticalGroup(
@@ -1552,10 +1566,14 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(lblInputNamaKelTani3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxDesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInputNamaKelTani19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFrmInputRDKK_Afdeling, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(pnlFrmInputRDKK_ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlFrmInputRDKK_BatalKoord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlFrmInputRDKK_LanjutKoord, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         pnlFrmInputRDKK.add(pnlFrmInputRDKK_Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 470, 630));
@@ -3474,6 +3492,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxDesa;
     private javax.swing.JComboBox<String> cbxFrmBahanProduksi_JenisBahan;
     private javax.swing.JComboBox<String> cbxFrmBahanProduksi_Satuan;
+    private javax.swing.JComboBox<String> cbxFrmInputRDKK_Afdeling;
     private javax.swing.JComboBox<String> cbxFrmUserData_Afdeling;
     private javax.swing.JComboBox<String> cbxFrmUserData_Level;
     private javax.swing.JComboBox<String> cbxInputRDKKMasaTanam;
@@ -3581,6 +3600,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblInputNamaKelTani16;
     private javax.swing.JLabel lblInputNamaKelTani17;
     private javax.swing.JLabel lblInputNamaKelTani18;
+    private javax.swing.JLabel lblInputNamaKelTani19;
     private javax.swing.JLabel lblInputNamaKelTani2;
     private javax.swing.JLabel lblInputNamaKelTani20;
     private javax.swing.JLabel lblInputNamaKelTani21;
@@ -4000,4 +4020,9 @@ public class MainWindow extends javax.swing.JFrame {
     public JPanel getPnlAdminSistem_BahanProduksi_Delete(){
         return pnlAdminSistem_BahanProduksi_Delete;
     }
+    
+    public JComboBox getCbxFrmInputRDKK_Afdeling(){
+        return cbxFrmInputRDKK_Afdeling;
+    }
+    
 }

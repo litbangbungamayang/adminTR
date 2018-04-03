@@ -158,8 +158,14 @@ public class CommonController {
     //*************************************************************************//
     
     public void kelTaniAutoFilter(JTable tbl, String keyword){
+        String idAfd;
+        if (CommonController.user.getPrivLevel() == 1 || CommonController.user.getPrivLevel() == 2){
+            idAfd = "";
+        } else {
+            idAfd = CommonController.user.getIdAfd();
+        }
         List<KelompokTani> lkt = kelompokTaniDao.getAllKelompokTaniByMultipleField(keyword, 
-                sistemDao.getTahunGiling(), user.getIdAfd());
+                sistemDao.getTahunGiling(), idAfd);
         KelompokTaniTableModel kttm = new KelompokTaniTableModel(lkt);
         tbl.setModel(kttm);
     }

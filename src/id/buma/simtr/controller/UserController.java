@@ -86,6 +86,8 @@ public class UserController {
                 enablePanelButton(mw.getPnlAdminSistem_EditUser());
                 disablePanelButton(mw.getPnlAdminSistem_Cancel());
                 disablePanelButton(mw.getPnlAdminSistem_Save());
+                mw.getJtfFrmUserData_Username().setText("");
+                mw.getJtfFrmUserData_Password().setText("");
                 mw.getTblUserData().setEnabled(true);
                 prepareTableUser(mw.getTblUserData());
                 setStatusForm(false);
@@ -101,6 +103,7 @@ public class UserController {
                     if (JOptionPane.showConfirmDialog(null, "Anda akan menghapus akun pengguna " + usr.getNamaLengkap(), "Konfirmasi Hapus Akun Pengguna", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                         if (userDao.deleteUserData(usr)) cc.showInfoMsg("Manajemen Pengguna", "Akun telah berhasil dihapus!");
                         prepareTableUser(mw.getTblUserData());
+                        setStatusForm(false);
                     }
                 }
                 break;

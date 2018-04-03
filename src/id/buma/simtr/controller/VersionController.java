@@ -86,6 +86,11 @@ public class VersionController {
         /*
         + Perubahan mode tampilan database pada form kelompok tani, apabila system admin dan penanggungjawab maka tidak dibatasi afdeling
         */
+        version = "0.9.15";
+        /*
+        + Penambahan modul manajemen bahan produksi (pupuk dan bahan kimia lain pendukung produksi)
+        + Perubahan stored_procedure untuk system admin dan penanggungjawab
+        */
         
         return version;
     }

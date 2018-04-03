@@ -1909,8 +1909,8 @@
                                       <EmptySpace pref="14" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
                                               <Component id="lblInputNamaKelTani2" min="-2" pref="130" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="cbxKecamatan" max="32767" attributes="0"/>
@@ -1940,6 +1940,11 @@
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblInputNamaKelTani19" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cbxFrmInputRDKK_Afdeling" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1994,11 +1999,16 @@
                                   <Component id="cbxDesa" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblInputNamaKelTani19" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Component id="cbxFrmInputRDKK_Afdeling" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="pnlFrmInputRDKK_BatalKoord" max="32767" attributes="0"/>
                                   <Component id="pnlFrmInputRDKK_LanjutKoord" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="303" max="32767" attributes="0"/>
+                              <EmptySpace pref="224" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2309,6 +2319,34 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblInputNamaKelTani19">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Afdeling"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbxFrmInputRDKK_Afdeling">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

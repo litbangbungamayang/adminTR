@@ -150,6 +150,11 @@ public class RDKKController {
         mw.getCbxKec().setEnabled(status);
         mw.getCbxDesa().setEnabled(status);
         mw.getCbxInputRDKKMasaTanam().setEnabled(status);
+        if (CommonController.user.getPrivLevel() == 3){
+            mw.getCbxFrmInputRDKK_Afdeling().setEnabled(false);
+        } else {
+            mw.getCbxFrmInputRDKK_Afdeling().setEnabled(status);
+        }
     }
     
     public boolean validasiInputPetani(){
@@ -230,6 +235,12 @@ public class RDKKController {
         mw.getCbxKategoriTanaman().setSelectedIndex(-1);
         mw.getCbxKec().setSelectedIndex(0);
         mw.getCbxDesa().setSelectedItem(null);
+        if (CommonController.user.getPrivLevel() == 2 || CommonController.user.getPrivLevel() == 1){           
+            mw.getCbxFrmInputRDKK_Afdeling().setEnabled(true);
+        } else {
+            mw.getCbxFrmInputRDKK_Afdeling().setSelectedItem(CommonController.user.getIdAfd());
+            mw.getCbxFrmInputRDKK_Afdeling().setEnabled(false);
+        }
         statusIsianKoord(true);
     }
     
@@ -264,7 +275,13 @@ public class RDKKController {
             int idDesa = arrayDesa.get(selectedDesa).getIdDesa();
             int tahunGiling = sistDao.getTahunGiling();
             int jmlPetani = arrayPetani.size();
-            String afd = cc.user.getIdAfd();
+            String afd;
+            if (CommonController.user.getPrivLevel() == 2 || CommonController.user.getPrivLevel() == 1){
+                //afd = CommonController.user.getIdAfd();
+                afd = mw.getCbxFrmInputRDKK_Afdeling().getSelectedItem().toString();
+            } else {
+                afd = CommonController.user.getIdAfd();
+            }
             float jmlLuas = 0.00f;
             for (PetaniTebu petani : arrayPetani){
                 jmlLuas = jmlLuas + petani.getLuas();
