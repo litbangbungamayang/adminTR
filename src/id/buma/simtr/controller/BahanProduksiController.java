@@ -6,14 +6,23 @@
 package id.buma.simtr.controller;
 
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
+import id.buma.simtr.dao.SistemDAOSQL;
+import id.buma.simtr.dao.TransaksiPupukDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.TransaksiPupuk;
+import id.buma.simtr.view.BahanProduksiMasukRowRenderer;
+import id.buma.simtr.view.BahanProduksiMasukTableModel;
 import id.buma.simtr.view.BahanProduksiRowRenderer;
 import id.buma.simtr.view.BahanProduksiTableModel;
 import id.buma.simtr.view.MainWindow;
 import java.awt.event.MouseListener;
+import java.math.BigInteger;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -38,9 +47,6 @@ public class BahanProduksiController {
     }
     
     public void prepareTblBahanProduksi(JTable tbl){
-        BahanProduksiRowRenderer bprr = new BahanProduksiRowRenderer();
-        tbl.setDefaultRenderer(Object.class, bprr);
-        cc.setTableHeaderKelTani(tbl.getTableHeader());
         cc.setTableSelectionModel(tbl);
         BahanProduksiTableModel bptm = new BahanProduksiTableModel(bpDao.getAllBahanProduksi());
         tbl.setModel(bptm);
@@ -48,11 +54,27 @@ public class BahanProduksiController {
         tbl.getSelectionModel().addListSelectionListener(hs);
     }
     
+    public void prepareTblBahanProduksiMasuk(JTable tbl){
+        cc.setTableSelectionModel(tbl);
+        BahanProduksiTableModel bptm  = (BahanProduksiTableModel) mw.getTblBahanProduksi().getModel();
+        List<BahanProduksi> lsBp = bptm.getContentList();
+        int idBahan = lsBp.get(mw.getTblBahanProduksi().getSelectedRow()).getIdBahan();
+        TransaksiPupukDAOSQL transDao = new TransaksiPupukDAOSQL();
+        BahanProduksiMasukTableModel bpmtm = new BahanProduksiMasukTableModel(transDao.cekStokBahanProduksi(idBahan));
+        tbl.setModel(bpmtm);
+    }
+    
+    public void prepareTableHeader(JTable tbl, TableCellRenderer tcr){
+        tbl.setDefaultRenderer(Object.class, tcr);
+        cc.setTableHeaderKelTani(tbl.getTableHeader());
+    }
+    
     public void loadDetailData(){
         if (bpLokal != null){
             mw.getCbxFrmBahanProduksi_JenisBahan().setSelectedItem(bpLokal.getJenisBahan());
             mw.getJtfFrmBahanProduksi_NamaBahan().setText(bpLokal.getNamaBahan());
             mw.getCbxFrmBahanProduksi_Satuan().setSelectedItem(bpLokal.getSatuan());
+            mw.getCbxFrmBahanProduksi_SatuanMasuk().setSelectedItem(bpLokal.getSatuan());
             mw.getJtfFrmBahanProduksi_Dosis().setText(String.valueOf(bpLokal.getDosisPerHa()));
         }
     }
@@ -72,15 +94,33 @@ public class BahanProduksiController {
         }
     }
     
+    public void setFormBahanMasukStatus(boolean formMasukStatus){
+        mw.getJtfFrmBahanProduksi_KuantaMasuk().setEnabled(formMasukStatus);
+        mw.getJtfFrmBahanProduksi_NilaiMasuk().setEnabled(formMasukStatus);
+        if (formMasukStatus){
+            enablePanel(mw.getPnlAdminSistem_BahanProduksi_CancelMasuk());
+            enablePanel(mw.getPnlAdminSistem_BahanProduksi_SaveMasuk());
+        } else {
+            resetInputBahanMasuk();
+            mw.getCbxFrmBahanProduksi_SatuanMasuk().setSelectedIndex(-1);
+            mw.getJtfFrmBahanProduksi_KuantaMasuk().setText("");
+            mw.getJtfFrmBahanProduksi_NilaiMasuk().setText("");
+            disablePanel(mw.getPnlAdminSistem_BahanProduksi_CancelMasuk());
+            disablePanel(mw.getPnlAdminSistem_BahanProduksi_SaveMasuk());
+        }
+    }
+    
     public void setButtonStatus(boolean buttonStatus){
         if (!buttonStatus){
             disablePanel(mw.getPnlAdminSistem_BahanProduksi_Add());
             disablePanel(mw.getPnlAdminSistem_BahanProduksi_Edit());
             disablePanel(mw.getPnlAdminSistem_BahanProduksi_Delete());
+            disablePanel(mw.getPnlAdminSistem_BahanProduksi_AddMasuk());
         } else {
             enablePanel(mw.getPnlAdminSistem_BahanProduksi_Add());
             enablePanel(mw.getPnlAdminSistem_BahanProduksi_Edit());
             enablePanel(mw.getPnlAdminSistem_BahanProduksi_Delete());
+            enablePanel(mw.getPnlAdminSistem_BahanProduksi_AddMasuk());
         }
     }
     
@@ -103,11 +143,21 @@ public class BahanProduksiController {
         mw.getCbxFrmBahanProduksi_Satuan().setSelectedIndex(-1);
     }
     
+    public void resetInputBahanMasuk(){
+        mw.getJtfFrmBahanProduksi_KuantaMasuk().setText("");
+        mw.getJtfFrmBahanProduksi_NilaiMasuk().setText("");
+    }
+    
     public boolean cekInputForm(){
         return mw.getCbxFrmBahanProduksi_JenisBahan().getSelectedIndex() > -1 &&
                 !mw.getJtfFrmBahanProduksi_NamaBahan().getText().equals("") &&
                 !mw.getJtfFrmBahanProduksi_Dosis().getText().equals("") &&
                 mw.getCbxFrmBahanProduksi_Satuan().getSelectedIndex() > -1 ;
+    }
+    
+    public boolean cekInputBahanMasukForm(){
+        return !mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().equals("") &&
+                !mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().equals("");
     }
     
     public void setMode(String inputStatusMenu){
@@ -121,6 +171,7 @@ public class BahanProduksiController {
                 break;
             case "cancel":
                 setFormStatus(false);
+                setFormBahanMasukStatus(false);
                 setButtonStatus(true);
                 mw.getTblBahanProduksi().setEnabled(true);
                 mw.getTblBahanProduksi().clearSelection();
@@ -220,6 +271,48 @@ public class BahanProduksiController {
                 
                 break;
         }
+    }
+    
+    public void saveBahanMasuk(){
+        if (cekInputBahanMasukForm()){
+            int idBahan;
+            int idUser;
+            int tahunGiling;
+            SistemDAOSQL sisDao = new SistemDAOSQL();
+            tahunGiling = sisDao.getTahunGiling();
+            idUser = CommonController.user.getUserId();
+            BahanProduksiTableModel bptm = (BahanProduksiTableModel) mw.getTblBahanProduksi().getModel();
+            List<BahanProduksi> lsBp = bptm.getContentList();
+            idBahan = lsBp.get(mw.getTblBahanProduksi().getSelectedRow()).getIdBahan();
+            java.sql.Timestamp postingTimestamp = new java.sql.Timestamp(new java.util.Date().getTime());
+            java.sql.Date tglTransaksi = new java.sql.Date(new java.util.Date().getTime());
+            int kuantaMasuk = Integer.parseInt(mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().replaceAll(",", ""));
+            TransaksiPupuk tp = new TransaksiPupuk(
+                    0, 
+                    "NN", 
+                    idBahan, 
+                    tglTransaksi, 
+                    "K",
+                    Float.valueOf(kuantaMasuk), 
+                    idUser, 
+                    postingTimestamp, 
+                    tahunGiling, 
+                    new BigInteger(mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().replaceAll(",", ""))
+            );
+            TransaksiPupukDAOSQL transDao = new TransaksiPupukDAOSQL();
+            if (transDao.insertNewTransaksiPupuk(tp)){
+                setMode("cancel");
+                cc.showInfoMsg("Bahan Produksi", "Data berhasil ditambahkan!");
+            }
+        } else {
+            if (mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().equals("")) cc.showErrorMsg("Bahan Produksi", "Kuanta bahan masuk harus diisi!");
+            if (mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().equals("")) cc.showErrorMsg("Bahan Produksi", "Nilai bahan masuk harus diisi!");
+        }
+    }
+    
+    public void resetTable(JTable tbl){
+        DefaultTableModel dtm = new DefaultTableModel();
+        tbl.setModel(dtm);
     }
     
 }

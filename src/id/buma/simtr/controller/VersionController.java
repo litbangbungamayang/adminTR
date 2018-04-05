@@ -98,6 +98,10 @@ public class VersionController {
         + Perubahan stored procedure untuk CRUD kelompok tani
         + Overhaul DAOSQL transaksi pupuk
         */
+        version = "0.9.17";
+        /*
+        + Penambahan modul monitoring bahan produksi untuk input barang masuk
+        */
         
         return version;
     }

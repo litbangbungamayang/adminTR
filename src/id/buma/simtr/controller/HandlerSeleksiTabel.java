@@ -82,7 +82,7 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         List<BahanProduksi> lstBp = bptm.getContentList();
                         bpc.setBahanProduksi(lstBp.get(tbl.getSelectedRow()));
                         bpc.loadDetailData();
-                    }
+                        bpc.prepareTblBahanProduksiMasuk(mw.getTblMonitorBahanMasuk());                    }
                     break;
             }
         }

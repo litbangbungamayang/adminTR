@@ -5,12 +5,17 @@
  */
 package id.buma.simtr.controller;
 
+import id.buma.simtr.dao.TransaksiPupukDAOSQL;
+import id.buma.simtr.model.TransaksiPupuk;
+import id.buma.simtr.view.BahanProduksiMasukRowRenderer;
+import id.buma.simtr.view.BahanProduksiRowRenderer;
 import id.buma.simtr.view.MainWindow;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -206,6 +211,11 @@ public class MenuController implements MouseListener{
                     mw.getPnlSubMenuHolder().setVisible(false);
                     bpc.prepareTblBahanProduksi(mw.getTblBahanProduksi());
                     bpc.setFormStatus(false);
+                    bpc.setFormBahanMasukStatus(false);
+                    BahanProduksiMasukRowRenderer bpmrr = new BahanProduksiMasukRowRenderer();
+                    BahanProduksiRowRenderer bprr = new BahanProduksiRowRenderer();
+                    bpc.prepareTableHeader(mw.getTblBahanProduksi(),bprr);
+                    bpc.prepareTableHeader(mw.getTblMonitorBahanMasuk(),bpmrr);
                     break;
                     case "pnlAdminSistem_BahanProduksi_Kembali":
                         pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
@@ -227,6 +237,20 @@ public class MenuController implements MouseListener{
                         break;
                     case "pnlAdminSistem_BahanProduksi_Save":
                         bpc.setMode("save");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_CancelMasuk":
+                        bpc.setMode("cancel");
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_SaveMasuk":
+                        bpc.saveBahanMasuk();
+                        bpc.resetTable(mw.getTblMonitorBahanMasuk());
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_AddMasuk":
+                        if (mw.getTblBahanProduksi().getSelectedRowCount() == 1){ 
+                            bpc.setFormBahanMasukStatus(true);
+                            bpc.setButtonStatus(false);
+                            mw.getJtfFrmBahanProduksi_KuantaMasuk().requestFocus();
+                        }
                         break;
             /******************/
             case "pnlMenuKeluar":
@@ -406,6 +430,15 @@ public class MenuController implements MouseListener{
                     case "pnlAdminSistem_BahanProduksi_Cancel":
                         standarButtonHover(menuPanel);
                         break;
+                    case "pnlAdminSistem_BahanProduksi_SaveMasuk":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_CancelMasuk":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_AddMasuk":
+                        standarButtonHover(menuPanel);
+                        break;
             case "pnlMenuKeluar":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -546,6 +579,15 @@ public class MenuController implements MouseListener{
                         standarButtonDisplayed(menuPanel);
                         break;
                     case "pnlAdminSistem_BahanProduksi_Cancel":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_SaveMasuk":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_CancelMasuk":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_BahanProduksi_AddMasuk":
                         standarButtonDisplayed(menuPanel);
                         break;
             /*************/

@@ -6,6 +6,7 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.model.TransaksiPupuk;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,7 @@ public interface TransaksiPupukDAO {
     public boolean cekDuplicateTransaksiPupuk(String idPetani, int idBahan);
     
     public boolean cekBarangMasuk(int idBahan);
+    
+    public List<TransaksiPupuk> cekStokBahanProduksi(int idBahan);
     
 }
