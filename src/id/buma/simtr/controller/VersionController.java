@@ -102,6 +102,10 @@ public class VersionController {
         /*
         + Penambahan modul monitoring bahan produksi untuk input barang masuk
         */
+        version = "0.9.18";
+        /*
+        + Perbaikan UX untuk penambahan permintaan pupuk (ujicoba handler) setiap ganti nama kelompok, maka isian buffer akan di reset jika belum di submit
+        */
         
         return version;
     }

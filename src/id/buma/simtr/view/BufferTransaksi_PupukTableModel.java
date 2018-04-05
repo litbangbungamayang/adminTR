@@ -40,7 +40,13 @@ public class BufferTransaksi_PupukTableModel extends AbstractTableModel {
     
     @Override
     public int getRowCount() {
-        return lbt.size();
+        int rowCount = 0;
+        if (lbt.size() > 0){
+            rowCount = lbt.size();
+        } else {
+            rowCount = 1;
+        }
+        return rowCount;
     }
 
     @Override
@@ -50,22 +56,27 @@ public class BufferTransaksi_PupukTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.UK);
-        dfs.setDecimalSeparator(',');
-        dfs.setGroupingSeparator('.');
-        DecimalFormat df = new DecimalFormat("###,##0.00", dfs);
-        if (columnIndex == 0){
-            return rowIndex + 1;
-        } else {
-            if (columnIndex == 1){
-                return lbt.get(rowIndex).getNamaPetani();
+        Object cellValue = "";
+        if (lbt.size() > 0){
+            DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.UK);
+            dfs.setDecimalSeparator(',');
+            dfs.setGroupingSeparator('.');
+            DecimalFormat df = new DecimalFormat("###,##0.00", dfs);
+            if (columnIndex == 0){
+                cellValue =  rowIndex + 1;
             } else {
-                if (columnIndex > 1){
-                    return df.format(lbt.get(rowIndex).getKuanta()[columnIndex-2]);
+                if (columnIndex == 1){
+                    cellValue = lbt.get(rowIndex).getNamaPetani();
+                } else {
+                    if (columnIndex > 1){
+                        cellValue =  df.format(lbt.get(rowIndex).getKuanta()[columnIndex-2]);
+                    }
                 }
             }
+        } else {
+            cellValue = "";
         }
-        return "N/A";
+        return cellValue;
     }
     
     @Override

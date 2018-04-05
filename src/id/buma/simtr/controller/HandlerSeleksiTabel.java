@@ -6,12 +6,16 @@
 package id.buma.simtr.controller;
 
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.BufferTable_TransaksiPupuk;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.User;
 import id.buma.simtr.view.BahanProduksiTableModel;
+import id.buma.simtr.view.BufferTransaksi_PupukRowRenderer;
+import id.buma.simtr.view.BufferTransaksi_PupukTableModel;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.UserDataTableModel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -65,6 +69,13 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         mw.getTblPupukPetani().setRowSelectionAllowed(true);
                         if (mw.getJcbFrmPupuk_PilihSemuaPetani().isSelected()) 
                             pc.selectAllRows(mw.getTblPupukPetani());
+                        //----- untuk reset Buffer Table -----//
+                        cc.setTableHeaderKelTani(mw.getTblBuffer_Pupuk_Permintaan().getTableHeader());
+                        BufferTransaksi_PupukRowRenderer bufferRR = new BufferTransaksi_PupukRowRenderer();
+                        mw.getTblBuffer_Pupuk_Permintaan().setDefaultRenderer(Object.class, bufferRR);
+                        List<BufferTable_TransaksiPupuk> lbt = new ArrayList<>();
+                        BufferTransaksi_PupukTableModel btptm = new BufferTransaksi_PupukTableModel(lbt);
+                        mw.getTblBuffer_Pupuk_Permintaan().setModel(btptm);
                     }
                     break;
                 case "UserData-FormUserData":

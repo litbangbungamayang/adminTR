@@ -5,8 +5,6 @@
  */
 package id.buma.simtr.controller;
 
-import id.buma.simtr.dao.TransaksiPupukDAOSQL;
-import id.buma.simtr.model.TransaksiPupuk;
 import id.buma.simtr.view.BahanProduksiMasukRowRenderer;
 import id.buma.simtr.view.BahanProduksiRowRenderer;
 import id.buma.simtr.view.MainWindow;
@@ -15,7 +13,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
