@@ -106,6 +106,14 @@ public class VersionController {
         /*
         + Perbaikan UX untuk penambahan permintaan pupuk (ujicoba handler) setiap ganti nama kelompok, maka isian buffer akan di reset jika belum di submit
         */
+        version = "0.9.19";
+        /*
+        + Penambahan cetak permintaan pupuk
+        + Perbaikan stored procedure
+        + Penambahan table bukti transaksi bahan
+        + Perbaikan transaksi SQL untuk transaksi pupuk (menggunakan COMMIT)
+        + Perubahan UI pada modul pupuk
+        */
         
         return version;
     }

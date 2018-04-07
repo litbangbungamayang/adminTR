@@ -5,8 +5,10 @@
  */
 package id.buma.simtr.dao;
 
+import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.TransaksiPupuk;
 import java.util.List;
+import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
@@ -24,4 +26,13 @@ public interface TransaksiPupukDAO {
     
     public List<TransaksiPupuk> cekStokBahanProduksi(int idBahan);
     
+    public boolean cekTransaksiPupukByIdKelompokJenisBahan(String idKelompok, String jenisBahan);
+    
+    public JasperPrint cetakPermintaanPupuk(String idKelompok);
+    
+    public boolean insertBatchTransaksiPupuk(List<TransaksiPupuk> listTp);
+    
+    public boolean insertBuktiTransaksiPupuk(BuktiTransaksi bk);
+    
+    public String getNewNomorBuktiTransaksi(String idKelompok, int idBahan);
 }

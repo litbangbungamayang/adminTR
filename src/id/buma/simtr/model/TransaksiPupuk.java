@@ -25,10 +25,12 @@ public class TransaksiPupuk {
     private java.sql.Timestamp tglPosting;
     private int tahunGiling;
     private BigInteger nilaiTransaksi;
+    private String nomorBuktiTransaksi;
     
     public TransaksiPupuk(int idTransaksi, String idPetani, int idBahan, 
             java.sql.Date tglTransaksi, String kodeTransaksi, float kuantaTransaksi, 
-            int idUser, java.sql.Timestamp tglPosting, int tahunGiling, BigInteger nilaiTransaksi){
+            int idUser, java.sql.Timestamp tglPosting, int tahunGiling, BigInteger nilaiTransaksi,
+            String nomorBuktiTransaksi){
         this.idTransaksi = idTransaksi;
         this.idPetani = idPetani;
         this.idBahan = idBahan;
@@ -40,6 +42,7 @@ public class TransaksiPupuk {
         this.nilaiTransaksi = nilaiTransaksi;
         this.kodeTransaksi = kodeTransaksi;
         this.nilaiTransaksi = nilaiTransaksi;
+        this.nomorBuktiTransaksi = nomorBuktiTransaksi;
     }
 
     public int getIdTransaksi() {
@@ -120,6 +123,14 @@ public class TransaksiPupuk {
 
     public void setKodeTransaksi(String kodeTransaksi) {
         this.kodeTransaksi = kodeTransaksi;
+    }
+
+    public String getNomorBuktiTransaksi() {
+        return nomorBuktiTransaksi;
+    }
+
+    public void setNomorBuktiTransaksi(String nomorBuktiTransaksi) {
+        this.nomorBuktiTransaksi = nomorBuktiTransaksi;
     }
     
 }

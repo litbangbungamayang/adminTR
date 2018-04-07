@@ -10,9 +10,7 @@ import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.TransaksiPupukDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
 import id.buma.simtr.model.TransaksiPupuk;
-import id.buma.simtr.view.BahanProduksiMasukRowRenderer;
 import id.buma.simtr.view.BahanProduksiMasukTableModel;
-import id.buma.simtr.view.BahanProduksiRowRenderer;
 import id.buma.simtr.view.BahanProduksiTableModel;
 import id.buma.simtr.view.MainWindow;
 import java.awt.event.MouseListener;
@@ -297,7 +295,8 @@ public class BahanProduksiController {
                     idUser, 
                     postingTimestamp, 
                     tahunGiling, 
-                    new BigInteger(mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().replaceAll(",", ""))
+                    new BigInteger(mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().replaceAll(",", "")),
+                    ""
             );
             TransaksiPupukDAOSQL transDao = new TransaksiPupukDAOSQL();
             if (transDao.insertNewTransaksiPupuk(tp)){

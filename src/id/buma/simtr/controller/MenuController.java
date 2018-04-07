@@ -156,6 +156,9 @@ public class MenuController implements MouseListener{
                     case "pnlFrmPupuk_Permintaan_SimpanData":
                         pc.insertNewTransaksiPupuk();
                         break;
+                    case "pnlFrmPupuk_Permintaan_CetakPermintaan":
+                        pc.cetakPermintaanPupuk(mw.getTblPupukKelTani());
+                        break;
             //*********************************
             //********************
             case "pnlMenuTMA":
@@ -259,10 +262,22 @@ public class MenuController implements MouseListener{
                         pageSwitcher(mw.getPnlContent(), "crdFrmValidasiRDKK");
                         cc.setLastPage(null);
                         break;
+                    case "permintaan_pupuk":
+                        pageSwitcher(mw.getPnlContent(), "crdFrmPupuk_Permintaan");
+                        cc.setLastPage(null);
+                        break;
                 }
                 break;
             case "pnlCetak_Cetak":
-                rc.preparePrint();
+                switch(cc.getLastPage()){
+                    case "validasi_rdkk":
+                        rc.preparePrint();
+                        break;
+                    case "permintaan_pupuk":
+                        pc.cetakPrinter();
+                        //cc.testFlavor();
+                        break;
+                }
                 break;
         }
     }
@@ -374,6 +389,9 @@ public class MenuController implements MouseListener{
                         standarButtonHover(menuPanel);
                         break;
                     case "pnlFrmPupuk_Permintaan_SimpanData":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_CetakPermintaan":
                         standarButtonHover(menuPanel);
                         break;
             case "pnlMenuTMA":
@@ -524,6 +542,9 @@ public class MenuController implements MouseListener{
                         standarButtonDisplayed(menuPanel);
                         break;
                     case "pnlFrmPupuk_Permintaan_SimpanData":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_Permintaan_CetakPermintaan":
                         standarButtonDisplayed(menuPanel);
                         break;
             case "pnlMenuTMA":

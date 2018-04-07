@@ -273,6 +273,12 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
             jp = JasperFillManager.fillReport(fileName, map, conn);
         } catch (JRException ex) {
             Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return jp;
     }
@@ -288,6 +294,12 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
             jp = JasperFillManager.fillReport(fileName, map, conn);
         } catch (JRException ex) {
             Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return jp;
     }

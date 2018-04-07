@@ -7,6 +7,7 @@ package id.buma.simtr.dao;
 
 import id.buma.simtr.controller.CommonController;
 import id.buma.simtr.database.DBConnection;
+import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.TransaksiPupuk;
 import java.math.BigInteger;
 import java.sql.CallableStatement;
@@ -14,9 +15,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
@@ -30,7 +36,7 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
     public boolean insertNewTransaksiPupuk(TransaksiPupuk tp) {
         Connection conn = new DBConnection().getConn();
         try {
-            String strSql = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?,?,?,?)";
+            String strSql = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?,?,?,?,?)";
             /*
             1 - idpetani (varchar)
             2 - idbahan (int)
@@ -41,6 +47,7 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
             7 - kode transaksi (varchar)
             8 - tahun giling (int)
             9 - nilai transaksi (big int)
+            10 - id dokumen (varchar 10)
             */
             try (CallableStatement cst = conn.prepareCall(strSql)) {
                 cst.setString(1, tp.getIdPetani());
@@ -52,6 +59,7 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
                 cst.setString(7, tp.getKodeTransaksi());
                 cst.setInt(8, tp.getTahunGiling());
                 cst.setLong(9, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
+                cst.setString(10, tp.getNomorBuktiTransaksi());
                 cst.execute();
                 if (cst.getUpdateCount() == 1) return true;
             } finally {
@@ -149,7 +157,8 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
                         CommonController.user.getUserId(), 
                         postingTimestamp, 
                         rs.getInt("TAHUN_GILING"), 
-                        BigInteger.valueOf(rs.getLong("NILAI_TRANSAKSI"))
+                        BigInteger.valueOf(rs.getLong("NILAI_TRANSAKSI")),
+                        ""
                 );
                 lsBp.add(tp);
             }
@@ -157,6 +166,122 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
             Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lsBp;
+    }
+
+    @Override
+    public boolean cekTransaksiPupukByIdKelompokJenisBahan(String idKelompok, String jenisBahan) {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL CEK_TRANSAKSI_BAHAN_BY_IDKELOMPOK_JENISBAHAN (?,?,?)";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setString(1, idKelompok);
+            cst.setString(2, jenisBahan);
+            cst.registerOutParameter(3, java.sql.Types.INTEGER);
+            cst.execute();
+            if (cst.getInt(3) == 1) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public JasperPrint cetakPermintaanPupuk(String idKelompok) {
+        Connection conn = new DBConnection().getConn();
+        JasperPrint jp = null;
+        String fileName = "./reports/PermintaanPupuk.jasper";
+        Map map = new HashMap();
+        map.put("IDKELOMPOK", idKelompok);
+        try {
+            jp = JasperFillManager.fillReport(fileName, map, conn);
+        } catch (JRException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return jp;
+    }
+
+    @Override
+    public boolean insertBatchTransaksiPupuk(List<TransaksiPupuk> listTp) {
+        Connection conn = new DBConnection().getConn();
+        try {
+            conn.setAutoCommit(false);
+            conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+            String callSQL = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?,?,?,?,?)";
+            CallableStatement cst = conn.prepareCall(callSQL);
+            for(TransaksiPupuk tp : listTp){
+                cst.setString(1, tp.getIdPetani());
+                cst.setInt(2, tp.getIdBahan());
+                cst.setDate(3, tp.getTglTransaksi());
+                cst.setFloat(4, tp.getKuantaTransaksi());
+                cst.setInt(5, tp.getIdUser());
+                cst.setTimestamp(6, tp.getTglPosting());
+                cst.setString(7, tp.getKodeTransaksi());
+                cst.setInt(8, tp.getTahunGiling());
+                cst.setLong(9, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
+                cst.setString(10, tp.getNomorBuktiTransaksi());
+                cst.addBatch();
+            }
+            cst.executeBatch();
+            conn.commit();
+            conn.setAutoCommit(true);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean insertBuktiTransaksiPupuk(BuktiTransaksi bk) {
+        Connection conn = new DBConnection().getConn();
+        String callSQl = "CALL INSERT_NEW_BUKTI_TRANSAKSI(?,?,?)";
+        /*
+            1 - no dokumen (varchar 100)
+            2 - user id (int)
+            3 - posting timestamp (datetime)
+        */
+        try (CallableStatement cst = conn.prepareCall(callSQl)){
+            cst.setString(1, bk.getNoBukti());
+            cst.setInt(2, bk.getUserId());
+            cst.setTimestamp(3, bk.getPostingTime());
+            cst.execute();
+            if (cst.getUpdateCount() > 0) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public String getNewNomorBuktiTransaksi(String idKelompok, int idBahan) {
+        Connection conn = new DBConnection().getConn();
+        String callSQl = "CALL GET_NEW_NO_BUKTI_TRANSAKSI (?,?,?)";
+        try (CallableStatement cst = conn.prepareCall(callSQl)){
+            cst.setString(1, idKelompok);
+            cst.setInt(2, idBahan);
+            cst.registerOutParameter(3, java.sql.Types.VARCHAR);
+            cst.execute();
+            return cst.getString(3);
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

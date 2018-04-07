@@ -146,6 +146,7 @@ public class MainWindow extends javax.swing.JFrame {
         pnlAdminSistem_BahanProduksi_AddMasuk.addMouseListener(mc);
         pnlAdminSistem_BahanProduksi_CancelMasuk.addMouseListener(mc);
         pnlAdminSistem_BahanProduksi_SaveMasuk.addMouseListener(mc);
+        pnlFrmPupuk_Permintaan_CetakPermintaan.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -408,6 +409,9 @@ public class MainWindow extends javax.swing.JFrame {
         dtpTglTransaksiPupuk = new org.jdesktop.swingx.JXDatePicker();
         pnlFrmPupuk_Permintaan_SimpanData = new javax.swing.JPanel();
         lblFrmInputRDKK_Back9 = new javax.swing.JLabel();
+        pnlFrmPupuk_Permintaan_CetakPermintaan = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back23 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         pnlAdminSistem_UserData = new javax.swing.JPanel();
         pnlFrmInputRDKK_MenuHolder4 = new javax.swing.JPanel();
         pnlAdminSistem_Kembali = new javax.swing.JPanel();
@@ -2562,7 +2566,7 @@ public class MainWindow extends javax.swing.JFrame {
         tblPetani_Pupuk_Permintaan.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(tblPetani_Pupuk_Permintaan);
 
-        pnlFrmPupuk_Permintaan.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 80, 443, 235));
+        pnlFrmPupuk_Permintaan.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 80, 443, 200));
 
         jPanel6.setBackground(new java.awt.Color(85, 131, 131));
 
@@ -2595,12 +2599,13 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFrmInputRDKK_Back8.setForeground(new java.awt.Color(255, 255, 255));
         lblFrmInputRDKK_Back8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFrmInputRDKK_Back8.setText("Tambahkan");
+        lblFrmInputRDKK_Back8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Plus_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back8.setText("Tambah");
         lblFrmInputRDKK_Back8.setIconTextGap(10);
         lblFrmInputRDKK_Back8.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlFrmPupuk_Permintaan_TambahPupuk.add(lblFrmInputRDKK_Back8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmPupuk_Permintaan.add(pnlFrmPupuk_Permintaan_TambahPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 317, -1, -1));
+        pnlFrmPupuk_Permintaan.add(pnlFrmPupuk_Permintaan_TambahPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 284, -1, -1));
 
         jScrollPane7.setBackground(new java.awt.Color(170, 193, 193));
         jScrollPane7.setBorder(null);
@@ -2631,7 +2636,7 @@ public class MainWindow extends javax.swing.JFrame {
         tblJenisPupuk_Pupuk_Permintaan.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(tblJenisPupuk_Pupuk_Permintaan);
 
-        pnlFrmPupuk_Permintaan.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1078, 80, 250, 235));
+        pnlFrmPupuk_Permintaan.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1078, 80, 250, 200));
 
         jPanel7.setBackground(new java.awt.Color(85, 131, 131));
 
@@ -2661,14 +2666,14 @@ public class MainWindow extends javax.swing.JFrame {
         jcbFrmPupuk_PilihSemuaPetani.setText("Pilih semua petani");
         jcbFrmPupuk_PilihSemuaPetani.setName("jcbFrmPupuk_PilihSemuaPetani"); // NOI18N
         jcbFrmPupuk_PilihSemuaPetani.setOpaque(false);
-        pnlFrmPupuk_Permintaan.add(jcbFrmPupuk_PilihSemuaPetani, new org.netbeans.lib.awtextra.AbsoluteConstraints(1051, 317, -1, 30));
+        pnlFrmPupuk_Permintaan.add(jcbFrmPupuk_PilihSemuaPetani, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 310, 150, 30));
 
         jcbFrmPupuk_PilihSemuaPupuk.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jcbFrmPupuk_PilihSemuaPupuk.setForeground(new java.awt.Color(255, 255, 255));
         jcbFrmPupuk_PilihSemuaPupuk.setText("Pilih semua jenis pupuk");
         jcbFrmPupuk_PilihSemuaPupuk.setName("jcbFrmPupuk_PilihSemuaPupuk"); // NOI18N
         jcbFrmPupuk_PilihSemuaPupuk.setOpaque(false);
-        pnlFrmPupuk_Permintaan.add(jcbFrmPupuk_PilihSemuaPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 317, -1, 30));
+        pnlFrmPupuk_Permintaan.add(jcbFrmPupuk_PilihSemuaPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 284, -1, 30));
 
         jScrollPane8.setBackground(new java.awt.Color(170, 193, 193));
         jScrollPane8.setBorder(null);
@@ -2699,7 +2704,7 @@ public class MainWindow extends javax.swing.JFrame {
         tblBuffer_Pupuk_Permintaan.getTableHeader().setReorderingAllowed(false);
         jScrollPane8.setViewportView(tblBuffer_Pupuk_Permintaan);
 
-        pnlFrmPupuk_Permintaan.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 629, 268));
+        pnlFrmPupuk_Permintaan.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 383, 629, 268));
 
         jPanel8.setBackground(new java.awt.Color(85, 131, 131));
 
@@ -2729,10 +2734,10 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        pnlFrmPupuk_Permintaan.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 629, 30));
+        pnlFrmPupuk_Permintaan.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 353, 629, 30));
 
         dtpTglTransaksiPupuk.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        pnlFrmPupuk_Permintaan.add(dtpTglTransaksiPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(838, 317, 120, 30));
+        pnlFrmPupuk_Permintaan.add(dtpTglTransaksiPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 284, 120, 30));
 
         pnlFrmPupuk_Permintaan_SimpanData.setBackground(new Color(255,255,255,0));
         pnlFrmPupuk_Permintaan_SimpanData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -2742,12 +2747,36 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFrmInputRDKK_Back9.setForeground(new java.awt.Color(255, 255, 255));
         lblFrmInputRDKK_Back9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFrmInputRDKK_Back9.setText("Simpan Data");
+        lblFrmInputRDKK_Back9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Save_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back9.setText("Simpan");
         lblFrmInputRDKK_Back9.setIconTextGap(10);
         lblFrmInputRDKK_Back9.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlFrmPupuk_Permintaan_SimpanData.add(lblFrmInputRDKK_Back9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmPupuk_Permintaan.add(pnlFrmPupuk_Permintaan_SimpanData, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 317, -1, -1));
+        pnlFrmPupuk_Permintaan.add(pnlFrmPupuk_Permintaan_SimpanData, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 284, -1, -1));
+
+        pnlFrmPupuk_Permintaan_CetakPermintaan.setBackground(new Color(255,255,255,0));
+        pnlFrmPupuk_Permintaan_CetakPermintaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlFrmPupuk_Permintaan_CetakPermintaan.setName("pnlFrmPupuk_Permintaan_CetakPermintaan"); // NOI18N
+        pnlFrmPupuk_Permintaan_CetakPermintaan.setPreferredSize(new java.awt.Dimension(203, 30));
+        pnlFrmPupuk_Permintaan_CetakPermintaan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back23.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Print_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back23.setText("Cetak Permintaan Pupuk");
+        lblFrmInputRDKK_Back23.setIconTextGap(10);
+        lblFrmInputRDKK_Back23.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlFrmPupuk_Permintaan_CetakPermintaan.add(lblFrmInputRDKK_Back23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 205, 30));
+
+        pnlFrmPupuk_Permintaan.add(pnlFrmPupuk_Permintaan_CetakPermintaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 317, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel18.setText("Tanggal Transaksi");
+        pnlFrmPupuk_Permintaan.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, -1, -1));
 
         pnlContent.add(pnlFrmPupuk_Permintaan, "crdFrmPupuk_Permintaan");
 
@@ -3763,6 +3792,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3834,6 +3864,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back20;
     private javax.swing.JLabel lblFrmInputRDKK_Back21;
     private javax.swing.JLabel lblFrmInputRDKK_Back22;
+    private javax.swing.JLabel lblFrmInputRDKK_Back23;
     private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
     private javax.swing.JLabel lblFrmInputRDKK_Back5;
@@ -3948,6 +3979,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmInputRDKK_SimpanData;
     private javax.swing.JPanel pnlFrmInputRDKK_TambahPetani;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan;
+    private javax.swing.JPanel pnlFrmPupuk_Permintaan_CetakPermintaan;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Clear;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Clear1;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Kembali;
