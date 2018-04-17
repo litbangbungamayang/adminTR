@@ -114,6 +114,10 @@ public class VersionController {
         + Perbaikan transaksi SQL untuk transaksi pupuk (menggunakan COMMIT)
         + Perubahan UI pada modul pupuk
         */
+        version = "0.9.20";
+        /*
+        + Penambahan cetak rekapitulasi pemakaian biaya pupuk
+        */
         
         return version;
     }

@@ -159,6 +159,19 @@ public class MenuController implements MouseListener{
                     case "pnlFrmPupuk_Permintaan_CetakPermintaan":
                         pc.cetakPermintaanPupuk(mw.getTblPupukKelTani());
                         break;
+                case "pnlSubMenuPupuk_EvaluasiBiayaPupuk":
+                    pageSwitcher(mw.getPnlContent(), "crdFrmPupuk_EvaluasiBiayaPupuk");
+                    cc.populateComboBox(mw.getCbxFrmPupuk_EvaluasiBiayaPupuk(), uc.namaAfdelingList());
+                    pc.prepareFrmEvaluasiPupuk();
+                    break;
+                    case "pnlFrmPupuk_EvaluasiBiayaPupuk_Back":
+                        pc.resetFormEvaluasiPupuk();
+                        pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                        mw.getPnlSubMenuHolder().setVisible(false);
+                        break;
+                    case "pnlFrmPupuk_EvaluasiBiayaPupuk_View":
+                        pc.cetakEvaluasiPupuk();
+                        break;
             //*********************************
             //********************
             case "pnlMenuTMA":
@@ -264,6 +277,10 @@ public class MenuController implements MouseListener{
                         break;
                     case "permintaan_pupuk":
                         pageSwitcher(mw.getPnlContent(), "crdFrmPupuk_Permintaan");
+                        cc.setLastPage(null);
+                        break;
+                    case "evaluasi_pupuk":
+                        pageSwitcher(mw.getPnlContent(), "crdFrmPupuk_EvaluasiBiayaPupuk");
                         cc.setLastPage(null);
                         break;
                 }
@@ -392,6 +409,15 @@ public class MenuController implements MouseListener{
                         standarButtonHover(menuPanel);
                         break;
                     case "pnlFrmPupuk_Permintaan_CetakPermintaan":
+                        standarButtonHover(menuPanel);
+                        break;
+                case "pnlSubMenuPupuk_EvaluasiBiayaPupuk":
+                    standarMainMenuHover(menuPanel);
+                    break;
+                    case "pnlFrmPupuk_EvaluasiBiayaPupuk_Back":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_EvaluasiBiayaPupuk_View":
                         standarButtonHover(menuPanel);
                         break;
             case "pnlMenuTMA":
@@ -545,6 +571,15 @@ public class MenuController implements MouseListener{
                         standarButtonDisplayed(menuPanel);
                         break;
                     case "pnlFrmPupuk_Permintaan_CetakPermintaan":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                case "pnlSubMenuPupuk_EvaluasiBiayaPupuk":
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
+                    case "pnlFrmPupuk_EvaluasiBiayaPupuk_Back":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPupuk_EvaluasiBiayaPupuk_View":
                         standarButtonDisplayed(menuPanel);
                         break;
             case "pnlMenuTMA":

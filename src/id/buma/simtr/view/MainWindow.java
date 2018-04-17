@@ -147,6 +147,9 @@ public class MainWindow extends javax.swing.JFrame {
         pnlAdminSistem_BahanProduksi_CancelMasuk.addMouseListener(mc);
         pnlAdminSistem_BahanProduksi_SaveMasuk.addMouseListener(mc);
         pnlFrmPupuk_Permintaan_CetakPermintaan.addMouseListener(mc);
+        pnlSubMenuPupuk_EvaluasiBiayaPupuk.addMouseListener(mc);
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.addMouseListener(mc);
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -249,7 +252,7 @@ public class MainWindow extends javax.swing.JFrame {
         pnlSubMenuPupuk_Permintaan = new javax.swing.JPanel();
         lblWsRDKK2 = new javax.swing.JLabel();
         pnlWsSeparator3 = new javax.swing.JPanel();
-        pnlWsLKP2 = new javax.swing.JPanel();
+        pnlSubMenuPupuk_EvaluasiBiayaPupuk = new javax.swing.JPanel();
         lblWsLKP2 = new javax.swing.JLabel();
         pnlSubMenuAdmin = new javax.swing.JPanel();
         pnlSubMenuAdmin_UserData = new javax.swing.JPanel();
@@ -498,6 +501,21 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani25 = new javax.swing.JLabel();
         pnlAdminSistem_BahanProduksi_AddMasuk = new javax.swing.JPanel();
         lblFrmInputRDKK_Back22 = new javax.swing.JLabel();
+        pnlFrmPupuk_EvaluasiBiayaPupuk = new javax.swing.JPanel();
+        pnlFrmInputRDKK_MenuHolder6 = new javax.swing.JPanel();
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back24 = new javax.swing.JLabel();
+        pnlFrmRDKK_Title5 = new javax.swing.JPanel();
+        lblFrmRDKK_Title5 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        lblFrmRDKK_Title6 = new javax.swing.JLabel();
+        cbxFrmPupuk_EvaluasiBiayaPupuk_Afd = new javax.swing.JComboBox<>();
+        dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1 = new org.jdesktop.swingx.JXDatePicker();
+        lblFrmRDKK_Title7 = new javax.swing.JLabel();
+        lblFrmRDKK_Title8 = new javax.swing.JLabel();
+        dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2 = new org.jdesktop.swingx.JXDatePicker();
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -1049,27 +1067,27 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlSubMenuPupuk.add(pnlWsSeparator3, new java.awt.GridBagConstraints());
 
-        pnlWsLKP2.setBackground(new Color(34,59,14,50));
-        pnlWsLKP2.setName("pnlWsLKP"); // NOI18N
-        pnlWsLKP2.setPreferredSize(new java.awt.Dimension(250, 50));
+        pnlSubMenuPupuk_EvaluasiBiayaPupuk.setBackground(new Color(34,59,14,50));
+        pnlSubMenuPupuk_EvaluasiBiayaPupuk.setName("pnlSubMenuPupuk_EvaluasiBiayaPupuk"); // NOI18N
+        pnlSubMenuPupuk_EvaluasiBiayaPupuk.setPreferredSize(new java.awt.Dimension(250, 50));
 
         lblWsLKP2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblWsLKP2.setForeground(new java.awt.Color(255, 255, 255));
         lblWsLKP2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsLKP2.setText("LKP per Periode");
+        lblWsLKP2.setText("Evaluasi Biaya Pupuk");
 
-        javax.swing.GroupLayout pnlWsLKP2Layout = new javax.swing.GroupLayout(pnlWsLKP2);
-        pnlWsLKP2.setLayout(pnlWsLKP2Layout);
-        pnlWsLKP2Layout.setHorizontalGroup(
-            pnlWsLKP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlSubMenuPupuk_EvaluasiBiayaPupukLayout = new javax.swing.GroupLayout(pnlSubMenuPupuk_EvaluasiBiayaPupuk);
+        pnlSubMenuPupuk_EvaluasiBiayaPupuk.setLayout(pnlSubMenuPupuk_EvaluasiBiayaPupukLayout);
+        pnlSubMenuPupuk_EvaluasiBiayaPupukLayout.setHorizontalGroup(
+            pnlSubMenuPupuk_EvaluasiBiayaPupukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblWsLKP2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
-        pnlWsLKP2Layout.setVerticalGroup(
-            pnlWsLKP2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlSubMenuPupuk_EvaluasiBiayaPupukLayout.setVerticalGroup(
+            pnlSubMenuPupuk_EvaluasiBiayaPupukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblWsLKP2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        pnlSubMenuPupuk.add(pnlWsLKP2, new java.awt.GridBagConstraints());
+        pnlSubMenuPupuk.add(pnlSubMenuPupuk_EvaluasiBiayaPupuk, new java.awt.GridBagConstraints());
 
         pnlSubMenuHolder.add(pnlSubMenuPupuk, "crdSubMenuPupuk");
 
@@ -3695,6 +3713,131 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlContent.add(pnlAdminSistem_BahanProduksi, "crdPnlAdminSistem_BahanProduksi");
 
+        pnlFrmPupuk_EvaluasiBiayaPupuk.setBackground(new java.awt.Color(0, 23, 23));
+        pnlFrmPupuk_EvaluasiBiayaPupuk.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmInputRDKK_MenuHolder6.setBackground(new java.awt.Color(0, 70, 70));
+        pnlFrmInputRDKK_MenuHolder6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.setBackground(new Color(255,255,255,0));
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.setName("pnlFrmPupuk_EvaluasiBiayaPupuk_Back"); // NOI18N
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.setPreferredSize(new java.awt.Dimension(140, 40));
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back24.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmInputRDKK_Back24.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Back_To_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back24.setText("Menu Utama");
+        lblFrmInputRDKK_Back24.setIconTextGap(10);
+        lblFrmInputRDKK_Back24.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.add(lblFrmInputRDKK_Back24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 40));
+
+        pnlFrmInputRDKK_MenuHolder6.add(pnlFrmPupuk_EvaluasiBiayaPupuk_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, -1));
+
+        pnlFrmRDKK_Title5.setBackground(new java.awt.Color(85, 131, 131));
+        pnlFrmRDKK_Title5.setName("pnlFrmRDKKBack"); // NOI18N
+        pnlFrmRDKK_Title5.setPreferredSize(new java.awt.Dimension(200, 40));
+        pnlFrmRDKK_Title5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 0));
+
+        lblFrmRDKK_Title5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmRDKK_Title5.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title5.setText("Evaluasi Biaya Pupuk");
+        lblFrmRDKK_Title5.setPreferredSize(new java.awt.Dimension(200, 40));
+        pnlFrmRDKK_Title5.add(lblFrmRDKK_Title5);
+
+        pnlFrmInputRDKK_MenuHolder6.add(pnlFrmRDKK_Title5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1190, -1));
+
+        pnlFrmPupuk_EvaluasiBiayaPupuk.add(pnlFrmInputRDKK_MenuHolder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1399, -1));
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel12.setOpaque(false);
+
+        lblFrmRDKK_Title6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmRDKK_Title6.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title6.setText("Afdeling");
+        lblFrmRDKK_Title6.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        cbxFrmPupuk_EvaluasiBiayaPupuk_Afd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbxFrmPupuk_EvaluasiBiayaPupuk_Afd.setBorder(null);
+
+        dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1.setFormats("dd-MM-yyyy");
+
+        lblFrmRDKK_Title7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmRDKK_Title7.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title7.setText("Periode");
+        lblFrmRDKK_Title7.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        lblFrmRDKK_Title8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmRDKK_Title8.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title8.setText("sampai dengan");
+        lblFrmRDKK_Title8.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2.setFormats("dd-MM-yyyy");
+
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.setBackground(new Color(255,255,255,0));
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.setName("pnlFrmPupuk_EvaluasiBiayaPupuk_View"); // NOI18N
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.setPreferredSize(new java.awt.Dimension(203, 30));
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back25.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Print_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back25.setText("Preview Biaya Pupuk");
+        lblFrmInputRDKK_Back25.setIconTextGap(10);
+        lblFrmInputRDKK_Back25.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlFrmPupuk_EvaluasiBiayaPupuk_View.add(lblFrmInputRDKK_Back25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 30));
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(lblFrmRDKK_Title6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxFrmPupuk_EvaluasiBiayaPupuk_Afd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(lblFrmRDKK_Title7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(lblFrmRDKK_Title8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlFrmPupuk_EvaluasiBiayaPupuk_View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFrmRDKK_Title6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFrmPupuk_EvaluasiBiayaPupuk_Afd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrmRDKK_Title7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrmRDKK_Title8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pnlFrmPupuk_EvaluasiBiayaPupuk_View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlFrmPupuk_EvaluasiBiayaPupuk.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 50, 560, 140));
+
+        pnlContent.add(pnlFrmPupuk_EvaluasiBiayaPupuk, "crdFrmPupuk_EvaluasiBiayaPupuk");
+
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
         pnlTengahLayout.setHorizontalGroup(
@@ -3776,12 +3919,15 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxFrmBahanProduksi_Satuan;
     private javax.swing.JComboBox<String> cbxFrmBahanProduksi_SatuanMasuk;
     private javax.swing.JComboBox<String> cbxFrmInputRDKK_Afdeling;
+    private javax.swing.JComboBox<String> cbxFrmPupuk_EvaluasiBiayaPupuk_Afd;
     private javax.swing.JComboBox<String> cbxFrmUserData_Afdeling;
     private javax.swing.JComboBox<String> cbxFrmUserData_Level;
     private javax.swing.JComboBox<String> cbxInputRDKKMasaTanam;
     private javax.swing.JComboBox<String> cbxInputRDKKVarietas;
     private javax.swing.JComboBox<String> cbxKategoriTanaman;
     private javax.swing.JComboBox<String> cbxKecamatan;
+    private org.jdesktop.swingx.JXDatePicker dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1;
+    private org.jdesktop.swingx.JXDatePicker dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2;
     private org.jdesktop.swingx.JXDatePicker dtpTglTransaksiPupuk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3804,6 +3950,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3865,6 +4012,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back21;
     private javax.swing.JLabel lblFrmInputRDKK_Back22;
     private javax.swing.JLabel lblFrmInputRDKK_Back23;
+    private javax.swing.JLabel lblFrmInputRDKK_Back24;
+    private javax.swing.JLabel lblFrmInputRDKK_Back25;
     private javax.swing.JLabel lblFrmInputRDKK_Back3;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
     private javax.swing.JLabel lblFrmInputRDKK_Back5;
@@ -3882,6 +4031,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmRDKK_Title2;
     private javax.swing.JLabel lblFrmRDKK_Title3;
     private javax.swing.JLabel lblFrmRDKK_Title4;
+    private javax.swing.JLabel lblFrmRDKK_Title5;
+    private javax.swing.JLabel lblFrmRDKK_Title6;
+    private javax.swing.JLabel lblFrmRDKK_Title7;
+    private javax.swing.JLabel lblFrmRDKK_Title8;
     private javax.swing.JLabel lblInputNamaKelTani;
     private javax.swing.JLabel lblInputNamaKelTani1;
     private javax.swing.JLabel lblInputNamaKelTani10;
@@ -3976,8 +4129,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder3;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder4;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder5;
+    private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder6;
     private javax.swing.JPanel pnlFrmInputRDKK_SimpanData;
     private javax.swing.JPanel pnlFrmInputRDKK_TambahPetani;
+    private javax.swing.JPanel pnlFrmPupuk_EvaluasiBiayaPupuk;
+    private javax.swing.JPanel pnlFrmPupuk_EvaluasiBiayaPupuk_Back;
+    private javax.swing.JPanel pnlFrmPupuk_EvaluasiBiayaPupuk_View;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_CetakPermintaan;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Clear;
@@ -3997,6 +4154,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmRDKK_Title2;
     private javax.swing.JPanel pnlFrmRDKK_Title3;
     private javax.swing.JPanel pnlFrmRDKK_Title4;
+    private javax.swing.JPanel pnlFrmRDKK_Title5;
     private javax.swing.JPanel pnlFrmUserData;
     private javax.swing.JPanel pnlFrmUserData1;
     private javax.swing.JPanel pnlFrmUserData2;
@@ -4033,6 +4191,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSubMenuHolder;
     private javax.swing.JPanel pnlSubMenuPerawatan;
     private javax.swing.JPanel pnlSubMenuPupuk;
+    private javax.swing.JPanel pnlSubMenuPupuk_EvaluasiBiayaPupuk;
     private javax.swing.JPanel pnlSubMenuPupuk_Permintaan;
     private javax.swing.JPanel pnlSubMenuRDKK;
     private javax.swing.JPanel pnlTblInputPetani;
@@ -4053,7 +4212,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUserLogin;
     private javax.swing.JPanel pnlVerifikasiRdkk;
     private javax.swing.JPanel pnlWsLKP1;
-    private javax.swing.JPanel pnlWsLKP2;
     private javax.swing.JPanel pnlWsRDKK;
     private javax.swing.JPanel pnlWsRDKK1;
     private javax.swing.JPanel pnlWsSeparator1;
@@ -4355,6 +4513,30 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JTable getTblMonitorBahanMasuk(){
         return tblMonitorBahanMasuk;
+    }
+    
+    public JPanel getPnlSubMenuPupuk_EvaluasiBiayaPupuk(){
+        return pnlSubMenuPupuk_EvaluasiBiayaPupuk;
+    }
+    
+    public JPanel getPnlFrmPupuk_EvaluasiBiayaPupuk_Back(){
+        return pnlFrmPupuk_EvaluasiBiayaPupuk_Back;
+    }
+    
+    public JComboBox getCbxFrmPupuk_EvaluasiBiayaPupuk(){
+        return cbxFrmPupuk_EvaluasiBiayaPupuk_Afd;
+    }
+    
+    public JPanel getPnlFrmPupuk_EvaluasiBiayaPupuk_View(){
+        return pnlFrmPupuk_EvaluasiBiayaPupuk_View;
+    }
+    
+    public JXDatePicker getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1(){
+        return dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1;
+    }
+    
+    public JXDatePicker getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2(){
+        return dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2;
     }
     
 }

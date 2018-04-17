@@ -283,5 +283,28 @@ public class TransaksiPupukDAOSQL implements TransaksiPupukDAO {
         }
         return null;
     }
+
+    @Override
+    public JasperPrint cetakEvaluasiPupuk(String idAfd, java.sql.Date tgl1, java.sql.Date tgl2) {
+        Connection conn = new DBConnection().getConn();
+        JasperPrint jp = null;
+        String fileName = "./reports/RekapPemakaianPupuk.jasper";
+        Map map = new HashMap();
+        map.put("IDAFD", idAfd);
+        map.put("TGL1", tgl1);
+        map.put("TGL2", tgl2);
+        try {
+            jp = JasperFillManager.fillReport(fileName, map, conn);
+        } catch (JRException ex) {
+            Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(TransaksiPupukDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return jp;
+    }
     
 }

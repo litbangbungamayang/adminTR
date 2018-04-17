@@ -287,6 +287,50 @@ public class PupukController implements ActionListener{
         }
     }
     
+    public void cetakEvaluasiPupuk(){
+        int selectedIndex = mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().getSelectedIndex() - 1;
+        if (selectedIndex > -1 && 
+                mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1().getDate() != null &&
+                mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2().getDate() != null){
+            java.sql.Date tgl1 = new java.sql.Date(mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1().getDate().getTime());
+            java.sql.Date tgl2 = new java.sql.Date(mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2().getDate().getTime());
+            String idafd = mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().getSelectedItem().toString();
+            JasperPrint jp = transPupukDao.cetakEvaluasiPupuk(idafd, tgl1, tgl2);
+            cc.setLastPage("evaluasi_pupuk");
+            MenuController mc = new MenuController(mw);
+            mc.pageSwitcher(mw.getPnlContent(), "crdPnlCetak");
+            cc.setJasperPrint(jp);
+            cc.prepareFormCetak(mw.getPnlCetak_Content());
+        } else {
+            if (selectedIndex == -1) 
+                cc.showErrorMsg("Evaluasi Biaya Pupuk", "Pilih salah satu afdeling!");
+            if (mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1().getDate() == null) 
+                cc.showErrorMsg("Evaluasi Biaya Pupuk", "Pilih tanggal periode awal!");
+            if (mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2().getDate() == null) 
+                cc.showErrorMsg("Evaluasi Biaya Pupuk", "Pilih tanggal periode akhir!");
+        }
+    }
+    
+    public void prepareFrmEvaluasiPupuk(){
+        int privLevel = CommonController.user.getPrivLevel();
+        String afd = CommonController.user.getIdAfd();
+        if (privLevel == 1 || privLevel == 2){
+            mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().setSelectedIndex(0);
+            mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().setEnabled(true);
+        } else {
+            if (privLevel == 3){
+                mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().setSelectedItem(afd);
+                mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().setEnabled(false);
+            }
+        }
+    }
+    
+    public void resetFormEvaluasiPupuk(){
+        mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1().setDate(null);
+        mw.getDtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2().setDate(null);
+        mw.getCbxFrmPupuk_EvaluasiBiayaPupuk().setSelectedIndex(0);
+    }
+    
     public void cetakPrinter(){
         
         if (cc.startPrinting()) cc.showInfoMsg("Transaksi Pupuk", "Print berhasil!");
