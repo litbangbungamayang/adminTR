@@ -118,6 +118,18 @@ public class VersionController {
         /*
         + Penambahan cetak rekapitulasi pemakaian biaya pupuk
         */
+        version = "0.9.21";
+        /*
+        + Perubahan table model petani, untuk data kosong
+        + Penambahan modul perawatan tanaman
+        + Pengubahan panjang id petani di tabel menjadi 15 (varchar)
+        + Pengubahan stored procedure penambahan petani baru, menjadi format SAP
+        + Penambahan konfirmasi untuk penyimpanan transaksi pupuk
+        + Perbaikan table model kelompok tani untuk data kosong
+        + Perubahan nama tabel : semula TBL_TRANSAKSI_PUPUK menjadi TBL_TRANSAKSI
+        + Penambahan field di TBL_TRANSAKSI = ID_BIAYA (INT)
+        + Perubahan struktur report Rekap Evaluasi Pupuk
+        */
         
         return version;
     }

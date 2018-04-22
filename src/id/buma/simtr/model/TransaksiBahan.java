@@ -13,11 +13,12 @@ import java.math.BigInteger;
  * 
  */
 
-public class TransaksiPupuk {
+public class TransaksiBahan {
     
     private int idTransaksi;
     private String idPetani;
     private int idBahan;
+    private int idBiaya;
     private java.sql.Date tglTransaksi;
     private String kodeTransaksi; //D - Debit, K - Kredit
     private float kuantaTransaksi;
@@ -27,13 +28,14 @@ public class TransaksiPupuk {
     private BigInteger nilaiTransaksi;
     private String nomorBuktiTransaksi;
     
-    public TransaksiPupuk(int idTransaksi, String idPetani, int idBahan, 
+    public TransaksiBahan(int idTransaksi, String idPetani, int idBahan, int idBiaya, 
             java.sql.Date tglTransaksi, String kodeTransaksi, float kuantaTransaksi, 
             int idUser, java.sql.Timestamp tglPosting, int tahunGiling, BigInteger nilaiTransaksi,
             String nomorBuktiTransaksi){
         this.idTransaksi = idTransaksi;
         this.idPetani = idPetani;
         this.idBahan = idBahan;
+        this.idBiaya = idBiaya;
         this.tglTransaksi = tglTransaksi;
         this.kuantaTransaksi = kuantaTransaksi;
         this.idUser = idUser;
@@ -131,6 +133,14 @@ public class TransaksiPupuk {
 
     public void setNomorBuktiTransaksi(String nomorBuktiTransaksi) {
         this.nomorBuktiTransaksi = nomorBuktiTransaksi;
+    }
+
+    public int getIdBiaya() {
+        return idBiaya;
+    }
+
+    public void setIdBiaya(int idBiaya) {
+        this.idBiaya = idBiaya;
     }
     
 }

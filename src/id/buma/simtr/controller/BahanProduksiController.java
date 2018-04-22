@@ -7,9 +7,9 @@ package id.buma.simtr.controller;
 
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
-import id.buma.simtr.dao.TransaksiPupukDAOSQL;
+import id.buma.simtr.dao.TransaksiBahanDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
-import id.buma.simtr.model.TransaksiPupuk;
+import id.buma.simtr.model.TransaksiBahan;
 import id.buma.simtr.view.BahanProduksiMasukTableModel;
 import id.buma.simtr.view.BahanProduksiTableModel;
 import id.buma.simtr.view.MainWindow;
@@ -57,7 +57,7 @@ public class BahanProduksiController {
         BahanProduksiTableModel bptm  = (BahanProduksiTableModel) mw.getTblBahanProduksi().getModel();
         List<BahanProduksi> lsBp = bptm.getContentList();
         int idBahan = lsBp.get(mw.getTblBahanProduksi().getSelectedRow()).getIdBahan();
-        TransaksiPupukDAOSQL transDao = new TransaksiPupukDAOSQL();
+        TransaksiBahanDAOSQL transDao = new TransaksiBahanDAOSQL();
         BahanProduksiMasukTableModel bpmtm = new BahanProduksiMasukTableModel(transDao.cekStokBahanProduksi(idBahan));
         tbl.setModel(bpmtm);
     }
@@ -285,10 +285,11 @@ public class BahanProduksiController {
             java.sql.Timestamp postingTimestamp = new java.sql.Timestamp(new java.util.Date().getTime());
             java.sql.Date tglTransaksi = new java.sql.Date(new java.util.Date().getTime());
             int kuantaMasuk = Integer.parseInt(mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().replaceAll(",", ""));
-            TransaksiPupuk tp = new TransaksiPupuk(
+            TransaksiBahan tp = new TransaksiBahan(
                     0, 
                     "NN", 
-                    idBahan, 
+                    idBahan,
+                    0,
                     tglTransaksi, 
                     "K",
                     Float.valueOf(kuantaMasuk), 
@@ -298,7 +299,7 @@ public class BahanProduksiController {
                     new BigInteger(mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().replaceAll(",", "")),
                     ""
             );
-            TransaksiPupukDAOSQL transDao = new TransaksiPupukDAOSQL();
+            TransaksiBahanDAOSQL transDao = new TransaksiBahanDAOSQL();
             if (transDao.insertNewTransaksiPupuk(tp)){
                 setMode("cancel");
                 cc.showInfoMsg("Bahan Produksi", "Data berhasil ditambahkan!");

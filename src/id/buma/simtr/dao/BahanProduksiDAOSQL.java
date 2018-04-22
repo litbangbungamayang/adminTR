@@ -7,6 +7,7 @@ package id.buma.simtr.dao;
 
 import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.Biaya;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -214,5 +215,44 @@ public class BahanProduksiDAOSQL implements BahanProduksiDAO {
         }
         return true;
     }
-    
+
+    @Override
+    public List<Biaya> getBiayaByIdBahan(int idBahan, int tahunGiling) {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL GET_BIAYA_BY_IDBAHAN(?,?)";
+        List<Biaya> lsBy = new ArrayList<>();
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setInt(1, idBahan);
+            cst.setInt(2, tahunGiling);
+            boolean result = cst.execute();
+            int rowsAffected = 0;
+            ResultSet rs = null;
+            while (result || rowsAffected != -1){
+                if (result){
+                    rs = cst.getResultSet();
+                    break;
+                } else {
+                    rowsAffected = cst.getUpdateCount();
+                }
+                cst.getMoreResults();
+            }
+            while (rs.next()){
+                Biaya biaya = new Biaya(
+                        rs.getInt("ID_BIAYA"), 
+                        rs.getString("KATEGORI"), 
+                        rs.getString("JENIS_BIAYA"), 
+                        rs.getString("NAMA_BIAYA"), 
+                        rs.getString("SATUAN"), 
+                        rs.getInt("TAHUN_GILING"), 
+                        rs.getInt("BIAYA")
+                );
+                lsBy.add(biaya);
+            }
+            return lsBy;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BahanProduksiDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lsBy;
+    }
 }

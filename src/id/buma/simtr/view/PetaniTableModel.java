@@ -23,11 +23,16 @@ import javax.swing.table.AbstractTableModel;
 public class PetaniTableModel extends AbstractTableModel {
     
     private final VarietasTebuDAO varDAO = new VarietasTebuDAOSQL();
-    
+    private boolean isEmpty = false;
     private final List<PetaniTebu> lsPetani;
     
     public PetaniTableModel(List<PetaniTebu> lsPetani){
         this.lsPetani = lsPetani;
+        if (this.lsPetani.size() < 1){
+            isEmpty = true;
+            PetaniTebu pt = new PetaniTebu("", 0, "", "", "", 0, "");
+            this.lsPetani.add(pt);
+        }
     }
     
     public List<PetaniTebu> getContentList(){
@@ -44,7 +49,7 @@ public class PetaniTableModel extends AbstractTableModel {
     
     @Override
     public int getRowCount() {
-        return lsPetani.size();
+        return this.lsPetani.size();
     }
 
     @Override
@@ -54,24 +59,26 @@ public class PetaniTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        PetaniTebu pt = lsPetani.get(rowIndex);
         String namaVarietas;
         DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.UK);
         dfs.setDecimalSeparator(',');
         dfs.setGroupingSeparator('.');
         DecimalFormat df = new DecimalFormat("###,#0.00", dfs);
-        namaVarietas = varDAO.getVarietasById(pt.getJenisTebu()).getNamaLab();
-        switch(columnIndex){
-            case 0 :
-                return rowIndex + 1;
-            case 1 :
-                return pt.getNamaPetani();
-            case 2 :
-                return df.format(pt.getLuas());
-            case 3 :
-                return pt.getMasaTanam();
-            case 4 :
-                return namaVarietas;
+        if (!isEmpty){
+            PetaniTebu pt = lsPetani.get(rowIndex);
+            namaVarietas = varDAO.getVarietasById(pt.getJenisTebu()).getNamaLab();
+            switch(columnIndex){
+                case 0 :
+                    return rowIndex + 1;
+                case 1 :
+                    return pt.getNamaPetani();
+                case 2 :
+                    return df.format(pt.getLuas());
+                case 3 :
+                    return pt.getMasaTanam();
+                case 4 :
+                    return namaVarietas;
+            }
         }
         return null;
     }

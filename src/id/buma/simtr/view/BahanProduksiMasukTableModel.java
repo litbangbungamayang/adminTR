@@ -6,7 +6,7 @@
 package id.buma.simtr.view;
 
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
-import id.buma.simtr.model.TransaksiPupuk;
+import id.buma.simtr.model.TransaksiBahan;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
@@ -20,9 +20,9 @@ import javax.swing.table.AbstractTableModel;
 
 public class BahanProduksiMasukTableModel extends AbstractTableModel {
     
-    private final List<TransaksiPupuk> lstTp;
+    private final List<TransaksiBahan> lstTp;
     
-    public BahanProduksiMasukTableModel(List<TransaksiPupuk> lstTp){
+    public BahanProduksiMasukTableModel(List<TransaksiBahan> lstTp){
         this.lstTp = lstTp;
     }
     

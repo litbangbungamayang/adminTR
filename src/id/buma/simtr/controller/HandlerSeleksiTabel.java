@@ -47,6 +47,7 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
     public void valueChanged(ListSelectionEvent e) {
         UserController uc = new UserController(mw);
         CommonController cc = new CommonController(mw);
+        PerawatanController pwc = new PerawatanController(mw);
         BahanProduksiController bpc = new BahanProduksiController(mw);
         if (!e.getValueIsAdjusting()){
             switch (seleksiMode){
@@ -93,7 +94,18 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         List<BahanProduksi> lstBp = bptm.getContentList();
                         bpc.setBahanProduksi(lstBp.get(tbl.getSelectedRow()));
                         bpc.loadDetailData();
-                        bpc.prepareTblBahanProduksiMasuk(mw.getTblMonitorBahanMasuk());                    }
+                        bpc.prepareTblBahanProduksiMasuk(mw.getTblMonitorBahanMasuk());                    
+                    }
+                    break;
+                case "PerawatanKelTani-Petani":
+                    if (tbl.getSelectedRow() > -1){
+                        KelompokTaniTableModel kttm = (KelompokTaniTableModel) tbl.getModel();
+                        List<KelompokTani> lst = kttm.getContentList();
+                        String idKelompok = lst.get(tbl.getSelectedRow()).getIdKelompok();
+                        pwc.populateTblPerawatanPetaniByIdKelompok(mw.getTblPetani_Perawatan_Permintaan(), idKelompok);
+                        pwc.prepareTblPekerjaanKebun(idKelompok);
+                        mw.getTblPetani_Perawatan_Permintaan().setRowSelectionAllowed(true);
+                    }
                     break;
             }
         }

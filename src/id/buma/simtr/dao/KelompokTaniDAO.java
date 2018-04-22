@@ -24,6 +24,8 @@ public interface KelompokTaniDAO {
     
     public List<KelompokTani> getAllKelompokTaniByMultipleField(String keyword, int tahun, String idAfd);
     
+    public KelompokTani getKelompokTaniByIdKelompok(String idKelompok);
+    
     public void cetakRdkk(String idKelompok);
     
     public JRViewer cetakSKK(String idKelompok);

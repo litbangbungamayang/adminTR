@@ -325,5 +325,20 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
         }
         return lkt;
     }
+
+    @Override
+    public KelompokTani getKelompokTaniByIdKelompok(String idKelompok) {
+        Connection conn = new DBConnection().getConn();
+        List<KelompokTani> lkt = new ArrayList<>();
+        String callSQL = "CALL GET_KELOMPOKTANIH_BY_IDKELOMPOK(?)";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setString(1, idKelompok);
+            lkt = commonGetDataKelompokTani(cst);
+            if (lkt.size() == 1) return lkt.get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
 }

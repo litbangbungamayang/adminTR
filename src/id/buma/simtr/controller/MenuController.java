@@ -36,7 +36,6 @@ public class MenuController implements MouseListener{
     }
     
     public void changeMenuNav(String position){
-        //mw.getLblMenuNav().setText(position);
     }
 
     @Override
@@ -45,6 +44,7 @@ public class MenuController implements MouseListener{
         RDKKController rc = new RDKKController(mw);
         PupukController pc = new PupukController(mw);
         UserController uc = new UserController(mw);
+        PerawatanController pwc = new PerawatanController(mw);
         BahanProduksiController bpc = new BahanProduksiController(mw);
         mw.repaint();
         JPanel menuPanel = (JPanel) e.getSource();
@@ -127,9 +127,29 @@ public class MenuController implements MouseListener{
                     case "pnlFrmValidasiRDKK_CetakSKK":
                         rc.cetakBaSKK(mw.getTblValidasiRDKK());
                         break;
+            //******************* MENU PERAWATAN
             case "pnlMenuPerawatan":
-                mw.getPnlSubMenuHolder().setVisible(false);
+                mw.getPnlSubMenuHolder().setVisible(true);
+                pageSwitcher(mw.getPnlSubMenuHolder(), "crdSubMenuPerawatan");
                 break;
+                case "pnlSubMenuPerawatan_Permintaan":
+                    mw.getPnlSubMenuHolder().setVisible(false);
+                    pageSwitcher(mw.getPnlContent(), "crdFrmPerawatan_Permintaan");
+                    pwc.prepareTblPerawatanKelTani();
+                    pwc.prepareTblPerawatanPetani();
+                    break;
+                    case "pnlFrmPerawatan_Permintaan_Tambah":
+                        
+                        break;
+                    case "pnlFrmPerawatan_Permintaan_Simpan":
+                        
+                        break;
+                    case "pnlFrmPerawatan_Permintaan_Back":
+                        pageSwitcher(mw.getPnlContent(),"crdPnlMenuUtama");
+                        break;
+                case "pnlSubMenuPerawatan_Evaluasi":
+                    break;
+            //*******************************
             //******************** MENU PUPUK
             case "pnlMenuPupuk":
                 mw.getPnlSubMenuHolder().setVisible(true);
@@ -390,6 +410,20 @@ public class MenuController implements MouseListener{
             case "pnlMenuPerawatan":
                 standarMainMenuHover(menuPanel);
                 break;
+                case "pnlSubMenuPerawatan_Permintaan":
+                    standarMainMenuHover(menuPanel);
+                    break;
+                    case "pnlFrmPerawatan_Permintaan_Back":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlFrmPerawatan_Permintaan_Tambah":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlFrmPerawatan_Permintaan_Simpan":
+                        standarButtonHover(menuPanel);
+                        break;
+                case "pnlSubMenuPerawatan_Evaluasi":
+                    standarMainMenuHover(menuPanel);
             case "pnlMenuPupuk":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -552,6 +586,21 @@ public class MenuController implements MouseListener{
             case "pnlMenuPerawatan":
                 standarMainMenuDisplayed(menuPanel);
                 break;
+                case "pnlSubMenuPerawatan_Permintaan":
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
+                    case "pnlFrmPerawatan_Permintaan_Back":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPerawatan_Permintaan_Tambah":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlFrmPerawatan_Permintaan_Simpan":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                case "pnlSubMenuPerawatan_Evaluasi":
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
             case "pnlMenuPupuk":
                 standarMainMenuDisplayed(menuPanel);
                 break;

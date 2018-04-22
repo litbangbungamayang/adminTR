@@ -8,13 +8,14 @@ package id.buma.simtr.controller;
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
-import id.buma.simtr.dao.TransaksiPupukDAOSQL;
+import id.buma.simtr.dao.TransaksiBahanDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.BufferTable_TransaksiPupuk;
 import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.PetaniTebu;
-import id.buma.simtr.model.TransaksiPupuk;
+import id.buma.simtr.model.TransaksiBahan;
 import id.buma.simtr.view.BahanProduksi_PupukTableModel;
 import id.buma.simtr.view.BufferTransaksi_PupukRowRenderer;
 import id.buma.simtr.view.BufferTransaksi_PupukTableModel;
@@ -27,6 +28,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.sf.jasperreports.engine.JasperPrint;
 
@@ -42,13 +44,13 @@ public class PupukController implements ActionListener{
     
     private final CommonController cc = new CommonController(mw);
     
-    private final TransaksiPupukDAOSQL transPupukDao = new TransaksiPupukDAOSQL();
+    private final TransaksiBahanDAOSQL transPupukDao = new TransaksiBahanDAOSQL();
     
     private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();
     
     private final BahanProduksiDAOSQL pupukDao = new BahanProduksiDAOSQL();
     
-    public static List<TransaksiPupuk> transPupuk = new ArrayList<>();
+    public static List<TransaksiBahan> transPupuk = new ArrayList<>();
     
     public static BuktiTransaksi buktiTransaksi;
         
@@ -103,10 +105,11 @@ public class PupukController implements ActionListener{
                         boolean cekStatus = transPupukDao.cekDuplicateTransaksiPupuk(idPetani_Selected, idBahan_Selected);
                         if (cekStatus && cekBarangMasuk){
                             float kuantaDb = selectedListPetani.get(i).getLuas()*selectedListPupuk.get(j).getDosisPerHa();
-                            TransaksiPupuk tp = new TransaksiPupuk(
+                            TransaksiBahan tp = new TransaksiBahan(
                                     0, 
                                     idPetani_Selected, 
-                                    idBahan_Selected, 
+                                    idBahan_Selected,
+                                    0,
                                     tglTransaksi,
                                     "D",
                                     kuantaDb, 
@@ -117,6 +120,30 @@ public class PupukController implements ActionListener{
                                     noBukti
                             );
                             transPupuk.add(tp);
+                            // Tambahkan biaya muat dan angkut pupuk
+                            BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
+                            List<Biaya> lsBy = bahanDao.getBiayaByIdBahan(idBahan_Selected, tahunGiling);
+                            if (lsBy.size() > 0){
+                                for (Biaya lsBy1 : lsBy) {
+                                    int biaya = lsBy1.getRupiahBiaya();
+                                    int rupiahBiaya = (int) Math.round(kuantaDb) * biaya;
+                                    TransaksiBahan tb = new TransaksiBahan(
+                                            0, 
+                                            idPetani_Selected, 
+                                            0, 
+                                            lsBy1.getIdBiaya(), 
+                                            tglTransaksi, 
+                                            "D", 
+                                            kuantaDb, 
+                                            cc.getUserId(), 
+                                            cc.getTimestamp(), 
+                                            tahunGiling, 
+                                            BigInteger.valueOf(rupiahBiaya), 
+                                            noBukti
+                                    );
+                                    transPupuk.add(tb);
+                                }
+                            }
                         } else {
                             if (!cekStatus){
                                 cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk berikut : " + '\n' + "Nama petani : " + 
@@ -157,13 +184,16 @@ public class PupukController implements ActionListener{
     
     public void insertNewTransaksiPupuk(){
         if (transPupuk.size() > 0 && buktiTransaksi != null){
-            if (transPupukDao.insertBatchTransaksiPupuk(transPupuk)){
-                transPupukDao.insertBuktiTransaksiPupuk(buktiTransaksi);
-                cc.showInfoMsg("Transaksi Pupuk", "Data transaksi telah tersimpan dengan nomor : \n" +
-                        "<html><b>" + buktiTransaksi.getNoBukti() + "</b></html>");
-                clearTable();
-            } else {
-                cc.showErrorMsg("Transaksi Pupuk", "Data transaksi pupuk GAGAL!");
+            if (JOptionPane.showConfirmDialog(mw, "Anda yakin akan menyimpan transaksi ini?",
+                    "Transaksi Pupuk", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                if (transPupukDao.insertBatchTransaksiPupuk(transPupuk)){
+                    transPupukDao.insertBuktiTransaksiPupuk(buktiTransaksi);
+                    cc.showInfoMsg("Transaksi Pupuk", "Data transaksi telah tersimpan dengan nomor : \n" +
+                            "<html><b>" + buktiTransaksi.getNoBukti() + "</b></html>");
+                    clearTable();
+                } else {
+                    cc.showErrorMsg("Transaksi Pupuk", "Data transaksi pupuk GAGAL!");
+                }
             }
         } else {
             clearTable();
@@ -269,18 +299,6 @@ public class PupukController implements ActionListener{
                 JasperPrint jp = transPupukDao.cetakPermintaanPupuk(idKelompok);
                 cc.setJasperPrint(jp);
                 cc.prepareFormCetak(mw.getPnlCetak_Content());
-                /*
-                JPanel pnlCetak = mw.getPnlCetak_Content();
-                JRViewer jrv = new JRViewer(jp);
-                pnlCetak.setLayout(new BorderLayout());
-                pnlCetak.repaint();
-                pnlCetak.removeAll();
-                ((JPanel)jrv.getComponent(0)).remove(1);
-                ((JPanel)jrv.getComponent(0)).remove(0);
-                ((JPanel)jrv.getComponent(0)).remove(2);
-                pnlCetak.add(jrv);
-                pnlCetak.revalidate();  
-                */
             } else {
                 cc.showInfoMsg("Permintaan Pupuk", "Tidak ada transaksi pupuk untuk kelompok " + namaKelompok + "! ");
             }

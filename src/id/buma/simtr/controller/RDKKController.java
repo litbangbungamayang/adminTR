@@ -237,6 +237,7 @@ public class RDKKController {
         mw.getCbxDesa().setSelectedItem(null);
         if (CommonController.user.getPrivLevel() == 2 || CommonController.user.getPrivLevel() == 1){           
             mw.getCbxFrmInputRDKK_Afdeling().setEnabled(true);
+            mw.getCbxFrmInputRDKK_Afdeling().setSelectedIndex(-1);
         } else {
             mw.getCbxFrmInputRDKK_Afdeling().setSelectedItem(CommonController.user.getIdAfd());
             mw.getCbxFrmInputRDKK_Afdeling().setEnabled(false);
@@ -255,18 +256,19 @@ public class RDKKController {
             int selectedKec = mw.getCbxKec().getSelectedIndex() - 1;
             int selectedDesa = mw.getCbxDesa().getSelectedIndex() - 1;
             int selectedKategori = mw.getCbxKategoriTanaman().getSelectedIndex() + 1;
+            String selectedKategoriTxt = mw.getCbxKategoriTanaman().getSelectedItem().toString();
             String kategori = "";
-            switch (selectedKategori){
-                case 0 :
+            switch (selectedKategoriTxt){
+                case "TRIT I":
                     kategori = "PC";
                     break;
-                case 1 :
+                case "TRIT II":
                     kategori = "R1";
                     break;
-                case 2 :
+                case "TRIT III":
                     kategori = "R2";
                     break;
-                case 3 :
+                case "TRIT IV":
                     kategori = "R3";
                     break;
             }
@@ -277,7 +279,6 @@ public class RDKKController {
             int jmlPetani = arrayPetani.size();
             String afd;
             if (CommonController.user.getPrivLevel() == 2 || CommonController.user.getPrivLevel() == 1){
-                //afd = CommonController.user.getIdAfd();
                 afd = mw.getCbxFrmInputRDKK_Afdeling().getSelectedItem().toString();
             } else {
                 afd = CommonController.user.getIdAfd();
@@ -364,8 +365,6 @@ public class RDKKController {
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lstKelTani.get(selectedRow).getIdKelompok();
             cc.setLastPage("validasi_rdkk");
-            //formCetak(keltanDao.cetakSKK(idKelompok));
-            //testFormCetak(keltanDao.testCetakLagi(idKelompok));
             JasperPrint jp = keltanDao.cetakSKK_JP(idKelompok);
             formCetakCustom(jp);
             cc.setJasperPrint(jp);
@@ -381,7 +380,6 @@ public class RDKKController {
             int selectedRow = tbl.getSelectedRow();
             String idKelompok = lstKel.get(selectedRow).getIdKelompok();
             cc.setLastPage("validasi_rdkk");
-            //formCetak(keltanDao.cetakKontrak(idKelompok));
             JasperPrint jp = keltanDao.cetakKontrak_JP(idKelompok);
             formCetakCustom(jp);
             cc.setJasperPrint(jp);

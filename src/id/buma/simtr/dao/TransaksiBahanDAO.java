@@ -6,7 +6,7 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.model.BuktiTransaksi;
-import id.buma.simtr.model.TransaksiPupuk;
+import id.buma.simtr.model.TransaksiBahan;
 import java.util.List;
 import net.sf.jasperreports.engine.JasperPrint;
 
@@ -16,15 +16,15 @@ import net.sf.jasperreports.engine.JasperPrint;
  * 
  */
 
-public interface TransaksiPupukDAO {
+public interface TransaksiBahanDAO {
     
-    public boolean insertNewTransaksiPupuk(TransaksiPupuk tp);
+    public boolean insertNewTransaksiPupuk(TransaksiBahan tp);
     
     public boolean cekDuplicateTransaksiPupuk(String idPetani, int idBahan);
     
     public boolean cekBarangMasuk(int idBahan);
     
-    public List<TransaksiPupuk> cekStokBahanProduksi(int idBahan);
+    public List<TransaksiBahan> cekStokBahanProduksi(int idBahan);
     
     public boolean cekTransaksiPupukByIdKelompokJenisBahan(String idKelompok, String jenisBahan);
     
@@ -32,7 +32,7 @@ public interface TransaksiPupukDAO {
     
     public JasperPrint cetakEvaluasiPupuk(String idAfd, java.sql.Date tgl1, java.sql.Date tgl2);
     
-    public boolean insertBatchTransaksiPupuk(List<TransaksiPupuk> listTp);
+    public boolean insertBatchTransaksiPupuk(List<TransaksiBahan> listTp);
     
     public boolean insertBuktiTransaksiPupuk(BuktiTransaksi bk);
     

@@ -6,6 +6,7 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.Biaya;
 import java.util.List;
 
 /**
@@ -29,5 +30,7 @@ public interface BahanProduksiDAO {
     public boolean deleteBahan(int idBahan);
     
     public boolean cekBahanProduksiDigunakan(int idBahan);
+    
+    public List<Biaya> getBiayaByIdBahan(int idBahan, int tahunGiling);
     
 }
