@@ -186,8 +186,7 @@ public class PupukController implements ActionListener{
         if (transPupuk.size() > 0 && buktiTransaksi != null){
             if (JOptionPane.showConfirmDialog(mw, "Anda yakin akan menyimpan transaksi ini?",
                     "Transaksi Pupuk", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                if (transPupukDao.insertBatchTransaksiPupuk(transPupuk)){
-                    transPupukDao.insertBuktiTransaksiPupuk(buktiTransaksi);
+                if (transPupukDao.insertBatchTransaksi(transPupuk, buktiTransaksi)){
                     cc.showInfoMsg("Transaksi Pupuk", "Data transaksi telah tersimpan dengan nomor : \n" +
                             "<html><b>" + buktiTransaksi.getNoBukti() + "</b></html>");
                     clearTable();

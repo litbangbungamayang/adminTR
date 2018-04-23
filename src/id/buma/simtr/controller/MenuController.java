@@ -105,7 +105,8 @@ public class MenuController implements MouseListener{
                         }
                         break;
                     case "pnlFrmInputRDKK_SimpanData":
-                        rc.konfirmasiSimpanData();
+                        //rc.konfirmasiSimpanData();
+                        rc.konfirmasiSimpanDataBatch();
                         break;
                 case "pnlVerifikasiRdkk":
                     pageSwitcher(mw.getPnlContent(), "crdFrmValidasiRDKK");

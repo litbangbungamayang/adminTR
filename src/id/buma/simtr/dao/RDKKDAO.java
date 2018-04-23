@@ -5,7 +5,13 @@
  */
 package id.buma.simtr.dao;
 
+import id.buma.simtr.model.BuktiTransaksi;
+import id.buma.simtr.model.KelompokTani;
+import id.buma.simtr.model.Koordinat;
+import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.RDKK;
+import id.buma.simtr.model.TransaksiBahan;
+import java.util.List;
 
 /**
  *
@@ -15,5 +21,8 @@ import id.buma.simtr.model.RDKK;
 public interface RDKKDAO {
     
     public boolean insertInputData(RDKK rdkk);
+    
+    public boolean insertBatchKelompokTaniBaru(KelompokTani kt, List<PetaniTebu> lsPt, 
+            List<Koordinat> lsKr, List<TransaksiBahan> lsTb, BuktiTransaksi bt);
     
 }

@@ -5,26 +5,34 @@
  */
 package id.buma.simtr.controller;
 
+import static id.buma.simtr.controller.PupukController.buktiTransaksi;
+import id.buma.simtr.dao.BahanProduksiDAOSQL;
 import id.buma.simtr.dao.CounterDAOSQL;
 import id.buma.simtr.dao.DesaDAOSQL;
 import id.buma.simtr.dao.KecamatanDAOSQL;
 import id.buma.simtr.dao.KelompokTaniDAOSQL;
 import id.buma.simtr.dao.KoordinatDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
+import id.buma.simtr.dao.RDKKDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
+import id.buma.simtr.dao.TransaksiBahanDAOSQL;
 import id.buma.simtr.dao.VarietasTebuDAOSQL;
+import id.buma.simtr.model.Biaya;
+import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.Desa;
 import id.buma.simtr.model.IdNoKontrak;
 import id.buma.simtr.model.Kecamatan;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.Koordinat;
 import id.buma.simtr.model.PetaniTebu;
+import id.buma.simtr.model.TransaksiBahan;
 import id.buma.simtr.model.VarietasTebu;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
 import id.buma.simtr.view.PetaniTableModel;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -245,6 +253,108 @@ public class RDKKController {
         statusIsianKoord(true);
     }
     
+    public void konfirmasiSimpanDataBatch(){
+        BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
+        RDKKDAOSQL rdkkDao = new RDKKDAOSQL();
+        TransaksiBahanDAOSQL transBahanDao = new TransaksiBahanDAOSQL();
+        if (cc.getBufferArrayPetani().size() > 0){
+            List<PetaniTebu> arrayPetani = cc.getBufferArrayPetani();
+            List<Kecamatan> arrayKecamatan = kecDao.getAllKecamatan();
+            List<Koordinat> arrayKoordinat = cc.getBufferKoordinat();
+            //---- Data Kelompok Tani -----//
+            String namaKoord = mw.getJtfInputRDKKNamaKoord().getText();
+            String noKtp = mw.getJtfNoKtpKoord().getText();
+            java.sql.Date tglRdkk = new java.sql.Date(new java.util.Date().getTime());
+            int selectedKec = mw.getCbxKec().getSelectedIndex() - 1;
+            int selectedDesa = mw.getCbxDesa().getSelectedIndex() - 1;
+            int selectedKategori = mw.getCbxKategoriTanaman().getSelectedIndex() + 1;
+            String selectedKategoriTxt = mw.getCbxKategoriTanaman().getSelectedItem().toString();
+            String kategori = "";
+            switch (selectedKategoriTxt){
+                case "TRIT I":
+                    kategori = "PC";
+                    break;
+                case "TRIT II":
+                    kategori = "R1";
+                    break;
+                case "TRIT III":
+                    kategori = "R2";
+                    break;
+                case "TRIT IV":
+                    kategori = "R3";
+                    break;
+            }
+            String idKecamatan = arrayKecamatan.get(selectedKec).getIdKecamatan();
+            List<Desa> arrayDesa = desaDao.getDesaByIdKecamatan(idKecamatan);
+            int idDesa = arrayDesa.get(selectedDesa).getIdDesa();
+            int tahunGiling = sistDao.getTahunGiling();
+            String afd;
+            int jmlPetani = arrayPetani.size();
+            if (CommonController.user.getPrivLevel() == 2 || CommonController.user.getPrivLevel() == 1){
+                afd = mw.getCbxFrmInputRDKK_Afdeling().getSelectedItem().toString();
+            } else {
+                afd = CommonController.user.getIdAfd();
+            }
+            float jmlLuas = 0.00f;
+            for (PetaniTebu petani : arrayPetani){
+                jmlLuas = jmlLuas + petani.getLuas();
+            }
+            boolean cekBiayaUkurLahan = bahanDao.cekBiayaUkurLahan();
+            if (jmlLuas >= 5.00){
+                if (JOptionPane.showConfirmDialog(null, "<html>Anda akan mendaftarkan RDKK <br> - Kelompok <b>" + namaKoord + "</b><br> - Jumlah petani sebanyak <b>" + 
+                        String.valueOf(jmlPetani) + "</b> petani<br> - Total luas areal seluas <b>" + 
+                        String.valueOf(jmlLuas) + "</b> Ha.<br>Apakah data tersebut benar?</html>", "Konfirmasi Data", 
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION && cekBiayaUkurLahan){
+                    Biaya bya = bahanDao.getBiayaUkurLahan();
+                    IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(Integer.valueOf(afd), selectedKategori);
+                    String idKelompok = newIdNoKontrak.getIdKelompok();
+                    String noKontrak = newIdNoKontrak.getNoKontrak();
+                    KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, kategori, 
+                            afd, idDesa, "N", noKtp, "", tglRdkk);
+                    int index = 0;
+                    List<TransaksiBahan> lsTb = new ArrayList<>();
+                    String noBukti = "RDKK-" + idKelompok;
+                    BuktiTransaksi buktiTrans = new BuktiTransaksi(noBukti, cc.getUserId(), cc.getTimestamp());
+                    for (PetaniTebu pt : arrayPetani){
+                        pt.setIdKelompok(idKelompok);
+                        pt.setIdPetani(cntDao.getNewIdPetani(idKelompok));
+                        arrayKoordinat.get(index).setIdPetani(pt.getIdPetani());                       
+                        TransaksiBahan tb = new TransaksiBahan(
+                                0, 
+                                pt.getIdPetani(), 
+                                0, 
+                                bya.getIdBiaya(), 
+                                tglRdkk, 
+                                "D", 
+                                jmlLuas, 
+                                cc.getUserId(), 
+                                cc.getTimestamp(), 
+                                tahunGiling, 
+                                BigInteger.valueOf((int) Math.round(jmlLuas * bya.getRupiahBiaya())), 
+                                noBukti
+                        );
+                        lsTb.add(tb);
+                        index++;
+                    }
+                    if (rdkkDao.insertBatchKelompokTaniBaru(kt, arrayPetani, arrayKoordinat, lsTb, buktiTrans)){
+                        cc.showInfoMsg("Pendaftaran Kelompok Tani", 
+                                "<html>Data Kelompok Tani <b>" + namaKoord + "</b><br>" + "Nomor Kontrak <b>" + noKontrak + "</b><br>" + "Telah tersimpan!");
+                        cc.getBufferArrayPetani().clear();
+                        cc.getBufferKoordinat().clear();
+                        clearInputPetani();
+                        clearInputKoordinator();
+                        mc.pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
+                        mw.getJtfInputRDKKNamaKoord().requestFocus();
+                    } else {
+                        cc.showErrorMsg("Error", "Data RDKK tidak tersimpan!");
+                    }
+                } else {
+                    if (!cekBiayaUkurLahan) cc.showErrorMsg("Error", "Belum ada master data biaya ukur lahan!");
+                }
+            }
+        }
+    }
+    
     public void konfirmasiSimpanData(){
         if (cc.getBufferArrayPetani().size() > 0){
             List<PetaniTebu> arrayPetani = cc.getBufferArrayPetani();
@@ -287,11 +397,13 @@ public class RDKKController {
             for (PetaniTebu petani : arrayPetani){
                 jmlLuas = jmlLuas + petani.getLuas();
             }
+            BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
+            boolean cekBiayaUkurLahan = bahanDao.cekBiayaUkurLahan();
             if (jmlLuas >= 5.00){
                 if (JOptionPane.showConfirmDialog(null, "Anda akan mendaftarkan RDKK Kelompok " + namaKoord + " \n - Jumlah petani sebanyak " + 
                         String.valueOf(jmlPetani) + " petani \n - Total luas areal seluas " + 
                         String.valueOf(jmlLuas) + " Ha. \nApakah data tersebut benar?", "Konfirmasi Data", 
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION && cekBiayaUkurLahan){
                     IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(Integer.valueOf(afd), selectedKategori);
                     String idKelompok = newIdNoKontrak.getIdKelompok();
                     String noKontrak = newIdNoKontrak.getNoKontrak();
@@ -314,6 +426,8 @@ public class RDKKController {
                     clearInputKoordinator();
                     mc.pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
                     mw.getJtfInputRDKKNamaKoord().requestFocus();
+                } else {
+                    if (cekBiayaUkurLahan == false) cc.showErrorMsg("Error", "Belum ada master data Biaya Ukur Lahan!");
                 }
             } else {
                 cc.showErrorMsg("Error", "Luas areal kelompok minimal 5.00 Ha! \nLuas areal yang Anda daftarkan hanya " + String.valueOf(jmlLuas) + " Ha.");

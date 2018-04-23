@@ -23,16 +23,11 @@ import javax.swing.table.AbstractTableModel;
 public class PetaniTableModel extends AbstractTableModel {
     
     private final VarietasTebuDAO varDAO = new VarietasTebuDAOSQL();
-    private boolean isEmpty = false;
+
     private final List<PetaniTebu> lsPetani;
     
     public PetaniTableModel(List<PetaniTebu> lsPetani){
         this.lsPetani = lsPetani;
-        if (this.lsPetani.size() < 1){
-            isEmpty = true;
-            PetaniTebu pt = new PetaniTebu("", 0, "", "", "", 0, "");
-            this.lsPetani.add(pt);
-        }
     }
     
     public List<PetaniTebu> getContentList(){
@@ -64,7 +59,7 @@ public class PetaniTableModel extends AbstractTableModel {
         dfs.setDecimalSeparator(',');
         dfs.setGroupingSeparator('.');
         DecimalFormat df = new DecimalFormat("###,#0.00", dfs);
-        if (!isEmpty){
+        if (lsPetani.size() > 0){
             PetaniTebu pt = lsPetani.get(rowIndex);
             namaVarietas = varDAO.getVarietasById(pt.getJenisTebu()).getNamaLab();
             switch(columnIndex){

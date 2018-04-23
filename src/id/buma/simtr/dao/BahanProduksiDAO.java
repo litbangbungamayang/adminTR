@@ -33,4 +33,8 @@ public interface BahanProduksiDAO {
     
     public List<Biaya> getBiayaByIdBahan(int idBahan, int tahunGiling);
     
+    public boolean cekBiayaUkurLahan();
+    
+    public Biaya getBiayaUkurLahan();
+    
 }

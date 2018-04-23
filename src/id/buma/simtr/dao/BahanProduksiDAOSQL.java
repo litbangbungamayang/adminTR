@@ -255,4 +255,68 @@ public class BahanProduksiDAOSQL implements BahanProduksiDAO {
         }
         return lsBy;
     }
+
+    @Override
+    public boolean cekBiayaUkurLahan() {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL CEK_UKUR_LAHAN";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.execute();
+            boolean result = cst.execute();
+            int rowsAffected = 0;
+            ResultSet rs = null;
+            while (result || rowsAffected != -1){
+                if (result){
+                    rs = cst.getResultSet();
+                    break;
+                } else {
+                    rowsAffected = cst.getUpdateCount();
+                }
+                cst.getMoreResults();
+            }
+            while (rs.next()){
+                if (rs.getInt("UKUR_LAHAN") == 1) return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BahanProduksiDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public Biaya getBiayaUkurLahan() {
+        Connection conn = new DBConnection().getConn();
+        Biaya bya = null;
+        String callSQL = "CALL GET_BIAYA_UKUR_LAHAN";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.execute();
+            boolean result = cst.execute();
+            int rowsAffected = 0;
+            ResultSet rs = null;
+            while (result || rowsAffected != -1){
+                if (result){
+                    rs = cst.getResultSet();
+                    break;
+                } else {
+                    rowsAffected = cst.getUpdateCount();
+                }
+                cst.getMoreResults();
+            }
+            while (rs.next()){
+                bya = new Biaya(
+                        rs.getInt("ID_BIAYA"), 
+                        rs.getString("KATEGORI"), 
+                        rs.getString("JENIS_BIAYA"), 
+                        rs.getString("NAMA_BIAYA"), 
+                        rs.getString("SATUAN"), 
+                        rs.getInt("TAHUN_GILING"), 
+                        rs.getInt("BIAYA")
+                );
+                return bya;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BahanProduksiDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bya;
+    }
 }

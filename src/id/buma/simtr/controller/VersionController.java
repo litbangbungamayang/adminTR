@@ -130,6 +130,13 @@ public class VersionController {
         + Penambahan field di TBL_TRANSAKSI = ID_BIAYA (INT)
         + Perubahan struktur report Rekap Evaluasi Pupuk
         */
+        version = "0.9.22";
+        /*
+        + Perubahan lagi utk model petani, dikosongin lagi karena saat daftar kelompok tani, ada record kosong ikut
+        + Insert data RDKK baru pakai batch
+        + Penggabungan insert data RDKK baru dengan transaksi biaya ukur lahan (batch)
+        + Penggabungan insert transaksi bahan/upah dengan nomor bukti (batch)
+        */
         
         return version;
     }

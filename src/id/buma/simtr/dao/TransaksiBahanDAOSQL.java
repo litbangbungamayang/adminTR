@@ -36,7 +36,7 @@ public class TransaksiBahanDAOSQL implements TransaksiBahanDAO {
     public boolean insertNewTransaksiPupuk(TransaksiBahan tp) {
         Connection conn = new DBConnection().getConn();
         try {
-            String strSql = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?,?,?,?,?)";
+            String strSql = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?)";
             /*
             1 - idpetani (varchar)
             2 - idbahan (int)
@@ -52,14 +52,15 @@ public class TransaksiBahanDAOSQL implements TransaksiBahanDAO {
             try (CallableStatement cst = conn.prepareCall(strSql)) {
                 cst.setString(1, tp.getIdPetani());
                 cst.setInt(2, tp.getIdBahan());
-                cst.setDate(3, tp.getTglTransaksi());
-                cst.setFloat(4, tp.getKuantaTransaksi());
-                cst.setInt(5, tp.getIdUser());
-                cst.setTimestamp(6, tp.getTglPosting());
-                cst.setString(7, tp.getKodeTransaksi());
-                cst.setInt(8, tp.getTahunGiling());
-                cst.setLong(9, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
-                cst.setString(10, tp.getNomorBuktiTransaksi());
+                cst.setInt(3, tp.getIdBiaya());
+                cst.setDate(4, tp.getTglTransaksi());
+                cst.setFloat(5, tp.getKuantaTransaksi());
+                cst.setInt(6, tp.getIdUser());
+                cst.setTimestamp(7, tp.getTglPosting());
+                cst.setString(8, tp.getKodeTransaksi());
+                cst.setInt(9, tp.getTahunGiling());
+                cst.setLong(10, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
+                cst.setString(11, tp.getNomorBuktiTransaksi());
                 cst.execute();
                 if (cst.getUpdateCount() == 1) return true;
             } finally {
@@ -206,13 +207,13 @@ public class TransaksiBahanDAOSQL implements TransaksiBahanDAO {
         return jp;
     }
 
-    @Override
-    public boolean insertBatchTransaksiPupuk(List<TransaksiBahan> listTp) {
+    /*
+    public boolean insertBatchTransaksi(List<TransaksiBahan> listTp) {
         Connection conn = new DBConnection().getConn();
         try {
             conn.setAutoCommit(false);
             conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
-            String callSQL = "CALL INSERT_TRANSAKSI_PERMINTAAN_PUPUK(?,?,?,?,?,?,?,?,?,?,?)";
+            String callSQL = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?)";
             CallableStatement cst = conn.prepareCall(callSQL);
             for(TransaksiBahan tp : listTp){
                 cst.setString(1, tp.getIdPetani());
@@ -248,6 +249,7 @@ public class TransaksiBahanDAOSQL implements TransaksiBahanDAO {
         }
         return false;
     }
+    */
 
     @Override
     public boolean insertBuktiTransaksiPupuk(BuktiTransaksi bk) {
@@ -307,6 +309,60 @@ public class TransaksiBahanDAOSQL implements TransaksiBahanDAO {
             }
         }
         return jp;
+    }
+
+    @Override
+    public boolean insertBatchTransaksi(List<TransaksiBahan> listTp, BuktiTransaksi buktiTrans) {
+        Connection conn = new DBConnection().getConn();
+        try {
+            conn.setAutoCommit(false);
+            conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+            String callSQL = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?)";
+            CallableStatement cst = conn.prepareCall(callSQL);
+            for(TransaksiBahan tp : listTp){
+                cst.setString(1, tp.getIdPetani());
+                cst.setInt(2, tp.getIdBahan());
+                cst.setInt(3, tp.getIdBiaya());
+                cst.setDate(4, tp.getTglTransaksi());
+                cst.setFloat(5, tp.getKuantaTransaksi());
+                cst.setInt(6, tp.getIdUser());
+                cst.setTimestamp(7, tp.getTglPosting());
+                cst.setString(8, tp.getKodeTransaksi());
+                cst.setInt(9, tp.getTahunGiling());
+                cst.setLong(10, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
+                cst.setString(11, tp.getNomorBuktiTransaksi());
+                cst.addBatch();
+            }
+            cst.executeBatch();
+            callSQL = "CALL INSERT_NEW_BUKTI_TRANSAKSI(?,?,?)";
+            /*
+                1 - no dokumen (varchar 100)
+                2 - user id (int)
+                3 - posting timestamp (datetime)
+            */
+            cst = conn.prepareCall(callSQL);
+            cst.setString(1, buktiTrans.getNoBukti());
+            cst.setInt(2, buktiTrans.getUserId());
+            cst.setTimestamp(3, buktiTrans.getPostingTime());
+            cst.execute();
+            conn.commit();
+            conn.setAutoCommit(true);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiBahanDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(TransaksiBahanDAOSQL.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(TransaksiBahanDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
     }
     
 }

@@ -32,7 +32,7 @@ public interface TransaksiBahanDAO {
     
     public JasperPrint cetakEvaluasiPupuk(String idAfd, java.sql.Date tgl1, java.sql.Date tgl2);
     
-    public boolean insertBatchTransaksiPupuk(List<TransaksiBahan> listTp);
+    public boolean insertBatchTransaksi(List<TransaksiBahan> listTp, BuktiTransaksi buktiTrans);
     
     public boolean insertBuktiTransaksiPupuk(BuktiTransaksi bk);
     
