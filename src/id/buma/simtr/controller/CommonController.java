@@ -204,11 +204,11 @@ public class CommonController {
     }
     
     public void showErrorMsg(String title,String msg){
-        JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "<html><font face=\"Calibri\" size=\"4\">" + msg + "</html>", title, JOptionPane.ERROR_MESSAGE);
     }
     
     public void showInfoMsg(String title, String msg){
-        JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "<html><font face=\"Calibri\" size=\"4\">" + msg + "</html>", title, JOptionPane.INFORMATION_MESSAGE);
     }
     
     public void prepareTableInputPetani(JTable tabel){

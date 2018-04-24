@@ -150,6 +150,7 @@ public class MainWindow extends javax.swing.JFrame {
         ((AbstractDocument) jtfFrmValidasiRDKK_SearchKoord.getDocument()).setDocumentFilter(df);
         ((AbstractDocument) jtfFrmPupuk_Permintaan_Cari.getDocument()).setDocumentFilter(df);
         ((AbstractDocument) jtfFrmBahanProduksi_NamaBahan.getDocument()).setDocumentFilter(df);
+        ((AbstractDocument) jtfFrmPerawatan_Permintaan_Cari.getDocument()).setDocumentFilter(df);
     }
     
     private void setTextFieldAutoClear(){
@@ -164,6 +165,8 @@ public class MainWindow extends javax.swing.JFrame {
         jtfFrmValidasiRDKK_SearchKoord.addKeyListener(validasiKoord);
         KelTaniAutoFilter autoFilterPupuk = new KelTaniAutoFilter(tblKelTani_Pupuk_Permintaan);
         jtfFrmPupuk_Permintaan_Cari.addKeyListener(autoFilterPupuk);
+        KelTaniAutoFilter autoFilterPerawatan = new KelTaniAutoFilter(tblKelTani_Perawatan_Permintaan);
+        jtfFrmPerawatan_Permintaan_Cari.addKeyListener(autoFilterPerawatan);
     }
     
     private void setComboBox(){
@@ -512,7 +515,7 @@ public class MainWindow extends javax.swing.JFrame {
         tblKelTani_Perawatan_Permintaan = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jtfFrmPupuk_Permintaan_Cari1 = new javax.swing.JTextField();
+        jtfFrmPerawatan_Permintaan_Cari = new javax.swing.JTextField();
         lblSearchIcon3 = new javax.swing.JLabel();
         pnlFrmPupuk_Permintaan_Clear2 = new javax.swing.JPanel();
         lblFrmRDKKClearSearch3 = new javax.swing.JLabel();
@@ -3911,13 +3914,13 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel19.setText("Daftar Kelompok Tani");
 
-        jtfFrmPupuk_Permintaan_Cari1.setBackground(new java.awt.Color(85, 131, 131));
-        jtfFrmPupuk_Permintaan_Cari1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jtfFrmPupuk_Permintaan_Cari1.setForeground(new java.awt.Color(255, 255, 255));
-        jtfFrmPupuk_Permintaan_Cari1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jtfFrmPupuk_Permintaan_Cari1.setCaretColor(new java.awt.Color(255, 255, 255));
-        jtfFrmPupuk_Permintaan_Cari1.setMargin(new java.awt.Insets(2, 4, 2, 2));
-        jtfFrmPupuk_Permintaan_Cari1.setName("jtfFrmPupuk_Permintaan_Cari"); // NOI18N
+        jtfFrmPerawatan_Permintaan_Cari.setBackground(new java.awt.Color(85, 131, 131));
+        jtfFrmPerawatan_Permintaan_Cari.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtfFrmPerawatan_Permintaan_Cari.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmPerawatan_Permintaan_Cari.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jtfFrmPerawatan_Permintaan_Cari.setCaretColor(new java.awt.Color(255, 255, 255));
+        jtfFrmPerawatan_Permintaan_Cari.setMargin(new java.awt.Insets(2, 4, 2, 2));
+        jtfFrmPerawatan_Permintaan_Cari.setName("jtfFrmPerawatan_Permintaan_Cari"); // NOI18N
 
         lblSearchIcon3.setBackground(new java.awt.Color(85, 131, 131));
         lblSearchIcon3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -3950,7 +3953,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(lblSearchIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfFrmPupuk_Permintaan_Cari1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfFrmPerawatan_Permintaan_Cari, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlFrmPupuk_Permintaan_Clear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
@@ -3964,7 +3967,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addComponent(jtfFrmPupuk_Permintaan_Cari1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jtfFrmPerawatan_Permintaan_Cari, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
 
@@ -4290,8 +4293,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jtfFrmBahanProduksi_KuantaMasuk;
     private javax.swing.JTextField jtfFrmBahanProduksi_NamaBahan;
     private javax.swing.JFormattedTextField jtfFrmBahanProduksi_NilaiMasuk;
+    private javax.swing.JTextField jtfFrmPerawatan_Permintaan_Cari;
     private javax.swing.JTextField jtfFrmPupuk_Permintaan_Cari;
-    private javax.swing.JTextField jtfFrmPupuk_Permintaan_Cari1;
     private javax.swing.JTextField jtfFrmRDKKCari;
     private javax.swing.JTextField jtfFrmUserData_NamaLengkap;
     private javax.swing.JTextField jtfFrmUserData_Password;

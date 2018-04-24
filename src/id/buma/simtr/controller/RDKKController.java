@@ -5,7 +5,6 @@
  */
 package id.buma.simtr.controller;
 
-import static id.buma.simtr.controller.PupukController.buktiTransaksi;
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
 import id.buma.simtr.dao.CounterDAOSQL;
 import id.buma.simtr.dao.DesaDAOSQL;
@@ -400,9 +399,9 @@ public class RDKKController {
             BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
             boolean cekBiayaUkurLahan = bahanDao.cekBiayaUkurLahan();
             if (jmlLuas >= 5.00){
-                if (JOptionPane.showConfirmDialog(null, "Anda akan mendaftarkan RDKK Kelompok " + namaKoord + " \n - Jumlah petani sebanyak " + 
-                        String.valueOf(jmlPetani) + " petani \n - Total luas areal seluas " + 
-                        String.valueOf(jmlLuas) + " Ha. \nApakah data tersebut benar?", "Konfirmasi Data", 
+                if (JOptionPane.showConfirmDialog(null, "Anda akan mendaftarkan RDKK Kelompok " + namaKoord + "<br> - Jumlah petani sebanyak " + 
+                        String.valueOf(jmlPetani) + " petani<br> - Total luas areal seluas " + 
+                        String.valueOf(jmlLuas) + " Ha.<br>Apakah data tersebut benar?", "Konfirmasi Data", 
                         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION && cekBiayaUkurLahan){
                     IdNoKontrak newIdNoKontrak = cntDao.getNewIdKelompok(Integer.valueOf(afd), selectedKategori);
                     String idKelompok = newIdNoKontrak.getIdKelompok();

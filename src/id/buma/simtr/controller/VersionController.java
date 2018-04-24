@@ -137,6 +137,11 @@ public class VersionController {
         + Penggabungan insert data RDKK baru dengan transaksi biaya ukur lahan (batch)
         + Penggabungan insert transaksi bahan/upah dengan nomor bukti (batch)
         */
+        version = "0.9.23";
+        /*
+        + Perubahan common controller untuk error dan info pakai html tag
+        + Pembuatan Kuitansi Permintaan Biaya Pupuk
+        */
         
         return version;
     }

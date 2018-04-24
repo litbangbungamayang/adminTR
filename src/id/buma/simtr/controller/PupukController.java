@@ -146,8 +146,8 @@ public class PupukController implements ActionListener{
                             }
                         } else {
                             if (!cekStatus){
-                                cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk berikut : " + '\n' + "Nama petani : " + 
-                                    selectedListPetani.get(i).getNamaPetani() + '\n' + "Bahan pupuk : " + selectedListPupuk.get(j).getNamaBahan());
+                                cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk untuk petani berikut : <br>" + "Nama petani : <b>" + 
+                                    selectedListPetani.get(i).getNamaPetani() + "</b><br>" + "Bahan pupuk : <b>" + selectedListPupuk.get(j).getNamaBahan() + "</b></html>");
                             }
                             if (!cekBarangMasuk){
                                 cc.showErrorMsg("Error Transaksi Pupuk", "Belum ada transaksi barang masuk untuk : " + selectedListPupuk.get(j).getNamaBahan());
@@ -187,8 +187,8 @@ public class PupukController implements ActionListener{
             if (JOptionPane.showConfirmDialog(mw, "Anda yakin akan menyimpan transaksi ini?",
                     "Transaksi Pupuk", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                 if (transPupukDao.insertBatchTransaksi(transPupuk, buktiTransaksi)){
-                    cc.showInfoMsg("Transaksi Pupuk", "Data transaksi telah tersimpan dengan nomor : \n" +
-                            "<html><b>" + buktiTransaksi.getNoBukti() + "</b></html>");
+                    cc.showInfoMsg("Transaksi Pupuk", "Data transaksi telah tersimpan dengan nomor :<br>" +
+                            "<b>" + buktiTransaksi.getNoBukti() + "</b>");
                     clearTable();
                 } else {
                     cc.showErrorMsg("Transaksi Pupuk", "Data transaksi pupuk GAGAL!");
