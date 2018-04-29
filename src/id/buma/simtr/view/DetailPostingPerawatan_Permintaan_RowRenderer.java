@@ -21,71 +21,70 @@ import javax.swing.table.TableColumn;
  * 
  */
 
-public class PetaniRowRenderer extends DefaultTableCellRenderer implements TableCellRenderer{
-    
+public class DetailPostingPerawatan_Permintaan_RowRenderer extends DefaultTableCellRenderer implements TableCellRenderer{
+
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, 
-            boolean isSelected, boolean hasFocus, int row, int column){
+            boolean isSelected, boolean hasFocus, int row, int column) {
         Component c = super.getTableCellRendererComponent(table, value, isSelected,
                 hasFocus, row, column);
-        TableColumn tc = table.getColumnModel().getColumn(column);
-        table.getParent().setBackground(new Color(170,193,193));
         setBorder(noFocusBorder);
-        table.setRowSelectionAllowed(true);
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        table.setRowSelectionAllowed(false);
         table.getParent().setBackground(new Color(170,193,193));
         int tableWidth = table.getParent().getWidth();
-        switch (column){
-            case 0 :
-                // Nomor
+        switch(column){
+            case 0: //NO
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(30);
-                tc.setPreferredWidth((int) Math.round(0.0700*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.05*tableWidth));
                 break;
-            case 1 :
-                // Nama Petani
+            case 1: //NAMA
                 this.setHorizontalAlignment(LEFT);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(240);
-                tc.setPreferredWidth((int) Math.round(0.5660*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.20*tableWidth)-2);
                 break;
-            case 2 :
-                // Luas
+            case 2: //TGL
+                this.setHorizontalAlignment(CENTER);
+                tc.setCellRenderer(this);
+                tc.setPreferredWidth((int) Math.round(0.15*tableWidth));
+                break;
+            case 3: //PEKERJAAN
+                this.setHorizontalAlignment(LEFT);
+                tc.setCellRenderer(this);
+                tc.setPreferredWidth((int) Math.round(0.23*tableWidth));
+                break;
+            case 4: //KUANTA
                 this.setHorizontalAlignment(RIGHT);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(50);
-                tc.setPreferredWidth((int) Math.round(0.1179*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.07*tableWidth));
                 break;
-            case 3 :
-                // MT
-                this.setHorizontalAlignment(CENTER);
+            case 5: //HARGA SATUAN
+                this.setHorizontalAlignment(RIGHT);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(40);
-                tc.setPreferredWidth((int) Math.round(0.0943*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.16*tableWidth));
                 break;
-            case 4 :
-                // Varietas
-                this.setHorizontalAlignment(CENTER);
+            case 6: //NILAI
+                this.setHorizontalAlignment(RIGHT);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(64);
-                tc.setPreferredWidth((int) Math.round(0.1509*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.14*tableWidth));
                 break;
         }
         
         if (row % 2 == 0){
             c.setBackground(new Color(205,219,219));
             c.setForeground(Color.DARK_GRAY);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         } else {
             c.setBackground(new Color(85,131,131));
             c.setForeground(Color.WHITE);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         }
         
         if (isSelected){
             setBackground(new Color(70,70,0));
             setForeground(Color.WHITE);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         }
         
         return c;

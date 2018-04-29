@@ -8,14 +8,14 @@ package id.buma.simtr.controller;
 import id.buma.simtr.dao.BahanProduksiDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
-import id.buma.simtr.dao.TransaksiBahanDAOSQL;
+import id.buma.simtr.dao.TransaksiDAOSQL;
 import id.buma.simtr.model.BahanProduksi;
 import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.BufferTable_TransaksiPupuk;
 import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.PetaniTebu;
-import id.buma.simtr.model.TransaksiBahan;
+import id.buma.simtr.model.Transaksi;
 import id.buma.simtr.view.BahanProduksi_PupukTableModel;
 import id.buma.simtr.view.BufferTransaksi_PupukRowRenderer;
 import id.buma.simtr.view.BufferTransaksi_PupukTableModel;
@@ -44,13 +44,13 @@ public class PupukController implements ActionListener{
     
     private final CommonController cc = new CommonController(mw);
     
-    private final TransaksiBahanDAOSQL transPupukDao = new TransaksiBahanDAOSQL();
+    private final TransaksiDAOSQL transPupukDao = new TransaksiDAOSQL();
     
     private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();
     
     private final BahanProduksiDAOSQL pupukDao = new BahanProduksiDAOSQL();
     
-    public static List<TransaksiBahan> transPupuk = new ArrayList<>();
+    public static List<Transaksi> transPupuk = new ArrayList<>();
     
     public static BuktiTransaksi buktiTransaksi;
         
@@ -87,8 +87,7 @@ public class PupukController implements ActionListener{
             if (mw.getDtpTglTransaksiPupuk().getDate() != null){
                 transPupuk.clear();
                 String idKelompok = selectedListPetani.get(0).getIdKelompok();
-                int idBahan = selectedListPupuk.get(0).getIdBahan();
-                String noBukti = transPupukDao.getNewNomorBuktiTransaksi(idKelompok,idBahan);
+                String noBukti = transPupukDao.getNewNomorBuktiTransaksi(idKelompok);
                 buktiTransaksi = new BuktiTransaksi(noBukti, cc.getUserId(), cc.getTimestamp());
                 
                 for (int i = 0; i < selectedListPetani.size(); i++){
@@ -102,10 +101,10 @@ public class PupukController implements ActionListener{
                         SistemDAOSQL sisDao = new SistemDAOSQL();
                         int tahunGiling = sisDao.getTahunGiling();
                         boolean cekBarangMasuk = transPupukDao.cekBarangMasuk(idBahan_Selected);
-                        boolean cekStatus = transPupukDao.cekDuplicateTransaksiPupuk(idPetani_Selected, idBahan_Selected);
+                        boolean cekStatus = transPupukDao.cekDuplikatTransaksiPupuk(idPetani_Selected, idBahan_Selected);
                         if (cekStatus && cekBarangMasuk){
                             float kuantaDb = selectedListPetani.get(i).getLuas()*selectedListPupuk.get(j).getDosisPerHa();
-                            TransaksiBahan tp = new TransaksiBahan(
+                            Transaksi tp = new Transaksi(
                                     0, 
                                     idPetani_Selected, 
                                     idBahan_Selected,
@@ -127,7 +126,7 @@ public class PupukController implements ActionListener{
                                 for (Biaya lsBy1 : lsBy) {
                                     int biaya = lsBy1.getRupiahBiaya();
                                     int rupiahBiaya = (int) Math.round(kuantaDb) * biaya;
-                                    TransaksiBahan tb = new TransaksiBahan(
+                                    Transaksi tb = new Transaksi(
                                             0, 
                                             idPetani_Selected, 
                                             0, 
@@ -175,6 +174,8 @@ public class PupukController implements ActionListener{
                 mw.getTblBuffer_Pupuk_Permintaan().setModel(btptm);
                 cc.setTableHeaderKelTani(mw.getTblBuffer_Pupuk_Permintaan().getTableHeader());
                 mw.getTblBuffer_Pupuk_Permintaan().setDefaultRenderer(Object.class, bufferRR);
+            } else {
+                cc.showErrorMsg("Error Transaksi Pupuk", "Tanggal transaksi harus diisi!");
             }
         } else {
             if (tblPetani.getSelectedRowCount() == 0) cc.showErrorMsg("Error Transaksi Pupuk", "Pilihlah minimal 1 (satu) nama petani.");
@@ -233,7 +234,7 @@ public class PupukController implements ActionListener{
     
     public void prepareDatePicker(){
         mw.getDtpTglTransaksiPupuk().setFormats("dd-MMM-yyyy");
-        mw.getDtpTglTransaksiPupuk().setDate(new java.util.Date());
+        mw.getDtpTglTransaksiPupuk().setDate(null);
     }
     
     public void populateTblPupukPetaniByIdKelompok(JTable tbl, String idKelompok){

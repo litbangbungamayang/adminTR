@@ -105,7 +105,6 @@ public class MenuController implements MouseListener{
                         }
                         break;
                     case "pnlFrmInputRDKK_SimpanData":
-                        //rc.konfirmasiSimpanData();
                         rc.konfirmasiSimpanDataBatch();
                         break;
                 case "pnlVerifikasiRdkk":
@@ -140,14 +139,30 @@ public class MenuController implements MouseListener{
                     pwc.prepareTblPerawatanPetani();
                     break;
                     case "pnlFrmPerawatan_Permintaan_Tambah":
-                        
+                        pwc.populateTblBufferPekerjaan();
                         break;
                     case "pnlFrmPerawatan_Permintaan_Simpan":
-                        
+                        pwc.konfirmasiSimpanData();
                         break;
                     case "pnlFrmPerawatan_Permintaan_Back":
+                        pwc.resetForm();
                         pageSwitcher(mw.getPnlContent(),"crdPnlMenuUtama");
                         break;
+                    case "pnlFrmPerawatan_Permintaan_LihatData":
+                        if (mw.getTblKelTani_Perawatan_Permintaan().getSelectedRow() > -1){
+                            pageSwitcher(mw.getPnlContent(), "crdFrmPerawatan_BonDalam");
+                            pwc.populateTblPosting();
+                        } else {
+                            cc.showErrorMsg("Perawatan Kebun", "Pilih dulu salah satu kelompok tani!");
+                        }
+                        break;
+                        case "pnlFrmPerawatan_BonDalam_Back":
+                            pwc.resetDetailForm();
+                            pageSwitcher(mw.getPnlContent(), "crdFrmPerawatan_Permintaan");
+                            break;
+                        case "pnlFrmPerawatan_Permintaan_CetakBon":
+                            pwc.cetakBonDalam();
+                            break;
                 case "pnlSubMenuPerawatan_Evaluasi":
                     break;
             //*******************************
@@ -304,6 +319,10 @@ public class MenuController implements MouseListener{
                         pageSwitcher(mw.getPnlContent(), "crdFrmPupuk_EvaluasiBiayaPupuk");
                         cc.setLastPage(null);
                         break;
+                    case "bon_dalam":
+                        pageSwitcher(mw.getPnlContent(), "crdFrmPerawatan_BonDalam");
+                        cc.setLastPage(null);
+                        break;
                 }
                 break;
             case "pnlCetak_Cetak":
@@ -423,8 +442,18 @@ public class MenuController implements MouseListener{
                     case "pnlFrmPerawatan_Permintaan_Simpan":
                         standarButtonHover(menuPanel);
                         break;
+                    case "pnlFrmPerawatan_Permintaan_LihatData":
+                        standarButtonHover(menuPanel);
+                        break;
+                        case "pnlFrmPerawatan_BonDalam_Back":
+                            standarButtonHover(menuPanel);
+                            break;
+                        case "pnlFrmPerawatan_Permintaan_CetakBon":
+                            standarButtonHover(menuPanel);
+                            break;
                 case "pnlSubMenuPerawatan_Evaluasi":
                     standarMainMenuHover(menuPanel);
+                    break;
             case "pnlMenuPupuk":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -599,6 +628,15 @@ public class MenuController implements MouseListener{
                     case "pnlFrmPerawatan_Permintaan_Simpan":
                         standarButtonDisplayed(menuPanel);
                         break;
+                    case "pnlFrmPerawatan_Permintaan_LihatData":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                        case "pnlFrmPerawatan_BonDalam_Back":
+                            standarButtonDisplayed(menuPanel);
+                            break;
+                        case "pnlFrmPerawatan_Permintaan_CetakBon":
+                            standarButtonDisplayed(menuPanel);
+                            break;
                 case "pnlSubMenuPerawatan_Evaluasi":
                     standarMainMenuDisplayed(menuPanel);
                     break;

@@ -13,7 +13,7 @@ import java.math.BigInteger;
  * 
  */
 
-public class TransaksiBahan {
+public class Transaksi {
     
     private int idTransaksi;
     private String idPetani;
@@ -28,7 +28,7 @@ public class TransaksiBahan {
     private BigInteger nilaiTransaksi;
     private String nomorBuktiTransaksi;
     
-    public TransaksiBahan(int idTransaksi, String idPetani, int idBahan, int idBiaya, 
+    public Transaksi(int idTransaksi, String idPetani, int idBahan, int idBiaya, 
             java.sql.Date tglTransaksi, String kodeTransaksi, float kuantaTransaksi, 
             int idUser, java.sql.Timestamp tglPosting, int tahunGiling, BigInteger nilaiTransaksi,
             String nomorBuktiTransaksi){

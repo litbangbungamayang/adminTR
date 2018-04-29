@@ -14,7 +14,7 @@ import id.buma.simtr.dao.KoordinatDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.RDKKDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
-import id.buma.simtr.dao.TransaksiBahanDAOSQL;
+import id.buma.simtr.dao.TransaksiDAOSQL;
 import id.buma.simtr.dao.VarietasTebuDAOSQL;
 import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.BuktiTransaksi;
@@ -24,7 +24,7 @@ import id.buma.simtr.model.Kecamatan;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.Koordinat;
 import id.buma.simtr.model.PetaniTebu;
-import id.buma.simtr.model.TransaksiBahan;
+import id.buma.simtr.model.Transaksi;
 import id.buma.simtr.model.VarietasTebu;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
@@ -255,7 +255,7 @@ public class RDKKController {
     public void konfirmasiSimpanDataBatch(){
         BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
         RDKKDAOSQL rdkkDao = new RDKKDAOSQL();
-        TransaksiBahanDAOSQL transBahanDao = new TransaksiBahanDAOSQL();
+        TransaksiDAOSQL transBahanDao = new TransaksiDAOSQL();
         if (cc.getBufferArrayPetani().size() > 0){
             List<PetaniTebu> arrayPetani = cc.getBufferArrayPetani();
             List<Kecamatan> arrayKecamatan = kecDao.getAllKecamatan();
@@ -311,25 +311,25 @@ public class RDKKController {
                     KelompokTani kt = new KelompokTani(idKelompok, tahunGiling, namaKoord, noKontrak, kategori, 
                             afd, idDesa, "N", noKtp, "", tglRdkk);
                     int index = 0;
-                    List<TransaksiBahan> lsTb = new ArrayList<>();
+                    List<Transaksi> lsTb = new ArrayList<>();
                     String noBukti = "RDKK-" + idKelompok;
                     BuktiTransaksi buktiTrans = new BuktiTransaksi(noBukti, cc.getUserId(), cc.getTimestamp());
                     for (PetaniTebu pt : arrayPetani){
                         pt.setIdKelompok(idKelompok);
                         pt.setIdPetani(cntDao.getNewIdPetani(idKelompok));
                         arrayKoordinat.get(index).setIdPetani(pt.getIdPetani());                       
-                        TransaksiBahan tb = new TransaksiBahan(
+                        Transaksi tb = new Transaksi(
                                 0, 
                                 pt.getIdPetani(), 
                                 0, 
                                 bya.getIdBiaya(), 
                                 tglRdkk, 
                                 "D", 
-                                jmlLuas, 
+                                pt.getLuas(), 
                                 cc.getUserId(), 
                                 cc.getTimestamp(), 
                                 tahunGiling, 
-                                BigInteger.valueOf((int) Math.round(jmlLuas * bya.getRupiahBiaya())), 
+                                BigInteger.valueOf((int) Math.round(pt.getLuas() * bya.getRupiahBiaya())), 
                                 noBukti
                         );
                         lsTb.add(tb);

@@ -139,6 +139,9 @@ public class MainWindow extends javax.swing.JFrame {
         pnlFrmPerawatan_Permintaan_Back.addMouseListener(mc);
         pnlFrmPerawatan_Permintaan_Tambah.addMouseListener(mc);
         pnlFrmPerawatan_Permintaan_Simpan.addMouseListener(mc);
+        pnlFrmPerawatan_Permintaan_LihatData.addMouseListener(mc);
+        pnlFrmPerawatan_BonDalam_Back.addMouseListener(mc);
+        pnlFrmPerawatan_Permintaan_CetakBon.addMouseListener(mc);
     }
     
     private void setTextFieldUppercase(){
@@ -529,12 +532,37 @@ public class MainWindow extends javax.swing.JFrame {
         tblPekerjaanKebun_Perawatan_Permintaan = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        dtpTglTransaksiPupuk1 = new org.jdesktop.swingx.JXDatePicker();
+        dtpTglTransaksiPerawatan = new org.jdesktop.swingx.JXDatePicker();
         pnlFrmPerawatan_Permintaan_Simpan = new javax.swing.JPanel();
         lblFrmInputRDKK_Back28 = new javax.swing.JLabel();
-        pnlFrmPupuk_Permintaan_CetakPermintaan1 = new javax.swing.JPanel();
+        pnlFrmPerawatan_Permintaan_LihatData = new javax.swing.JPanel();
         lblFrmInputRDKK_Back29 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        tblBuffer_Perawatan_Permintaan = new javax.swing.JTable();
+        pnlFrmPerawatan_BonDalam = new javax.swing.JPanel();
+        pnlFrmInputRDKK_MenuHolder8 = new javax.swing.JPanel();
+        pnlFrmPerawatan_BonDalam_Back = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back30 = new javax.swing.JLabel();
+        pnlFrmRDKK_Title7 = new javax.swing.JPanel();
+        lblFrmRDKK_Title10 = new javax.swing.JLabel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tblPosting_Perawatan_Permintaan = new javax.swing.JTable();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tblDetail_Perawatan_Permintaan = new javax.swing.JTable();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        lblFrmRDKK_Title11 = new javax.swing.JLabel();
+        lblFrmRDKK_Title12 = new javax.swing.JLabel();
+        lblFrmPosting_NamaKelompok = new javax.swing.JLabel();
+        lblFrmPosting_NoKontrak = new javax.swing.JLabel();
+        pnlFrmPerawatan_Permintaan_CetakBon = new javax.swing.JPanel();
+        lblFrmInputRDKK_Back31 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Administrasi Tebu Rakyat");
@@ -1028,7 +1056,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblWsLKP1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblWsLKP1.setForeground(new java.awt.Color(255, 255, 255));
         lblWsLKP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsLKP1.setText("Evaluasi Biaya Perawatan");
+        lblWsLKP1.setText("Permintaan Bibit");
 
         javax.swing.GroupLayout pnlSubMenuPerawatan_EvaluasiLayout = new javax.swing.GroupLayout(pnlSubMenuPerawatan_Evaluasi);
         pnlSubMenuPerawatan_Evaluasi.setLayout(pnlSubMenuPerawatan_EvaluasiLayout);
@@ -4002,7 +4030,7 @@ public class MainWindow extends javax.swing.JFrame {
         tblPetani_Perawatan_Permintaan.getTableHeader().setReorderingAllowed(false);
         jScrollPane13.setViewportView(tblPetani_Perawatan_Permintaan);
 
-        pnlFrmPerawatan_Permintaan.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 80, 443, 200));
+        pnlFrmPerawatan_Permintaan.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 80, 630, 224));
 
         jPanel14.setBackground(new java.awt.Color(85, 131, 131));
 
@@ -4025,7 +4053,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        pnlFrmPerawatan_Permintaan.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 630, 30));
+        pnlFrmPerawatan_Permintaan.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 629, 30));
 
         pnlFrmPerawatan_Permintaan_Tambah.setBackground(new Color(255,255,255,0));
         pnlFrmPerawatan_Permintaan_Tambah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -4041,7 +4069,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back27.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlFrmPerawatan_Permintaan_Tambah.add(lblFrmInputRDKK_Back27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmPerawatan_Permintaan.add(pnlFrmPerawatan_Permintaan_Tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 284, -1, -1));
+        pnlFrmPerawatan_Permintaan.add(pnlFrmPerawatan_Permintaan_Tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 316, -1, -1));
 
         jScrollPane14.setBackground(new java.awt.Color(170, 193, 193));
         jScrollPane14.setBorder(null);
@@ -4085,20 +4113,21 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        pnlFrmPerawatan_Permintaan.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 50, 443, 30));
+        pnlFrmPerawatan_Permintaan.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 50, 630, 30));
 
-        dtpTglTransaksiPupuk1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        pnlFrmPerawatan_Permintaan.add(dtpTglTransaksiPupuk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 284, 120, 30));
+        dtpTglTransaksiPerawatan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dtpTglTransaksiPerawatan.setFormats("dd-MM-yyyy");
+        pnlFrmPerawatan_Permintaan.add(dtpTglTransaksiPerawatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 316, 120, 30));
 
         pnlFrmPerawatan_Permintaan_Simpan.setBackground(new Color(255,255,255,0));
         pnlFrmPerawatan_Permintaan_Simpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -4114,32 +4143,307 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back28.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlFrmPerawatan_Permintaan_Simpan.add(lblFrmInputRDKK_Back28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmPerawatan_Permintaan.add(pnlFrmPerawatan_Permintaan_Simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 284, -1, -1));
+        pnlFrmPerawatan_Permintaan.add(pnlFrmPerawatan_Permintaan_Simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 316, -1, -1));
 
-        pnlFrmPupuk_Permintaan_CetakPermintaan1.setBackground(new Color(255,255,255,0));
-        pnlFrmPupuk_Permintaan_CetakPermintaan1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        pnlFrmPupuk_Permintaan_CetakPermintaan1.setName("pnlFrmPupuk_Permintaan_CetakPermintaan"); // NOI18N
-        pnlFrmPupuk_Permintaan_CetakPermintaan1.setPreferredSize(new java.awt.Dimension(203, 30));
-        pnlFrmPupuk_Permintaan_CetakPermintaan1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlFrmPerawatan_Permintaan_LihatData.setBackground(new Color(255,255,255,0));
+        pnlFrmPerawatan_Permintaan_LihatData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlFrmPerawatan_Permintaan_LihatData.setName("pnlFrmPerawatan_Permintaan_LihatData"); // NOI18N
+        pnlFrmPerawatan_Permintaan_LihatData.setPreferredSize(new java.awt.Dimension(100, 30));
+        pnlFrmPerawatan_Permintaan_LihatData.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFrmInputRDKK_Back29.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFrmInputRDKK_Back29.setForeground(new java.awt.Color(255, 255, 255));
         lblFrmInputRDKK_Back29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFrmInputRDKK_Back29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Print_20px.png"))); // NOI18N
-        lblFrmInputRDKK_Back29.setText("Cetak Permintaan Pupuk");
+        lblFrmInputRDKK_Back29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_View_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back29.setText("Lihat");
         lblFrmInputRDKK_Back29.setIconTextGap(10);
         lblFrmInputRDKK_Back29.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        pnlFrmPupuk_Permintaan_CetakPermintaan1.add(lblFrmInputRDKK_Back29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 205, 30));
+        pnlFrmPerawatan_Permintaan_LihatData.add(lblFrmInputRDKK_Back29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
-        pnlFrmPerawatan_Permintaan.add(pnlFrmPupuk_Permintaan_CetakPermintaan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 317, -1, -1));
+        pnlFrmPerawatan_Permintaan.add(pnlFrmPerawatan_Permintaan_LihatData, new org.netbeans.lib.awtextra.AbsoluteConstraints(838, 316, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel23.setText("Tanggal Transaksi");
-        pnlFrmPerawatan_Permintaan.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, -1, -1));
+        pnlFrmPerawatan_Permintaan.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 320, -1, -1));
+
+        jPanel16.setBackground(new java.awt.Color(85, 131, 131));
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel22.setText("Permintaan Pekerjaan Perawatan");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        pnlFrmPerawatan_Permintaan.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 360, 630, 30));
+
+        jScrollPane15.setBackground(new java.awt.Color(170, 193, 193));
+        jScrollPane15.setBorder(null);
+        jScrollPane15.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane15.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        tblBuffer_Perawatan_Permintaan.setBackground(new java.awt.Color(170, 193, 193));
+        tblBuffer_Perawatan_Permintaan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblBuffer_Perawatan_Permintaan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblBuffer_Perawatan_Permintaan.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblBuffer_Perawatan_Permintaan.setAutoscrolls(false);
+        tblBuffer_Perawatan_Permintaan.setFillsViewportHeight(true);
+        tblBuffer_Perawatan_Permintaan.setGridColor(new java.awt.Color(255, 255, 255));
+        tblBuffer_Perawatan_Permintaan.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblBuffer_Perawatan_Permintaan.setName("tblPetani_Pupuk_Permintaan"); // NOI18N
+        tblBuffer_Perawatan_Permintaan.setOpaque(false);
+        tblBuffer_Perawatan_Permintaan.setRowHeight(24);
+        tblBuffer_Perawatan_Permintaan.setShowHorizontalLines(false);
+        tblBuffer_Perawatan_Permintaan.setShowVerticalLines(false);
+        tblBuffer_Perawatan_Permintaan.getTableHeader().setResizingAllowed(false);
+        tblBuffer_Perawatan_Permintaan.getTableHeader().setReorderingAllowed(false);
+        jScrollPane15.setViewportView(tblBuffer_Perawatan_Permintaan);
+
+        pnlFrmPerawatan_Permintaan.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 390, 630, 268));
 
         pnlContent.add(pnlFrmPerawatan_Permintaan, "crdFrmPerawatan_Permintaan");
+
+        pnlFrmPerawatan_BonDalam.setBackground(new java.awt.Color(0, 23, 23));
+        pnlFrmPerawatan_BonDalam.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmInputRDKK_MenuHolder8.setBackground(new java.awt.Color(0, 70, 70));
+        pnlFrmInputRDKK_MenuHolder8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlFrmPerawatan_BonDalam_Back.setBackground(new Color(255,255,255,0));
+        pnlFrmPerawatan_BonDalam_Back.setName("pnlFrmPerawatan_BonDalam_Back"); // NOI18N
+        pnlFrmPerawatan_BonDalam_Back.setPreferredSize(new java.awt.Dimension(140, 40));
+        pnlFrmPerawatan_BonDalam_Back.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back30.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmInputRDKK_Back30.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Back_To_26px.png"))); // NOI18N
+        lblFrmInputRDKK_Back30.setText("Permintaan Perawatan");
+        lblFrmInputRDKK_Back30.setIconTextGap(10);
+        lblFrmInputRDKK_Back30.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlFrmPerawatan_BonDalam_Back.add(lblFrmInputRDKK_Back30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 260, 40));
+
+        pnlFrmInputRDKK_MenuHolder8.add(pnlFrmPerawatan_BonDalam_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, -1));
+
+        pnlFrmRDKK_Title7.setBackground(new java.awt.Color(85, 131, 131));
+        pnlFrmRDKK_Title7.setName("pnlFrmRDKKBack"); // NOI18N
+        pnlFrmRDKK_Title7.setPreferredSize(new java.awt.Dimension(200, 40));
+        pnlFrmRDKK_Title7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 0));
+
+        lblFrmRDKK_Title10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblFrmRDKK_Title10.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title10.setText("Data Transaksi");
+        lblFrmRDKK_Title10.setPreferredSize(new java.awt.Dimension(200, 40));
+        pnlFrmRDKK_Title7.add(lblFrmRDKK_Title10);
+
+        pnlFrmInputRDKK_MenuHolder8.add(pnlFrmRDKK_Title7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 1100, -1));
+
+        pnlFrmPerawatan_BonDalam.add(pnlFrmInputRDKK_MenuHolder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1399, -1));
+
+        jScrollPane16.setBackground(new java.awt.Color(170, 193, 193));
+        jScrollPane16.setBorder(null);
+        jScrollPane16.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane16.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        tblPosting_Perawatan_Permintaan.setBackground(new java.awt.Color(170, 193, 193));
+        tblPosting_Perawatan_Permintaan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblPosting_Perawatan_Permintaan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblPosting_Perawatan_Permintaan.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblPosting_Perawatan_Permintaan.setAutoscrolls(false);
+        tblPosting_Perawatan_Permintaan.setFillsViewportHeight(true);
+        tblPosting_Perawatan_Permintaan.setGridColor(new java.awt.Color(255, 255, 255));
+        tblPosting_Perawatan_Permintaan.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblPosting_Perawatan_Permintaan.setName("tblPetani_Pupuk_Permintaan"); // NOI18N
+        tblPosting_Perawatan_Permintaan.setOpaque(false);
+        tblPosting_Perawatan_Permintaan.setRowHeight(24);
+        tblPosting_Perawatan_Permintaan.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblPosting_Perawatan_Permintaan.setShowHorizontalLines(false);
+        tblPosting_Perawatan_Permintaan.setShowVerticalLines(false);
+        tblPosting_Perawatan_Permintaan.getTableHeader().setResizingAllowed(false);
+        tblPosting_Perawatan_Permintaan.getTableHeader().setReorderingAllowed(false);
+        jScrollPane16.setViewportView(tblPosting_Perawatan_Permintaan);
+
+        pnlFrmPerawatan_BonDalam.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 380, 200));
+
+        jPanel17.setBackground(new java.awt.Color(85, 131, 131));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel24.setText("Daftar Permintaan Biaya Perawatan");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(182, 182, 182))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        pnlFrmPerawatan_BonDalam.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 380, 30));
+
+        jScrollPane17.setBackground(new java.awt.Color(170, 193, 193));
+        jScrollPane17.setBorder(null);
+        jScrollPane17.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane17.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        tblDetail_Perawatan_Permintaan.setBackground(new java.awt.Color(170, 193, 193));
+        tblDetail_Perawatan_Permintaan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblDetail_Perawatan_Permintaan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblDetail_Perawatan_Permintaan.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblDetail_Perawatan_Permintaan.setAutoscrolls(false);
+        tblDetail_Perawatan_Permintaan.setFillsViewportHeight(true);
+        tblDetail_Perawatan_Permintaan.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDetail_Perawatan_Permintaan.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblDetail_Perawatan_Permintaan.setName("tblPetani_Pupuk_Permintaan"); // NOI18N
+        tblDetail_Perawatan_Permintaan.setOpaque(false);
+        tblDetail_Perawatan_Permintaan.setRowHeight(24);
+        tblDetail_Perawatan_Permintaan.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDetail_Perawatan_Permintaan.setShowHorizontalLines(false);
+        tblDetail_Perawatan_Permintaan.setShowVerticalLines(false);
+        tblDetail_Perawatan_Permintaan.getTableHeader().setResizingAllowed(false);
+        tblDetail_Perawatan_Permintaan.getTableHeader().setReorderingAllowed(false);
+        jScrollPane17.setViewportView(tblDetail_Perawatan_Permintaan);
+
+        pnlFrmPerawatan_BonDalam.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 150, 830, 200));
+
+        jPanel18.setBackground(new java.awt.Color(85, 131, 131));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel25.setText("Detail Permintaan Perawatan");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        pnlFrmPerawatan_BonDalam.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 120, 830, 30));
+
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel19.setOpaque(false);
+
+        lblFrmRDKK_Title11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmRDKK_Title11.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title11.setText("Nama Kelompok");
+        lblFrmRDKK_Title11.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        lblFrmRDKK_Title12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmRDKK_Title12.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmRDKK_Title12.setText("Nomor Kontrak");
+        lblFrmRDKK_Title12.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        lblFrmPosting_NamaKelompok.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFrmPosting_NamaKelompok.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmPosting_NamaKelompok.setText("Nama Kelompok");
+        lblFrmPosting_NamaKelompok.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        lblFrmPosting_NoKontrak.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFrmPosting_NoKontrak.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmPosting_NoKontrak.setText("Nomor Kontrak");
+        lblFrmPosting_NoKontrak.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(lblFrmRDKK_Title11, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFrmPosting_NamaKelompok, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(lblFrmRDKK_Title12, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFrmPosting_NoKontrak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFrmRDKK_Title11, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrmPosting_NamaKelompok, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFrmRDKK_Title12, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrmPosting_NoKontrak, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        pnlFrmPerawatan_BonDalam.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 380, 60));
+
+        pnlFrmPerawatan_Permintaan_CetakBon.setBackground(new Color(255,255,255,0));
+        pnlFrmPerawatan_Permintaan_CetakBon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        pnlFrmPerawatan_Permintaan_CetakBon.setName("pnlFrmPerawatan_Permintaan_CetakBon"); // NOI18N
+        pnlFrmPerawatan_Permintaan_CetakBon.setPreferredSize(new java.awt.Dimension(150, 30));
+        pnlFrmPerawatan_Permintaan_CetakBon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFrmInputRDKK_Back31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFrmInputRDKK_Back31.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrmInputRDKK_Back31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrmInputRDKK_Back31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Print_20px.png"))); // NOI18N
+        lblFrmInputRDKK_Back31.setText("Cetak Bon");
+        lblFrmInputRDKK_Back31.setIconTextGap(10);
+        lblFrmInputRDKK_Back31.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        pnlFrmPerawatan_Permintaan_CetakBon.add(lblFrmInputRDKK_Back31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
+
+        pnlFrmPerawatan_BonDalam.add(pnlFrmPerawatan_Permintaan_CetakBon, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 355, -1, -1));
+
+        pnlContent.add(pnlFrmPerawatan_BonDalam, "crdFrmPerawatan_BonDalam");
 
         javax.swing.GroupLayout pnlTengahLayout = new javax.swing.GroupLayout(pnlTengah);
         pnlTengah.setLayout(pnlTengahLayout);
@@ -4231,8 +4535,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxKecamatan;
     private org.jdesktop.swingx.JXDatePicker dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl1;
     private org.jdesktop.swingx.JXDatePicker dtpFrmPupuk_EvaluasiBiayaPupuk_Tgl2;
+    private org.jdesktop.swingx.JXDatePicker dtpTglTransaksiPerawatan;
     private org.jdesktop.swingx.JXDatePicker dtpTglTransaksiPupuk;
-    private org.jdesktop.swingx.JXDatePicker dtpTglTransaksiPupuk1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4247,7 +4551,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -4262,6 +4569,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -4276,6 +4587,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -4333,12 +4647,16 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmInputRDKK_Back28;
     private javax.swing.JLabel lblFrmInputRDKK_Back29;
     private javax.swing.JLabel lblFrmInputRDKK_Back3;
+    private javax.swing.JLabel lblFrmInputRDKK_Back30;
+    private javax.swing.JLabel lblFrmInputRDKK_Back31;
     private javax.swing.JLabel lblFrmInputRDKK_Back4;
     private javax.swing.JLabel lblFrmInputRDKK_Back5;
     private javax.swing.JLabel lblFrmInputRDKK_Back6;
     private javax.swing.JLabel lblFrmInputRDKK_Back7;
     private javax.swing.JLabel lblFrmInputRDKK_Back8;
     private javax.swing.JLabel lblFrmInputRDKK_Back9;
+    private javax.swing.JLabel lblFrmPosting_NamaKelompok;
+    private javax.swing.JLabel lblFrmPosting_NoKontrak;
     private javax.swing.JLabel lblFrmRDKKBack;
     private javax.swing.JLabel lblFrmRDKKClearSearch;
     private javax.swing.JLabel lblFrmRDKKClearSearch1;
@@ -4347,6 +4665,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrmRDKKJudul;
     private javax.swing.JLabel lblFrmRDKK_Title;
     private javax.swing.JLabel lblFrmRDKK_Title1;
+    private javax.swing.JLabel lblFrmRDKK_Title10;
+    private javax.swing.JLabel lblFrmRDKK_Title11;
+    private javax.swing.JLabel lblFrmRDKK_Title12;
     private javax.swing.JLabel lblFrmRDKK_Title2;
     private javax.swing.JLabel lblFrmRDKK_Title3;
     private javax.swing.JLabel lblFrmRDKK_Title4;
@@ -4452,10 +4773,15 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder5;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder6;
     private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder7;
+    private javax.swing.JPanel pnlFrmInputRDKK_MenuHolder8;
     private javax.swing.JPanel pnlFrmInputRDKK_SimpanData;
     private javax.swing.JPanel pnlFrmInputRDKK_TambahPetani;
+    private javax.swing.JPanel pnlFrmPerawatan_BonDalam;
+    private javax.swing.JPanel pnlFrmPerawatan_BonDalam_Back;
     private javax.swing.JPanel pnlFrmPerawatan_Permintaan;
     private javax.swing.JPanel pnlFrmPerawatan_Permintaan_Back;
+    private javax.swing.JPanel pnlFrmPerawatan_Permintaan_CetakBon;
+    private javax.swing.JPanel pnlFrmPerawatan_Permintaan_LihatData;
     private javax.swing.JPanel pnlFrmPerawatan_Permintaan_Simpan;
     private javax.swing.JPanel pnlFrmPerawatan_Permintaan_Tambah;
     private javax.swing.JPanel pnlFrmPupuk_EvaluasiBiayaPupuk;
@@ -4463,7 +4789,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmPupuk_EvaluasiBiayaPupuk_View;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_CetakPermintaan;
-    private javax.swing.JPanel pnlFrmPupuk_Permintaan_CetakPermintaan1;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Clear;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Clear1;
     private javax.swing.JPanel pnlFrmPupuk_Permintaan_Clear2;
@@ -4484,6 +4809,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFrmRDKK_Title4;
     private javax.swing.JPanel pnlFrmRDKK_Title5;
     private javax.swing.JPanel pnlFrmRDKK_Title6;
+    private javax.swing.JPanel pnlFrmRDKK_Title7;
     private javax.swing.JPanel pnlFrmUserData;
     private javax.swing.JPanel pnlFrmUserData1;
     private javax.swing.JPanel pnlFrmUserData2;
@@ -4547,7 +4873,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlWsSeparator3;
     private javax.swing.JPanel pnlWsSeparator4;
     private javax.swing.JTable tblBahanProduksi;
+    private javax.swing.JTable tblBuffer_Perawatan_Permintaan;
     private javax.swing.JTable tblBuffer_Pupuk_Permintaan;
+    private javax.swing.JTable tblDetail_Perawatan_Permintaan;
     private javax.swing.JTable tblInputPetani;
     private javax.swing.JTable tblJenisPupuk_Pupuk_Permintaan;
     private javax.swing.JTable tblKelTani_Perawatan_Permintaan;
@@ -4557,6 +4885,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTable tblPekerjaanKebun_Perawatan_Permintaan;
     private javax.swing.JTable tblPetani_Perawatan_Permintaan;
     private javax.swing.JTable tblPetani_Pupuk_Permintaan;
+    private javax.swing.JTable tblPosting_Perawatan_Permintaan;
     private javax.swing.JTable tblUserData;
     private javax.swing.JTable tblValidasiRDKK;
     private javax.swing.JTable tblValidasiRDKK_Petani;
@@ -4888,6 +5217,38 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JTable getTblPekerjaanKebun_Perawatan_Permintaan(){
         return tblPekerjaanKebun_Perawatan_Permintaan;
+    }
+    
+    public JTable getTblBuffer_Perawatan_Permintaan(){
+        return tblBuffer_Perawatan_Permintaan;
+    }
+    
+    public JXDatePicker getDtpTglTransaksiPerawatan(){
+        return dtpTglTransaksiPerawatan;
+    }
+    
+    public JPanel getPnlFrmPerawatan_Permintaan_CetakBon(){
+        return pnlFrmPerawatan_Permintaan_LihatData;
+    }
+    
+    public JPanel getPnlFrmPerawatan_BonDalam_Back(){
+        return pnlFrmPupuk_EvaluasiBiayaPupuk_Back;
+    }
+    
+    public JTable getTblPosting_Perawatan_Permintaan(){
+        return tblPosting_Perawatan_Permintaan;
+    }
+    
+    public JTable getTblDetailPerawatanPermintaan(){
+        return tblDetail_Perawatan_Permintaan;
+    }
+    
+    public JLabel getLblFrmPosting_NamaKelompok(){
+        return lblFrmPosting_NamaKelompok;
+    }
+    
+    public JLabel getLblFrmPosting_NoKontrak(){
+        return lblFrmPosting_NoKontrak;
     }
     
 }

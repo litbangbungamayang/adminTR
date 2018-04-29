@@ -8,12 +8,16 @@ package id.buma.simtr.controller;
 import id.buma.simtr.model.BahanProduksi;
 import id.buma.simtr.model.BufferTable_TransaksiPupuk;
 import id.buma.simtr.model.KelompokTani;
+import id.buma.simtr.model.PekerjaanKebun;
+import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.User;
 import id.buma.simtr.view.BahanProduksiTableModel;
+import id.buma.simtr.view.BufferPerawatan_Permintaan_TableModel;
 import id.buma.simtr.view.BufferTransaksi_PupukRowRenderer;
 import id.buma.simtr.view.BufferTransaksi_PupukTableModel;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
+import id.buma.simtr.view.PostingPerawatan_Permintaan_TableModel;
 import id.buma.simtr.view.UserDataTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,8 +109,19 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         pwc.populateTblPerawatanPetaniByIdKelompok(mw.getTblPetani_Perawatan_Permintaan(), idKelompok);
                         pwc.prepareTblPekerjaanKebun(idKelompok);
                         mw.getTblPetani_Perawatan_Permintaan().setRowSelectionAllowed(true);
+                        List<PekerjaanKebun> lsPkKosong = new ArrayList<>();
+                        List<PetaniTebu> lsPtKosong = new ArrayList<>();
+                        cc.setTableHeaderKelTani(mw.getTblBuffer_Perawatan_Permintaan().getTableHeader());
+                        BufferPerawatan_Permintaan_TableModel bpptm = new BufferPerawatan_Permintaan_TableModel(lsPtKosong, lsPkKosong);
+                        mw.getTblBuffer_Perawatan_Permintaan().setModel(bpptm);                      
                     }
                     break;
+                case "Posting-DetailPosting":
+                    if (tbl.getSelectedRow() > -1){
+                        PostingPerawatan_Permintaan_TableModel ppptm = (PostingPerawatan_Permintaan_TableModel) tbl.getModel();
+                        String idDokumen = ppptm.getListTransaksi().get(tbl.getSelectedRow()).getNomorBuktiTransaksi();
+                        pwc.populateDetailPosting(idDokumen);
+                    }
             }
         }
     }

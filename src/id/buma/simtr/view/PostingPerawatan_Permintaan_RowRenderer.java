@@ -21,74 +21,53 @@ import javax.swing.table.TableColumn;
  * 
  */
 
-public class PetaniRowRenderer extends DefaultTableCellRenderer implements TableCellRenderer{
-    
+public class PostingPerawatan_Permintaan_RowRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, 
-            boolean isSelected, boolean hasFocus, int row, int column){
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, 
+            boolean hasFocus, int row, int column) {
         Component c = super.getTableCellRendererComponent(table, value, isSelected,
                 hasFocus, row, column);
-        TableColumn tc = table.getColumnModel().getColumn(column);
-        table.getParent().setBackground(new Color(170,193,193));
         setBorder(noFocusBorder);
+        TableColumn tc = table.getColumnModel().getColumn(column);
         table.setRowSelectionAllowed(true);
         table.getParent().setBackground(new Color(170,193,193));
         int tableWidth = table.getParent().getWidth();
-        switch (column){
-            case 0 :
-                // Nomor
+        switch(column){
+            case 0:
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(30);
-                tc.setPreferredWidth((int) Math.round(0.0700*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.1*tableWidth));
                 break;
-            case 1 :
-                // Nama Petani
+            case 1:
                 this.setHorizontalAlignment(LEFT);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(240);
-                tc.setPreferredWidth((int) Math.round(0.5660*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.5*tableWidth));
                 break;
-            case 2 :
-                // Luas
-                this.setHorizontalAlignment(RIGHT);
-                tc.setCellRenderer(this);
-                //tc.setPreferredWidth(50);
-                tc.setPreferredWidth((int) Math.round(0.1179*tableWidth));
-                break;
-            case 3 :
-                // MT
+            case 2:
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                //tc.setPreferredWidth(40);
-                tc.setPreferredWidth((int) Math.round(0.0943*tableWidth));
-                break;
-            case 4 :
-                // Varietas
-                this.setHorizontalAlignment(CENTER);
-                tc.setCellRenderer(this);
-                //tc.setPreferredWidth(64);
-                tc.setPreferredWidth((int) Math.round(0.1509*tableWidth));
+                tc.setPreferredWidth((int) Math.round(0.4*tableWidth));
                 break;
         }
-        
         if (row % 2 == 0){
             c.setBackground(new Color(205,219,219));
             c.setForeground(Color.DARK_GRAY);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         } else {
             c.setBackground(new Color(85,131,131));
             c.setForeground(Color.WHITE);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         }
         
         if (isSelected){
             setBackground(new Color(70,70,0));
             setForeground(Color.WHITE);
-            c.setFont(new Font("Consolas", Font.PLAIN, 14));
+            c.setFont(new Font("Consolas", Font.PLAIN, 12));
         }
-        
         return c;
     }
+    
+    
     
 }

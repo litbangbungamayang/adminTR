@@ -12,7 +12,7 @@ import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.Koordinat;
 import id.buma.simtr.model.PetaniTebu;
 import id.buma.simtr.model.RDKK;
-import id.buma.simtr.model.TransaksiBahan;
+import id.buma.simtr.model.Transaksi;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -50,7 +50,7 @@ public class RDKKDAOSQL implements RDKKDAO {
 
     @Override
     public boolean insertBatchKelompokTaniBaru(KelompokTani kt, List<PetaniTebu> lsPt, 
-            List<Koordinat> lsKr, List<TransaksiBahan> lsTb, BuktiTransaksi bt) {
+            List<Koordinat> lsKr, List<Transaksi> lsTb, BuktiTransaksi bt) {
         Connection conn = new DBConnection().getConn();
         /******
                 1 = iD Kelompok
@@ -65,7 +65,7 @@ public class RDKKDAOSQL implements RDKKDAO {
                 10 = Tanggal RDKK
             ******/
         try {
-            TransaksiBahanDAOSQL transDao = new TransaksiBahanDAOSQL();
+            TransaksiDAOSQL transDao = new TransaksiDAOSQL();
             conn.setAutoCommit(false);
             conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
             String callSQL = "CALL INSERT_KELOMPOKTANIH(?,?,?,?,?,?,?,?,?,?)";

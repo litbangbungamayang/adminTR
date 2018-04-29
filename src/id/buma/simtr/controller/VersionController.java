@@ -142,7 +142,16 @@ public class VersionController {
         + Perubahan common controller untuk error dan info pakai html tag
         + Pembuatan Kuitansi Permintaan Biaya Pupuk
         */
-        
+        version = "0.9.24";
+        /*
+        + Pembuatan table buffer permintaan perawatan kebun
+        + Perubahan table row renderer petani (lebar kolom fleksibel)
+        + Pembuatan form cetak bon dalam perawatan
+        + Koreksi perhitungan biaya ukur lahan, sebelumnya dihitung dari total luas (RDKKController)
+        + Perbaikan report bon dalam, nilai NULL dalam transaksi sampai dengan diubah menjadi 0
+        + Perubahan flow permintaan pekerjaan perawatan kebun, semula satu kali transaksi hanya satu kali memilih petani dan
+            pekerjaan, menjadi satu transaksi bisa beberapa pilihan kombinasi petani dan pekerjaan
+        */
         return version;
     }
         
