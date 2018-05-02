@@ -152,6 +152,11 @@ public class VersionController {
         + Perubahan flow permintaan pekerjaan perawatan kebun, semula satu kali transaksi hanya satu kali memilih petani dan
             pekerjaan, menjadi satu transaksi bisa beberapa pilihan kombinasi petani dan pekerjaan
         */
+        version = "0.9.25";
+        /*
+        + Perbaikan penomoran transaksi pada permintaan pupuk
+        + Perbaikan pengambilan data pada tabel buffer permintaan perawatan tanaman
+        */
         return version;
     }
         

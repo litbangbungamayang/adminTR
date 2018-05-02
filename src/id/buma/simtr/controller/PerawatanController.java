@@ -120,17 +120,20 @@ public class PerawatanController implements ActionListener {
             PekerjaanKebunTableModel pktm = (PekerjaanKebunTableModel) tblPekerjaan.getModel();
             lsPt = ptm.getContentList();
             lsPk = pktm.getContentList();
-            if (tblBuffer.getRowCount() > 0){
-                BufferPerawatan_Permintaan_TableModel bpptm = (BufferPerawatan_Permintaan_TableModel) tblBuffer.getModel();
-                lsPtBuffer = bpptm.getSelectedPetani();
-                lsPkBuffer = bpptm.getSelectedPekerjaan();
-            }
-            
+            BufferPerawatan_Permintaan_TableModel bpptm = (BufferPerawatan_Permintaan_TableModel) tblBuffer.getModel();
+            lsPtBuffer = bpptm.getSelectedPetani();
+            lsPkBuffer = bpptm.getSelectedPekerjaan();         
             for (int i = 0; i < tblPetani.getSelectedRows().length; i++){
                 for (int j = 0; j < tblPekerjaan.getSelectedRows().length; j++){
                     lsPtBuffer.add(lsPt.get(tblPetani.getSelectedRows()[i]));
                     lsPkBuffer.add(lsPk.get(tblPekerjaan.getSelectedRows()[j]));
-                    lsPt.remove(i);
+                }
+            }
+            for (int i = 0; i < lsPt.size(); i++){
+                for (int j = 0; j < lsPtBuffer.size(); j++){
+                    if (lsPt.get(i).getIdPetani().equals(lsPtBuffer.get(j).getIdPetani())){
+                        lsPt.remove(i);
+                    }
                 }
             }
             /*
@@ -150,7 +153,7 @@ public class PerawatanController implements ActionListener {
             cc.setTableHeaderKelTani(tblBuffer.getTableHeader());
             Perawatan_Permintaan_RowRenderer pprr = new Perawatan_Permintaan_RowRenderer();
             tblBuffer.setDefaultRenderer(Object.class, pprr);
-            BufferPerawatan_Permintaan_TableModel bpptm = new BufferPerawatan_Permintaan_TableModel(lsPtBuffer, lsPkBuffer);
+            bpptm = new BufferPerawatan_Permintaan_TableModel(lsPtBuffer, lsPkBuffer);
             tblBuffer.setModel(bpptm);
             ptm = new PetaniTableModel(lsPt);
             tblPetani.setModel(ptm);

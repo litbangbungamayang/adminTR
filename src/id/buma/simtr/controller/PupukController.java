@@ -26,6 +26,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -53,6 +55,8 @@ public class PupukController implements ActionListener{
     public static List<Transaksi> transPupuk = new ArrayList<>();
     
     public static BuktiTransaksi buktiTransaksi;
+    
+    public static String noBukti;
         
     private final BufferTransaksi_PupukRowRenderer bufferRR = new BufferTransaksi_PupukRowRenderer();
     
@@ -61,8 +65,20 @@ public class PupukController implements ActionListener{
     }
     
     public void getDaftarPetaniDanPupuk(JTable tblPetani, JTable tblPupuk){
-        if (tblPetani.getSelectedRowCount() > 0 && tblPupuk.getSelectedRowCount() > 0){
-            
+        if (tblPetani.getSelectedRowCount() > 0 && tblPupuk.getSelectedRowCount() > 0 
+                && mw.getDtpTglTransaksiPupuk().getDate() != null){
+            /* Variable declaration */
+            List<BufferTable_TransaksiPupuk> lbt = new ArrayList<>();
+            BufferTransaksi_PupukTableModel btptm = (BufferTransaksi_PupukTableModel) mw.getTblBuffer_Pupuk_Permintaan().getModel();
+            lbt = btptm.getContentList();
+            if (lbt.isEmpty()){
+                transPupuk.clear();
+                KelompokTaniTableModel kttm = (KelompokTaniTableModel) mw.getTblPupukKelTani().getModel();
+                List<KelompokTani> lsKt = kttm.getContentList();
+                String idKelompok = lsKt.get(mw.getTblPupukKelTani().getSelectedRow()).getIdKelompok();
+                noBukti = transPupukDao.getNewNomorBuktiTransaksi(idKelompok);
+                buktiTransaksi = new BuktiTransaksi(noBukti, cc.getUserId(), cc.getTimestamp());
+            }
             /* Tabel model PETANI */
             PetaniTableModel ptm = (PetaniTableModel) tblPetani.getModel();
             List<PetaniTebu> listTablePetani = ptm.getContentList();
@@ -71,6 +87,15 @@ public class PupukController implements ActionListener{
             for (int i = 0; i < selectedIndexPetani.length; i++){
                 selectedListPetani.add(listTablePetani.get(selectedIndexPetani[i]));
             }
+            for (int i = 0; i < listTablePetani.size(); i++){
+                for (int j = 0; j < selectedListPetani.size(); j++){
+                    if (listTablePetani.get(i).getIdPetani().equals(selectedListPetani.get(j).getIdPetani())){
+                        listTablePetani.remove(i);
+                    }
+                }
+            }
+            ptm = new PetaniTableModel(listTablePetani);
+            tblPetani.setModel(ptm);
 
             /*  Tabel model PUPUK */
             BahanProduksi_PupukTableModel bpptm = (BahanProduksi_PupukTableModel) tblPupuk.getModel();
@@ -82,104 +107,96 @@ public class PupukController implements ActionListener{
             }
 
             List<BahanProduksi> listSemuaPupuk = pupukDao.getAllBahanProduksiByJenis("PUPUK");
+            
 
-            List<BufferTable_TransaksiPupuk> lbt = new ArrayList<>();
-            if (mw.getDtpTglTransaksiPupuk().getDate() != null){
-                transPupuk.clear();
-                String idKelompok = selectedListPetani.get(0).getIdKelompok();
-                String noBukti = transPupukDao.getNewNomorBuktiTransaksi(idKelompok);
-                buktiTransaksi = new BuktiTransaksi(noBukti, cc.getUserId(), cc.getTimestamp());
-                
-                for (int i = 0; i < selectedListPetani.size(); i++){
-                    float[] kuantaArray = new float[listSemuaPupuk.size()];
-                    for (int j = 0; j < selectedListPupuk.size(); j++){
-                        
-                        /* VALIDASI BUFFER UTK DISIMPAN KE DATABASE */
-                        java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());
-                        String idPetani_Selected = selectedListPetani.get(i).getIdPetani();
-                        int idBahan_Selected = selectedListPupuk.get(j).getIdBahan();
-                        SistemDAOSQL sisDao = new SistemDAOSQL();
-                        int tahunGiling = sisDao.getTahunGiling();
-                        boolean cekBarangMasuk = transPupukDao.cekBarangMasuk(idBahan_Selected);
-                        boolean cekStatus = transPupukDao.cekDuplikatTransaksiPupuk(idPetani_Selected, idBahan_Selected);
-                        if (cekStatus && cekBarangMasuk){
-                            float kuantaDb = selectedListPetani.get(i).getLuas()*selectedListPupuk.get(j).getDosisPerHa();
-                            Transaksi tp = new Transaksi(
-                                    0, 
-                                    idPetani_Selected, 
-                                    idBahan_Selected,
-                                    0,
-                                    tglTransaksi,
-                                    "D",
-                                    kuantaDb, 
-                                    cc.getUserId(), 
-                                    cc.getTimestamp(),
-                                    tahunGiling,
-                                    BigInteger.valueOf(0),
-                                    noBukti
-                            );
-                            transPupuk.add(tp);
-                            // Tambahkan biaya muat dan angkut pupuk
-                            BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
-                            List<Biaya> lsBy = bahanDao.getBiayaByIdBahan(idBahan_Selected, tahunGiling);
-                            if (lsBy.size() > 0){
-                                for (Biaya lsBy1 : lsBy) {
-                                    int biaya = lsBy1.getRupiahBiaya();
-                                    int rupiahBiaya = (int) Math.round(kuantaDb) * biaya;
-                                    Transaksi tb = new Transaksi(
-                                            0, 
-                                            idPetani_Selected, 
-                                            0, 
-                                            lsBy1.getIdBiaya(), 
-                                            tglTransaksi, 
-                                            "D", 
-                                            kuantaDb, 
-                                            cc.getUserId(), 
-                                            cc.getTimestamp(), 
-                                            tahunGiling, 
-                                            BigInteger.valueOf(rupiahBiaya), 
-                                            noBukti
-                                    );
-                                    transPupuk.add(tb);
-                                }
-                            }
-                        } else {
-                            if (!cekStatus){
-                                cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk untuk petani berikut : <br>" + "Nama petani : <b>" + 
-                                    selectedListPetani.get(i).getNamaPetani() + "</b><br>" + "Bahan pupuk : <b>" + selectedListPupuk.get(j).getNamaBahan() + "</b></html>");
-                            }
-                            if (!cekBarangMasuk){
-                                cc.showErrorMsg("Error Transaksi Pupuk", "Belum ada transaksi barang masuk untuk : " + selectedListPupuk.get(j).getNamaBahan());
+            for (int i = 0; i < selectedListPetani.size(); i++){
+                float[] kuantaArray = new float[listSemuaPupuk.size()];
+                for (int j = 0; j < selectedListPupuk.size(); j++){
+
+                    /* VALIDASI BUFFER UTK DISIMPAN KE DATABASE */
+                    java.sql.Date tglTransaksi = new java.sql.Date(mw.getDtpTglTransaksiPupuk().getDate().getTime());
+                    String idPetani_Selected = selectedListPetani.get(i).getIdPetani();
+                    int idBahan_Selected = selectedListPupuk.get(j).getIdBahan();
+                    SistemDAOSQL sisDao = new SistemDAOSQL();
+                    int tahunGiling = sisDao.getTahunGiling();
+                    boolean cekBarangMasuk = transPupukDao.cekBarangMasuk(idBahan_Selected);
+                    boolean cekStatus = transPupukDao.cekDuplikatTransaksiPupuk(idPetani_Selected, idBahan_Selected);
+                    if (cekStatus && cekBarangMasuk){
+                        float kuantaDb = selectedListPetani.get(i).getLuas()*selectedListPupuk.get(j).getDosisPerHa();
+                        Transaksi tp = new Transaksi(
+                                0, 
+                                idPetani_Selected, 
+                                idBahan_Selected,
+                                0,
+                                tglTransaksi,
+                                "D",
+                                kuantaDb, 
+                                cc.getUserId(), 
+                                cc.getTimestamp(),
+                                tahunGiling,
+                                BigInteger.valueOf(0),
+                                noBukti
+                        );
+                        transPupuk.add(tp);
+                        // Tambahkan biaya muat dan angkut pupuk
+                        BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
+                        List<Biaya> lsBy = bahanDao.getBiayaByIdBahan(idBahan_Selected, tahunGiling);
+                        if (lsBy.size() > 0){
+                            for (Biaya lsBy1 : lsBy) {
+                                int biaya = lsBy1.getRupiahBiaya();
+                                int rupiahBiaya = (int) Math.round(kuantaDb) * biaya;
+                                Transaksi tb = new Transaksi(
+                                        0, 
+                                        idPetani_Selected, 
+                                        0, 
+                                        lsBy1.getIdBiaya(), 
+                                        tglTransaksi, 
+                                        "D", 
+                                        kuantaDb, 
+                                        cc.getUserId(), 
+                                        cc.getTimestamp(), 
+                                        tahunGiling, 
+                                        BigInteger.valueOf(rupiahBiaya), 
+                                        noBukti
+                                );
+                                transPupuk.add(tb);
                             }
                         }
-                        /*******************/    
-                        /* BUFFER UNTUK DITAMPILKAN DI TABEL */
-                        float kuanta;
-                        for (int k = 0; k < listSemuaPupuk.size(); k++){                       
-                            int idBahan_selected = selectedListPupuk.get(j).getIdBahan();
-                            float dosisBahanSelected = selectedListPupuk.get(j).getDosisPerHa();
-                            float luasPetaniSelected = selectedListPetani.get(i).getLuas();
-                            int idBahan_existing = listSemuaPupuk.get(k).getIdBahan();
-                            if (idBahan_existing == idBahan_selected && cekStatus && cekBarangMasuk){
-                                kuanta = dosisBahanSelected*luasPetaniSelected;
-                                kuantaArray[k] = kuanta;
-                            }
+                    } else {
+                        if (!cekStatus){
+                            cc.showErrorMsg("Error Transaksi Pupuk", "Sudah ada transaksi pupuk untuk petani berikut : <br>" + "Nama petani : <b>" + 
+                                selectedListPetani.get(i).getNamaPetani() + "</b><br>" + "Bahan pupuk : <b>" + selectedListPupuk.get(j).getNamaBahan() + "</b></html>");
                         }
-                        /*************************************/
+                        if (!cekBarangMasuk){
+                            cc.showErrorMsg("Error Transaksi Pupuk", "Belum ada transaksi barang masuk untuk : " + selectedListPupuk.get(j).getNamaBahan());
+                        }
                     }
-                    BufferTable_TransaksiPupuk bt = new BufferTable_TransaksiPupuk(selectedListPetani.get(i).getNamaPetani(),kuantaArray);
-                    lbt.add(bt);
+                    /*******************/    
+                    /* BUFFER UNTUK DITAMPILKAN DI TABEL */
+                    float kuanta;
+                    for (int k = 0; k < listSemuaPupuk.size(); k++){                       
+                        int idBahan_selected = selectedListPupuk.get(j).getIdBahan();
+                        float dosisBahanSelected = selectedListPupuk.get(j).getDosisPerHa();
+                        float luasPetaniSelected = selectedListPetani.get(i).getLuas();
+                        int idBahan_existing = listSemuaPupuk.get(k).getIdBahan();
+                        if (idBahan_existing == idBahan_selected && cekStatus && cekBarangMasuk){
+                            kuanta = dosisBahanSelected*luasPetaniSelected;
+                            kuantaArray[k] = kuanta;
+                        }
+                    }
+                    /*************************************/
                 }
-                BufferTransaksi_PupukTableModel btptm = new BufferTransaksi_PupukTableModel(lbt);
-                mw.getTblBuffer_Pupuk_Permintaan().setModel(btptm);
-                cc.setTableHeaderKelTani(mw.getTblBuffer_Pupuk_Permintaan().getTableHeader());
-                mw.getTblBuffer_Pupuk_Permintaan().setDefaultRenderer(Object.class, bufferRR);
-            } else {
-                cc.showErrorMsg("Error Transaksi Pupuk", "Tanggal transaksi harus diisi!");
+                BufferTable_TransaksiPupuk bt = new BufferTable_TransaksiPupuk(selectedListPetani.get(i).getNamaPetani(),kuantaArray);
+                lbt.add(bt);
             }
+            btptm = new BufferTransaksi_PupukTableModel(lbt);
+            mw.getTblBuffer_Pupuk_Permintaan().setModel(btptm);
+            cc.setTableHeaderKelTani(mw.getTblBuffer_Pupuk_Permintaan().getTableHeader());
+            mw.getTblBuffer_Pupuk_Permintaan().setDefaultRenderer(Object.class, bufferRR);
         } else {
             if (tblPetani.getSelectedRowCount() == 0) cc.showErrorMsg("Error Transaksi Pupuk", "Pilihlah minimal 1 (satu) nama petani.");
             if (tblPupuk.getSelectedRowCount() == 0) cc.showErrorMsg("Error Transaksi Pupuk", "Pilihlah minimal 1 (satu) jenis pupuk.");
+            if (mw.getDtpTglTransaksiPupuk().getDate() == null) cc.showErrorMsg("Error Transaksi Pupuk", "Tanggal transaksi harus diisi!");
         }
     }
     

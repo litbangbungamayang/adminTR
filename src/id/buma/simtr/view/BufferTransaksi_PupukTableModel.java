@@ -38,6 +38,10 @@ public class BufferTransaksi_PupukTableModel extends AbstractTableModel {
         }
     }
     
+    public List<BufferTable_TransaksiPupuk> getContentList(){
+        return this.lbt;
+    }
+    
     @Override
     public int getRowCount() {
         int rowCount = 0;
