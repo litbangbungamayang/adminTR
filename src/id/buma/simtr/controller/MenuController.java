@@ -301,6 +301,27 @@ public class MenuController implements MouseListener{
                             mw.getJtfFrmBahanProduksi_KuantaMasuk().requestFocus();
                         }
                         break;
+                case "pnlSubMenuAdmin_Biaya":
+                    pageSwitcher(mw.getPnlContent(), "crdPnlAdminSistem_Biaya");
+                    mw.getPnlSubMenuHolder().setVisible(false);
+                    pwc.populateAdminTblBiaya();
+                    pwc.setFormMasterBiaya("view");
+                    break;
+                    case "pnlAdminSistem_Biaya_Back":
+                        pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                        break;
+                    case "pnlAdminSistem_Biaya_Add":
+                        pwc.setFormMasterBiaya("add");
+                        break;
+                    case "pnlAdminSistem_Biaya_Edit":
+                        pwc.setFormMasterBiaya("edit");
+                        break;
+                    case "pnlAdminSistem_Biaya_Cancel":
+                        pwc.setFormMasterBiaya("view");
+                        break;
+                    case "pnlAdminSistem_Biaya_Save":
+                        pwc.setFormMasterBiaya("save");
+                        break;
             /******************/
             case "pnlMenuKeluar":
                 System.exit(0);
@@ -365,6 +386,19 @@ public class MenuController implements MouseListener{
     
     public void standarButtonDisplayed(JPanel menuPanel){
         menuPanel.setBackground(new Color(255,255,255,0));
+    }
+    
+    public void disableButton(JPanel buttonPanel, String buttonType){
+        if (buttonPanel.getMouseListeners().length == 1){
+            MouseListener ml = buttonPanel.getMouseListeners()[0];
+            buttonPanel.removeMouseListener(ml);
+            standarButtonHover(buttonPanel);
+        }
+    }
+    
+    public void enableButton(JPanel buttonPanel){
+        buttonPanel.addMouseListener(this);
+        standarButtonDisplayed(buttonPanel);
     }
     
     @Override
@@ -542,6 +576,24 @@ public class MenuController implements MouseListener{
                         standarButtonHover(menuPanel);
                         break;
                     case "pnlAdminSistem_BahanProduksi_AddMasuk":
+                        standarButtonHover(menuPanel);
+                        break;
+                case "pnlSubMenuAdmin_Biaya":
+                    standarMainMenuHover(menuPanel);
+                    break;
+                    case "pnlAdminSistem_Biaya_Back":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Add":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Edit":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Save":
+                        standarButtonHover(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Cancel":
                         standarButtonHover(menuPanel);
                         break;
             case "pnlMenuKeluar":
@@ -729,6 +781,24 @@ public class MenuController implements MouseListener{
                         standarButtonDisplayed(menuPanel);
                         break;
                     case "pnlAdminSistem_BahanProduksi_AddMasuk":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                case "pnlSubMenuAdmin_Biaya" :
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
+                    case "pnlAdminSistem_Biaya_Back":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Add":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Edit":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Cancel":
+                        standarButtonDisplayed(menuPanel);
+                        break;
+                    case "pnlAdminSistem_Biaya_Save":
                         standarButtonDisplayed(menuPanel);
                         break;
             /*************/

@@ -157,6 +157,10 @@ public class VersionController {
         + Perbaikan penomoran transaksi pada permintaan pupuk
         + Perbaikan pengambilan data pada tabel buffer permintaan perawatan tanaman
         */
+        version = "0.9.26";
+        /*
+        + Pembuatan form master data biaya perawatan
+        */
         return version;
     }
         

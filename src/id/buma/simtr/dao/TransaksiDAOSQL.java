@@ -482,6 +482,7 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                 );
                 Biaya bya = new Biaya(
                         rs.getInt("ID_BIAYA"), 
+                        rs.getString("KODE_BIAYA"),
                         rs.getString("KATEGORI"), 
                         rs.getString("JENIS_BIAYA"), 
                         rs.getString("NAMA_BIAYA"), 

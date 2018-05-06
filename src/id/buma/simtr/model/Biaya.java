@@ -12,6 +12,7 @@ package id.buma.simtr.model;
 
 public class Biaya {
     private int idBiaya;
+    private String kodeBiaya;
     private String kategori;
     private String jenisBiaya;
     private String namaBiaya;
@@ -19,9 +20,10 @@ public class Biaya {
     private int tahunGiling;
     private int rupiahBiaya;
     
-    public Biaya(int idBiaya, String kategori, String jenisBiaya, String namaBiaya,
+    public Biaya(int idBiaya, String kodeBiaya, String kategori, String jenisBiaya, String namaBiaya,
             String satuan, int tahunGiling, int rupiahBiaya){
         this.idBiaya = idBiaya;
+        this.kodeBiaya = kodeBiaya;
         this.kategori = kategori;
         this.jenisBiaya = jenisBiaya;
         this.namaBiaya = namaBiaya;
@@ -84,6 +86,14 @@ public class Biaya {
 
     public void setRupiahBiaya(int rupiahBiaya) {
         this.rupiahBiaya = rupiahBiaya;
+    }
+
+    public String getKodeBiaya() {
+        return kodeBiaya;
+    }
+
+    public void setKodeBiaya(String kodeBiaya) {
+        this.kodeBiaya = kodeBiaya;
     }
     
 }

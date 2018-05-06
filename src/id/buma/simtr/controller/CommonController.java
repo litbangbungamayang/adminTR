@@ -25,8 +25,12 @@ import id.buma.simtr.view.PetaniHeaderRenderer;
 import id.buma.simtr.view.PetaniRowRenderer;
 import id.buma.simtr.view.PetaniTableModel;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.MouseListener;
 import java.awt.print.PrinterJob;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -101,6 +105,10 @@ public class CommonController {
     
     public CommonController(MainWindow mw){
         this.mw = mw;
+    }
+    
+    public CommonController(){
+        
     }
     
     //*************************************************************************//
@@ -180,6 +188,22 @@ public class CommonController {
     }
     
     //*************************************************************************//
+
+    public void disableButton(JPanel pnl){
+        if (pnl.getMouseListeners().length == 1){
+            pnl.setBackground(new Color(255,255,255,180));
+            MouseListener ml = pnl.getMouseListeners()[0];
+            pnl.removeMouseListener(ml);
+        }
+    }
+    
+    public void enableButton(JPanel pnl, MainWindow mw){
+        if (pnl.getMouseListeners().length == 0){
+            MenuController mc = new MenuController(mw);
+            pnl.addMouseListener(mc);
+        }
+        pnl.setBackground(new Color(255,255,255,0));
+    }
     
     public void kelTaniAutoFilter(JTable tbl, String keyword){
         String idAfd;
@@ -402,5 +426,21 @@ public class CommonController {
             }
         }
         return false;
+    }
+    
+    public String formatAngka(long inputAngka, String formatAngka){
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator(',');
+        dfs.setGroupingSeparator('.');
+        DecimalFormat df = new DecimalFormat(formatAngka, dfs);
+        return df.format(inputAngka);
+    }
+    
+    public String formatAngkaUS(long inputAngka, String formatAngka){
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        dfs.setGroupingSeparator(',');
+        DecimalFormat df = new DecimalFormat(formatAngka, dfs);
+        return df.format(inputAngka);
     }
 }

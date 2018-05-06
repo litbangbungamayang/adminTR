@@ -10,6 +10,7 @@ import id.buma.simtr.dao.PekerjaanKebunDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.TransaksiDAOSQL;
+import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.DetailPostingTransaksi;
 import id.buma.simtr.model.KelompokTani;
@@ -21,6 +22,8 @@ import id.buma.simtr.view.DetailPostingPerawatan_Permintaan_RowRenderer;
 import id.buma.simtr.view.DetailPostingPerawatan_Permintaan_TableModel;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
+import id.buma.simtr.view.MasterDataBiayaTableModel;
+import id.buma.simtr.view.MasterDataBiaya_RowRenderer;
 import id.buma.simtr.view.PekerjaanKebunRowRenderer;
 import id.buma.simtr.view.PekerjaanKebunTableModel;
 import id.buma.simtr.view.Perawatan_Permintaan_RowRenderer;
@@ -49,6 +52,7 @@ public class PerawatanController implements ActionListener {
     private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();
     private final TransaksiDAOSQL transDao = new TransaksiDAOSQL();
     private static KelompokTani selectedKelTani = null;
+    private static boolean masterEditStatus = false;
 
     public PerawatanController(MainWindow mw){
         this.mw = mw;
@@ -203,38 +207,6 @@ public class PerawatanController implements ActionListener {
                 String idKelompok = lsPt.get(0).getIdKelompok();
                 String noBukti = transDao.getNewNomorBuktiTransaksi(idKelompok);
                 BuktiTransaksi bk = null ;
-                /*
-                for (int i = 0; i < lsPt.size(); i++){
-                    for (int j = 0; j < lsPk.size(); j++){
-                        String idPetani = lsPt.get(i).getIdPetani();                      
-                        int idBiaya = lsPk.get(j).getIdPekerjaan();
-                        if (transDao.cekDuplikatTransaksiPekerjaan(idPetani, idBiaya)){
-                            float luas = lsPt.get(i).getLuas();
-                            int biaya = lsPk.get(j).getHarga();
-                            int nilaiTransaksi = Math.round(luas*biaya);
-                            bk = new BuktiTransaksi(noBukti, cc.getUserId(), cc.getTimestamp());
-                            Transaksi tr = new Transaksi(
-                                    0, 
-                                    idPetani, 
-                                    0, 
-                                    idBiaya, 
-                                    tglTransaksi, 
-                                    "D", 
-                                    luas, 
-                                    cc.getUserId(), 
-                                    cc.getTimestamp(), 
-                                    tahunGiling, 
-                                    BigInteger.valueOf(nilaiTransaksi), 
-                                    noBukti
-                            );
-                            lsTr.add(tr);                           
-                        } else {
-                            cc.showErrorMsg("Perawatan Kebun", "Sudah ada transaksi atas nama <br><b>" + 
-                                    lsPt.get(i).getNamaPetani() + " [" + lsPk.get(j).getNamaPekerjaan() + "] </b>");
-                        }
-                    }
-                }
-                */
                 for (int i = 0; i < lsPt.size(); i++){
                     String idPetani = lsPt.get(i).getIdPetani();
                     int idBiaya = lsPk.get(i).getIdPekerjaan();
@@ -322,6 +294,188 @@ public class PerawatanController implements ActionListener {
             cc.showErrorMsg("Perawatan Kebun", "Pilih salah satu data transaksi!");
         }
     }
+    
+    public void populateAdminTblBiaya(){
+        JTable tblBiaya = mw.getTblMasterBiaya();
+        PekerjaanKebunDAOSQL pkDao = new PekerjaanKebunDAOSQL();
+        List<Biaya> lsBya = pkDao.getAllBiaya();
+        MasterDataBiayaTableModel mdbtt = new MasterDataBiayaTableModel(lsBya);
+        cc.setTableHeaderKelTani(tblBiaya.getTableHeader());
+        MasterDataBiaya_RowRenderer mdbrr = new MasterDataBiaya_RowRenderer();
+        tblBiaya.setDefaultRenderer(Object.class, mdbrr);
+        tblBiaya.setModel(mdbtt);
+    }
+    
+    public void populateCbxTahunGiling(){
+        SistemDAOSQL sisDao = new SistemDAOSQL();
+        int tahunGiling = sisDao.getTahunGiling();
+        int tahunGilingDepan = 3;
+        mw.getCbxMasterBiaya_TahunGiling().removeAllItems();
+        for (int i = 0; i <= tahunGilingDepan; i++){
+            String listTg = String.valueOf(tahunGiling + i);
+            mw.getCbxMasterBiaya_TahunGiling().addItem(listTg);
+        }
+        mw.getCbxMasterBiaya_TahunGiling().setSelectedIndex(-1);
+    }
+    
+    public void setFormMasterBiaya(String formStatus){
+        switch (formStatus){
+            case "view":
+                if (mw.getTblMasterBiaya().getSelectedRow() == -1){
+                    resetFormMasterBiaya();
+                }
+                populateCbxTahunGiling();
+                HandlerSeleksiTabel hst = new HandlerSeleksiTabel(mw, "MasterBiaya-FormBiaya", mw.getTblMasterBiaya());
+                mw.getTblMasterBiaya().getSelectionModel().addListSelectionListener(hst);
+                setFormMasterBiaya(false);
+                setFormButton(false);
+                masterEditStatus = false;
+                if (mw.getTblMasterBiaya().getSelectedRow() > -1){
+                    MasterDataBiayaTableModel mdbtt = (MasterDataBiayaTableModel) mw.getTblMasterBiaya().getModel();
+                    Biaya bya = mdbtt.getContentList().get(mw.getTblMasterBiaya().getSelectedRow());
+                    showDetailBiaya(bya);
+                }
+                break;
+            case "add":
+                if (mw.getTblMasterBiaya().getSelectedRow() > -1){
+                    mw.getJtfMasterBiaya_Harga().setText("");
+                    setFormButton(true);
+                    setFormMasterBiaya(true); 
+                    masterEditStatus = false;
+                }
+                break;
+            case "edit":
+                if (mw.getTblMasterBiaya().getSelectedRow() > -1){
+                    masterEditStatus = true;
+                    setFormMasterBiaya(true);
+                    setFormButton(true);
+                }
+                break;
+            case "save":
+                if (cekValidasiFormMasterBiaya()){
+                    if (masterEditStatus){
+                        MasterDataBiayaTableModel mdbtm = (MasterDataBiayaTableModel) mw.getTblMasterBiaya().getModel();
+                        int idBiaya = mdbtm.getContentList().get(mw.getTblMasterBiaya().getSelectedRow()).getIdBiaya();
+                        PekerjaanKebunDAOSQL pekDao = new PekerjaanKebunDAOSQL();
+                        if (pekDao.cekPenggunaanBiaya(idBiaya)){
+                            Biaya biaya = new Biaya(
+                                    idBiaya, 
+                                    mw.getJtfMasterBiaya_KodeBiaya().getText(), 
+                                    mw.getCbxMasterBiaya_Kategori().getSelectedItem().toString(), 
+                                    mw.getCbxMasterBiaya_JenisBiaya().getSelectedItem().toString(), 
+                                    mw.getJtfMasterBiaya_Uraian().getText(), 
+                                    mw.getCbxMasterBiaya_Satuan().getSelectedItem().toString(), 
+                                    Integer.valueOf(mw.getCbxMasterBiaya_TahunGiling().getSelectedItem().toString()), 
+                                    Integer.parseInt(mw.getJtfMasterBiaya_Harga().getText().replaceAll(",", ""))
+                            );
+                            if (pekDao.updateBiaya(biaya)){
+                                cc.showInfoMsg("Master Biaya Produksi", "Perubahan data telah tersimpan!");
+                            }
+                        } else {
+                            cc.showErrorMsg("Master Biaya Produksi", "Data biaya " +
+                                    mw.getJtfMasterBiaya_Uraian().getText() + " sudah ada dalam transaksi!<br>Data tersebut tidak dapat diubah.");
+                        }
+                    } else {
+                        Biaya biaya = new Biaya(
+                                    0, 
+                                    mw.getJtfMasterBiaya_KodeBiaya().getText(), 
+                                    mw.getCbxMasterBiaya_Kategori().getSelectedItem().toString(), 
+                                    mw.getCbxMasterBiaya_JenisBiaya().getSelectedItem().toString(), 
+                                    mw.getJtfMasterBiaya_Uraian().getText(), 
+                                    mw.getCbxMasterBiaya_Satuan().getSelectedItem().toString(), 
+                                    Integer.valueOf(mw.getCbxMasterBiaya_TahunGiling().getSelectedItem().toString()), 
+                                    Integer.parseInt(mw.getJtfMasterBiaya_Harga().getText().replaceAll(",", ""))
+                            );
+                        PekerjaanKebunDAOSQL pekDao = new PekerjaanKebunDAOSQL();
+                        if (pekDao.cekDuplikatBiaya(biaya.getKodeBiaya(), biaya.getTahunGiling())){
+                            if (pekDao.insertNewBiaya(biaya)){
+                                cc.showInfoMsg("Master Biaya Produksi", "Penambahan data telah tersimpan!");
+                            }
+                        } else {
+                            cc.showErrorMsg("Master Biaya Produksi", "Data biaya <b>" + 
+                                    biaya.getNamaBiaya() + "</b> tahun " + biaya.getTahunGiling() + " sudah ada didalam database!");
+                        }
+                    }
+                    resetFormMasterBiaya();
+                    setFormMasterBiaya("view");
+                    populateAdminTblBiaya();
+                } else {
+                    cc.showErrorMsg("Master Biaya Produksi", "Cek kembali input data master biaya!");
+                }
+                break;
+        }
+    }
+    
+    public boolean cekValidasiFormMasterBiaya(){
+        return !mw.getJtfMasterBiaya_KodeBiaya().getText().isEmpty() &&
+                !mw.getJtfMasterBiaya_Uraian().getText().isEmpty() &&
+                !mw.getJtfMasterBiaya_Harga().getText().isEmpty() &&
+                mw.getCbxMasterBiaya_JenisBiaya().getSelectedIndex() > -1 &&
+                mw.getCbxMasterBiaya_Kategori().getSelectedIndex() > -1 &&
+                mw.getCbxMasterBiaya_Satuan().getSelectedIndex() > -1 &&
+                mw.getCbxMasterBiaya_TahunGiling().getSelectedIndex() > -1;
+    }
+    
+    public boolean cekDuplikasiMasterBiaya(String kodeBiaya, int tahunGiling){
+        PekerjaanKebunDAOSQL pekDao = new PekerjaanKebunDAOSQL();
+        return pekDao.cekDuplikatBiaya(kodeBiaya, tahunGiling);
+    }
+    
+    public boolean cekPenggunaanBiaya(int idBiaya){
+        PekerjaanKebunDAOSQL pekDao = new PekerjaanKebunDAOSQL();
+        return pekDao.cekPenggunaanBiaya(idBiaya);
+    }
+    
+    public void setFormButton(boolean buttonStatus){
+        if (buttonStatus == true){
+            cc.disableButton(mw.getPnlAdminSistem_Biaya_Add());
+            cc.disableButton(mw.getPnlAdminSistem_Biaya_Edit());
+            cc.enableButton(mw.getPnlAdminSistem_Biaya_Cancel(), mw);
+            cc.enableButton(mw.getPnlAdminSistem_Biaya_Save(), mw);
+        } else {
+            cc.enableButton(mw.getPnlAdminSistem_Biaya_Add(), mw);
+            cc.enableButton(mw.getPnlAdminSistem_Biaya_Edit(), mw);
+            cc.disableButton(mw.getPnlAdminSistem_Biaya_Cancel());
+            cc.disableButton(mw.getPnlAdminSistem_Biaya_Save());
+        }
+    }
+    
+    public void setFormMasterBiaya(boolean status){
+        //mw.getCbxMasterBiaya_JenisBiaya().setEnabled(status);
+        //mw.getCbxMasterBiaya_Kategori().setEnabled(status);
+        //mw.getCbxMasterBiaya_Satuan().setEnabled(status);
+        mw.getCbxMasterBiaya_TahunGiling().setEnabled(status);
+        mw.getJtfMasterBiaya_Harga().setEnabled(status);
+        //mw.getJtfMasterBiaya_Uraian().setEnabled(status);
+        mw.getTblMasterBiaya().setEnabled(!status);
+        // Button
+        mw.getPnlAdminSistem_Biaya_Add().setEnabled(!status);
+        mw.getPnlAdminSistem_Biaya_Edit().setEnabled(!status);
+        mw.getPnlAdminSistem_Biaya_Save().setEnabled(status);
+        mw.getPnlAdminSistem_Biaya_Cancel().setEnabled(status);
+    }
+    
+    public void resetFormMasterBiaya(){
+        mw.getCbxMasterBiaya_JenisBiaya().setSelectedIndex(-1);
+        mw.getCbxMasterBiaya_Kategori().setSelectedIndex(-1);
+        mw.getCbxMasterBiaya_Satuan().setSelectedIndex(-1);
+        mw.getCbxMasterBiaya_TahunGiling().setSelectedIndex(-1);
+        mw.getJtfMasterBiaya_Harga().setText("");
+        mw.getJtfMasterBiaya_KodeBiaya().setText("");
+        mw.getJtfMasterBiaya_Uraian().setText("");
+        populateCbxTahunGiling();
+    }
+    
+    public void showDetailBiaya(Biaya bya){
+        mw.getJtfMasterBiaya_KodeBiaya().setText(bya.getKodeBiaya());
+        mw.getJtfMasterBiaya_Uraian().setText(bya.getNamaBiaya());
+        mw.getJtfMasterBiaya_Harga().setText(cc.formatAngkaUS(bya.getRupiahBiaya(), "#,##0"));
+        mw.getCbxMasterBiaya_JenisBiaya().setSelectedItem(bya.getJenisBiaya());
+        mw.getCbxMasterBiaya_Kategori().setSelectedItem(bya.getKategori());
+        mw.getCbxMasterBiaya_Satuan().setSelectedItem(bya.getSatuan());
+        mw.getCbxMasterBiaya_TahunGiling().setSelectedItem(String.valueOf(bya.getTahunGiling()));
+    }
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {

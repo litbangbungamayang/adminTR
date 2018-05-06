@@ -5,6 +5,7 @@
  */
 package id.buma.simtr.dao;
 
+import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.PekerjaanKebun;
 import java.util.List;
 
@@ -19,5 +20,17 @@ public interface PekerjaanKebunDAO {
     public PekerjaanKebun getPekerjaanKebunByIdPekerjaan(int idPekerjaan, int tahunGiling);
     
     public List<PekerjaanKebun> getAllPekerjaanKebunByKategori(int tahunGiling, String kategori);
+    
+    public List<PekerjaanKebun> getAllPekerjaanKebun();
+    
+    public List<Biaya> getAllBiaya();
+    
+    public boolean cekDuplikatBiaya(String kodeBiaya, int tahunGiling);
+    
+    public boolean cekPenggunaanBiaya(int idBiaya);
+    
+    public boolean insertNewBiaya(Biaya newBiaya);
+    
+    public boolean updateBiaya(Biaya biaya);
     
 }

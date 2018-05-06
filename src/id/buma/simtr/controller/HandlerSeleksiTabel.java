@@ -6,6 +6,7 @@
 package id.buma.simtr.controller;
 
 import id.buma.simtr.model.BahanProduksi;
+import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.BufferTable_TransaksiPupuk;
 import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.PekerjaanKebun;
@@ -17,6 +18,7 @@ import id.buma.simtr.view.BufferTransaksi_PupukRowRenderer;
 import id.buma.simtr.view.BufferTransaksi_PupukTableModel;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
+import id.buma.simtr.view.MasterDataBiayaTableModel;
 import id.buma.simtr.view.PostingPerawatan_Permintaan_TableModel;
 import id.buma.simtr.view.UserDataTableModel;
 import java.util.ArrayList;
@@ -122,6 +124,14 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         String idDokumen = ppptm.getListTransaksi().get(tbl.getSelectedRow()).getNomorBuktiTransaksi();
                         pwc.populateDetailPosting(idDokumen);
                     }
+                    break;
+                case "MasterBiaya-FormBiaya":
+                    if (tbl.getSelectedRow() > -1){
+                        MasterDataBiayaTableModel mdbtt = (MasterDataBiayaTableModel) tbl.getModel();
+                        Biaya bya = mdbtt.getContentList().get(tbl.getSelectedRow());
+                        pwc.showDetailBiaya(bya);
+                    }
+                    break;
             }
         }
     }
