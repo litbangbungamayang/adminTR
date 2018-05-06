@@ -161,6 +161,11 @@ public class VersionController {
         /*
         + Pembuatan form master data biaya perawatan
         */
+        version = "0.9.27";
+        /*
+        + Perubahan struktut model transaksi, ada tambahan ID_TIMBANGAN (int)
+        + Pembuatan form TMA
+        */
         return version;
     }
         

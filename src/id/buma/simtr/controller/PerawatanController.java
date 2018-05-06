@@ -135,8 +135,10 @@ public class PerawatanController implements ActionListener {
             }
             for (int i = 0; i < lsPt.size(); i++){
                 for (int j = 0; j < lsPtBuffer.size(); j++){
-                    if (lsPt.get(i).getIdPetani().equals(lsPtBuffer.get(j).getIdPetani())){
-                        lsPt.remove(i);
+                    if (lsPt.size() > 0){
+                        if (lsPt.get(i).getIdPetani().equals(lsPtBuffer.get(j).getIdPetani())){
+                            lsPt.remove(i);
+                        }
                     }
                 }
             }
@@ -219,7 +221,8 @@ public class PerawatanController implements ActionListener {
                                     0, 
                                     idPetani, 
                                     0, 
-                                    idBiaya, 
+                                    idBiaya,
+                                    0,
                                     tglTransaksi, 
                                     "D", 
                                     luas, 

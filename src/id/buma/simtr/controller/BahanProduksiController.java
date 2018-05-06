@@ -290,6 +290,7 @@ public class BahanProduksiController {
                     "NN", 
                     idBahan,
                     0,
+                    0,
                     tglTransaksi, 
                     "K",
                     Float.valueOf(kuantaMasuk), 

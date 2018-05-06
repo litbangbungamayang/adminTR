@@ -19,6 +19,7 @@ public class Transaksi {
     private String idPetani;
     private int idBahan;
     private int idBiaya;
+    private int idTimbangan;
     private java.sql.Date tglTransaksi;
     private String kodeTransaksi; //D - Debit, K - Kredit
     private float kuantaTransaksi;
@@ -29,13 +30,14 @@ public class Transaksi {
     private String nomorBuktiTransaksi;
     
     public Transaksi(int idTransaksi, String idPetani, int idBahan, int idBiaya, 
-            java.sql.Date tglTransaksi, String kodeTransaksi, float kuantaTransaksi, 
+            int idTimbangan,java.sql.Date tglTransaksi, String kodeTransaksi, float kuantaTransaksi, 
             int idUser, java.sql.Timestamp tglPosting, int tahunGiling, BigInteger nilaiTransaksi,
             String nomorBuktiTransaksi){
         this.idTransaksi = idTransaksi;
         this.idPetani = idPetani;
         this.idBahan = idBahan;
         this.idBiaya = idBiaya;
+        this.idTimbangan = idTimbangan;
         this.tglTransaksi = tglTransaksi;
         this.kuantaTransaksi = kuantaTransaksi;
         this.idUser = idUser;
@@ -141,6 +143,14 @@ public class Transaksi {
 
     public void setIdBiaya(int idBiaya) {
         this.idBiaya = idBiaya;
+    }
+
+    public int getIdTimbangan() {
+        return idTimbangan;
+    }
+
+    public void setIdTimbangan(int idTimbangan) {
+        this.idTimbangan = idTimbangan;
     }
     
 }

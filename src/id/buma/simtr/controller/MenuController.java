@@ -46,6 +46,7 @@ public class MenuController implements MouseListener{
         UserController uc = new UserController(mw);
         PerawatanController pwc = new PerawatanController(mw);
         BahanProduksiController bpc = new BahanProduksiController(mw);
+        TebanganController tc = new TebanganController(mw);
         mw.repaint();
         JPanel menuPanel = (JPanel) e.getSource();
         String menuPanelName = menuPanel.getName();
@@ -209,10 +210,24 @@ public class MenuController implements MouseListener{
                         pc.cetakEvaluasiPupuk();
                         break;
             //*********************************
-            //********************
+            //******************** MENU TMA
             case "pnlMenuTMA":
-                mw.getPnlSubMenuHolder().setVisible(false);
+                mw.getPnlSubMenuHolder().setVisible(true);
+                pageSwitcher(mw.getPnlSubMenuHolder(), "crdSubMenuTMA");
                 break;
+                case "pnlSubMenuTMA_Rekap":
+                    mw.getPnlSubMenuHolder().setVisible(false);
+                    pageSwitcher(mw.getPnlContent(), "crdFrmTMA");
+                    tc.prepareTableTMAKelTani();
+                    break;
+                case "pnlFrmTMA_Back":
+                    pageSwitcher(mw.getPnlContent(), "crdPnlMenuUtama");
+                    break;
+                case "pnlFrmTMAPosting":
+                    tc.konfirmasiPostingData();
+                    break;
+                case "pnlFrmTMALihat":
+                    break;
             case "pnlMenuPBH":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
@@ -521,6 +536,18 @@ public class MenuController implements MouseListener{
             case "pnlMenuTMA":
                 standarMainMenuHover(menuPanel);
                 break;
+                case "pnlSubMenuTMA_Rekap":
+                    standarMainMenuHover(menuPanel);
+                    break;
+                case "pnlFrmTMA_Back":
+                    standarButtonHover(menuPanel);
+                    break;
+                case "pnlFrmTMALihat":
+                    standarButtonHover(menuPanel);
+                    break;
+                case "pnlFrmTMAPosting":
+                    standarButtonHover(menuPanel);
+                    break;
             case "pnlMenuPBH":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -725,6 +752,18 @@ public class MenuController implements MouseListener{
             case "pnlMenuTMA":
                 standarMainMenuDisplayed(menuPanel);
                 break;
+                case "pnlSubMenuTMA_Rekap":
+                    standarMainMenuDisplayed(menuPanel);
+                    break;
+                case "pnlFrmTMA_Back":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlFrmTMAPosting":
+                    standarButtonDisplayed(menuPanel);
+                    break;
+                case "pnlFrmTMALihat":
+                    standarButtonDisplayed(menuPanel);
+                    break;
             case "pnlMenuPBH":
                 standarMainMenuDisplayed(menuPanel);
                 break;

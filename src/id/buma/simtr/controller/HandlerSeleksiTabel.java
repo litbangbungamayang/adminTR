@@ -55,6 +55,7 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
         CommonController cc = new CommonController(mw);
         PerawatanController pwc = new PerawatanController(mw);
         BahanProduksiController bpc = new BahanProduksiController(mw);
+        TebanganController tc = new TebanganController(mw);
         if (!e.getValueIsAdjusting()){
             switch (seleksiMode){
                 case "KelompokTani-Petani":
@@ -132,6 +133,12 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         pwc.showDetailBiaya(bya);
                     }
                     break;
+                case "KelTani-Timbangan":
+                    if (tbl.getSelectedRow() > -1){
+                        KelompokTaniTableModel kttm = (KelompokTaniTableModel) tbl.getModel();
+                        String idKelompok = kttm.getContentList().get(tbl.getSelectedRow()).getIdKelompok();
+                        tc.showDetailDataTimbang(idKelompok);
+                    }
             }
         }
     }

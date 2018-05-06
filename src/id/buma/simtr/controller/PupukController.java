@@ -26,8 +26,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -128,6 +126,7 @@ public class PupukController implements ActionListener{
                                 idPetani_Selected, 
                                 idBahan_Selected,
                                 0,
+                                0,
                                 tglTransaksi,
                                 "D",
                                 kuantaDb, 
@@ -150,6 +149,7 @@ public class PupukController implements ActionListener{
                                         idPetani_Selected, 
                                         0, 
                                         lsBy1.getIdBiaya(), 
+                                        0,
                                         tglTransaksi, 
                                         "D", 
                                         kuantaDb, 

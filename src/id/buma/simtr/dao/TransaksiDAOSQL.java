@@ -156,6 +156,7 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                         "", 
                         idBahan,
                         0,
+                        0,
                         lastDate, 
                         rs.getString("KODE_TRANSAKSI"), 
                         rs.getFloat("KUANTA_TRANSAKSI"), 
@@ -319,20 +320,21 @@ public class TransaksiDAOSQL implements TransaksiDAO {
         try {
             conn.setAutoCommit(false);
             conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
-            String callSQL = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?)";
+            String callSQL = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?,?)";
             CallableStatement cst = conn.prepareCall(callSQL);
             for(Transaksi tp : listTp){
                 cst.setString(1, tp.getIdPetani());
                 cst.setInt(2, tp.getIdBahan());
                 cst.setInt(3, tp.getIdBiaya());
-                cst.setDate(4, tp.getTglTransaksi());
-                cst.setFloat(5, tp.getKuantaTransaksi());
-                cst.setInt(6, tp.getIdUser());
-                cst.setTimestamp(7, tp.getTglPosting());
-                cst.setString(8, tp.getKodeTransaksi());
-                cst.setInt(9, tp.getTahunGiling());
-                cst.setLong(10, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
-                cst.setString(11, tp.getNomorBuktiTransaksi());
+                cst.setInt(4, tp.getIdTimbangan());
+                cst.setDate(5, tp.getTglTransaksi());
+                cst.setFloat(6, tp.getKuantaTransaksi());
+                cst.setInt(7, tp.getIdUser());
+                cst.setTimestamp(8, tp.getTglPosting());
+                cst.setString(9, tp.getKodeTransaksi());
+                cst.setInt(10, tp.getTahunGiling());
+                cst.setLong(11, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
+                cst.setString(12, tp.getNomorBuktiTransaksi());
                 cst.addBatch();
             }
             cst.executeBatch();
@@ -421,7 +423,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                          rs.getInt("ID_TRANSAKSI"), 
                          rs.getString("ID_PETANI"), 
                          rs.getInt("ID_BAHAN"), 
-                         rs.getInt("ID_BIAYA"), 
+                         rs.getInt("ID_BIAYA"),
+                         0,
                          rs.getDate("TGL_TRANSAKSI"), 
                          rs.getString("KODE_TRANSAKSI"), 
                          rs.getFloat("KUANTA_TRANSAKSI"), 
@@ -461,7 +464,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                         rs.getInt("ID_TRANSAKSI"), 
                         rs.getString("ID_PETANI"), 
                         rs.getInt("ID_BAHAN"), 
-                        rs.getInt("ID_BIAYA"), 
+                        rs.getInt("ID_BIAYA"),
+                        0,
                         rs.getDate("TGL_TRANSAKSI"), 
                         rs.getString("KODE_TRANSAKSI"), 
                         rs.getFloat("KUANTA_TRANSAKSI"), 

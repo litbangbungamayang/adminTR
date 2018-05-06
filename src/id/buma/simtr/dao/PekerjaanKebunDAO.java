@@ -33,4 +33,6 @@ public interface PekerjaanKebunDAO {
     
     public boolean updateBiaya(Biaya biaya);
     
+    public Biaya getBiayaTMAByTahunGiling(int tahunGiling);
+    
 }

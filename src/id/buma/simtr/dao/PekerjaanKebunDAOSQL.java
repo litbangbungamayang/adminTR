@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -296,6 +295,22 @@ public class PekerjaanKebunDAOSQL implements PekerjaanKebunDAO {
             }
         }
         return false;
+    }
+
+    @Override
+    public Biaya getBiayaTMAByTahunGiling(int tahunGiling) {
+       Connection conn = new DBConnection().getConn();
+        Biaya bya = null;
+        String callSQL = "CALL GET_BIAYA_TMA_BY_TAHUN_GILING(?)";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setInt(1, tahunGiling);
+            List<Biaya> lsBya = new ArrayList<>();
+            lsBya =  commonGetBiaya(cst);
+            if (lsBya.size() == 1) return lsBya.get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(PekerjaanKebunDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bya; 
     }
     
 }

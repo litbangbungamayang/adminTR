@@ -323,6 +323,7 @@ public class RDKKController {
                                 pt.getIdPetani(), 
                                 0, 
                                 bya.getIdBiaya(), 
+                                0,
                                 tglRdkk, 
                                 "D", 
                                 pt.getLuas(), 
