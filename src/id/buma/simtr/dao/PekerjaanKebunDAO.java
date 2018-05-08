@@ -6,6 +6,7 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.model.Biaya;
+import id.buma.simtr.model.BiayaTMA;
 import id.buma.simtr.model.PekerjaanKebun;
 import java.util.List;
 
@@ -34,5 +35,7 @@ public interface PekerjaanKebunDAO {
     public boolean updateBiaya(Biaya biaya);
     
     public Biaya getBiayaTMAByTahunGiling(int tahunGiling);
+    
+    public BiayaTMA getBiayaTMAByIdKelompokTahunGiling(String idKelompk, int tahunGiling);
     
 }

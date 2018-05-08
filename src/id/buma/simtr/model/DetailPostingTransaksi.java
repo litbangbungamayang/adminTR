@@ -16,11 +16,18 @@ public class DetailPostingTransaksi {
     private PetaniTebu pt;
     private Transaksi trn;
     private Biaya bya;
+    private BiayaTMA byaTMA;
     
     public DetailPostingTransaksi(PetaniTebu pt, Transaksi trn, Biaya bya){
         this.pt = pt;
         this.trn = trn;
         this.bya = bya;
+    }
+    
+    public DetailPostingTransaksi(PetaniTebu pt, Transaksi trn, BiayaTMA byaTMA){
+        this.pt = pt;
+        this.trn = trn;
+        this.byaTMA = byaTMA;
     }
 
     public PetaniTebu getPt() {
@@ -45,6 +52,14 @@ public class DetailPostingTransaksi {
 
     public void setBya(Biaya bya) {
         this.bya = bya;
+    }
+
+    public BiayaTMA getByaTMA() {
+        return byaTMA;
+    }
+
+    public void setByaTMA(BiayaTMA byaTMA) {
+        this.byaTMA = byaTMA;
     }
     
     

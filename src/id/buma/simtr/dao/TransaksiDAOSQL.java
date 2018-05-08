@@ -8,6 +8,7 @@ package id.buma.simtr.dao;
 import id.buma.simtr.controller.CommonController;
 import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.Biaya;
+import id.buma.simtr.model.BiayaTMA;
 import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.DetailPostingTransaksi;
 import id.buma.simtr.model.PetaniTebu;
@@ -526,6 +527,103 @@ public class TransaksiDAOSQL implements TransaksiDAO {
             }
         }
         return jp;
+    }
+
+    @Override
+    public List<Transaksi> getDataTMAByIdKelompokGrouped(String idKelompok) {
+        Connection conn  = new DBConnection().getConn();
+        List<Transaksi> lsTrn = new ArrayList<>();
+        String callSQL = "CALL GET_TRANSAKSI_TMA_BY_IDKELOMPOK_GROUPED_IDDOKUMEN(?)";
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setString(1, idKelompok);
+            boolean result = cst.execute();
+            ResultSet rs = null;
+            while (result){
+                if (result){
+                    rs = cst.getResultSet();
+                    break;
+                }
+                result = cst.getMoreResults();
+            }
+            while (rs.next()){
+                 Transaksi trn = new Transaksi(
+                         rs.getInt("ID_TRANSAKSI"), 
+                         rs.getString("ID_PETANI"), 
+                         rs.getInt("ID_BAHAN"), 
+                         rs.getInt("ID_BIAYA"),
+                         0,
+                         rs.getDate("TGL_TRANSAKSI"), 
+                         rs.getString("KODE_TRANSAKSI"), 
+                         rs.getFloat("KUANTA_TRANSAKSI"), 
+                         rs.getInt("ID_USER"), 
+                         rs.getTimestamp("DATESTAMP_POSTING"), 
+                         rs.getInt("TAHUN_GILING"), 
+                         BigInteger.valueOf(rs.getInt("NILAI_TRANSAKSI")), 
+                         rs.getString("ID_DOKUMEN")
+                 );
+                 lsTrn.add(trn);
+            }
+            return lsTrn;
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lsTrn;
+    }
+
+    @Override
+    public List<DetailPostingTransaksi> getDetailPostingTransaksiTMAByIdDokumen(String idDokumen) {
+        Connection conn = new DBConnection().getConn();
+        String callSQL = "CALL GET_TRANSAKSI_TMA_BY_IDDOKUMEN (?)";
+        List<DetailPostingTransaksi> lsDpt = new ArrayList<>();
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setString(1, idDokumen);
+            boolean result = cst.execute();
+            ResultSet rs = null;
+            while (result){
+                if (result){
+                    rs = cst.getResultSet();
+                    break;
+                }
+                result = cst.getMoreResults();
+            }
+            while (rs.next()){
+                Transaksi trn = new Transaksi(
+                        rs.getInt("ID_TRANSAKSI"), 
+                        rs.getString("ID_PETANI"), 
+                        rs.getInt("ID_BAHAN"), 
+                        rs.getInt("ID_BIAYA"),
+                        0,
+                        rs.getDate("TGL_TRANSAKSI"), 
+                        rs.getString("KODE_TRANSAKSI"), 
+                        rs.getFloat("KUANTA_TRANSAKSI"), 
+                        rs.getInt("ID_USER"), 
+                        rs.getTimestamp("DATESTAMP_POSTING"), 
+                        rs.getInt("TAHUN_GILING"), 
+                        BigInteger.valueOf(rs.getInt("NILAI_TRANSAKSI")), 
+                        rs.getString("ID_DOKUMEN")
+                );
+                PetaniTebu pt = new PetaniTebu(
+                        rs.getString("ID_PETANI"), 
+                        rs.getInt("TAHUN_GILING"), 
+                        rs.getString("IDKELOMPOK"), 
+                        rs.getString("NAMAPETANI"), 
+                        rs.getString("MASATANAM"), 
+                        rs.getFloat("LUAS"), 
+                        rs.getString("JENISTEBU")
+                );
+                BiayaTMA bTMA = new BiayaTMA(
+                        rs.getInt("ID_DESA"), 
+                        rs.getInt("TAHUN_GILING"), 
+                        rs.getInt("BIAYA_TEBANG"), 
+                        rs.getInt("BIAYA_ANGKUT")
+                );
+                DetailPostingTransaksi dpt = new DetailPostingTransaksi(pt, trn, bTMA);
+                lsDpt.add(dpt);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TransaksiDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lsDpt;
     }
     
 }

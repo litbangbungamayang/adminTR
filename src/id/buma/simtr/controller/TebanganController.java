@@ -9,13 +9,22 @@ import id.buma.simtr.dao.DataTimbangDAOSQL;
 import id.buma.simtr.dao.PekerjaanKebunDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
 import id.buma.simtr.dao.TransaksiDAOSQL;
+import id.buma.simtr.model.BiayaTMA;
 import id.buma.simtr.model.BuktiTransaksi;
 import id.buma.simtr.model.DataTimbang;
+import id.buma.simtr.model.DetailPostingTransaksi;
+import id.buma.simtr.model.KelompokTani;
 import id.buma.simtr.model.Transaksi;
 import id.buma.simtr.view.DataTimbang_RowRenderer;
 import id.buma.simtr.view.DataTimbang_TableModel;
+import id.buma.simtr.view.DetailPostingPerawatan_Permintaan_RowRenderer;
+import id.buma.simtr.view.DetailPostingTMA_HeaderRenderer;
+import id.buma.simtr.view.DetailPostingTMA_RowRenderer;
+import id.buma.simtr.view.DetailPostingTMA_TableModel;
 import id.buma.simtr.view.KelompokTaniTableModel;
 import id.buma.simtr.view.MainWindow;
+import id.buma.simtr.view.PostingPerawatan_Permintaan_RowRenderer;
+import id.buma.simtr.view.PostingPerawatan_Permintaan_TableModel;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +60,8 @@ public class TebanganController {
         List<DataTimbang> lsDt = timDao.getDataTimbangByIdKelompok(idKelompok);
         DataTimbang_TableModel dttm = new DataTimbang_TableModel(lsDt);
         JTable tblDataTimbang = mw.getTblTMADataTimbang();
-        cc.setTableHeaderKelTani(tblDataTimbang.getTableHeader());
+        DetailPostingTMA_HeaderRenderer dpthr = new DetailPostingTMA_HeaderRenderer();
+        tblDataTimbang.getTableHeader().setDefaultRenderer(dpthr);
         tblDataTimbang.setModel(dttm);
         DataTimbang_RowRenderer dtrr = new DataTimbang_RowRenderer();
         tblDataTimbang.setDefaultRenderer(Object.class, dtrr);
@@ -61,10 +71,63 @@ public class TebanganController {
         return mw.getTblTMADataTimbang().getSelectedRowCount() > 0;
     }
     
+    public void clearTblTimbang(){
+        List<DataTimbang> lsDt = new ArrayList<>();
+        DataTimbang_TableModel dttm = new DataTimbang_TableModel(lsDt);
+        mw.getTblTMADataTimbang().setModel(dttm);
+    }
+    
+    public void clearTblDetailPosting(){
+        List<DetailPostingTransaksi> lsDpt = new ArrayList<>();
+        DetailPostingTMA_TableModel dpttm = new DetailPostingTMA_TableModel(lsDpt);
+        mw.getTblDetail_TMA().setModel(dpttm);
+    }
+    
+    public boolean prepareFormBonTMA(){
+        if (mw.getTblTMAKelTani().getSelectedRow() > -1){
+            PostingPerawatan_Permintaan_RowRenderer ppprr = new PostingPerawatan_Permintaan_RowRenderer();
+            DetailPostingTMA_RowRenderer dptrr = new DetailPostingTMA_RowRenderer();
+            JTable tblPosting = mw.getTblPosting_TMA();
+            JTable tblDetail = mw.getTblDetail_TMA();
+            DetailPostingTMA_HeaderRenderer dpthr = new DetailPostingTMA_HeaderRenderer();
+            cc.setTableHeaderKelTani(tblPosting.getTableHeader());
+            tblDetail.getTableHeader().setDefaultRenderer(dpthr);
+            tblPosting.setDefaultRenderer(Object.class, ppprr);
+            tblDetail.setDefaultRenderer(Object.class, dptrr);
+            getPostingTMA();
+            HandlerSeleksiTabel hst = new HandlerSeleksiTabel(mw, "PostingTMA-DetailTMA", tblPosting);
+            tblPosting.getSelectionModel().addListSelectionListener(hst);
+            return true;
+        } else {
+            cc.showErrorMsg("Data Permintaan Biaya TMA", "Pilih satu nama kelompok!");
+        }
+        return false;
+    }
+    
+    public void getPostingTMA(){
+        KelompokTaniTableModel kttm = (KelompokTaniTableModel) mw.getTblTMAKelTani().getModel();
+        KelompokTani kt =  kttm.getContentList().get(mw.getTblTMAKelTani().getSelectedRow());
+        TransaksiDAOSQL transDao = new TransaksiDAOSQL();
+        List<Transaksi> lsTrn = transDao.getDataTMAByIdKelompokGrouped(kt.getIdKelompok());
+        PostingPerawatan_Permintaan_TableModel ppptm = new PostingPerawatan_Permintaan_TableModel(lsTrn);
+        mw.getTblPosting_TMA().setModel(ppptm);
+        mw.getLblFrmTMA_NamaKelompok().setText(kt.getNamaKelompok());
+        mw.getLblFrmTMA_NoKontrak().setText(kt.getNoKontrak());
+    }
+    
+    public void showDetailPosting(String idDokumen){
+        TransaksiDAOSQL transDao = new TransaksiDAOSQL();
+        JTable tblDetail = mw.getTblDetail_TMA();
+        List<DetailPostingTransaksi> lsDpt = transDao.getDetailPostingTransaksiTMAByIdDokumen(idDokumen);
+        DetailPostingTMA_TableModel dpttm = new DetailPostingTMA_TableModel(lsDpt);
+        tblDetail.setModel(dpttm);
+    }
+    
     public void konfirmasiPostingData(){
         if (validasiPostingData()){
             KelompokTaniTableModel kttm = (KelompokTaniTableModel) mw.getTblTMAKelTani().getModel();
-            String idKelompok = kttm.getContentList().get(mw.getTblTMAKelTani().getSelectedRow()).getIdKelompok();
+            KelompokTani kt = kttm.getContentList().get(mw.getTblTMAKelTani().getSelectedRow());
+            String idKelompok = kt.getIdKelompok();
             TransaksiDAOSQL transDao = new TransaksiDAOSQL();
             SistemDAOSQL sisDao = new SistemDAOSQL();
             int tahunGiling = sisDao.getTahunGiling();
@@ -76,7 +139,10 @@ public class TebanganController {
             DataTimbang_TableModel dttm = (DataTimbang_TableModel) mw.getTblTMADataTimbang().getModel();
             lsDtBuffer = dttm.getContentList();
             PekerjaanKebunDAOSQL pekDao = new PekerjaanKebunDAOSQL();
-            int biayaTMA = pekDao.getBiayaTMAByTahunGiling(tahunGiling).getRupiahBiaya();
+            BiayaTMA bTMA = pekDao.getBiayaTMAByIdKelompokTahunGiling(idKelompok, tahunGiling);
+            int biayaTebangMuat = bTMA.getBiayaTebang();
+            int biayaAngkut = bTMA.getBiayaAngkut();
+            int biayaTMA = biayaAngkut + biayaTebangMuat;
             int[] selectedTimbang = mw.getTblTMADataTimbang().getSelectedRows();
             for (int i = 0; i < selectedTimbang.length; i++){
                 lsDtSelected.add(lsDtBuffer.get(selectedTimbang[i]));
@@ -86,9 +152,10 @@ public class TebanganController {
                         0, 
                         dt.getPetani().getIdPetani(), 
                         0, 
-                        0, 
+                        15, //TODO : hardcoded
                         dt.getIdTimbangan(), 
-                        new java.sql.Date(dt.getTglNetto().getTime()), 
+                        //new java.sql.Date(dt.getTglNetto().getTime()), 
+                        new java.sql.Date(cc.getTimestamp().getTime()),
                         "D", 
                         dt.getNetto(), 
                         cc.getUserId(), 
@@ -114,8 +181,7 @@ public class TebanganController {
                         }
                     }   
                 }
-            }
-            
+            } 
         }
     }
     

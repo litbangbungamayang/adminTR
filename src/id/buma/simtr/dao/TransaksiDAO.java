@@ -45,6 +45,10 @@ public interface TransaksiDAO {
     
     public List<Transaksi> getDataTransaksiByIdKelompokGrouped(String idKelompok);
     
+    public List<Transaksi> getDataTMAByIdKelompokGrouped(String idKelompok);
+    
     public List<DetailPostingTransaksi> getDetailPostingTransaksiByIdDokumen(String idDokumen);
+    
+    public List<DetailPostingTransaksi> getDetailPostingTransaksiTMAByIdDokumen(String idDokumen);
     
 }

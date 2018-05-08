@@ -171,6 +171,11 @@ public class VersionController {
         + Perbaikan modul RDKK, munculkan peringatan bila luasan < 5 Ha
         + Perbaikan modul Bahan Produksi, input angka dosis dan kuanta, hilangkan koma
         */
+        version = "0.9.29";
+        /*
+        + Penambahan model BiayaTMA
+        + Penambahan form detail posting biaya TMA
+        */
         return version;
     }
         

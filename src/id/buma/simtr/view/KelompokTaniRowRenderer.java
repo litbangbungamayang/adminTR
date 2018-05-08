@@ -30,42 +30,43 @@ public class KelompokTaniRowRenderer extends DefaultTableCellRenderer implements
         TableColumn tc = table.getColumnModel().getColumn(column);
         setBorder(noFocusBorder);
         table.getParent().setBackground(new Color(170,193,193));
+        int tableWidth = table.getParent().getWidth();
         switch (column){
             case 0 :
                 // Nomor
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(40);
+                tc.setPreferredWidth((int) Math.round(0.0655737704918033*tableWidth));
                 break;
             case 1 :
                 // ID Kelompok
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(100);
+                tc.setPreferredWidth((int) Math.round(0.1639344262295082*tableWidth));
                 break;
             case 2 :
                 // Afdeling
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(40);
+                tc.setPreferredWidth((int) Math.round(0.0655737704918033*tableWidth));
                 break;
             case 3 :
                 // Tahun
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(70);
+                tc.setPreferredWidth((int) Math.round(0.1147540983606557*tableWidth));
                 break;
             case 4 :
                 // Nama Kelompok
                 this.setHorizontalAlignment(LEFT);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(250);
+                tc.setPreferredWidth((int) Math.round(0.4098*tableWidth));
                 break;
             case 5 :
                 // No Kontrak
                 this.setHorizontalAlignment(CENTER);
                 tc.setCellRenderer(this);
-                tc.setPreferredWidth(110);
+                tc.setPreferredWidth((int) Math.round(0.180*tableWidth));
                 break;
         }
         

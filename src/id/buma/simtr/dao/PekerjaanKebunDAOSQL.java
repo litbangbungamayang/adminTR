@@ -7,6 +7,7 @@ package id.buma.simtr.dao;
 
 import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.Biaya;
+import id.buma.simtr.model.BiayaTMA;
 import id.buma.simtr.model.PekerjaanKebun;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -307,6 +308,40 @@ public class PekerjaanKebunDAOSQL implements PekerjaanKebunDAO {
             List<Biaya> lsBya = new ArrayList<>();
             lsBya =  commonGetBiaya(cst);
             if (lsBya.size() == 1) return lsBya.get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(PekerjaanKebunDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bya; 
+    }
+
+    @Override
+    public BiayaTMA getBiayaTMAByIdKelompokTahunGiling(String idKelompk, int tahunGiling) {
+        Connection conn = new DBConnection().getConn();
+        BiayaTMA bya = null;
+        String callSQL = "CALL GET_BIAYA_TMA_BY_IDKELOMPOK_TAHUN_GILING(?, ?)"; //per desa
+        try (CallableStatement cst = conn.prepareCall(callSQL)){
+            cst.setString(1, idKelompk);
+            cst.setInt(2, tahunGiling);
+            boolean result = cst.execute();
+            int rowsAffected = 0;
+            ResultSet rs = null;
+            while (result || rowsAffected != -1){
+                if (result){
+                    rs = cst.getResultSet();
+                    break;
+                } else {
+                    rowsAffected = cst.getUpdateCount();
+                }
+                cst.getMoreResults();
+            }
+            while (rs.next()){
+                bya = new BiayaTMA(
+                        rs.getInt("ID_DESA"), 
+                        rs.getInt("TAHUN_GILING"), 
+                        rs.getInt("BIAYA_TEBANG"), 
+                        rs.getInt("BIAYA_ANGKUT")
+                );
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PekerjaanKebunDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         }

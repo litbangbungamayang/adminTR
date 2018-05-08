@@ -11,49 +11,49 @@ package id.buma.simtr.model;
  */
 
 public class BiayaTMA {
-    private int idPosting;
-    private java.sql.Date tglPosting;
-    private String idKelompok;
-    private String numerator;
+    private int idDesa;
+    private int tahunGiling;
+    private int biayaTebang;
+    private int biayaAngkut;
     
-    public BiayaTMA(int idPosting, java.sql.Date tglPosting, String idKelompok, 
-            String numerator){
-        this.idKelompok = idKelompok;
-        this.idPosting = idPosting;
-        this.numerator = numerator;
-        this.tglPosting = tglPosting;
+    public BiayaTMA(int idDesa, int tahunGiling, int biayaTebang, int biayaAngkut){
+        this.idDesa = idDesa;
+        this.tahunGiling = tahunGiling;
+        this.biayaAngkut = biayaAngkut;
+        this.biayaTebang = biayaTebang;
     }
 
-    public int getIdPosting() {
-        return idPosting;
+    public int getIdDesa() {
+        return idDesa;
     }
 
-    public void setIdPosting(int idPosting) {
-        this.idPosting = idPosting;
+    public void setIdDesa(int idDesa) {
+        this.idDesa = idDesa;
     }
 
-    public java.sql.Date getTglPosting() {
-        return tglPosting;
+    public int getTahunGiling() {
+        return tahunGiling;
     }
 
-    public void setTglPosting(java.sql.Date tglPosting) {
-        this.tglPosting = tglPosting;
+    public void setTahunGiling(int tahunGiling) {
+        this.tahunGiling = tahunGiling;
     }
 
-    public String getIdKelompok() {
-        return idKelompok;
+    public int getBiayaTebang() {
+        return biayaTebang;
     }
 
-    public void setIdKelompok(String idKelompok) {
-        this.idKelompok = idKelompok;
+    public void setBiayaTebang(int biayaTebang) {
+        this.biayaTebang = biayaTebang;
     }
 
-    public String getNumerator() {
-        return numerator;
+    public int getBiayaAngkut() {
+        return biayaAngkut;
     }
 
-    public void setNumerator(String numerator) {
-        this.numerator = numerator;
+    public void setBiayaAngkut(int biayaAngkut) {
+        this.biayaAngkut = biayaAngkut;
     }
+    
     
 }

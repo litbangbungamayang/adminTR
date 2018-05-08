@@ -139,6 +139,14 @@ public class HandlerSeleksiTabel implements ListSelectionListener{
                         String idKelompok = kttm.getContentList().get(tbl.getSelectedRow()).getIdKelompok();
                         tc.showDetailDataTimbang(idKelompok);
                     }
+                    break;
+                case "PostingTMA-DetailTMA":
+                    if (tbl.getSelectedRow() > -1){
+                        PostingPerawatan_Permintaan_TableModel ppptm = (PostingPerawatan_Permintaan_TableModel) tbl.getModel();
+                        String idDokumen = ppptm.getListTransaksi().get(tbl.getSelectedRow()).getNomorBuktiTransaksi();
+                        tc.showDetailPosting(idDokumen);
+                    }
+                    break;
             }
         }
     }

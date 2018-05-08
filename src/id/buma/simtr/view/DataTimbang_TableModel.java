@@ -35,9 +35,9 @@ public class DataTimbang_TableModel extends AbstractTableModel{
             "No.",
             "ID Petani",
             "Nama Petani",
-            "Bruto",
-            "Tarra",
-            "Netto",
+            "<html><center>Bruto<br>(Kw)</center></html>",
+            "<html><center>Tarra<br>(Kw)</center></html>",
+            "<html><center>Netto<br>(Kw)</center></html>",
             "Jam Keluar"
         };
 
@@ -71,11 +71,11 @@ public class DataTimbang_TableModel extends AbstractTableModel{
             case 2:
                 return lsDt.get(rowIndex).getPetani().getNamaPetani();
             case 3:
-                return df.format(lsDt.get(rowIndex).getBruto());
+                return df.format(lsDt.get(rowIndex).getBruto()/100);
             case 4:
-                return df.format(lsDt.get(rowIndex).getTarra());
+                return df.format(lsDt.get(rowIndex).getTarra()/100);
             case 5:
-                return df.format(lsDt.get(rowIndex).getNetto());
+                return df.format(lsDt.get(rowIndex).getNetto()/100);
             case 6:
                 return sdf.format(lsDt.get(rowIndex).getTglNetto());
         }

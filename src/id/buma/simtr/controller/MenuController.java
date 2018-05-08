@@ -228,7 +228,13 @@ public class MenuController implements MouseListener{
                     tc.konfirmasiPostingData();
                     break;
                 case "pnlFrmTMALihat":
+                     if (tc.prepareFormBonTMA()) pageSwitcher(mw.getPnlContent(), "crdFrmTMA_BonTMA");
                     break;
+                    case "pnlFrmTMA_BonTMA_Back":
+                        tc.clearTblTimbang();
+                        tc.clearTblDetailPosting();
+                        pageSwitcher(mw.getPnlContent(), "crdFrmTMA");
+                        break;
             case "pnlMenuPBH":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
@@ -549,6 +555,9 @@ public class MenuController implements MouseListener{
                 case "pnlFrmTMAPosting":
                     standarButtonHover(menuPanel);
                     break;
+                    case "pnlFrmTMA_BonTMA_Back":
+                        standarButtonHover(menuPanel);
+                        break;
             case "pnlMenuPBH":
                 standarMainMenuHover(menuPanel);
                 break;
@@ -765,6 +774,9 @@ public class MenuController implements MouseListener{
                 case "pnlFrmTMALihat":
                     standarButtonDisplayed(menuPanel);
                     break;
+                    case "pnlFrmTMA_BonTMA_Back":
+                        standarButtonDisplayed(menuPanel);
+                        break;
             case "pnlMenuPBH":
                 standarMainMenuDisplayed(menuPanel);
                 break;
