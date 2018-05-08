@@ -102,7 +102,7 @@ public class VarietasTebuDAOSQL implements VarietasTebuDAO{
                             rs.getString("ID_VARIETAS"), 
                             rs.getString("NAMA_LAB"), 
                             rs.getString("NAMA_RILIS"),
-                            rs.getString("DASAR_HUKUM"), 
+                            rs.getString("NOMOR_SURAT"), 
                             rs.getString("SIFAT_KEMASAKAN")
                     );
                     lstVar.add(vt);

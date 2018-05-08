@@ -87,6 +87,7 @@ public class MenuController implements MouseListener{
                     case "pnlFrmInputRDKK_BatalKoord":
                         if (JOptionPane.showConfirmDialog(null, "Anda yakin akan membatalkan input Draft RDKK?", "Konfirmasi", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                             rc.clearInputKoordinator();
+                            rc.clearTablePetani();
                             pageSwitcher(mw.getPnlFrmInputRDKK_ContainerInputPetani(), "crdInputPetani_Blank");
                             mw.getJtfInputRDKKNamaKoord().requestFocus();
                         }

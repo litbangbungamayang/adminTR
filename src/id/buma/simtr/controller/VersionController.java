@@ -166,6 +166,11 @@ public class VersionController {
         + Perubahan struktut model transaksi, ada tambahan ID_TIMBANGAN (int)
         + Pembuatan form TMA
         */
+        version = "0.9.28";
+        /*
+        + Perbaikan modul RDKK, munculkan peringatan bila luasan < 5 Ha
+        + Perbaikan modul Bahan Produksi, input angka dosis dan kuanta, hilangkan koma
+        */
         return version;
     }
         

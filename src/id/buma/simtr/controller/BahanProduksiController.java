@@ -95,6 +95,7 @@ public class BahanProduksiController {
     public void setFormBahanMasukStatus(boolean formMasukStatus){
         mw.getJtfFrmBahanProduksi_KuantaMasuk().setEnabled(formMasukStatus);
         mw.getJtfFrmBahanProduksi_NilaiMasuk().setEnabled(formMasukStatus);
+        mw.getJtfFrmBahanProduksi_NoKontrak().setEnabled(formMasukStatus);
         if (formMasukStatus){
             enablePanel(mw.getPnlAdminSistem_BahanProduksi_CancelMasuk());
             enablePanel(mw.getPnlAdminSistem_BahanProduksi_SaveMasuk());
@@ -103,6 +104,7 @@ public class BahanProduksiController {
             mw.getCbxFrmBahanProduksi_SatuanMasuk().setSelectedIndex(-1);
             mw.getJtfFrmBahanProduksi_KuantaMasuk().setText("");
             mw.getJtfFrmBahanProduksi_NilaiMasuk().setText("");
+            mw.getJtfFrmBahanProduksi_NoKontrak().setText("");
             disablePanel(mw.getPnlAdminSistem_BahanProduksi_CancelMasuk());
             disablePanel(mw.getPnlAdminSistem_BahanProduksi_SaveMasuk());
         }
@@ -144,6 +146,7 @@ public class BahanProduksiController {
     public void resetInputBahanMasuk(){
         mw.getJtfFrmBahanProduksi_KuantaMasuk().setText("");
         mw.getJtfFrmBahanProduksi_NilaiMasuk().setText("");
+        mw.getJtfFrmBahanProduksi_NoKontrak().setText("");
     }
     
     public boolean cekInputForm(){
@@ -155,7 +158,8 @@ public class BahanProduksiController {
     
     public boolean cekInputBahanMasukForm(){
         return !mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().equals("") &&
-                !mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().equals("");
+                !mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().equals("") &&
+                !mw.getJtfFrmBahanProduksi_NoKontrak().getText().equals("");
     }
     
     public void setMode(String inputStatusMenu){
@@ -196,7 +200,7 @@ public class BahanProduksiController {
                         String satuanBaru = mw.getCbxFrmBahanProduksi_Satuan().getSelectedItem().toString();
                         bpLokal.setJenisBahan(jenisBaru);
                         bpLokal.setNamaBahan(namaBaru);
-                        bpLokal.setDosisPerHa(Float.valueOf(dosisBaru));
+                        bpLokal.setDosisPerHa(Float.valueOf(dosisBaru.replaceAll(",", "")));
                         bpLokal.setSatuan(satuanBaru);
                         if (JOptionPane.showConfirmDialog(mw, "Anda akan mengubah data bahan produksi : \n" +
                                 "[" + jenisLama + "]" + " " + namaLama + " (" + dosisLama + ") " + satuanLama + "/Ha \nmenjadi \n" +
@@ -231,7 +235,7 @@ public class BahanProduksiController {
                                     jenisBaru, 
                                     namaBaru, 
                                     satuanBaru, 
-                                    Float.valueOf(dosisBaru)
+                                    Float.valueOf(dosisBaru.replaceAll(",", ""))
                             );
                             if (JOptionPane.showConfirmDialog(mw, "Anda akan menambah data bahan produksi : \n" +
                                     "[" + jenisBaru + "]" + " " + namaBaru + " (" + dosisBaru + ") " + satuanBaru + "/Ha", 
@@ -284,6 +288,7 @@ public class BahanProduksiController {
             idBahan = lsBp.get(mw.getTblBahanProduksi().getSelectedRow()).getIdBahan();
             java.sql.Timestamp postingTimestamp = new java.sql.Timestamp(new java.util.Date().getTime());
             java.sql.Date tglTransaksi = new java.sql.Date(new java.util.Date().getTime());
+            String noKontrak = mw.getJtfFrmBahanProduksi_NoKontrak().getText();
             int kuantaMasuk = Integer.parseInt(mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().replaceAll(",", ""));
             Transaksi tp = new Transaksi(
                     0, 
@@ -298,7 +303,7 @@ public class BahanProduksiController {
                     postingTimestamp, 
                     tahunGiling, 
                     new BigInteger(mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().replaceAll(",", "")),
-                    ""
+                    noKontrak
             );
             TransaksiDAOSQL transDao = new TransaksiDAOSQL();
             if (transDao.insertNewTransaksiPupuk(tp)){
@@ -308,6 +313,7 @@ public class BahanProduksiController {
         } else {
             if (mw.getJtfFrmBahanProduksi_KuantaMasuk().getText().equals("")) cc.showErrorMsg("Bahan Produksi", "Kuanta bahan masuk harus diisi!");
             if (mw.getJtfFrmBahanProduksi_NilaiMasuk().getText().equals("")) cc.showErrorMsg("Bahan Produksi", "Nilai bahan masuk harus diisi!");
+            if (mw.getJtfFrmBahanProduksi_NoKontrak().getText().equals("")) cc.showErrorMsg("Bahan Produksi", "Nomor Kontrak harus diisi!");
         }
     }
     

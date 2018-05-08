@@ -223,6 +223,12 @@ public class RDKKController {
         }
     }
     
+    public void clearTablePetani(){
+        List<PetaniTebu> lsPt = new ArrayList<>();
+        cc.setInputPetani(lsPt);
+        cc.refreshBufferTablePetani(mw.getTblInputPetani());
+    }
+    
     public void clearInputPetani(){
         mw.getJtfInputRDKKNamaPetani().setText("");
         mw.getCbxInputRDKKVarietas().setSelectedIndex(-1);
@@ -351,6 +357,8 @@ public class RDKKController {
                 } else {
                     if (!cekBiayaUkurLahan) cc.showErrorMsg("Error", "Belum ada master data biaya ukur lahan!");
                 }
+            } else {
+                cc.showErrorMsg("Error", "Jumlah luas areal kelompok ini kurang dari 5,00 Ha!");
             }
         }
     }

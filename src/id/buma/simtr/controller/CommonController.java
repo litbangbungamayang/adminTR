@@ -134,6 +134,14 @@ public class CommonController {
         }
     }
     
+    public List<PetaniTebu> getInputPetani(){
+        return inputPetani;
+    }
+    
+    public void setInputPetani(List<PetaniTebu> lsPt){
+        inputPetani = lsPt;
+    }
+    
     public void setTableSelectionModel(JTable tbl){
         tbl.setSelectionModel(ktsm);
     }

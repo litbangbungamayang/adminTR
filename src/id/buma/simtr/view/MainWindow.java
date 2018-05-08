@@ -166,6 +166,7 @@ public class MainWindow extends javax.swing.JFrame {
         ((AbstractDocument) jtfFrmPerawatan_Permintaan_Cari.getDocument()).setDocumentFilter(df);
         ((AbstractDocument) jtfMasterBiaya_Uraian.getDocument()).setDocumentFilter(df);
         ((AbstractDocument) jtfFrmTMA_Search.getDocument()).setDocumentFilter(df);
+        ((AbstractDocument) jtfFrmBahanProduksi_NoKontrak.getDocument()).setDocumentFilter(df);
     }
     
     private void setTextFieldAutoClear(){
@@ -511,6 +512,9 @@ public class MainWindow extends javax.swing.JFrame {
         pnlUnderUserData8 = new javax.swing.JPanel();
         jtfFrmBahanProduksi_NilaiMasuk = new javax.swing.JFormattedTextField();
         lblInputNamaKelTani25 = new javax.swing.JLabel();
+        jtfFrmBahanProduksi_NoKontrak = new javax.swing.JTextField();
+        pnlUnderUserData12 = new javax.swing.JPanel();
+        lblInputNamaKelTani33 = new javax.swing.JLabel();
         pnlAdminSistem_BahanProduksi_AddMasuk = new javax.swing.JPanel();
         lblFrmInputRDKK_Back22 = new javax.swing.JLabel();
         pnlFrmPupuk_EvaluasiBiayaPupuk = new javax.swing.JPanel();
@@ -3764,30 +3768,59 @@ public class MainWindow extends javax.swing.JFrame {
         lblInputNamaKelTani25.setForeground(new java.awt.Color(255, 255, 255));
         lblInputNamaKelTani25.setText("Nilai bahan masuk (Rp)");
 
+        jtfFrmBahanProduksi_NoKontrak.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtfFrmBahanProduksi_NoKontrak.setForeground(new java.awt.Color(255, 255, 255));
+        jtfFrmBahanProduksi_NoKontrak.setBorder(null);
+        jtfFrmBahanProduksi_NoKontrak.setCaretColor(new java.awt.Color(204, 204, 204));
+        jtfFrmBahanProduksi_NoKontrak.setEnabled(false);
+        jtfFrmBahanProduksi_NoKontrak.setOpaque(false);
+
+        pnlUnderUserData12.setPreferredSize(new java.awt.Dimension(290, 1));
+
+        javax.swing.GroupLayout pnlUnderUserData12Layout = new javax.swing.GroupLayout(pnlUnderUserData12);
+        pnlUnderUserData12.setLayout(pnlUnderUserData12Layout);
+        pnlUnderUserData12Layout.setHorizontalGroup(
+            pnlUnderUserData12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+        pnlUnderUserData12Layout.setVerticalGroup(
+            pnlUnderUserData12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        lblInputNamaKelTani33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblInputNamaKelTani33.setForeground(new java.awt.Color(255, 255, 255));
+        lblInputNamaKelTani33.setText("Nomor Kontrak");
+
         javax.swing.GroupLayout pnlFrmUserData2Layout = new javax.swing.GroupLayout(pnlFrmUserData2);
         pnlFrmUserData2.setLayout(pnlFrmUserData2Layout);
         pnlFrmUserData2Layout.setHorizontalGroup(
             pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFrmUserData2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserData2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserData2Layout.createSequentialGroup()
+                .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlFrmUserData2Layout.createSequentialGroup()
                         .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblInputNamaKelTani24)
                             .addComponent(lblInputNamaKelTani26)
-                            .addComponent(lblInputNamaKelTani25))
+                            .addComponent(lblInputNamaKelTani25)
+                            .addComponent(lblInputNamaKelTani33))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxFrmBahanProduksi_SatuanMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfFrmBahanProduksi_KuantaMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnlUnderUserData7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnlUnderUserData8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfFrmBahanProduksi_NilaiMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFrmUserData2Layout.createSequentialGroup()
+                        .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbxFrmBahanProduksi_SatuanMasuk, 0, 290, Short.MAX_VALUE)
+                            .addComponent(jtfFrmBahanProduksi_KuantaMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(pnlUnderUserData7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlUnderUserData8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfFrmBahanProduksi_NilaiMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(jtfFrmBahanProduksi_NoKontrak)))
+                    .addGroup(pnlFrmUserData2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pnlAdminSistem_BahanProduksi_CancelMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlAdminSistem_BahanProduksi_SaveMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pnlUnderUserData12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlFrmUserData2Layout.createSequentialGroup()
+                                .addComponent(pnlAdminSistem_BahanProduksi_CancelMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlAdminSistem_BahanProduksi_SaveMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(16, 16, 16))
         );
         pnlFrmUserData2Layout.setVerticalGroup(
@@ -3809,7 +3842,13 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(lblInputNamaKelTani25))
                 .addGap(1, 1, 1)
                 .addComponent(pnlUnderUserData8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfFrmBahanProduksi_NoKontrak, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInputNamaKelTani33))
+                .addGap(2, 2, 2)
+                .addComponent(pnlUnderUserData12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(pnlFrmUserData2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlAdminSistem_BahanProduksi_SaveMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlAdminSistem_BahanProduksi_CancelMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4876,22 +4915,22 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(lblInputNamaKelTani28))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlFrmUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pnlUnderUserData9, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pnlUnderUserData10, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                                     .addComponent(cbxMasterBiaya_JenisBiaya, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(pnlFrmUserData3Layout.createSequentialGroup()
-                                        .addGroup(pnlFrmUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtfMasterBiaya_KodeBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(pnlUnderUserData11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtfMasterBiaya_Uraian, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 2, Short.MAX_VALUE))
                                     .addGroup(pnlFrmUserData3Layout.createSequentialGroup()
                                         .addComponent(cbxMasterBiaya_Kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lblInputNamaKelTani31)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cbxMasterBiaya_TahunGiling, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jtfMasterBiaya_Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(pnlFrmUserData3Layout.createSequentialGroup()
+                                        .addGroup(pnlFrmUserData3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pnlUnderUserData9, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtfMasterBiaya_KodeBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(pnlUnderUserData11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtfMasterBiaya_Uraian, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtfMasterBiaya_Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 2, Short.MAX_VALUE)))))
                         .addGap(551, 551, 551)))
                 .addGap(16, 16, 16))
         );
@@ -5401,6 +5440,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jtfFrmBahanProduksi_KuantaMasuk;
     private javax.swing.JTextField jtfFrmBahanProduksi_NamaBahan;
     private javax.swing.JFormattedTextField jtfFrmBahanProduksi_NilaiMasuk;
+    private javax.swing.JTextField jtfFrmBahanProduksi_NoKontrak;
     private javax.swing.JTextField jtfFrmPerawatan_Permintaan_Cari;
     private javax.swing.JTextField jtfFrmPupuk_Permintaan_Cari;
     private javax.swing.JTextField jtfFrmRDKKCari;
@@ -5512,6 +5552,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblInputNamaKelTani30;
     private javax.swing.JLabel lblInputNamaKelTani31;
     private javax.swing.JLabel lblInputNamaKelTani32;
+    private javax.swing.JLabel lblInputNamaKelTani33;
     private javax.swing.JLabel lblInputNamaKelTani4;
     private javax.swing.JLabel lblInputNamaKelTani5;
     private javax.swing.JLabel lblInputNamaKelTani6;
@@ -5694,6 +5735,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlUnderUserData1;
     private javax.swing.JPanel pnlUnderUserData10;
     private javax.swing.JPanel pnlUnderUserData11;
+    private javax.swing.JPanel pnlUnderUserData12;
     private javax.swing.JPanel pnlUnderUserData2;
     private javax.swing.JPanel pnlUnderUserData3;
     private javax.swing.JPanel pnlUnderUserData4;
@@ -6159,6 +6201,10 @@ public class MainWindow extends javax.swing.JFrame {
     
     public JPanel getPnlFrmTMALihat(){
         return pnlFrmTMALihat;
+    }
+    
+    public JTextField getJtfFrmBahanProduksi_NoKontrak(){
+        return jtfFrmBahanProduksi_NoKontrak;
     }
     
 }

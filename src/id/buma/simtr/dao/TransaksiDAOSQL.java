@@ -39,31 +39,34 @@ public class TransaksiDAOSQL implements TransaksiDAO {
     public boolean insertNewTransaksiPupuk(Transaksi tp) {
         Connection conn = new DBConnection().getConn();
         try {
-            String strSql = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?)";
+            String strSql = "CALL INSERT_TRANSAKSI_BAHAN (?,?,?,?,?,?,?,?,?,?,?,?)";
             /*
-            1 - idpetani (varchar)
-            2 - idbahan (int)
-            3 - tgl_transaksi (date)
-            4 - kuanta (float)
-            5 - iduser (int)
-            6 - timestamp (datetime)
-            7 - kode transaksi (varchar)
-            8 - tahun giling (int)
-            9 - nilai transaksi (big int)
-            10 - id dokumen (varchar 10)
+            1- p_IDPETANI VARCHAR(15),
+            2 - p_IDBAHAN INT,
+            3 - p_IDBIAYA INT,
+            4 - p_ID_TIMBANGAN INT,
+            5 - p_TGL_TRANSAKSI DATE,
+            6 - p_KUANTA DOUBLE,
+            7 - p_IDUSER INT,
+            8 - p_DATETIME_POSTING DATETIME(3),
+            9 - p_KODE_TRANSAKSI CHAR(3),
+            10 - p_TAHUN_GILING int,
+            11 - p_NILAI_TRANSAKSI BIGINT,
+            12 - p_ID_DOKUMEN VARCHAR(100)
             */
             try (CallableStatement cst = conn.prepareCall(strSql)) {
                 cst.setString(1, tp.getIdPetani());
                 cst.setInt(2, tp.getIdBahan());
                 cst.setInt(3, tp.getIdBiaya());
-                cst.setDate(4, tp.getTglTransaksi());
-                cst.setFloat(5, tp.getKuantaTransaksi());
-                cst.setInt(6, tp.getIdUser());
-                cst.setTimestamp(7, tp.getTglPosting());
-                cst.setString(8, tp.getKodeTransaksi());
-                cst.setInt(9, tp.getTahunGiling());
-                cst.setLong(10, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
-                cst.setString(11, tp.getNomorBuktiTransaksi());
+                cst.setInt(4, tp.getIdTimbangan());
+                cst.setDate(5, tp.getTglTransaksi());
+                cst.setFloat(6, tp.getKuantaTransaksi());
+                cst.setInt(7, tp.getIdUser());
+                cst.setTimestamp(8, tp.getTglPosting());
+                cst.setString(9, tp.getKodeTransaksi());
+                cst.setInt(10, tp.getTahunGiling());
+                cst.setLong(11, Long.parseLong(String.valueOf(tp.getNilaiTransaksi())));
+                cst.setString(12, tp.getNomorBuktiTransaksi());
                 cst.execute();
                 if (cst.getUpdateCount() == 1) return true;
             } finally {
