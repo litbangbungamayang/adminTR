@@ -176,6 +176,12 @@ public class VersionController {
         + Penambahan model BiayaTMA
         + Penambahan form detail posting biaya TMA
         */
+        version = "0.9.30";
+        /*
+        + Perubahan load tabel kelompok tani dan petani, semula mengambil data didalam TableModel, menjadi diubah di stored procedure
+        */
+        
+        
         return version;
     }
         

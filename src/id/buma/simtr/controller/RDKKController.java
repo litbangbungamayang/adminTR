@@ -194,7 +194,7 @@ public class RDKKController {
         int selecTedIndexVarietas = mw.getCbxInputRDKKVarietas().getSelectedIndex() - 1;
         List<VarietasTebu> lsVar = new VarietasTebuDAOSQL().getAllVarietasTebu();
         String idVar = lsVar.get(selecTedIndexVarietas).getIdVarietas();
-        PetaniTebu pt = new PetaniTebu("", sistDao.getTahunGiling(), "", namaPetani, masaTanam, luasFloat, idVar);
+        PetaniTebu pt = new PetaniTebu("", sistDao.getTahunGiling() + 1, "", namaPetani, masaTanam, luasFloat, idVar);
         cc.insertBufferPetani(pt);
         cc.refreshBufferTablePetani(mw.getTblInputPetani());
     }
@@ -261,7 +261,6 @@ public class RDKKController {
     public void konfirmasiSimpanDataBatch(){
         BahanProduksiDAOSQL bahanDao = new BahanProduksiDAOSQL();
         RDKKDAOSQL rdkkDao = new RDKKDAOSQL();
-        TransaksiDAOSQL transBahanDao = new TransaksiDAOSQL();
         if (cc.getBufferArrayPetani().size() > 0){
             List<PetaniTebu> arrayPetani = cc.getBufferArrayPetani();
             List<Kecamatan> arrayKecamatan = kecDao.getAllKecamatan();
@@ -292,7 +291,7 @@ public class RDKKController {
             String idKecamatan = arrayKecamatan.get(selectedKec).getIdKecamatan();
             List<Desa> arrayDesa = desaDao.getDesaByIdKecamatan(idKecamatan);
             int idDesa = arrayDesa.get(selectedDesa).getIdDesa();
-            int tahunGiling = sistDao.getTahunGiling();
+            int tahunGiling = sistDao.getTahunGiling() + 1;
             String afd;
             int jmlPetani = arrayPetani.size();
             if (CommonController.user.getPrivLevel() == 2 || CommonController.user.getPrivLevel() == 1){

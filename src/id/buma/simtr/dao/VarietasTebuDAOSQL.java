@@ -6,7 +6,6 @@
 package id.buma.simtr.dao;
 
 import id.buma.simtr.database.DBConnection;
-import id.buma.simtr.database.DbConnectionManager;
 import id.buma.simtr.model.VarietasTebu;
 import java.sql.CallableStatement;
 import java.sql.Connection;

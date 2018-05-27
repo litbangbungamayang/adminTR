@@ -22,8 +22,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class PetaniTableModel extends AbstractTableModel {
     
-    private final VarietasTebuDAO varDAO = new VarietasTebuDAOSQL();
-
     private final List<PetaniTebu> lsPetani;
     
     public PetaniTableModel(List<PetaniTebu> lsPetani){
@@ -54,14 +52,12 @@ public class PetaniTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        String namaVarietas;
         DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.UK);
         dfs.setDecimalSeparator(',');
         dfs.setGroupingSeparator('.');
         DecimalFormat df = new DecimalFormat("###,#0.00", dfs);
         if (lsPetani.size() > 0){
             PetaniTebu pt = lsPetani.get(rowIndex);
-            namaVarietas = varDAO.getVarietasById(pt.getJenisTebu()).getNamaLab();
             switch(columnIndex){
                 case 0 :
                     return rowIndex + 1;
@@ -72,7 +68,7 @@ public class PetaniTableModel extends AbstractTableModel {
                 case 3 :
                     return pt.getMasaTanam();
                 case 4 :
-                    return namaVarietas;
+                    return pt.getJenisTebu();
             }
         }
         return null;

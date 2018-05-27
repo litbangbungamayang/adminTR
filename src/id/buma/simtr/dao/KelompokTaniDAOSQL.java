@@ -9,6 +9,7 @@ import id.buma.simtr.database.DBConnection;
 import id.buma.simtr.model.KelompokTani;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -310,10 +311,41 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
         List<KelompokTani> lkt = new ArrayList<>();
         try {
             String callSQL = "CALL GET_ALL_KELOMPOKTANIH_BY_TAHUN(?)";
+            /*
+            String callSQL =    "SELECT	KH.IdKelompok AS IDKELOMPOK, KH.IdAfd AS IDAFD, KH.Tahun AS TAHUN, " +
+                                "KH.NamaKelompok AS NAMAKELOMPOK, KH.NoKontrak AS NOKONTRAK, KH.Kategori AS KATEGORI," +
+                                "KH.ID_DESA,KH.VERIFIKASI AS VERIFIKASI, KH.NOKTP AS NOKTP, " +
+                                "KH.NORDKK AS NORDKK, KH.TGLRDKK AS TGLRDKK " +
+                                "FROM KelompokTaniH KH " +
+                                "WHERE KH.Tahun = ? " +
+                                "ORDER BY KH.IdAfd, KH.NoKontrak";
+            */
             CallableStatement cst = conn.prepareCall(callSQL,
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             cst.setInt(1, tahun);
             lkt = commonGetDataKelompokTani(cst);
+            /*
+            PreparedStatement ps = conn.prepareStatement(callSQL);
+            ps.setInt(1, tahun);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                KelompokTani kt = new KelompokTani(
+                        rs.getString("IDKELOMPOK"), 
+                        rs.getInt("TAHUN"),
+                        rs.getString("NAMAKELOMPOK"), 
+                        rs.getString("NOKONTRAK"),
+                        rs.getString("KATEGORI"),
+                        rs.getString("IDAFD"),
+                        rs.getInt("ID_DESA"),
+                        rs.getString("VERIFIKASI"),
+                        rs.getString("NOKTP"),
+                        rs.getString("NORDKK"),
+                        rs.getDate("TGLRDKK")
+                );
+                lkt.add(kt);
+            }
+            */
+            return lkt;
         } catch (SQLException ex) {
             Logger.getLogger(KelompokTaniDAOSQL.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -329,7 +361,7 @@ public class KelompokTaniDAOSQL implements KelompokTaniDAO {
     @Override
     public KelompokTani getKelompokTaniByIdKelompok(String idKelompok) {
         Connection conn = new DBConnection().getConn();
-        List<KelompokTani> lkt = new ArrayList<>();
+        List<KelompokTani> lkt;
         String callSQL = "CALL GET_KELOMPOKTANIH_BY_IDKELOMPOK(?)";
         try (CallableStatement cst = conn.prepareCall(callSQL)){
             cst.setString(1, idKelompok);

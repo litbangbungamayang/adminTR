@@ -5,8 +5,6 @@
  */
 package id.buma.simtr.view;
 
-import id.buma.simtr.dao.AfdelingDAO;
-import id.buma.simtr.dao.AfdelingDAOSQL;
 import id.buma.simtr.model.KelompokTani;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -19,7 +17,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class KelompokTaniTableModel extends AbstractTableModel{
     
-    private final AfdelingDAO afdelingDao = new AfdelingDAOSQL();
     private boolean isEmpty = false;
     private final List<KelompokTani> kelTani;
     
@@ -71,15 +68,13 @@ public class KelompokTaniTableModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (!isEmpty){
             KelompokTani kt = kelTani.get(rowIndex);
-            String afdStr;
-            afdStr = afdelingDao.getAfdelingByIdAfd(kt.getIdAfd()).get(0).getAfdeling();
             switch(columnIndex){
                 case 0 :
                     return rowIndex + 1;
                 case 1 :
                     return kt.getIdKelompok();
                 case 2 :
-                    return afdStr;
+                    return kt.getIdAfd();
                 case 3 :
                     return kt.getTahun();
                 case 4 :

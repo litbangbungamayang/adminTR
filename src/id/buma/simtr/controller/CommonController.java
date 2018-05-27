@@ -129,6 +129,7 @@ public class CommonController {
         } else {
             if (user.getPrivLevel() == 1 || user.getPrivLevel() == 2){
                 KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(sistemDao.getTahunGiling()));
+                //KelompokTaniTableModel kttm = new KelompokTaniTableModel(kelompokTaniDao.getAllKelompokTaniByTahun(2018));
                 tbl.setModel(kttm);
             }
         }

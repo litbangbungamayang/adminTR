@@ -252,12 +252,12 @@ public class MainWindow extends javax.swing.JFrame {
         pnlWsSeparator1 = new javax.swing.JPanel();
         pnlVerifikasiRdkk = new javax.swing.JPanel();
         lblVerifikasiRdkk = new javax.swing.JLabel();
-        pnlSubMenuPerawatan = new javax.swing.JPanel();
-        pnlSubMenuPerawatan_Permintaan = new javax.swing.JPanel();
-        lblWsRDKK1 = new javax.swing.JLabel();
         pnlWsSeparator2 = new javax.swing.JPanel();
         pnlSubMenuPerawatan_Evaluasi = new javax.swing.JPanel();
         lblWsLKP1 = new javax.swing.JLabel();
+        pnlSubMenuPerawatan = new javax.swing.JPanel();
+        pnlSubMenuPerawatan_Permintaan = new javax.swing.JPanel();
+        lblWsRDKK1 = new javax.swing.JLabel();
         pnlSubMenuPupuk = new javax.swing.JPanel();
         pnlSubMenuPupuk_Permintaan = new javax.swing.JPanel();
         lblWsRDKK2 = new javax.swing.JLabel();
@@ -1112,6 +1112,44 @@ public class MainWindow extends javax.swing.JFrame {
 
         pnlSubMenuRDKK.add(pnlVerifikasiRdkk, new java.awt.GridBagConstraints());
 
+        pnlWsSeparator2.setBackground(new Color(255,255,255,0));
+        pnlWsSeparator2.setPreferredSize(new java.awt.Dimension(10, 50));
+
+        javax.swing.GroupLayout pnlWsSeparator2Layout = new javax.swing.GroupLayout(pnlWsSeparator2);
+        pnlWsSeparator2.setLayout(pnlWsSeparator2Layout);
+        pnlWsSeparator2Layout.setHorizontalGroup(
+            pnlWsSeparator2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        pnlWsSeparator2Layout.setVerticalGroup(
+            pnlWsSeparator2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        pnlSubMenuRDKK.add(pnlWsSeparator2, new java.awt.GridBagConstraints());
+
+        pnlSubMenuPerawatan_Evaluasi.setBackground(new Color(34,59,14,50));
+        pnlSubMenuPerawatan_Evaluasi.setName("pnlSubMenuPerawatan_Evaluasi"); // NOI18N
+        pnlSubMenuPerawatan_Evaluasi.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        lblWsLKP1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblWsLKP1.setForeground(new java.awt.Color(255, 255, 255));
+        lblWsLKP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWsLKP1.setText("Permintaan Bibit");
+
+        javax.swing.GroupLayout pnlSubMenuPerawatan_EvaluasiLayout = new javax.swing.GroupLayout(pnlSubMenuPerawatan_Evaluasi);
+        pnlSubMenuPerawatan_Evaluasi.setLayout(pnlSubMenuPerawatan_EvaluasiLayout);
+        pnlSubMenuPerawatan_EvaluasiLayout.setHorizontalGroup(
+            pnlSubMenuPerawatan_EvaluasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsLKP1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        );
+        pnlSubMenuPerawatan_EvaluasiLayout.setVerticalGroup(
+            pnlSubMenuPerawatan_EvaluasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblWsLKP1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        pnlSubMenuRDKK.add(pnlSubMenuPerawatan_Evaluasi, new java.awt.GridBagConstraints());
+
         pnlSubMenuHolder.add(pnlSubMenuRDKK, "crdSubMenuRDKK");
 
         pnlSubMenuPerawatan.setBackground(new Color(255,255,255,150));
@@ -1138,44 +1176,6 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         pnlSubMenuPerawatan.add(pnlSubMenuPerawatan_Permintaan, new java.awt.GridBagConstraints());
-
-        pnlWsSeparator2.setBackground(new Color(255,255,255,0));
-        pnlWsSeparator2.setPreferredSize(new java.awt.Dimension(10, 50));
-
-        javax.swing.GroupLayout pnlWsSeparator2Layout = new javax.swing.GroupLayout(pnlWsSeparator2);
-        pnlWsSeparator2.setLayout(pnlWsSeparator2Layout);
-        pnlWsSeparator2Layout.setHorizontalGroup(
-            pnlWsSeparator2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        pnlWsSeparator2Layout.setVerticalGroup(
-            pnlWsSeparator2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        pnlSubMenuPerawatan.add(pnlWsSeparator2, new java.awt.GridBagConstraints());
-
-        pnlSubMenuPerawatan_Evaluasi.setBackground(new Color(34,59,14,50));
-        pnlSubMenuPerawatan_Evaluasi.setName("pnlSubMenuPerawatan_Evaluasi"); // NOI18N
-        pnlSubMenuPerawatan_Evaluasi.setPreferredSize(new java.awt.Dimension(250, 50));
-
-        lblWsLKP1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblWsLKP1.setForeground(new java.awt.Color(255, 255, 255));
-        lblWsLKP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsLKP1.setText("Permintaan Bibit");
-
-        javax.swing.GroupLayout pnlSubMenuPerawatan_EvaluasiLayout = new javax.swing.GroupLayout(pnlSubMenuPerawatan_Evaluasi);
-        pnlSubMenuPerawatan_Evaluasi.setLayout(pnlSubMenuPerawatan_EvaluasiLayout);
-        pnlSubMenuPerawatan_EvaluasiLayout.setHorizontalGroup(
-            pnlSubMenuPerawatan_EvaluasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblWsLKP1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-        );
-        pnlSubMenuPerawatan_EvaluasiLayout.setVerticalGroup(
-            pnlSubMenuPerawatan_EvaluasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblWsLKP1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        pnlSubMenuPerawatan.add(pnlSubMenuPerawatan_Evaluasi, new java.awt.GridBagConstraints());
 
         pnlSubMenuHolder.add(pnlSubMenuPerawatan, "crdSubMenuPerawatan");
 
@@ -1227,7 +1227,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblWsLKP2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblWsLKP2.setForeground(new java.awt.Color(255, 255, 255));
         lblWsLKP2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWsLKP2.setText("Evaluasi Biaya Pupuk");
+        lblWsLKP2.setText("Laporan Biaya Pupuk");
 
         javax.swing.GroupLayout pnlSubMenuPupuk_EvaluasiBiayaPupukLayout = new javax.swing.GroupLayout(pnlSubMenuPupuk_EvaluasiBiayaPupuk);
         pnlSubMenuPupuk_EvaluasiBiayaPupuk.setLayout(pnlSubMenuPupuk_EvaluasiBiayaPupukLayout);
@@ -4023,7 +4023,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblFrmInputRDKK_Back25.setForeground(new java.awt.Color(255, 255, 255));
         lblFrmInputRDKK_Back25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFrmInputRDKK_Back25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8_Print_20px.png"))); // NOI18N
-        lblFrmInputRDKK_Back25.setText("Preview Biaya Pupuk");
+        lblFrmInputRDKK_Back25.setText("Cetak Biaya Pupuk");
         lblFrmInputRDKK_Back25.setIconTextGap(10);
         lblFrmInputRDKK_Back25.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         pnlFrmPupuk_EvaluasiBiayaPupuk_View.add(lblFrmInputRDKK_Back25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 30));
