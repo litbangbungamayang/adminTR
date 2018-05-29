@@ -180,6 +180,10 @@ public class VersionController {
         /*
         + Perubahan load tabel kelompok tani dan petani, semula mengambil data didalam TableModel, menjadi diubah di stored procedure
         */
+        version = "0.9.31";
+        /*
+        + Perubahan tampilan login atas
+        */
         
         
         return version;

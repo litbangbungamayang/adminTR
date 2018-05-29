@@ -284,7 +284,7 @@ public class CommonController {
             String hashedPassword = le.hashingText(passStr);
             user = userDao.getUserData(hashedUsername, hashedPassword);
             if (user != null){
-                mw.getLblLoginDesc().setText("Selamat datang, ");
+                mw.getLblLoginDesc().setText("Anda login sebagai : ");
                 mw.getLblUsername().setText(user.getNamaLengkap());
                 return true;
             }
