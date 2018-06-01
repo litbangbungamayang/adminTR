@@ -5,6 +5,7 @@
  */
 package id.buma.simtr.view;
 
+import id.buma.simtr.controller.LayoutController;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -16,8 +17,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.DocumentFilter;
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
@@ -27,6 +26,8 @@ import org.jdesktop.swingx.JXDatePicker;
  */
 
 public class MainWindow extends javax.swing.JFrame {
+    
+    private final LayoutController lc = new LayoutController(this);
    
     /**
      * Creates new form MainWindow
@@ -34,50 +35,11 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         setBackground();
-        setMenuAction();
-        setTextFieldUppercase();
-        setTextFieldAutoClear();
-        setTextAutoFilter();
         pnlSubMenuHolder.setVisible(false);
-        setTableListener();
-        setObjectAction();
-        setComboBox();
     }
     
     private void setBackground(){
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-    }
-    
-    private void setTableListener(){
-        
-    }
-    
-    private void setObjectAction(){
-        
-    }
-    
-    private void setMenuAction(){
-        
-    }
-    
-    private void setTextFieldUppercase(){
-        
-    }
-    
-    private void setTextFieldAutoClear(){
-        
-    }
-    
-    private void setTextAutoFilter(){
-        
-    }
-    
-    private void setComboBox(){
-       
-    }
-    
-    private void setComboBoxListener(){
-        
     }
 
     /**
