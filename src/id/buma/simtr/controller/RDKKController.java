@@ -14,7 +14,6 @@ import id.buma.simtr.dao.KoordinatDAOSQL;
 import id.buma.simtr.dao.PetaniDAOSQL;
 import id.buma.simtr.dao.RDKKDAOSQL;
 import id.buma.simtr.dao.SistemDAOSQL;
-import id.buma.simtr.dao.TransaksiDAOSQL;
 import id.buma.simtr.dao.VarietasTebuDAOSQL;
 import id.buma.simtr.model.Biaya;
 import id.buma.simtr.model.BuktiTransaksi;
@@ -59,56 +58,21 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class RDKKController {
     
-    private MainWindow mw;
-    
-    private final CommonController cc = new CommonController(mw);
-    
-    private final KecamatanDAOSQL kecDao = new KecamatanDAOSQL();
-    
-    private final DesaDAOSQL desaDao = new DesaDAOSQL();
-    
-    private final SistemDAOSQL sistDao = new SistemDAOSQL();
-    
-    private final CounterDAOSQL cntDao = new CounterDAOSQL();
-    
-    private final KelompokTaniDAOSQL keltanDao = new KelompokTaniDAOSQL();
-    
-    private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();
-    
-    private final KoordinatDAOSQL koordinatDao = new KoordinatDAOSQL();
-    
-    private final MenuController mc = new MenuController(mw);
-    
+    private MainWindow mw;   
+    private final CommonController cc = new CommonController(mw);   
+    private final KelompokTaniDAOSQL keltanDao = new KelompokTaniDAOSQL();    
+    private final PetaniDAOSQL petaniDao = new PetaniDAOSQL();   
     
     public RDKKController(MainWindow mw){
         this.mw = mw;
     }
     
-    public List<String> namaKecamatanList(){
+    public void populateCbxKecamatan(){
+        KecamatanDAOSQL kecDao = new KecamatanDAOSQL();
         List<Kecamatan> lsKec = kecDao.getAllKecamatan();
-        List<String> lsNamaKec = new ArrayList<>();
-        lsKec.forEach((satKec) -> {
-            lsNamaKec.add(satKec.getNamaKecamatan());
-        });
-        return lsNamaKec;
-    }
-    
-    public List<String> namaVarietasList(){
-        VarietasTebuDAOSQL varDAO = new VarietasTebuDAOSQL();
-        List<VarietasTebu> lsVar = varDAO.getAllVarietasTebu();
-        List<String> lsNamaVar = new ArrayList<>();
-        lsVar.forEach((satVar) -> {
-            lsNamaVar.add(satVar.getNamaRilis());
-        });
-        return lsNamaVar;
-    }
-    
-    public List<String> namaDesaList(List<Desa> listDesa){
-        List<String> lsNamaDesa = new ArrayList<>();
-        listDesa.forEach((satDesa) -> {
-            lsNamaDesa.add(satDesa.getNamaDesa());
-        });
-        return lsNamaDesa;
+        for (Kecamatan kec : lsKec){
+            mw.getCbxKec().addItem(new Item<String>(kec.getIdKecamatan(),kec.getNamaKecamatan()));
+        }
     }
     
     public void getDetailDesa(int selectedIndexKecamatan){

@@ -20,4 +20,6 @@ public interface KecamatanDAO {
     
     public List<Kecamatan> getAllKecamatan();
     
+    public List<String> getAllStringKecamatan();
+    
 }

@@ -60,6 +60,7 @@ public class MenuController implements MouseListener{
             case "pnlBackground":
                 mw.getPnlSubMenuHolder().setVisible(false);
                 break;
+            //***************** RDKK
             case "pnlMenuRDKK":
                 mw.getPnlSubMenuHolder().setVisible(true);
                 pageSwitcher(mw.getPnlSubMenuHolder(), "crdSubMenuRDKK");

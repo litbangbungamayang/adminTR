@@ -99,5 +99,15 @@ public class KecamatanDAOSQL implements KecamatanDAO{
         }
         return lstKec;
     }
+
+    @Override
+    public List<String> getAllStringKecamatan() {
+        List<String> lsStrKec = new ArrayList<>();
+        List<Kecamatan> lsKec = getAllKecamatan();
+        lsKec.forEach((kec) -> {
+            lsStrKec.add(kec.getNamaKecamatan());
+        });
+        return lsStrKec;
+    }
     
 }

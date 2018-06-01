@@ -195,9 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setComboBoxListener(){
-        cbl.ComboBoxListener(rc.namaKecamatanList());
         cbxKecamatan.addActionListener(cbl);
-        cbl.ComboBoxListener(rc.namaVarietasList());
         cbxInputRDKKVarietas.addActionListener(cbl);
         jtpLoginPassword.addActionListener(tbl);
     }

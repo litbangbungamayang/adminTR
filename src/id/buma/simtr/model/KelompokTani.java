@@ -17,27 +17,25 @@ public class KelompokTani {
     private String namaKelompok;
     private String noKontrak;
     private String kategori;
+    private String masaTanam;
     private String idAfd;
     private int idDesa;
-    private String verifikasi;
     private String noKtp;
-    private String noRdkk;
     private java.sql.Date tglRdkk;
     
     
     public KelompokTani(String idKelompok, int tahun, String namaKelompok, 
-            String noKontrak, String kategori, String idAfd, int idDesa, 
-            String verifikasi, String noKtp, String noRdkk, java.sql.Date tglRdkk){
+            String noKontrak, String kategori, String masaTanam, String idAfd, int idDesa, 
+            String noKtp, java.sql.Date tglRdkk){
         this.idAfd = idAfd;
         this.idKelompok = idKelompok;
         this.namaKelompok = namaKelompok;
         this.noKontrak = noKontrak;
         this.kategori = kategori;
+        this.masaTanam = masaTanam;
         this.tahun = tahun;
         this.idDesa = idDesa;
-        this.verifikasi = verifikasi;
         this.noKtp = noKtp;
-        this.noRdkk = noRdkk;
         this.tglRdkk = tglRdkk;
     }
 
@@ -73,20 +71,28 @@ public class KelompokTani {
         this.noKontrak = noKontrak;
     }
 
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public String getMasaTanam() {
+        return masaTanam;
+    }
+
+    public void setMasaTanam(String masaTanam) {
+        this.masaTanam = masaTanam;
+    }
+
     public String getIdAfd() {
         return idAfd;
     }
 
     public void setIdAfd(String idAfd) {
         this.idAfd = idAfd;
-    }
-
-    public String getVerifikasi() {
-        return verifikasi;
-    }
-
-    public void setVerifikasi(String verifikasi) {
-        this.verifikasi = verifikasi;
     }
 
     public int getIdDesa() {
@@ -105,14 +111,6 @@ public class KelompokTani {
         this.noKtp = noKtp;
     }
 
-    public String getNoRdkk() {
-        return noRdkk;
-    }
-
-    public void setNoRdkk(String noRdkk) {
-        this.noRdkk = noRdkk;
-    }
-
     public java.sql.Date getTglRdkk() {
         return tglRdkk;
     }
@@ -120,14 +118,5 @@ public class KelompokTani {
     public void setTglRdkk(java.sql.Date tglRdkk) {
         this.tglRdkk = tglRdkk;
     }
-
-    public String getKategori() {
-        return kategori;
-    }
-
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
-    }
-    
     
 }

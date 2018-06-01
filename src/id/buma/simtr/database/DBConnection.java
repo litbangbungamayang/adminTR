@@ -24,9 +24,9 @@ public class DBConnection {
     public Connection getConn(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String s1 = "jdbc:mysql://localhost:3306/sim_tr?user=root&password=";
-            String s2 = "jdbc:mysql://192.168.208.98:3306/sim_tr?user=admintr&password=ptpn7@jaya&useSSL=false";
-            String s3 = "jdbc:mysql://192.168.39.150:3306/sim_tr?user=root&password=tiptpn7&useSSL=false";
+            String s1 = "jdbc:mysql://localhost:3306/sim_tr_rework?user=root&password=";
+            String s2 = "jdbc:mysql://192.168.208.98:3306/sim_tr_rework?user=admintr&password=ptpn7@jaya&useSSL=false";
+            String s3 = "jdbc:mysql://192.168.39.150:3306/sim_tr_rework?user=root&password=tiptpn7&useSSL=false";
             conn = DriverManager.getConnection(s3);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,22 +11,23 @@ package id.buma.simtr.model;
  */
 public class PetaniTebu {
     private String idPetani;
-    private int tahun;
     private String idKelompok;
     private String namaPetani;
-    private String masaTanam;
-    private float luas;
+    private Double luas;
     private String jenisTebu;
+    private String utmZone;
+    private Double easting;
+    private Double northing;
     
-    public PetaniTebu(String idPetani, int tahun, String idKelompok, 
-            String namaPetani, String masaTanam, float luas, String jenisTebu){
+    
+    public PetaniTebu(String idPetani, String idKelompok, 
+            String namaPetani, Double luas, String jenisTebu, String utmZone,
+            Double easting, Double Northing){
         this.idKelompok = idKelompok;
         this.idPetani = idPetani;
         this.jenisTebu = jenisTebu;
         this.luas = luas;
-        this.masaTanam = masaTanam;
         this.namaPetani = namaPetani;
-        this.tahun = tahun;
     }
 
     public String getIdPetani() {
@@ -35,14 +36,6 @@ public class PetaniTebu {
 
     public void setIdPetani(String idPetani) {
         this.idPetani = idPetani;
-    }
-
-    public int getTahun() {
-        return tahun;
-    }
-
-    public void setTahun(int tahun) {
-        this.tahun = tahun;
     }
 
     public String getIdKelompok() {
@@ -61,19 +54,11 @@ public class PetaniTebu {
         this.namaPetani = namaPetani;
     }
 
-    public String getMasaTanam() {
-        return masaTanam;
-    }
-
-    public void setMasaTanam(String masaTanam) {
-        this.masaTanam = masaTanam;
-    }
-
-    public float getLuas() {
+    public Double getLuas() {
         return luas;
     }
 
-    public void setLuas(float luas) {
+    public void setLuas(Double luas) {
         this.luas = luas;
     }
 
@@ -83,6 +68,30 @@ public class PetaniTebu {
 
     public void setJenisTebu(String jenisTebu) {
         this.jenisTebu = jenisTebu;
+    }
+
+    public String getUtmZone() {
+        return utmZone;
+    }
+
+    public void setUtmZone(String utmZone) {
+        this.utmZone = utmZone;
+    }
+
+    public Double getEasting() {
+        return easting;
+    }
+
+    public void setEasting(Double easting) {
+        this.easting = easting;
+    }
+
+    public Double getNorthing() {
+        return northing;
+    }
+
+    public void setNorthing(Double northing) {
+        this.northing = northing;
     }
     
     
