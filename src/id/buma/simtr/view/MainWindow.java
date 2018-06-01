@@ -5,15 +5,6 @@
  */
 package id.buma.simtr.view;
 
-import id.buma.simtr.controller.ComboBoxListener;
-import id.buma.simtr.controller.CommonController;
-import id.buma.simtr.controller.KelTaniAutoFilter;
-import id.buma.simtr.controller.MenuController;
-import id.buma.simtr.controller.NumberOnlyTextFilter;
-import id.buma.simtr.controller.PupukController;
-import id.buma.simtr.controller.RDKKController;
-import id.buma.simtr.controller.UppercaseTextField;
-import id.buma.simtr.controller.TextBoxListener;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -36,20 +27,6 @@ import org.jdesktop.swingx.JXDatePicker;
  */
 
 public class MainWindow extends javax.swing.JFrame {
-
-    private final MenuController mc = new MenuController(this);
-    
-    private final DocumentFilter df = new UppercaseTextField();
-    
-    private final CommonController cc = new CommonController(this);
-    
-    private final RDKKController rc = new RDKKController(this);
-    
-    private final ComboBoxListener cbl = new ComboBoxListener(this);
-    
-    private final PupukController pc = new PupukController(this);
-    
-    private final TextBoxListener tbl = new TextBoxListener(this);
    
     /**
      * Creates new form MainWindow
@@ -62,7 +39,6 @@ public class MainWindow extends javax.swing.JFrame {
         setTextFieldAutoClear();
         setTextAutoFilter();
         pnlSubMenuHolder.setVisible(false);
-        mc.pageSwitcher(pnlContent, "crdLogin");
         setTableListener();
         setObjectAction();
         setComboBox();
@@ -77,97 +53,15 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setObjectAction(){
-        jcbFrmPupuk_PilihSemuaPetani.addActionListener(pc);
-        jcbFrmPupuk_PilihSemuaPupuk.addActionListener(pc);
+        
     }
     
     private void setMenuAction(){
-        pnlBackground.addMouseListener(mc);
-        pnlMenuRDKK.addMouseListener(mc);
-        pnlMenuPupuk.addMouseListener(mc);
-        pnlMenuPerawatan.addMouseListener(mc);
-        pnlMenuTMA.addMouseListener(mc);
-        pnlMenuPBH.addMouseListener(mc);
-        pnlMenuAdmin.addMouseListener(mc);
-        pnlVerifikasiRdkk.addMouseListener(mc);
-        pnlWsRDKK.addMouseListener(mc);
-        pnlFrmRDKKBack.addMouseListener(mc);
-        pnlFrmInputRDKK_Back.addMouseListener(mc);
-        pnlFrmRDKKClearSearch.addMouseListener(mc);
-        pnlFrmInputRDKK_LanjutKoord.addMouseListener(mc);
-        pnlFrmInputRDKK_BatalKoord.addMouseListener(mc);
-        pnlFrmInputRDKK_TambahPetani.addMouseListener(mc);
-        pnlFrmInputRDKK_Hapus.addMouseListener(mc);
-        pnlFrmInputRDKK_SimpanData.addMouseListener(mc);
-        pnlFrmValidasiRDKK_Back.addMouseListener(mc);
-        pnlFrmValidasiRDKK_ClearKoord.addMouseListener(mc);
-        pnlFrmValidasiRDKK_CetakDraft.addMouseListener(mc);
-        pnlFrmValidasiRDKK_CetakSKK.addMouseListener(mc);
-        pnlLoginLogin.addMouseListener(mc);
-        pnlLoginKeluar.addMouseListener(mc);
-        pnlMenuKeluar.addMouseListener(mc);
-        pnlCetak_Kembali.addMouseListener(mc);
-        pnlCetak_Cetak.addMouseListener(mc);
-        pnlSubMenuPupuk_Permintaan.addMouseListener(mc);
-        pnlFrmPupuk_Permintaan_Kembali.addMouseListener(mc);
-        pnlFrmPupuk_Permintaan_Clear.addMouseListener(mc);
-        pnlFrmPupuk_Permintaan_TambahPupuk.addMouseListener(mc);
-        pnlFrmPupuk_Permintaan_SimpanData.addMouseListener(mc);
-        pnlAdminSistem_Kembali.addMouseListener(mc);
-        pnlSubMenuAdmin_UserData.addMouseListener(mc);
-        pnlAdminSistem_AddUser.addMouseListener(mc);
-        pnlAdminSistem_DeleteUser.addMouseListener(mc);
-        pnlAdminSistem_EditUser.addMouseListener(mc);
-        pnlAdminSistem_Save.addMouseListener(mc);
-        pnlAdminSistem_Cancel.addMouseListener(mc);
-        pnlSubMenuAdmin_BahanProduksi.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_Kembali.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_Add.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_Delete.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_Edit.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_Cancel.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_Save.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_AddMasuk.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_CancelMasuk.addMouseListener(mc);
-        pnlAdminSistem_BahanProduksi_SaveMasuk.addMouseListener(mc);
-        pnlFrmPupuk_Permintaan_CetakPermintaan.addMouseListener(mc);
-        pnlSubMenuPupuk_EvaluasiBiayaPupuk.addMouseListener(mc);
-        pnlFrmPupuk_EvaluasiBiayaPupuk_Back.addMouseListener(mc);
-        pnlFrmPupuk_EvaluasiBiayaPupuk_View.addMouseListener(mc);
-        pnlSubMenuPerawatan_Permintaan.addMouseListener(mc);
-        pnlSubMenuPerawatan_Evaluasi.addMouseListener(mc);
-        pnlFrmPerawatan_Permintaan_Back.addMouseListener(mc);
-        pnlFrmPerawatan_Permintaan_Tambah.addMouseListener(mc);
-        pnlFrmPerawatan_Permintaan_Simpan.addMouseListener(mc);
-        pnlFrmPerawatan_Permintaan_LihatData.addMouseListener(mc);
-        pnlFrmPerawatan_BonDalam_Back.addMouseListener(mc);
-        pnlFrmPerawatan_Permintaan_CetakBon.addMouseListener(mc);
-        pnlSubMenuAdmin_Biaya.addMouseListener(mc);
-        pnlAdminSistem_Biaya_Back.addMouseListener(mc);
-        pnlAdminSistem_Biaya_Add.addMouseListener(mc);
-        pnlAdminSistem_Biaya_Edit.addMouseListener(mc);
-        pnlAdminSistem_Biaya_Save.addMouseListener(mc);
-        pnlAdminSistem_Biaya_Cancel.addMouseListener(mc);
-        pnlSubMenuTMA_Rekap.addMouseListener(mc);
-        pnlFrmTMA_Back.addMouseListener(mc);
-        pnlFrmTMALihat.addMouseListener(mc);
-        pnlFrmTMAPosting.addMouseListener(mc);
-        pnlFrmTMA_BonTMA_Back.addMouseListener(mc);
+        
     }
     
     private void setTextFieldUppercase(){
-        ((AbstractDocument) jtfFrmRDKKCari.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfInputRDKKNamaKoord.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfInputRDKKNamaPetani.getDocument()).setDocumentFilter(df);
-        DocumentFilter numOnly = new NumberOnlyTextFilter(16);
-        ((AbstractDocument) jtfInputNoKtpKoord.getDocument()).setDocumentFilter(numOnly);
-        ((AbstractDocument) jtfFrmValidasiRDKK_SearchKoord.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfFrmPupuk_Permintaan_Cari.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfFrmBahanProduksi_NamaBahan.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfFrmPerawatan_Permintaan_Cari.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfMasterBiaya_Uraian.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfFrmTMA_Search.getDocument()).setDocumentFilter(df);
-        ((AbstractDocument) jtfFrmBahanProduksi_NoKontrak.getDocument()).setDocumentFilter(df);
+        
     }
     
     private void setTextFieldAutoClear(){
@@ -175,29 +69,15 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setTextAutoFilter(){
-        KelTaniAutoFilter autoFilter = new KelTaniAutoFilter(tblKelompokTani);
-        jtfFrmRDKKCari.addKeyListener(autoFilter);
-        KelTaniAutoFilter validasiKoord = new KelTaniAutoFilter(tblValidasiRDKK);
-        validasiKoord.setAffectedTable(tblValidasiRDKK_Petani);
-        jtfFrmValidasiRDKK_SearchKoord.addKeyListener(validasiKoord);
-        KelTaniAutoFilter autoFilterPupuk = new KelTaniAutoFilter(tblKelTani_Pupuk_Permintaan);
-        jtfFrmPupuk_Permintaan_Cari.addKeyListener(autoFilterPupuk);
-        KelTaniAutoFilter autoFilterPerawatan = new KelTaniAutoFilter(tblKelTani_Perawatan_Permintaan);
-        jtfFrmPerawatan_Permintaan_Cari.addKeyListener(autoFilterPerawatan);
-        KelTaniAutoFilter autoFilterTMA = new KelTaniAutoFilter(tblTMAKelTani);
-        jtfFrmTMA_Search.addKeyListener(autoFilterTMA);
+        
     }
     
     private void setComboBox(){
-        setComboBoxListener();
-        cc.populateComboBox(cbxKecamatan, rc.namaKecamatanList());
-        cc.populateComboBox(cbxInputRDKKVarietas, rc.namaVarietasList());
+       
     }
     
     private void setComboBoxListener(){
-        cbxKecamatan.addActionListener(cbl);
-        cbxInputRDKKVarietas.addActionListener(cbl);
-        jtpLoginPassword.addActionListener(tbl);
+        
     }
 
     /**
