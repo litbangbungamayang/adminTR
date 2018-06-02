@@ -130,6 +130,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
 
     @Override
     public List<Transaksi> cekStokBahanProduksi(int idBahan) {
+        BahanProduksiDAOSQL bpDao = new BahanProduksiDAOSQL();
+        String satuan  = bpDao.getBahanProduksiByIdBahan(idBahan).getSatuan();
         Connection conn = new DBConnection().getConn();
         List<Transaksi> lsBp = new ArrayList<>();
         String callSQL = "CALL GET_SUMMARY_BAHAN_PRODUKSI(?)";
@@ -163,7 +165,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                         0,
                         lastDate, 
                         rs.getString("KODE_TRANSAKSI"), 
-                        rs.getFloat("KUANTA_TRANSAKSI"), 
+                        rs.getFloat("KUANTA_TRANSAKSI"),
+                        satuan,
                         CommonController.user.getUserId(), 
                         postingTimestamp, 
                         rs.getInt("TAHUN_GILING"), 
@@ -431,7 +434,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                          0,
                          rs.getDate("TGL_TRANSAKSI"), 
                          rs.getString("KODE_TRANSAKSI"), 
-                         rs.getFloat("KUANTA_TRANSAKSI"), 
+                         rs.getFloat("KUANTA_TRANSAKSI"),
+                         "",
                          rs.getInt("ID_USER"), 
                          rs.getTimestamp("DATESTAMP_POSTING"), 
                          rs.getInt("TAHUN_GILING"), 
@@ -472,7 +476,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                         0,
                         rs.getDate("TGL_TRANSAKSI"), 
                         rs.getString("KODE_TRANSAKSI"), 
-                        rs.getFloat("KUANTA_TRANSAKSI"), 
+                        rs.getFloat("KUANTA_TRANSAKSI"),
+                        "",
                         rs.getInt("ID_USER"), 
                         rs.getTimestamp("DATESTAMP_POSTING"), 
                         rs.getInt("TAHUN_GILING"), 
@@ -554,7 +559,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                          0,
                          rs.getDate("TGL_TRANSAKSI"), 
                          rs.getString("KODE_TRANSAKSI"), 
-                         rs.getFloat("KUANTA_TRANSAKSI"), 
+                         rs.getFloat("KUANTA_TRANSAKSI"),
+                         "",
                          rs.getInt("ID_USER"), 
                          rs.getTimestamp("DATESTAMP_POSTING"), 
                          rs.getInt("TAHUN_GILING"), 
@@ -595,7 +601,8 @@ public class TransaksiDAOSQL implements TransaksiDAO {
                         0,
                         rs.getDate("TGL_TRANSAKSI"), 
                         rs.getString("KODE_TRANSAKSI"), 
-                        rs.getFloat("KUANTA_TRANSAKSI"), 
+                        rs.getFloat("KUANTA_TRANSAKSI"),
+                        "",
                         rs.getInt("ID_USER"), 
                         rs.getTimestamp("DATESTAMP_POSTING"), 
                         rs.getInt("TAHUN_GILING"), 

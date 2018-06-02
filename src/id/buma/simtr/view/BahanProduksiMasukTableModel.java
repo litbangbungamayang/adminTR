@@ -47,9 +47,6 @@ public class BahanProduksiMasukTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        String satuan;
-        BahanProduksiDAOSQL bpDao = new BahanProduksiDAOSQL();
-        satuan = bpDao.getBahanProduksiByIdBahan(lstTp.get(rowIndex).getIdBahan()).getSatuan();
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator(',');
         dfs.setGroupingSeparator('.');
@@ -67,7 +64,7 @@ public class BahanProduksiMasukTableModel extends AbstractTableModel {
             case 3 :
                 return kuanta;
             case 4 :
-                return satuan;
+                return lstTp.get(rowIndex).getSatuan();
             case 5 :
                 return nilai;
         }

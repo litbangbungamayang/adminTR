@@ -184,6 +184,10 @@ public class VersionController {
         /*
         + Perubahan tampilan login atas
         */
+        version = "0.9.32.a";
+        /*
+        + Perubahan model Transaksi, ditambah properti Satuan
+        */
         
         
         return version;
